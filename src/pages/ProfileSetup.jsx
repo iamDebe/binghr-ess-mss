@@ -13,7 +13,7 @@ const ProfileSetup = () => {
         <div>
           <h3 className="upload-title">Profile Setup</h3>
           <input type="file" id="file" accept="image/*" />
-          <label for="file">BP</label>
+          <label>BP</label>
           <div className="upload-image-wrapper">
             <span className="upload-image-text">Upload</span>{" "}
             <img src="/images/camera.svg" />
