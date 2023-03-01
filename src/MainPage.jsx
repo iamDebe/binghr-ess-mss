@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
 import ProfileSetup from "./pages/ProfileSetup";
 
-function App() {
+function Main() {
   return (
     <Router>
       <Routes>
@@ -13,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;

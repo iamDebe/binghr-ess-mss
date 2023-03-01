@@ -1,65 +1,64 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Layout from "../components/layout";
+import { SignupButton, FormLogo, FormWrapper, InputField, InputWrapper, UploadImageWrapper } from "../components/commonStyles";
+import SignupLayout from "../components/SignupLayout";
 
 const ProfileSetup = () => {
   return (
-    <Layout>
-      <form className="form-wrapper">
-        <div className="logo">
+    <SignupLayout>
+      <FormWrapper>
+        <FormLogo>
           <img src="/images/barter.svg" width="85" alt="barter" />
-        </div>
-
-        <div>
+        </FormLogo>
+        <UploadImageWrapper>
           <h3 className="upload-title">Profile Setup</h3>
           <input type="file" id="file" accept="image/*" />
-          <label>BP</label>
+          <label htmlFor="file">BP</label>
           <div className="upload-image-wrapper">
             <span className="upload-image-text">Upload</span>{" "}
             <img src="/images/camera.svg" />
           </div>
-        </div>
-
-        <div className="input-wrapper">
-          <div>
+        </UploadImageWrapper>
+        <InputWrapper>
+          <InputField>
             <label>First Name</label>
             <input type="text" placeholder="Enter First Name" />
-          </div>
-          <div>
+          </InputField>
+          <InputField>
             <label>Last Name</label>
             <input type="text" placeholder="Enter Last Name" />
-          </div>
-        </div>
-        <div className="input-wrapper">
-          <div>
+          </InputField>
+        </InputWrapper>
+        <InputWrapper>
+          <InputField>
             <label>Location</label>
             <input type="text" placeholder="Enter Location" />
             <img src="/images/location.svg" className="input-icon icon" />
-          </div>
-          <div>
+          </InputField>
+          <InputField>
             <label>Branch</label>
             <input type="text" placeholder="Enter Branch" />
             <img src="/images/branch.svg" className="input-icon icon" />
-          </div>
-        </div>
-        <div className="input-wrapper">
-          <div>
+          </InputField>
+        </InputWrapper>
+        <InputWrapper>
+          <InputField>
             <label>Job</label>
             <input type="text" placeholder="Enter Job" />
-          </div>
-          <div>
+          </InputField>
+          <InputField>
             <label>Hire Date</label>
             <input type="date" placeholder="Enter Date" />
             <img src="/images/date.svg" className="input-icon icon" />
-          </div>
-        </div>
+          </InputField>
+        </InputWrapper>
 
-        <button className="btn">Continue</button>
+        <SignupButton>Continue</SignupButton>
         <Link to="/">
           <p className="skip">Skip</p>
         </Link>
-      </form>
-    </Layout>
+      </FormWrapper>
+    </SignupLayout>
   );
 };
 

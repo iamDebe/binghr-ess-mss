@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SignupContainer, SignupWrapper } from './commonStyles';
 
-const Layout = ({children}) => {
+const SignupLayout = ({children}) => {
   return (
-    <div className="App">
-      <div className="wrapper">
+    <SignupContainer>
+      <SignupWrapper>
         <div className="header">
           <Link to="/">
             <img src="/images/logo.svg" width="113" alt="BingHR" />
@@ -14,9 +15,9 @@ const Layout = ({children}) => {
         <div className="footer">
           <span>&copy; 2022 BingHR. All right reserved </span>
         </div>
-      </div>
-    </div>
+      </SignupWrapper>
+    </SignupContainer>
   );
 }
 
-export default Layout;
+export default SignupLayout;

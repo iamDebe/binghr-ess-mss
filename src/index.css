@@ -1,13 +1,51 @@
 @font-face {
-  font-family: 'Circular Std';
+  font-family: "Circular Std";
   src: url("/fonts/circular-std-medium-500.ttf");
   font-weight: 500;
   font-style: normal;
 }
 
 :root {
-  font-family: 'Circular Std', sans-serif;
+  /* colors */
+  --white: #ffffff;
+  --neutral-25: #fcfcfd;
+  --neutral-50: #f9fafb;
+  --neutral-100: #eff2f9;
+  --neutral-200: #dfe5f0;
+  --neutral-300: #bbbec4;
+  --neutral-400: #667085;
+  --neutral-500: #344054;
+  --neutral-600: #333333;
+  /* bing blue */
+  --blue-100: #d9ecf9;
+  --blue-200: #9cceed;
+  --blue-300: #49a9e5;
+  --blue-400: #1f75aa;
+  /* bing orange */
+  --orange-100: #ffeee7;
+  --orange-200: #ffceba;
+  --orange-300: #f8a481;
+  --orange-400: #e37a4e;
+  /* bing red */
+  --red-100: #ffeef3;
+  --red-200: #e3b4c2;
+  --red-300: #ca7890;
+  --red-400: #d2446e;
+  /* bing lilac */
+  --lilac-100: #ece5ef;
+  --lilac-200: #d1b2e0;
+  --lilac-300: #855e99;
+  --lilac-400: #6c3787;
+  /* bing accent */
+  --broom: #efcf24;
+  --coral: #ff715d;
+  --blush: #ea6390;
+  --highblue: #49a9e5;
+  --columbiablue: #bbdef0;
+  --minttulip: #c8ead3;
 
+  /* fonts */
+  font-family: "Circular Std", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,11 +53,13 @@
   -webkit-text-size-adjust: 100%;
   background: url(/images/bg.svg);
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: 100%;
   background-position-y: bottom;
+  /* --bodyFont: "Avenir", sans-serif; */
 }
 
-* { 
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -30,11 +70,21 @@ body {
   letter-spacing: 0.02em;
   width: 100%;
 }
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.125rem;
+}
 
 h3 {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+h4 {
+  font-size: 0.875rem;
+  font-weight: bold;
 }
 
 a {
