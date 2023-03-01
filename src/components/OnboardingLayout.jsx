@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SignupContainer, SignupWrapper } from './commonStyles';
 
-const SignupLayout = ({children}) => {
+const OnboardingLayout = ({children}) => {
   return (
     <SignupContainer>
       <SignupWrapper>
@@ -20,4 +20,4 @@ const SignupLayout = ({children}) => {
   );
 }
 
-export default SignupLayout;
+export default OnboardingLayout;
