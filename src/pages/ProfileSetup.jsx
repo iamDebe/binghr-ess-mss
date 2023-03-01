@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SignupButton, FormLogo, FormWrapper, InputField, InputWrapper, UploadImageWrapper } from "../components/commonStyles";
-import SignupLayout from "../components/SignupLayout";
+import { OnboardingButton, FormLogo, FormWrapper, InputField, InputWrapper, UploadImageWrapper } from "../components/commonStyles";
+import OnboardingLayout from "../components/OnboardingLayout";
 
 const ProfileSetup = () => {
   return (
-    <SignupLayout>
+    <OnboardingLayout>
       <FormWrapper>
         <FormLogo>
           <img src="/images/barter.svg" width="85" alt="barter" />
@@ -53,12 +53,12 @@ const ProfileSetup = () => {
           </InputField>
         </InputWrapper>
 
-        <SignupButton>Continue</SignupButton>
+        <OnboardingButton>Continue</OnboardingButton>
         <Link to="/">
           <p className="skip">Skip</p>
         </Link>
       </FormWrapper>
-    </SignupLayout>
+    </OnboardingLayout>
   );
 };
 

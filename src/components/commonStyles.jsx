@@ -1,9 +1,9 @@
 import { styled } from "goober";
 
-export const SignupContainer = styled('div')` 
+export const OnboardingContainer = styled('div')` 
 `;
 
-export const SignupWrapper = styled('div')`
+export const OnboardingWrapper = styled('div')`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -159,7 +159,7 @@ export const ForgotPasswordText = styled('p')`
     cursor: pointer;
 `;
 
-export const SignupButton = styled('button')`
+export const OnboardingButton = styled('button')`
     width: 100%;
     margin-top: 3.25rem;
     background: var(--lilac-400);
