@@ -1,7 +1,7 @@
 import { styled } from "goober";
 export const FormWrapper = styled("form")`
   margin: 0 auto;
-  border: 1px solid var(--neutral-100);
+  border: 1px solid var(--grey-100);
   border-top: 7px solid var(--red-400);
   background-color: var(--white);
   border-radius: 8px;

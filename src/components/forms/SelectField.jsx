@@ -11,24 +11,25 @@ export const Wrapper = styled("div")`
   label {
     font-size: 12px;
     line-height: 15px;
-    color: var(--neutral-400);
+    color: var(--grey-400);
   }
   select {
-    background: var(--neutral-50);
-    color: var(--neutral-400);
+    background: var(--grey-50);
+    color: var(--grey-300);
     font-family: inherit;
     font-size: 12px;
     padding: 0.5rem 2.4rem 0.5rem 1rem;
-    border: 1px solid var(--neutral-50);
+    border: 0.5px solid var(--grey-200);
     border-radius: 2px;
     outline: none;
     &::placeholder {
       font-family: inherit;
-      color: var(--neutral-300);
+      color: var(--grey-300);
     }
     &:focus {
-      background: var(--neutral-100);
-      border: 1px solid var(--neutral-200);
+      background: var(--grey-100);
+      border: 1px solid var(--grey-200);
+      color: var(--grey-400);
     }
   }
   .input-icon {

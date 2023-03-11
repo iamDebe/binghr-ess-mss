@@ -7,7 +7,7 @@ export const OnboardingWrapper = styled("div")`
   height: 100%;
   gap: 2rem;
   .footer span {
-    color: var(--neutral-25);
+    color: var(--grey-25);
     font-weight: 500;
     font-size: 14px;
   }
