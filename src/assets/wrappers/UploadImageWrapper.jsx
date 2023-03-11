@@ -19,8 +19,8 @@ export const UploadImageWrapper = styled("div")`
   label {
     &[for="file"] {
       display: block;
-      background-color: var(--neutral-200);
-      color: var(--neutral-400);
+      background-color: var(--grey-200);
+      color: var(--grey-400);
       width: 100px;
       height: 90px;
       text-align: center;

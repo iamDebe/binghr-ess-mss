@@ -17,7 +17,7 @@ export const Wrapper = styled("div")`
   .label {
     font-size: 12px;
     line-height: 15px;
-    color: var(--neutral-600);
+    color: var(--grey-600);
   }
   .error {
     background-color: var(--red-200);
