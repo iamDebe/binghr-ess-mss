@@ -60,11 +60,6 @@ export const GlobalStyles = createGlobalStyles`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    background: url(/images/bg.svg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100%;
-    background-position-y: bottom;
     /* --bodyFont: "Avenir", sans-serif; */
   }
   
@@ -103,6 +98,16 @@ export const GlobalStyles = createGlobalStyles`
     svg {
       display: block;
     }
+
+    --nav-width-collapsed: 7.375rem;
+    --nav-width-expanded: 18.3125rem;
+
+    --left-nav-padding: var(--sp-3);
+    --nav-logo-height: var(--sp-14);
+    --nav-item-height: var(--sp-11);
+
+    --content-window-width: calc(100vw - var(--left-nav-width-expanded));
+    --content-width: ;
   
     /* font types */
     .type-title1 {
@@ -142,7 +147,7 @@ export const GlobalStyles = createGlobalStyles`
       font-size: 1rem;
       line-height: 24px;
     }
-    type-body1 {
+    .type-body1 {
       font-weight: 400;
       font-size: 0.875rem;
       line-height: 120%;
@@ -151,5 +156,6 @@ export const GlobalStyles = createGlobalStyles`
   }
   a {
     text-decoration: none;
+    color: inherit;
   }
 `;
