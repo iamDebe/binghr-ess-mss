@@ -37,12 +37,16 @@ const NavWrapper = styled("div")`
     padding: 0.75rem;
     gap: 15px;
     color: #848484;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 140%;
     white-space: nowrap;
-    min-height: 44.5px;
+    min-height: 42px;
     svg {
       fill: #858585;
     }
-    &:hover {
+    &:hover,
+    &.active {
       background: var(--red-400);
       color: var(--grey-25);
       svg {
@@ -100,7 +104,7 @@ const SideNavbar = () => {
           <Barter width={collapsed ? "100%" : "100"}/>
         </CompanyLogo>
         <NavWrapper>
-          <a href="#" className="nav-item">
+          <a href="#" className="nav-item active">
             <div className="icon">
               <NavHomeIcon fill="var(--grey-400)" />
             </div>
