@@ -37,6 +37,8 @@ const NavWrapper = styled("div")`
     padding: 0.75rem;
     gap: 15px;
     color: #848484;
+    white-space: nowrap;
+    min-height: 44.5px;
     svg {
       fill: #858585;
     }
@@ -58,8 +60,6 @@ const NavWrapper = styled("div")`
         overflow: hidden;
         text-overflow: ellipsis;
         opacity: 0;
-        transform: translateX(8px);
-        transition: opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1), transform  0.15s cubic-bezier(0.16, 1, 0.3, 1);
       }
     }
   }
@@ -80,6 +80,10 @@ const CollapseButton = styled("button")`
   cursor: pointer;
   padding: 0.75rem;
   width: 100%;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  color: #848484;
 `;
 
 const SideNavbar = () => {
@@ -97,34 +101,48 @@ const SideNavbar = () => {
         </CompanyLogo>
         <NavWrapper>
           <a href="#" className="nav-item">
-            <NavHomeIcon fill="var(--grey-400)" />
+            <div className="icon">
+              <NavHomeIcon fill="var(--grey-400)" />
+            </div>
             <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Home</span>
           </a>
           <a href="#" className="nav-item">
-            <ProfileHomeIcon />
+            <div className="icon">
+              <ProfileHomeIcon />
+            </div>
             <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Profile</span>
           </a>
           <a href="#" className="nav-item">
-            <MyPayIcon />
+            <div className="icon">
+              <MyPayIcon />
+            </div>
             <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Pay</span>
           </a>
           <a href="#" className="nav-item">
-            <ClockIcon />
+            <div className="icon">
+              <ClockIcon />
+            </div>
             <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Time Off</span>
           </a>
           <a href="#" className="nav-item">
-            <CalendarIcon />
+            <div className="icon">
+              <CalendarIcon />
+            </div>
             <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Timesheet</span>
           </a>
           <a href="#" className="nav-item">
-            <ChartIcon />
+            <div className="icon">
+              <ChartIcon />
+            </div>
             <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Org Chart</span>
           </a>
         </NavWrapper>
       </div>
       <div className="bottom-nav">
         <CollapseButton className="collapse-button" onClick={handleCollapse}>
-          <NavHomeIcon fill="var(--grey-400)" />
+          <div className="icon">
+            <NavHomeIcon fill="var(--grey-400)" />
+          </div>
           {!collapsed && <span>Collapse</span>}
         </CollapseButton>
       </div>
