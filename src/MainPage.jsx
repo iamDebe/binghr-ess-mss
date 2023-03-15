@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProfileSetup from "./pages/ProfileSetup";
-import EssHome from "./pages/essHome";
+import EssHome from "./pages/EssHomepage";
 
 function Main() {
   return (

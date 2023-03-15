@@ -6,12 +6,19 @@ const Wrapper = styled("div")`
     display: flex;
 `;
 
-const EssHome = () => {
+const Container = styled("div")`
+    padding: 2rem 3.875rem 3.5rem 3.125rem;
+`;
+
+const EssLayout = ({ children }) => {
     return (
         <Wrapper>
             <SideNavbar />
+            <Container>
+                {children}
+            </Container>
         </Wrapper>
     );
 }
 
-export default EssHome;
+export default EssLayout;
