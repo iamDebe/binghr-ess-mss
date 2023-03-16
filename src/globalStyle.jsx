@@ -62,6 +62,10 @@ export const GlobalStyles = createGlobalStyles`
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
     /* --bodyFont: "Avenir", sans-serif; */
+    --lato-font: 'Lato', sans-serif;
+    
+    /* border radius */
+    --br: 4px; 
   }
   
   * {
@@ -153,6 +157,11 @@ export const GlobalStyles = createGlobalStyles`
       font-size: 0.875rem;
       line-height: 120%;
       letter-spacing: 0.02em;
+    }
+    .type-body2 {
+      font-weight: 450;
+      font-size: 0.875rem;
+      line-height: 155.5%;
     }
   }
   a {
