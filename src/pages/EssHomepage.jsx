@@ -69,19 +69,6 @@ const EmployeeDetails = styled("div")`
             color: var(--grey-400);
         }
     }
-    .row {
-        display: grid;
-        grid-auto-flow: column;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.875rem;
-        .type-title3 {
-            font-weight: bold;
-        }
-        .type-body2 {
-            color: var(--grey-400);
-        }
-    }
 `;
 const EssHome = () => {
     return (
@@ -114,22 +101,6 @@ const EssHome = () => {
                                 <p className="type-body2">Design</p>
                                 <p className="type-body2">Not included</p>
                             </div>
-                            {/* <div className="row">
-                                <p className="type-title3">Name</p>
-                                <p className="type-body2">Bamgboye Pelumi</p>
-                            </div>
-                            <div className="row">
-                                <p className="type-title3">Job</p>
-                                <p className="type-body2">Product Designer</p>
-                            </div>
-                            <div className="row">
-                                <p className="type-title3">Depertment</p>
-                                <p className="type-body2">Design</p>
-                            </div>
-                            <div className="row">
-                                <p className="type-title3">Hire Date</p>
-                                <p className="type-body2">Not included</p>
-                            </div> */}
                         </EmployeeDetails>
                     </EmployeeInfo>
                 </EmployeeSummaryRow>

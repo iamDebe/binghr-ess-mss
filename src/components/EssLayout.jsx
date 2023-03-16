@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "goober";
 import SideNavbar from "../components/sideNavbar";
-import TopBar from "../components/topBar";
+// import TopBar from "../components/topBar";
 
 const Wrapper = styled("div")`
     display: flex;
