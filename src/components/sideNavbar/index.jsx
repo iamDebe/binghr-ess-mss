@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import { ReactComponent as Barter } from "../../assets/images/barter.svg";
 import { ReactComponent as NavHomeIcon } from "../../assets/images/home-nav.svg";
 import { ReactComponent as ProfileHomeIcon } from "../../assets/images/profile-remove.svg";
 import { ReactComponent as MyPayIcon } from "../../assets/images/note2.svg";
@@ -13,12 +12,12 @@ const Navbar = styled("div")`
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  width: var(--nav-width-expanded);
+  min-width: var(--nav-width-expanded);
   background-color: #fff;
   transition: width 0.3s;
   box-shadow: 0px 4px 7px var(--blue-100);
   &.collapsed {
-    width: var(--nav-width-collapsed);
+    min-width: var(--nav-width-collapsed);
   }
   .bottom-nav {
     padding: 1.75rem 2.375rem;
@@ -101,7 +100,7 @@ const SideNavbar = () => {
     <Navbar className={`sidebar ${collapsed ? "collapsed" : ""}`}>
       <div className="top-nav">
         <CompanyLogo className={`${collapsed ? "collapsed-logo" : ""}`}>
-          <Barter width={collapsed ? "100%" : "100"}/>
+          <img src="/images/barter.svg" width={collapsed ? "100%" : "100"} alt="company-logo" />
         </CompanyLogo>
         <NavWrapper>
           <a href="#" className="nav-item active">
