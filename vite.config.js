@@ -4,10 +4,10 @@ import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    root: '',
-    base: '/',
-    build: {
-      outDir: ''
-    },
+    // root: '',
+    // base: '/',
+    // build: {
+    //   outDir: ''
+    // },
   plugins: [svgr(), react()],
 })

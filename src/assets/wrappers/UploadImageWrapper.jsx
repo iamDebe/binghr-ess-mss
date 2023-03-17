@@ -43,4 +43,9 @@ export const UploadImageWrapper = styled("div")`
     font-size: 12px;
     line-height: 15px;
   }
+
+  #profile-photo{
+    width: 150px;
+    height: 150px;
+  }
 `;
