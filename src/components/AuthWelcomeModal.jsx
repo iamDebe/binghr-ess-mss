@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "goober";
 import ModalPortal from "./ModalPortal";
+import CustomButton from "./CustomButton";
 
 export const Container = styled("div")`
   background-color: rgba(38, 38, 38, 0.75);
@@ -30,13 +31,8 @@ export const Container = styled("div")`
     justify-content: center;
     width: 100%;
     padding-top: 40px;
+    padding-bottom: 10px;
     text-align: center;
-  }
-  .welcome-text {
-    padding-top: 10px;
-    font-size: 18px;
-    color: #4f4f4f;
-    font-weight: 500;
   }
   .success-logo-div {
     display: flex;
@@ -47,28 +43,6 @@ export const Container = styled("div")`
     padding-bottom: 40px;
     text-align: center;
   }
-  .button-div {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    bottom: 0;
-    padding-left: 15px;
-    padding-right: 15px;
-    .button {
-      width: 100%;
-      height: 38px;
-      padding-bottom: 10px;
-      color: #fff;
-      background-color: #27ae60;
-      border: none;
-      outline: none;
-      border-radius: 4px;
-      text-align: center;
-      padding: 0.625rem 0.5rem;
-      font-size: 14px;
-    }
-  }
 `;
 
 const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
@@ -77,17 +51,19 @@ const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
       <Container>
         <div className="inner-div">
           <div className="logo-div">
+            {/* USE COMPANY LOGO FROM URL */}
             <img src="/images/barter.svg" />
           </div>
-          <p className="welcome-text">You have Signed up Successfully</p>
+          <p className="type-title2">You have Signed up Successfully</p>
           <div className="success-logo-div">
             <img src="/images/success-1.svg" />
           </div>
-          <div className="button-div">
-            <button className="button" onClick={() => clickAction()}>
-              Continue
-            </button>
-          </div>
+          <CustomButton
+            width="100%"
+            variant="#27ae60"
+            label="Continue"
+            onClick={() => clickAction()}
+          />
         </div>
       </Container>
     </ModalPortal>
