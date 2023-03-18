@@ -1,19 +1,13 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { withFormik } from 'formik';
 import { FormWrapper, InputsWrapper, UploadImageWrapper, FormLogoWrapper, } from "../../../assets/wrappers";
 import { TextField, SelectField, CheckBox } from "../../forms";
 import { ButtonLilacFull } from "../../buttons";
 
-const Step1Form = (props) => {
-  const {
-    // values,
-    // touched,
-    // errors,
-    updateForm,
-    formData,
-  } = props;
-
-  const [prefferedNameDisabled, setPrefferedNameDisabled] = useState(true);
+const Step1Form = ({submitForm, formData, updateForm, profilePicture, setProfilePicture}) => {
+  
+  const [prefferedNameDisabled, setPrefferedNameDisabled] = useState(false);
+  
 
   const profilePhotoRef = useRef();
   const preferredFirstNameRef = useRef();
@@ -23,11 +17,13 @@ const Step1Form = (props) => {
 
   const disablePrefferedName = (event) => {
     if(event.target.checked){
+        
         delete formData.preferredLastName;
         delete formData.preferredFirstName;
-        setPrefferedNameDisabled(false);
-    }else{
         setPrefferedNameDisabled(true);
+    }else{
+       
+        setPrefferedNameDisabled(false);
         formData.preferredLastName = preferredLastNameRef.current.value;
         formData.preferredFirstName = preferredFirstNameRef.current.value;
     }
@@ -40,8 +36,12 @@ const uploadProfilePhoto = (e)=>{
     setProfilePicture(file)
 }
 
+useEffect(()=>{
+    // console.log(profilePicture);
+}, [prefferedNameDisabled, profilePicture]);
+
   return (
-    <FormWrapper >
+    <FormWrapper onSubmit={submitForm}>
         <FormLogoWrapper>
             <img src="/images/barter.svg" width="85" alt="barter" />
         </FormLogoWrapper>
@@ -50,7 +50,7 @@ const uploadProfilePhoto = (e)=>{
             <h3>Profile Setup</h3>
             <h3 className="step-text">STEP 1 OF 3</h3>
             </div>
-            <input type="file" id="file" accept="image/*"  onChange={uploadProfilePhoto} />
+            <input type="file" id="file" accept="image/*"  onChange={uploadProfilePhoto} name="avatar"/>
             <label htmlFor="file">BP</label>
             <div className="upload-image-wrapper">
             <span className="upload-image-text">Upload</span>{" "}
@@ -68,6 +68,7 @@ const uploadProfilePhoto = (e)=>{
             <TextField
             id="firstName"
             label="First Name"
+            name="firstName"
             type="text"
             onChange = {updateForm}
             defaultValue={formData.firstName}
@@ -78,6 +79,7 @@ const uploadProfilePhoto = (e)=>{
             <TextField
             id="lastName"
             label="Last Name"
+            name="lastName"
             type="text"
             onChange = {updateForm}
             defaultValue={formData.lastName}
@@ -87,6 +89,7 @@ const uploadProfilePhoto = (e)=>{
             optional
             id="middleName"
             label="Middle Name"
+            name="middleName"
             type="text"
             onChange = {updateForm}
             defaultValue={formData.middleName}
@@ -99,28 +102,31 @@ const uploadProfilePhoto = (e)=>{
             optional
             id="preferredFirstName"
             label="Preferred First Name"
+            name="prefered_firstname"
             type="text"
             onChange = {updateForm}
             defaultValue={formData.preferredFirstName}
             placeholder="Enter Preferred Name"
             ref={preferredFirstNameRef}
+            disabled={prefferedNameDisabled}
             />
             <TextField
             optional
             id="preferredLastName"
             label="Preferred Last Name"
+            name="prefered_lastname"
             type="text"
             onChange = {updateForm}
             defaultValue={formData.preferredLastName}
             placeholder="Enter Preferred Name"
             ref={preferredLastNameRef}
+            disabled={prefferedNameDisabled}
             />
         </InputsWrapper>
-        <CheckBox label="No Preferred Name"  />
+        <CheckBox label="No Preferred Name" onChange={disablePrefferedName} />
 
         <ButtonLilacFull
-            type="button"
-            onClick={formData.handleSubmit}
+            type="submit"
             // onClick={() => setStep({ ...step, step1: false, step2: true })}
         >
             Continue
@@ -130,28 +136,6 @@ const uploadProfilePhoto = (e)=>{
   );
 };
 
-const MyEnhancedForm = withFormik({
-  mapPropsToValues: () => ({ name: '' }),
 
-  // Custom sync validation
-  validate: values => {
-    const errors = {};
-
-    if (!values.name) {
-      errors.name = 'Required';
-    }
-
-    return errors;
-  },
-
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
-  },
-
-  displayName: 'BasicForm',
-});
 
 export default Step1Form;

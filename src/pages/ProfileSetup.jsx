@@ -5,10 +5,10 @@ import OnboardingLayout from "../components/OnboardingLayout";
 import { TextField, SelectField, CheckBox } from "../components/forms";
 import location from "../assets/images/location.svg";
 import { Link } from "react-router-dom";
-import axiosFetch from "../components/customHooks/useAxiosFetch";
+import axiosFetch from "../utils/useAxiosFetch"
 import { useFormik } from "formik";
 import * as Yup from "yup"
-import ProfileStep1 from '../components/onboarding/ProfileStep1';
+import ProfileStep1 from '../components/profilesetup/ProfileStep1';
 
 const profileSteps = {
   step1: true,

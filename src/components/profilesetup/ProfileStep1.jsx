@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ButtonLilacFull } from "../buttons";
-import OnboardingLayout from "../OnboardingLayout";
-import { TextField, SelectField, CheckBox } from "../forms";
-import location from "../../assets/images/location.svg";
-import { Link } from "react-router-dom";
-import axiosFetch from "../customHooks/useAxiosFetch";
+import axiosFetch from "../../utils/useAxiosFetch";
 import { withFormik  } from "formik";
 import * as Yup from "yup"
 import Step1Form from "./forms/Step1Form";
@@ -22,7 +17,7 @@ const ProfileStep1 = () => {
 
   const base_url =`${window.base_url}/v1`;
 
-  const [ profilePicture, setProfilePicture ] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
 
   const [formData, setFormData] =  useState({
     title: "",
@@ -31,7 +26,7 @@ const ProfileStep1 = () => {
     middleName: "",
     preferredFirstName: "",
     preferredLastName: "",
-    profilePhoto:'',
+    profilePhoto: profilePicture,
   })
 
  
@@ -48,31 +43,36 @@ const ProfileStep1 = () => {
     console.log(formData)
   }
 
-  const  submitForm = () => {
-
-    const myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Authorization", "Bearer 11|kFWdszV59FxQldpioBwTxSksS53LoAZg3LXmSjhK");
+  const  submitForm = (event) => {
+    // console.log('here')
+    event.preventDefault();
+    const myHeaders = {
+      "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer 17|FSi8XfENKsWhaZysFNtRWQydy8hOuotqas1ClQje"
+    };
+    // myHeaders.append("Accept", "application/json");
+    // myHeaders.append("Authorization", "Bearer 12|7tZtAEekQfwFoVb00ob9IZnXntDlfapWEHfZPORl");
     
     const formdata = new FormData();
-    formdata.append("suffix", form.title);
+    formdata.append("suffix", formdata.title);
     formdata.append("firstname", formdata.firstName);
-    formdata.append("lastname", form.lastName);
-    formdata.append("middlename", form.middleName);
-    formdata.append("prefered_firstname", form.preferredFirstName);
-    formdata.append("prefered_lastname", form.preferredLastName);
+    formdata.append("lastname", formData.lastName);
+    formdata.append("middlename", formData.middleName);
+    formdata.append("prefered_firstname", formData.preferredFirstName);
+    formdata.append("prefered_lastname", formData.preferredLastName);
     formdata.append("avatar", profilePicture, "[PROXY]");
 
-      const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: formdata,
-        redirect: 'follow'
-      };
+    console.log(formData);
 
-      console.log(requestOptions);
-      const { data, error, isloading } = axiosFetch(`${base_url}/onboarding/profile`, requestOptions);
+      // const requestOptions = {
+      //   method: 'POST',
+      //   body: formdata,
+      //   redirect: 'follow'
+      // };
 
+      // console.log(requestOptions);
+      const response = axiosFetch(`${base_url}/onboarding/profile`, formData, myHeaders);
+      
       // fetch("https://company.binghr.io/api/v1/onboarding/profile", requestOptions)
       //   .then(response => response.text())
       //   .then(result => console.log(result))
@@ -82,9 +82,13 @@ const ProfileStep1 = () => {
 
   
   const [step, setStep] = useState(profileSteps);
+
+  useEffect(()=>{
+    console.log(profilePicture);
+}, [profilePicture]);
   return (
  
-    <Step1Form submitForm={submitForm} formData={formData} updateForm={updateForm}/>
+    <Step1Form submitForm={submitForm} formData={formData} updateForm={updateForm} profilePicture={profilePicture} setProfilePicture={setProfilePicture} />
   );
 };
 
