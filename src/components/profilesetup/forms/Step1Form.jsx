@@ -7,6 +7,7 @@ import { ButtonLilacFull } from "../../buttons";
 const Step1Form = ({submitForm, formData, updateForm, profilePicture, setProfilePicture}) => {
   
   const [prefferedNameDisabled, setPrefferedNameDisabled] = useState(false);
+  const [userInitial, setUSerInitial] = useState('BP')
   
 
   const profilePhotoRef = useRef();
@@ -29,11 +30,17 @@ const Step1Form = ({submitForm, formData, updateForm, profilePicture, setProfile
     }
   }
 
+  
+
 const uploadProfilePhoto = (e)=>{
     const  file = e.target.files[0];
     const temp_path = URL.createObjectURL(file);
     profilePhotoRef.current.src = temp_path
+
+    
+    
     setProfilePicture(file)
+    document.querySelector('#profile-photo').style.display = 'block';
 }
 
 useEffect(()=>{
@@ -43,7 +50,7 @@ useEffect(()=>{
   return (
     <FormWrapper onSubmit={submitForm}>
         <FormLogoWrapper>
-            <img src="/images/barter.svg" width="85" alt="barter" />
+            <img src={"/images/barter.svg"} width="85" alt="barter" />
         </FormLogoWrapper>
         <UploadImageWrapper>
             <div className="upload-title">
@@ -51,10 +58,11 @@ useEffect(()=>{
             <h3 className="step-text">STEP 1 OF 3</h3>
             </div>
             <input type="file" id="file" accept="image/*"  onChange={uploadProfilePhoto} name="avatar"/>
-            <label htmlFor="file">BP</label>
+            <label htmlFor="file">{userInitial  && <img src={"/images/camera.svg"} id="profile-photo" ref={profilePhotoRef} />} </label>
             <div className="upload-image-wrapper">
-            <span className="upload-image-text">Upload</span>{" "}
-            <img src={"/images/camera.svg" } ref={profilePhotoRef} id="profile-photo" />
+            <span className="upload-image-text">Upload <i className='fa fa-camera'></i></span>{" "}
+            {/* <img src={"/images/camera.svg"} ref={profilePhotoRef} id="" /> */}
+
             </div>
         </UploadImageWrapper>
         <InputsWrapper>

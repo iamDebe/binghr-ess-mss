@@ -44,8 +44,14 @@ export const UploadImageWrapper = styled("div")`
     line-height: 15px;
   }
 
-  #profile-photo{
-    width: 150px;
-    height: 150px;
+label #profile-photo{
+    width: 100%;
+    height: 120%;
+    margin-top: -.8rem;
+    display: none;
+    object-fit: cover;
   }
+
+ 
+  
 `;

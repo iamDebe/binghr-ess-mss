@@ -2,23 +2,28 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 
-const axiosFetch = (url, options, headers) => {
-  console.log(headers)
 
+
+
+const axiosFetch = async (url, method,  headers={}, options=null) => {
     const fetchData = async () => {
       
       try {
-        const res = await axios.post(url, options, {headers:headers})
-        .then(response=>{return response.json()} );
+        return  await axios({
+          "method": method,
+          "url": url,
+          "data": options,
+          "headers": headers
+        })
+        .then(response =>  {return response.data} )
       } catch (error) {
-        console.log(error);
         return error;
         
       }
       
     };
 
-    fetchData();
+    return fetchData();
 
   // return  {data, error, isLoading}   
 };

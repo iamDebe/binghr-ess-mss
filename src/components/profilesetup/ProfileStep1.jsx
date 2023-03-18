@@ -13,9 +13,35 @@ const profileSteps = {
 
 const ProfileStep1 = () => {
 
+  const base_url =`${window.base_url}/v1`;
+
+  useEffect(()=>{
+
+    const url = `${base_url}/my-profile/personal-information`
+
+   
+
+    const myHeaders = {
+      "Accept": "application/json",
+      "Authorization": "Bearer 18|KR91Lbh0KeDm7VsEMUGCOyNKVjGPJezJAPm3GiUM"
+    };
+  
+
+    
+ 
+    const userData = async ()=>{
+      const data = await axiosFetch(url,'GET', myHeaders );
+      console.log(data);
+    } 
+ 
+    userData()
+  
+  },[])
+
+ 
+
   const profilePhotoRef = useRef();
 
-  const base_url =`${window.base_url}/v1`;
 
   const [profilePicture, setProfilePicture] = useState('');
 
@@ -43,15 +69,15 @@ const ProfileStep1 = () => {
     console.log(formData)
   }
 
-  const  submitForm = (event) => {
-    // console.log('here')
+  const  submitForm =  async (event) => {
+
+
     event.preventDefault();
     const myHeaders = {
       "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer 17|FSi8XfENKsWhaZysFNtRWQydy8hOuotqas1ClQje"
+      "Authorization": "Bearer 18|KR91Lbh0KeDm7VsEMUGCOyNKVjGPJezJAPm3GiUM"
     };
-    // myHeaders.append("Accept", "application/json");
-    // myHeaders.append("Authorization", "Bearer 12|7tZtAEekQfwFoVb00ob9IZnXntDlfapWEHfZPORl");
+   
     
     const formdata = new FormData();
     formdata.append("suffix", formdata.title);
@@ -62,21 +88,11 @@ const ProfileStep1 = () => {
     formdata.append("prefered_lastname", formData.preferredLastName);
     formdata.append("avatar", profilePicture, "[PROXY]");
 
-    console.log(formData);
-
-      // const requestOptions = {
-      //   method: 'POST',
-      //   body: formdata,
-      //   redirect: 'follow'
-      // };
-
-      // console.log(requestOptions);
-      const response = axiosFetch(`${base_url}/onboarding/profile`, formData, myHeaders);
+ 
+    const response = await axiosFetch(`${base_url}/onboarding/profile`, 'POST', myHeaders, formData);
+    console.log(response);
       
-      // fetch("https://company.binghr.io/api/v1/onboarding/profile", requestOptions)
-      //   .then(response => response.text())
-      //   .then(result => console.log(result))
-      //   .catch(error => console.log('error', error));
+    
   }
 
 
