@@ -10,10 +10,7 @@ import OnboardingLayout from "../components/OnboardingLayout";
 import { TextField, SelectField, CheckBox } from "../components/forms";
 import location from "../assets/images/location.svg";
 import { Link } from "react-router-dom";
-
-import { fetchData } from "../store/AxiosFetch";
 import axios from "axios";
-// import { fetchData } from './api';
 
 const nameTitle = ["Select Title", "Dr", "Mr.", "Mrs.", "Ms."];
 const profileSteps = {
@@ -22,49 +19,7 @@ const profileSteps = {
   step3: false,
 };
 
-
-
-
- 
-
-
-const ProfileSetup = () => {  
-
-  const [data, setData] = useState('')
-
-
-const getUsers = async () => {
-  const users = await fetchData('/form');
-  console.log(users);
-};
-
-// const createUser = async (userData) => {
-//   const response = await fetchData('/users', 'POST', userData);
-//   // Do something with response
-// };
-
-  // let responseData = null
-
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axiosFetch('/form')
-  //       responseData = response.data
-
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   }
-   
-    useEffect(()=>{
-      // fetchData().then(()=>{
-      //  setData({...data, responseData});
-      // // console.log(responseData[0].email);
-      // });
-      getUsers()
-    },[]);
-
-    // console.log(responseData);
-  
+    const ProfileSetup = ()=>{
   const [step, setStep] = useState(profileSteps);
   return (
     <OnboardingLayout>
@@ -100,7 +55,6 @@ const getUsers = async () => {
                 label="First Name"
                 type="text"
                 placeholder="Enter First Name"
-                // defaultValue={responseData[0].email}
               />
             </InputsWrapper>
             <InputsWrapper>
