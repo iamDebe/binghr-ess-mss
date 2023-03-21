@@ -45,9 +45,11 @@ function IntroductroryVideos({ continueAction, goBack, saveData }) {
         <div className="button-groups">
           <CustomButton
             width="111px"
-            variant="#eee"
+            variant="#BDBDBD"
             label="Save"
             onClick={() => saveData()}
+            iconPosition="right"
+            iconUrl="/images/copy-success.svg"
           />
           <div style={{ display: "flex" }}>
             <CustomButton
@@ -56,6 +58,7 @@ function IntroductroryVideos({ continueAction, goBack, saveData }) {
               textColor="black"
               label="Previous"
               onClick={() => goBack()}
+              secondaryBtn
             />
             <div style={{ width: "20px" }} />
             <CustomButton

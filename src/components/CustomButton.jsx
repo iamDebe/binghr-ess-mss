@@ -22,9 +22,10 @@ const CustomButton = ({
   height = "38px",
   disabled = false,
   textColor = "white",
-  icon,
+  iconUrl,
   iconPosition = "right",
-  iconLabelSpacing = "16px",
+  iconLabelSpacing = 5,
+  secondaryBtn = false,
 }) => {
   return (
     <Container>
@@ -37,26 +38,30 @@ const CustomButton = ({
           color: textColor,
           width: width,
           height: height,
-          border: "none",
+          border: secondaryBtn ? "1px solid #6C3787" : "none",
           outline: "none",
           borderRadius: "4px",
           textAlign: "center",
           padding: "0.625rem 0.5rem",
           fontSize: "14px",
           cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: iconLabelSpacing,
         }}
       >
-        {icon && iconPosition === "left" && (
+        {iconUrl && iconPosition === "left" && (
           <>
             <Spacer width={iconLabelSpacing} />
-            {icon}
+            {iconUrl}
           </>
         )}
         {label}
-        {icon && iconPosition === "right" && (
+        {iconUrl && iconPosition === "right" && (
           <>
             <Spacer width={iconLabelSpacing} />
-            {icon}
+            <img src={iconUrl} />
           </>
         )}
       </button>
