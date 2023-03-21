@@ -17,7 +17,7 @@ const axiosFetch = async (url, method,  headers={}, options=null) => {
         })
         .then(response =>  {return response.data} )
       } catch (error) {
-        console.log(error)
+        return error;
         
       }
       
@@ -25,6 +25,7 @@ const axiosFetch = async (url, method,  headers={}, options=null) => {
 
     return fetchData();
 
+  // return  {data, error, isLoading}   
 };
  
 export default axiosFetch;
