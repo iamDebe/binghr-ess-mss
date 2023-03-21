@@ -36,6 +36,9 @@ const Inner = styled("div")`
     align-items: center;
     justify-content: space-between;
     margin-top: 60px;
+    div {
+      display: flex;
+    }
   }
   .main-text-div {
     width: 40%;
@@ -43,11 +46,25 @@ const Inner = styled("div")`
     align-items: center;
     justify-content: space-between;
   }
+  .form-div {
+    padding: 10px;
+    border: 0.5px solid #e0e0e0;
+  }
   .flexed-div {
     width: full;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .sign-div {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      width: 50%;
+      .fn-div {
+        width: 200px;
+        padding-top: 18px;
+      }
+    }
   }
 `;
 
@@ -69,7 +86,7 @@ function Policies({ continueAction, goBack, saveData }) {
         {showPayrollPolicyForm && (
           <>
             <p className="type-title3">Payroll Policy</p>
-            <div style={{ padding: "10px", borde: " 0.5px solid #e0e0e0;" }}>
+            <div className="form-div">
               <p className="type-body2">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
                 ut malesuada massa. Sed sodales arcu in eleifend aliquam. Nam id
@@ -86,18 +103,11 @@ function Policies({ continueAction, goBack, saveData }) {
               <div>
                 <CheckBox label="I agree to payrol policy" />
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "end",
-                  width: "50%",
-                }}
-              >
+              <div className="sign-div">
                 <p className="type-title3">Type Full Name as signature </p>
                 <Spacer width={10} />
 
-                <div style={{ width: "200px", paddingTop: "18px" }}>
+                <div className="fn-div">
                   <TextField placeholder="Type Full Name Here" />
                 </div>
               </div>
@@ -115,7 +125,7 @@ function Policies({ continueAction, goBack, saveData }) {
         {showCompensationPolicyForm && (
           <>
             <p className="type-title3">Compensation Policy</p>
-            <div style={{ padding: "10px", borde: " 0.5px solid #e0e0e0;" }}>
+            <div className="form-div">
               <p className="type-body2">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
                 ut malesuada massa. Sed sodales arcu in eleifend aliquam. Nam id
@@ -132,18 +142,11 @@ function Policies({ continueAction, goBack, saveData }) {
               <div>
                 <CheckBox label="I agree to compensation policy" />
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "end",
-                  width: "50%",
-                }}
-              >
+              <div className="sign-div">
                 <p className="type-title3">Type Full Name as signature </p>
                 <Spacer width={10} />
 
-                <div style={{ width: "200px", paddingTop: "18px" }}>
+                <div className="fn-div">
                   <TextField placeholder="Type Full Name Here" />
                 </div>
               </div>
@@ -161,7 +164,7 @@ function Policies({ continueAction, goBack, saveData }) {
         {showTandAPolicyForm && (
           <>
             <p className="type-title3">Time and Attendance Policy</p>
-            <div style={{ padding: "10px", borde: " 0.5px solid #e0e0e0;" }}>
+            <div className="form-div">
               <p className="type-body2">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
                 ut malesuada massa. Sed sodales arcu in eleifend aliquam. Nam id
@@ -178,18 +181,11 @@ function Policies({ continueAction, goBack, saveData }) {
               <div>
                 <CheckBox label="I agree to time and attendance policy" />
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "end",
-                  width: "50%",
-                }}
-              >
+              <div className="sign-div">
                 <p className="type-title3">Type Full Name as signature </p>
                 <Spacer width={10} />
 
-                <div style={{ width: "200px", paddingTop: "18px" }}>
+                <div className="fn-div">
                   <TextField placeholder="Type Full Name Here" />
                 </div>
               </div>
@@ -273,7 +269,7 @@ function Policies({ continueAction, goBack, saveData }) {
                   iconPosition="right"
                   iconUrl="/images/copy-success.svg"
                 />
-                <div style={{ display: "flex" }}>
+                <div>
                   <CustomButton
                     width="111px"
                     variant="white"
@@ -282,7 +278,7 @@ function Policies({ continueAction, goBack, saveData }) {
                     onClick={() => goBack()}
                     secondaryBtn
                   />
-                  <div style={{ width: "20px" }} />
+                  <Spacer width={20} />
                   <CustomButton
                     width="111px"
                     variant="#6c3787"

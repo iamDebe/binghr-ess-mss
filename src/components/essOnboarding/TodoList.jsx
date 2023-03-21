@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "goober";
 import { CheckBox } from "../forms";
 import CustomButton from "../CustomButton";
+import Spacer from "../Spacer";
 
 const Container = styled("div")`
   width: 100%;
@@ -44,6 +45,9 @@ const Inner = styled("div")`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    div {
+      display: flex;
+    }
   }
 `;
 
@@ -76,7 +80,7 @@ function TodoList({ continueAction, goBack, saveData }) {
             iconPosition="right"
             iconUrl="/images/copy-success.svg"
           />
-          <div style={{ display: "flex" }}>
+          <div>
             <CustomButton
               width="111px"
               variant="white"
@@ -85,7 +89,7 @@ function TodoList({ continueAction, goBack, saveData }) {
               onClick={() => goBack()}
               secondaryBtn
             />
-            <div style={{ width: "20px" }} />
+            <Spacer width={20} />
             <CustomButton
               width="111px"
               variant="#6c3787"

@@ -10,6 +10,7 @@ import EmergencyContact from "./EmergencyContact";
 import BankInformation from "./BankInformation";
 import Policies from "./Policies";
 import ProgressBarWithSteps from "../ProgressBarWithSteps";
+import Spacer from "../Spacer";
 
 const Container = styled("div")`
   width: 100%;
@@ -33,6 +34,16 @@ const WelcomeSection = styled("div")`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .steps-div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .onboarding-div {
+      width: 70%;
+      display: flex;
+      align items: center;
+    }
     .type-title3 {
       color: var(--grey-400);
     }
@@ -52,9 +63,7 @@ function OnBoardingStepsContainer() {
     <Container>
       <WelcomeSection>
         <div className="inner-div">
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}
-          >
+          <div className="steps-div">
             <p className="type-title3">
               STEP {userStepsDone}/{allSteps}
             </p>
@@ -71,15 +80,9 @@ function OnBoardingStepsContainer() {
           </div>
         </div>
       </WelcomeSection>
-      <div
-        style={{
-          width: "70%",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+      <div className="onboarding-div">
         <p className="type-title2">Onboarding</p>
-        <div style={{ width: "50px" }} />
+        <Spacer width={50} />
         <ProgressBarWithSteps />
       </div>
       {activeStep === 1 && (
