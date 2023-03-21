@@ -119,7 +119,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             <CustomButton
               width="111px"
               variant="white"
-              textColor="black"
+              textColor="#6C3787"
               label="Previous"
               onClick={() => goBack()}
               secondaryBtn

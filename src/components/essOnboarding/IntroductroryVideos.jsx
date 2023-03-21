@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "goober";
 import { CheckBox } from "../forms";
 import CustomButton from "../CustomButton";
+import IntroVideoCard from "../IntroVideoCard";
 
 const Container = styled("div")`
   width: 100%;
@@ -11,6 +12,12 @@ const Container = styled("div")`
   border-left: 0.5px solid #e0e0e0;
   border-bottom: 0.5px solid #e0e0e0;
   border-radius: 4px;
+  .intro-vid-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap; wrap;
+  }
   .top-border {
     width: 39%;
     border-top: 7px solid #d2446e;
@@ -42,6 +49,39 @@ function IntroductroryVideos({ continueAction, goBack, saveData }) {
       <div className="top-border" />
       <Inner>
         <p className="type-title3">Introductory Videos</p>
+        <div className="intro-vid-div">
+          <IntroVideoCard
+            title="Building meaningful relationship "
+            date="12 Feb, 2022"
+            previewImageUrl="/images/intro-vid.png"
+            videoUrl="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          />
+          <IntroVideoCard
+            title="Communicating Directly With Superior  "
+            date="12 Feb, 2022"
+            previewImageUrl="/images/intro-vid.png"
+            videoUrl="https://www.youtube.com/watch?v=B1GO1HPLp7Y"
+          />
+          <IntroVideoCard
+            title="Setting Up Your Workspace "
+            date="12 Feb, 2022"
+            previewImageUrl="/images/intro-vid.png"
+            videoUrl="https://www.youtube.com/watch?v=IDj1OBG5Tpw"
+          />
+          <IntroVideoCard
+            title="Setting up your payroll"
+            date="12 Feb, 2022"
+            previewImageUrl="/images/intro-vid.png"
+            videoUrl="https://www.youtube.com/watch?v=1Xi4fMfwsQg"
+          />
+          <IntroVideoCard
+            title="How Employee Timesheet works"
+            date="12 Feb, 2022"
+            previewImageUrl="/images/intro-vid.png"
+            videoUrl="https://www.youtube.com/watch?v=APCWOBUZNjc"
+          />
+        </div>
+        <CheckBox label="I have watched all the videos in this section " />
         <div className="button-groups">
           <CustomButton
             width="111px"
@@ -55,7 +95,7 @@ function IntroductroryVideos({ continueAction, goBack, saveData }) {
             <CustomButton
               width="111px"
               variant="white"
-              textColor="black"
+              textColor="#6C3787"
               label="Previous"
               onClick={() => goBack()}
               secondaryBtn
