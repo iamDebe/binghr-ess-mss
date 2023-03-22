@@ -18,9 +18,9 @@ const Container = styled("button")`
     cursor: pointer;
 `;
 
-const Button = ({ leftIcon, rightIcon, textcolor, bg, border, children, className }) => {
+const Button = ({ leftIcon, rightIcon, textcolor, bg, border, children, className, onClick}) => {
     return (
-        <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}>
+        <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}onClick={onClick}>
             {leftIcon && leftIcon}
             {children}
             {rightIcon && rightIcon}
