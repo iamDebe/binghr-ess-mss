@@ -17,6 +17,11 @@ const Container = styled("div")`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  .onboarding-div {
+    width: 70%;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const WelcomeSection = styled("div")`
@@ -38,11 +43,6 @@ const WelcomeSection = styled("div")`
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
-    }
-    .onboarding-div {
-      width: 70%;
-      display: flex;
-      align items: center;
     }
     .type-title3 {
       color: var(--grey-400);
@@ -81,9 +81,13 @@ function OnBoardingStepsContainer() {
         </div>
       </WelcomeSection>
       <div className="onboarding-div">
-        <p className="type-title2">Onboarding</p>
+        <div>
+          <p className="type-title2">Onboarding</p>
+        </div>
         <Spacer width={50} />
-        <ProgressBarWithSteps />
+        <div>
+          <ProgressBarWithSteps />
+        </div>
       </div>
       {activeStep === 1 && (
         <TermsAndCondition continueAction={() => setActiveStep(2)} />
