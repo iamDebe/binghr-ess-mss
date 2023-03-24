@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "goober";
 import ModalPortal from "./ModalPortal";
+import Button from "./button";
 
 export const Container = styled("div")`
   background-color: rgba(38, 38, 38, 0.75);
@@ -57,16 +58,6 @@ export const Container = styled("div")`
     padding-right: 15px;
     .button {
       width: 100%;
-      height: 38px;
-      padding-bottom: 10px;
-      color: #fff;
-      background-color: #27ae60;
-      border: none;
-      outline: none;
-      border-radius: 4px;
-      text-align: center;
-      padding: 0.625rem 0.5rem;
-      font-size: 14px;
     }
   }
 `;
@@ -84,9 +75,14 @@ const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
             <img src="/images/success-1.svg" />
           </div>
           <div className="button-div">
-            <button className="button" onClick={() => clickAction()}>
+            <Button
+              bg="#27ae60"
+              textcolor="var(--grey-25)"
+              className="button"
+              onClick={() => clickAction()}
+            >
               Continue
-            </button>
+            </Button>
           </div>
         </div>
       </Container>
