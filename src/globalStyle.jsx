@@ -1,7 +1,8 @@
 import { createGlobalStyles } from 'goober/global';
 
 export const HD = `@media screen and (min-width: 1800px)`;
-export const desktop = `@media screen and (max-width: 1339px)`;
+export const desktop = `@media screen and (max-width: 1440px)`;
+export const desktopMidi = `@media screen and (max-width: 1280px)`;
 export const tablet = `@media screen and (max-width: 1023px)`;
 export const mobile = `@media screen and (max-width: 767px)`;
 export const mobileMedium = `@media screen and (max-width: 480px)`;
@@ -53,6 +54,8 @@ export const GlobalStyles = createGlobalStyles`
     --highblue: #49a9e5;
     --columbiablue: #bbdef0;
     --minttulip: #c8ead3;
+    --red: #EB5757;
+    --yellow: #F2C94C;
   
     /* fonts */
     font-family: "Circular Std", sans-serif;
@@ -112,7 +115,6 @@ export const GlobalStyles = createGlobalStyles`
     --nav-item-height: var(--sp-11);
 
     --content-window-width: calc(100vw - var(--left-nav-width-expanded));
-    --content-width: ;
   
     /* font types */
     .type-title1 {

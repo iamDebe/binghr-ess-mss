@@ -19,4 +19,8 @@ export const FormWrapper = styled("form")`
     margin-top: 1.1875rem;
     text-align: center;
   }
+  .submit-button {
+    width: 100%;
+    margin-top: 3.25rem;
+  }
 `;
