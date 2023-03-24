@@ -36,12 +36,30 @@ const Inner = styled("div")`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      flex-wrap: wrap;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    div {
+      display: flex;
+      @media only screen and (min-width: 375px) and (max-width: 969px) {
+        flex-wrap: wrap;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+    }
   }
   .main-text-div {
     max-width: 100%;
     display: flex;
     justify-content: start;
     box-sizing: border-box;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      flex-wrap: wrap;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
   }
   .text-div {
     padding-right: 30px;

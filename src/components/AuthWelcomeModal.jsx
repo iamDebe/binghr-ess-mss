@@ -24,6 +24,9 @@ export const Container = styled("div")`
     text-align: center;
     border-top: 5px solid #27ae60;
     border-radius: 8px;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      width: 90%;
+    }
   }
   .logo-div {
     display: flex;

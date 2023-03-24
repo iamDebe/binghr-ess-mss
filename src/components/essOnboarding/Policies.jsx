@@ -35,9 +35,18 @@ const Inner = styled("div")`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 60px;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      flex-wrap: wrap;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
     div {
       display: flex;
+      @media only screen and (min-width: 375px) and (max-width: 969px) {
+        flex-wrap: wrap;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
     }
   }
   .main-text-div {
@@ -45,6 +54,11 @@ const Inner = styled("div")`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      flex-wrap: wrap;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
   }
   .form-div {
     padding: 10px;

@@ -3,12 +3,18 @@ import { styled } from "goober";
 
 const Container = styled("div")`
   position: relative;
+  @media only screen and (min-width: 375px) and (max-width: 969px) {
+    width: 100%;
+  }
   .progress-bar {
     background: #bbbec4;
     height: 1px;
     width: 60px;
     margin-top: 10px;
     left: 10%;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      width: 20px;
+    }
   }
   .progress-num {
     margin: 0;

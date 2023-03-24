@@ -18,6 +18,11 @@ const Container = styled("div")`
     display: flex;
     align-items: center;
     flex-wrap; wrap;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      flex-wrap: wrap;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
   }
   .top-border {
     width: 39%;
@@ -33,6 +38,10 @@ const Inner = styled("div")`
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
+  @media only screen and (min-width: 375px) and (max-width: 969px) {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
   .type-title3 {
     color: var(--grey-400);
   }
@@ -41,8 +50,18 @@ const Inner = styled("div")`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      flex-wrap: wrap;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
     div {
       display: flex;
+      @media only screen and (min-width: 375px) and (max-width: 969px) {
+        flex-wrap: wrap;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
     }
   }
 `;

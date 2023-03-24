@@ -17,16 +17,27 @@ const Container = styled("div")`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  position: relative;
   .onboarding-div {
     width: 70%;
     display: flex;
     align-items: center;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      width: 100%;
+      flex-wrap: wrap;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      div {
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+    }
   }
 `;
 
 const WelcomeSection = styled("div")`
   width: 100%;
-  height: 138px;
+
   background: rgba(242, 233, 185, 0.28);
   border: 0.5px solid #f2c94c;
   border-radius: 6px;
@@ -43,6 +54,9 @@ const WelcomeSection = styled("div")`
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
+      @media only screen and (min-width: 375px) and (max-width: 969px) {
+        flex-wrap: wrap;
+      }
     }
     .type-title3 {
       color: var(--grey-400);

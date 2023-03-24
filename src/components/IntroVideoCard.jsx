@@ -12,6 +12,11 @@ const Container = styled("div")`
   flex-direction: column;
   margin-right: auto;
   gap: 4;
+  @media only screen and (min-width: 375px) and (max-width: 969px) {
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   img {
     width: 100%;
     height: 121px;
