@@ -51,7 +51,4 @@ label #profile-photo{
     display: none;
     object-fit: cover;
   }
-
- 
-  
 `;
