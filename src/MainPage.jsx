@@ -6,7 +6,7 @@ window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {
   return (
-    <Router>
+    <Router basename="/ess">
       <Routes>
         <Route path="/" element={<EssHome />} /> 
         <Route path="/profile" element={<ProfileSetup />} />
