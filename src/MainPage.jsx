@@ -8,8 +8,8 @@ function Main() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ProfileSetup />} /> 
-        <Route path="/ess" element={<EssHome />} />
+        <Route path="/" element={<EssHome />} /> 
+        <Route path="/profile" element={<ProfileSetup />} />
       </Routes>
     </Router>
   );

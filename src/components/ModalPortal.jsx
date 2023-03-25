@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { createWrapperAndAppendToBody } from "../utils/helpers";
+import { createWrapperAndAppendToBody } from "@/utils/helpers";
 
 const ModalPortal = ({ children, wrapperId = "modal-portal-root" }) => {
   let element = document.getElementById(wrapperId);

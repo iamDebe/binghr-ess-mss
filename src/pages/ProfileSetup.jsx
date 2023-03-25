@@ -4,13 +4,12 @@ import {
   InputsWrapper,
   UploadImageWrapper,
   FormLogoWrapper,
-} from "../assets/wrappers";
-import { ButtonLilacFull } from "../components/buttons";
-import OnboardingLayout from "../components/OnboardingLayout";
-import { TextField, SelectField, CheckBox } from "../components/forms";
-import location from "../assets/images/location.svg";
+} from "@/assets/wrappers";
+import OnboardingLayout from "@/components/OnboardingLayout";
+import { TextField, SelectField, CheckBox } from "@/components/forms";
+import location from "@/assets/images/location.svg";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Button from "@/components/button";
 
 const nameTitle = ["Select Title", "Dr", "Mr.", "Mrs.", "Ms."];
 const profileSteps = {
@@ -91,13 +90,15 @@ const profileSteps = {
             </InputsWrapper>
             <CheckBox label="No Preferred Name" />
 
-            <ButtonLilacFull
+            <Button
               type="button"
-              // onClick={handleClick}
-              // onClick={() => setStep({ ...step, step1: false, step2: true })}
+              onClick={() => setStep({ ...step, step1: false, step2: true })}
+              bg="var(--lilac-400)"
+              textcolor="var(--grey-25)"
+              className="submit-button"
             >
               Continue
-            </ButtonLilacFull>
+            </Button>
           </>
         )}
         {step.step2 && (
@@ -183,14 +184,17 @@ const profileSteps = {
               </SelectField>
             </InputsWrapper>
 
-            <ButtonLilacFull
+            <Button
               type="button"
               onClick={() =>
                 setStep({ ...step, step1: false, step2: false, step3: true })
               }
+              bg="var(--lilac-400)"
+              textcolor="var(--grey-25)"
+              className="submit-button"
             >
               Continue
-            </ButtonLilacFull>
+            </Button>
             <Link
               to="/"
               className="back"
@@ -246,7 +250,14 @@ const profileSteps = {
               />
             </InputsWrapper>
             {() => setStep({ ...step, step1: false, step2: true, step3: true })}
-            <ButtonLilacFull type="button">Continue</ButtonLilacFull>
+            <Button
+              type="button"
+              className="submit-button"
+              bg="var(--lilac-400)"
+              textcolor="var(--grey-25)"
+            >
+              Continue
+            </Button>
             <Link
               to="/"
               className="back"

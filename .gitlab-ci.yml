@@ -1,0 +1,8 @@
+variables:
+  app: 'essmss'
+
+
+include: 
+  - project: 'b4581/react-build-tools'
+    ref: 'staging'
+    file: '/pipelines/deploy-react-static.yml'
