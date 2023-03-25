@@ -1,8 +1,6 @@
 
 import axios from "axios";
 
-
-
 const axiosFetch = async (url, method,  headers={}, options=null) => {
     const fetchData = async () => {
       
