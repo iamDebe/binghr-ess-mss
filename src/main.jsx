@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Main from './MainPage';
+import Main from '@/MainPage';
 import { setup } from "goober";
-import { GlobalStyles } from './globalStyle';
+import { GlobalStyles } from '@/globalStyle';
 
 setup(React.createElement);
 

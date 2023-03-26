@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "goober";
-import ModalPortal from "./ModalPortal";
-import Button from "./button";
+import ModalPortal from "@/components/ModalPortal";
+import Button from "@/components/button";
 
 export const Container = styled("div")`
   background-color: rgba(38, 38, 38, 0.75);
@@ -24,6 +24,9 @@ export const Container = styled("div")`
     text-align: center;
     border-top: 5px solid #27ae60;
     border-radius: 8px;
+    @media only screen and (min-width: 375px) and (max-width: 969px) {
+      width: 90%;
+    }
   }
   .logo-div {
     display: flex;
@@ -31,13 +34,8 @@ export const Container = styled("div")`
     justify-content: center;
     width: 100%;
     padding-top: 40px;
+    padding-bottom: 10px;
     text-align: center;
-  }
-  .welcome-text {
-    padding-top: 10px;
-    font-size: 18px;
-    color: #4f4f4f;
-    font-weight: 500;
   }
   .success-logo-div {
     display: flex;
@@ -68,9 +66,10 @@ const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
       <Container>
         <div className="inner-div">
           <div className="logo-div">
+            {/* USE COMPANY LOGO FROM URL */}
             <img src="/images/barter.svg" />
           </div>
-          <p className="welcome-text">You have Signed up Successfully</p>
+          <p className="type-title2">You have Signed up Successfully</p>
           <div className="success-logo-div">
             <img src="/images/success-1.svg" />
           </div>

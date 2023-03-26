@@ -21,7 +21,6 @@ api.interceptors.request.use(async (config) => {
 });
 
 const get = async (url) => {
-  console.log(url)
   const resp = await api.get(url);
   return resp.data;
 };

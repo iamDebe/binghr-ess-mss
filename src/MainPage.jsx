@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import EssHome from "./pages/EssHomepage";
-import ProfileSetup from "./pages/ProfileSetup";
+import EssHome from "@/pages/EssHomepage";
+import ProfileSetup from "@/pages/ProfileSetup";
 window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {

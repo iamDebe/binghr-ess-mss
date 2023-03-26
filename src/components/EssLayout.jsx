@@ -1,11 +1,12 @@
 import React from "react";
 import { styled } from "goober";
-import SideNavbar from "@/components/sideNavbar";
+import SideNavbar from "@/components/SideNavbar";
 import { desktop, desktopMidi } from "@/globalStyle";
 // import TopBar from "@/components/topBar";
 
 const Wrapper = styled("div")`
-    display: flex;
+  width: 100%;
+  display: flex;
 `;
 
 const Main = styled("div")`
@@ -18,15 +19,15 @@ const Main = styled("div")`
 `;
 
 const EssLayout = ({ children }) => {
-    return (
-        <Wrapper>
-            <SideNavbar />
-            <Main>
-                {/* <TopBar /> */}
-                {children}
-            </Main>
-        </Wrapper>
-    );
-}
+  return (
+    <Wrapper>
+      <SideNavbar />
+      <Main>
+        {/* <TopBar /> */}
+        {children}
+      </Main>
+    </Wrapper>
+  );
+};
 
 export default EssLayout;

@@ -1,5 +1,5 @@
 import { proxy } from "valtio";
-import methods from './api';
+import methods from '@/api';
 
 const initialState = {
   personalInformation: null,
