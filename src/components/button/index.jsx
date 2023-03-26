@@ -19,13 +19,13 @@ const Container = styled("button")`
 `;
 
 const Button = ({ leftIcon, rightIcon, textcolor, bg, border, children, className, onClick}) => {
-    return (
-        <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}onClick={onClick}>
-            {leftIcon && leftIcon}
-            {children}
-            {rightIcon && rightIcon}
-        </Container>
-    );
+  return (
+    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}onClick={onClick}>
+      {leftIcon && leftIcon}
+      {children}
+      {rightIcon && rightIcon}
+    </Container>
+  );
 };
 
 export default Button;

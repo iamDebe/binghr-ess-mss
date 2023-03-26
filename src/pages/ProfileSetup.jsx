@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FormWrapper,
   InputsWrapper,
   UploadImageWrapper,
   FormLogoWrapper,
-} from "../assets/wrappers";
-import OnboardingLayout from "../components/OnboardingLayout";
-import { TextField, SelectField, CheckBox } from "../components/forms";
-import location from "../assets/images/location.svg";
+} from "@/assets/wrappers";
+import OnboardingLayout from "@/components/OnboardingLayout";
+import { TextField, SelectField, CheckBox } from "@/components/forms";
+import location from "@/assets/images/location.svg";
 import { Link } from "react-router-dom";
-import Button from "../components/button";
+import Button from "@/components/button";
 
 const nameTitle = ["Select Title", "Dr", "Mr.", "Mrs.", "Ms."];
 const profileSteps = {
@@ -18,7 +18,7 @@ const profileSteps = {
   step3: false,
 };
 
-const ProfileSetup = () => {
+    const ProfileSetup = ()=>{
   const [step, setStep] = useState(profileSteps);
   return (
     <OnboardingLayout>

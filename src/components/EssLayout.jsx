@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "goober";
-import SideNavbar from "../components/sideNavbar";
-import { desktop, desktopMidi } from "../globalStyle";
-// import TopBar from "../components/topBar";
+import SideNavbar from "../components/SideNavbar";
+import { desktop, desktopMidi } from "@/globalStyle";
+// import TopBar from "@/components/topBar";
 
 const Wrapper = styled("div")`
   width: 100%;
