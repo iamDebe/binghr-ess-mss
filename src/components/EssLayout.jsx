@@ -1,7 +1,8 @@
 import React from "react";
 import { styled } from "goober";
-import SideNavbar from "../components/sideNavbar";
-// import TopBar from "../components/topBar";
+import SideNavbar from "@/components/sideNavbar";
+import { desktop, desktopMidi } from "@/globalStyle";
+// import TopBar from "@/components/topBar";
 
 const Wrapper = styled("div")`
   width: 100%;
@@ -9,8 +10,12 @@ const Wrapper = styled("div")`
 `;
 
 const Main = styled("div")`
-  padding: 2rem 3.875rem 3.5rem 3.125rem;
-  width: 100%;
+    ${desktop} {
+        padding: 2rem 4.0625rem 3.5rem 3.25rem;
+    }
+    ${desktopMidi} {
+        padding: 2rem;
+    }
 `;
 
 const EssLayout = ({ children }) => {

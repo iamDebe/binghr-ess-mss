@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import { ReactComponent as NavHomeIcon } from "../../assets/images/home-nav.svg";
-import { ReactComponent as ProfileHomeIcon } from "../../assets/images/profile-remove.svg";
-import { ReactComponent as MyPayIcon } from "../../assets/images/note2.svg";
-import { ReactComponent as ClockIcon } from "../../assets/images/clock.svg";
-import { ReactComponent as CalendarIcon } from "../../assets/images/calendar.svg";
-import { ReactComponent as ChartIcon } from "../../assets/images/chart.svg";
+import { ReactComponent as NavHomeIcon } from "@/assets/images/home-nav.svg";
+import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
+import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
+import { ReactComponent as ClockIcon } from "@/assets/images/clock.svg";
+import { ReactComponent as CalendarIcon } from "@/assets/images/calendar.svg";
+import { ReactComponent as ChartIcon } from "@/assets/images/chart.svg";
 
 const Navbar = styled("div")`
   display: flex;

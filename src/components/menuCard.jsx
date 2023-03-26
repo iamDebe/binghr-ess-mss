@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "goober";
+import RoundIconBg from "./RoundIconBg";
 
 const Container = styled("a")`
     display: flex;
@@ -15,7 +16,6 @@ const Container = styled("a")`
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--grey-100);
         border-radius: 50%;
         width: 2rem;
         height: 2rem;
@@ -29,10 +29,10 @@ const Container = styled("a")`
     }
 `;
 
-const MenuCard = ({ link, icon, title }) => {
+const MenuCard = ({ link, icon, iconBg, title }) => {
     return (
         <Container href={link}>
-            <div className="icon-bg">{icon}</div>
+            <RoundIconBg bg={iconBg} icon={icon}/>
             <p className="menu-title">{title}</p>
         </Container>
     );

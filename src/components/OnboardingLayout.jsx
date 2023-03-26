@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { OnboardingWrapper } from "../assets/wrappers";
+import { OnboardingWrapper } from "@/assets/wrappers";
 
 const OnboardingLayout = ({ children }) => {
   return (

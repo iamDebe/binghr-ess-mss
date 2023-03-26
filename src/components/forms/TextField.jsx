@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, {useEffect} from "react";
 import { styled } from "goober";
 
 export const Wrapper = styled("div")`
@@ -62,17 +63,22 @@ export const Wrapper = styled("div")`
   }
 `;
 
-const TextField = ({ label, icon, optional, ...props }) => {
+
+const TextField = React.forwardRef(({ label, icon, optional, disabled, ...props }, ref) => {
+  useEffect(()=>{
+
+  }, [disabled]);
   return (
     <Wrapper>
       <div className="optional">
         <label htmlFor={props.id || props.name}>{label}</label>
         {optional && <span>&nbsp;(Optional)</span>}
       </div>
-      <input className="text-input" {...props} />
+      <input className="text-input" {...props} ref={ref} disabled={disabled}/>
       {icon && <img src={icon} className="input-icon icon" />}
     </Wrapper>
   );
-};
+})
+
 
 export default TextField;
