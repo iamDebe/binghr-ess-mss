@@ -17,7 +17,7 @@ const Container = styled("div")`
     width: 100%;
     display: flex;
     align-items: center;
-    flex-wrap; wrap;
+    gap: 2rem;
     @media only screen and (min-width: 375px) and (max-width: 969px) {
       flex-wrap: wrap;
       margin-top: 15px;
@@ -33,12 +33,13 @@ const Container = styled("div")`
 `;
 
 const Inner = styled("div")`
-  width: 100%;
+  width: 1030px;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
   @media only screen and (min-width: 375px) and (max-width: 969px) {
+    width: 100%;
     margin-top: 15px;
     margin-bottom: 15px;
   }

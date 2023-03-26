@@ -102,7 +102,6 @@ const EmployeeInfo = styled("div")`
   ${desktopMidi} {
     gap: 1rem;
   }
-  
 `;
 const EmployeeDetails = styled("div")`
   display: flex;
@@ -130,10 +129,10 @@ const EmployeeDetails = styled("div")`
     justify-content: space-between;
     gap: 0.875rem;
     .type-title3 {
-        font-weight: bold;
+      font-weight: bold;
     }
     .type-body2 {
-        color: var(--grey-400);
+      color: var(--grey-400);
     }
   }
 `;
@@ -266,7 +265,9 @@ const EssHome = () => {
   return (
     <EssLayout>
       {onboardingViewIsVisible ? (
-        <OnBoardingStepsContainer />
+        <OnBoardingStepsContainer
+          onEndSteps={() => setOnboardingViewIsVisible(false)}
+        />
       ) : (
         <Inner>
           <WelcomeSection>
@@ -307,260 +308,207 @@ const EssHome = () => {
             />
           </MenuCardRow>
           <EmployeeSummaryRow>
-            <EmployeeInfo>
-              <img src="/images/profile-img.png" alt="" />
-              <EmployeeDetails>
-                <div className="col">
-                  <p className="type-title3">Name</p>
-                  <p className="type-title3">Job</p>
-                  <p className="type-title3">Depertment</p>
-                  <p className="type-title3">Hire Date</p>
-                </div>
-                <div className="col">
-                  <p className="type-body2">Bamgboye Pelumi</p>
-                  <p className="type-body2">Product Designer</p>
-                  <p className="type-body2">Design</p>
-                  <p className="type-body2">Not included</p>
-                </div>
-              </EmployeeDetails>
-            </EmployeeInfo>
-          </EmployeeSummaryRow>
-        </Inner>
-      )}
-      <Inner>
-        <WelcomeSection>
-          <p className="type-title3">Hi User,</p>
-          <p className="type-body2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut
-            malesuada massa. Sed sodales arcu in eleifend aliquam. Nam id ex
-            viverra, mattis turpis sed, ullamcorper metus. Integer fermentum,
-            sapien sed fringilla condimentum, diam dui ultricies risus.
-          </p>
-        </WelcomeSection>
-        <MenuCardRow>
-          <MenuCard
-            link="#"
-            icon={<ProfileHomeIcon fill="#858585" />}
-            title="My Profile"
-          />
-          <MenuCard
-            link="#"
-            icon={<MyPayIcon fill="#858585" />}
-            title="My Pay"
-          />
-          <MenuCard
-            link="#"
-            icon={<ClockIcon fill="#858585" />}
-            title="My Time Off"
-          />
-          <MenuCard
-            link="#"
-            icon={<CalendarIcon fill="#858585" />}
-            title="Timesheet"
-          />
-          <MenuCard
-            link="#"
-            icon={<ChartIcon fill="#858585" />}
-            title="Org Chart"
-          />
-        </MenuCardRow>
-        <EmployeeSummaryRow>
-          <div className="employee-wrapper">
-            <Button
-              bg="var(--lilac-400)"
-              textcolor="var(--grey-25)"
-              className="clockin-btn"
-            >
-              Clock in
-            </Button>
-            <EmployeeInfo>
-              <img src="/images/profile-img.png" alt="" />
-              <EmployeeDetails>
-                <div className="row">
-                  <p className="type-title3">Name</p>
-                  <p className="type-body2">Bamgboye Pelumi</p>
-                </div>
-                <div className="row">
+            <div className="employee-wrapper">
+              <Button
+                bg="var(--lilac-400)"
+                textcolor="var(--grey-25)"
+                className="clockin-btn"
+              >
+                Clock in
+              </Button>
+              <EmployeeInfo>
+                <img src="/images/profile-img.png" alt="" />
+                <EmployeeDetails>
+                  <div className="row">
+                    <p className="type-title3">Name</p>
+                    <p className="type-body2">Bamgboye Pelumi</p>
+                  </div>
+                  <div className="row">
                     <p className="type-title3">Job</p>
                     <p className="type-body2">Product Designer</p>
-                </div>
-                <div className="row">
+                  </div>
+                  <div className="row">
                     <p className="type-title3">Depertment</p>
                     <p className="type-body2">Design</p>
-                </div>
-                <div className="row">
+                  </div>
+                  <div className="row">
                     <p className="type-title3">Hire Date</p>
                     <p className="type-body2">Not included</p>
-                </div>
-              </EmployeeDetails>
-            </EmployeeInfo>
-          </div>
-          <div className="pending-task-wrapper">
-            <h3 className="type-title3">Pending Tasks</h3>
-            <PendingTasks>
-              <PendingTask>
-                <div className="icon-task">
-                  <RoundIconBg
-                    bg="#FFEAEA" 
-                    icon={<StarIcon fill="var(--red)" />}
-                  />
-                  <div className="task">
-                    <h4 className="type-title4">Email Verification</h4>
-                    <p className="type-body3">Verify Email </p>
                   </div>
-                </div>
-                <div className="priority">
-                  <Tag bordercolor="var(--red)">Priority</Tag>
-                  <p className="type-subtitle1">2 days</p>
-                </div>
-              </PendingTask>
-              <PendingTask>
-                <div className="icon-task">
-                  <RoundIconBg
-                    bg="#FFFAEA" 
-                    icon={<ClockIcon fill="var(--yellow)" />}
-                  />
-                  <div className="task">
-                    <h4 className="type-title4">Time off requested</h4>
-                    <p className="type-body3">Employee </p>
+                </EmployeeDetails>
+              </EmployeeInfo>
+            </div>
+            <div className="pending-task-wrapper">
+              <h3 className="type-title3">Pending Tasks</h3>
+              <PendingTasks>
+                <PendingTask>
+                  <div className="icon-task">
+                    <RoundIconBg
+                      bg="#FFEAEA"
+                      icon={<StarIcon fill="var(--red)" />}
+                    />
+                    <div className="task">
+                      <h4 className="type-title4">Email Verification</h4>
+                      <p className="type-body3">Verify Email </p>
+                    </div>
                   </div>
-                </div>
-                <div className="priority">
-                  <Tag bordercolor="#F4BE50">Pending</Tag>
-                  <p className="type-subtitle1">2 days</p>
-                </div>
-              </PendingTask>
-            </PendingTasks>
-          </div>
-          <div className="onleave-wrapper">
-            <h3 className="type-title3">Employee On Leave</h3>
-            <OnLeave>
-              <OnLeaveEmployee>
-                <RoundIconBg
-                  bg="var(--grey-100)"
-                  type="text"
-                  icon={<span className='type-title3'>SO</span>}
-                />
-                <div className="employee-details">
-                  <h4 className="type-title4">Sam Olabode</h4>
-                  <p className="type-body3">Lead Product</p>
-                </div>
-              </OnLeaveEmployee>
-              <OnLeaveEmployee>
-                <RoundIconBg
-                  bg="var(--grey-100)"
-                  type="text"
-                  icon={<span className='type-title3'>SO</span>}
-                />
-                <div className="employee-details">
-                  <h4 className="type-title4">Sam Olabode</h4>
-                  <p className="type-body3">Lead Product</p>
-                </div>
-              </OnLeaveEmployee>
-            </OnLeave>
-          </div>
-        </EmployeeSummaryRow>
-        <NewsRow>
-          <div className="news-titles">
-            <h3 className="type-title3">Announcements</h3>
-            <h3 className="type-title3">Events</h3>
-          </div>
-          <div className="wrapper">
-            <Announcements>
-              <div className="item">
-                <div className="icon-group">
-                  <RoundIconBg
-                    bg="#FFEAEA" 
-                    icon={<BookIcon fill="var(--red)" />}
-                  />
-                  <div className="announcement">
-                    <h4 className="type-title4">Earning Statement </h4>
-                    <p className="type-body3">Your February earning statement is ready!</p>
+                  <div className="priority">
+                    <Tag bordercolor="var(--red)">Priority</Tag>
+                    <p className="type-subtitle1">2 days</p>
                   </div>
-                </div>
-                <Button
-                  bg="var(--white)"
-                  border="var(--lilac-400)"
-                  textcolor="var(--lilac-400)"
-                  className="news-btn"
-                >
-                  View
-                </Button>
-              </div>
-              <div className="item">
-                <div className="icon-group">
-                  <RoundIconBg
-                    bg="#FFEAEA" 
-                    icon={<BookIcon fill="var(--red)" />}
-                  />
-                  <div className="announcement">
-                    <h4 className="type-title4">Earning Statement </h4>
-                    <p className="type-body3">Your February earning statement is ready!</p>
+                </PendingTask>
+                <PendingTask>
+                  <div className="icon-task">
+                    <RoundIconBg
+                      bg="#FFFAEA"
+                      icon={<ClockIcon fill="var(--yellow)" />}
+                    />
+                    <div className="task">
+                      <h4 className="type-title4">Time off requested</h4>
+                      <p className="type-body3">Employee </p>
+                    </div>
                   </div>
-                </div>
-                <Button
-                  bg="var(--white)"
-                  border="var(--lilac-400)"
-                  textcolor="var(--lilac-400)"
-                  className="news-btn"
-                >
-                  View
-                </Button>
-              </div>
-            </Announcements>
-            <Events>
-              <PendingTask>
-                <div className="icon-task">
+                  <div className="priority">
+                    <Tag bordercolor="#F4BE50">Pending</Tag>
+                    <p className="type-subtitle1">2 days</p>
+                  </div>
+                </PendingTask>
+              </PendingTasks>
+            </div>
+            <div className="onleave-wrapper">
+              <h3 className="type-title3">Employee On Leave</h3>
+              <OnLeave>
+                <OnLeaveEmployee>
                   <RoundIconBg
                     bg="var(--grey-100)"
-                    icon={<span className='type-title3'>SO</span>}
+                    type="text"
+                    icon={<span className="type-title3">SO</span>}
                   />
-                  <div className="task">
-                    <h4 className="type-title4">Email Verification</h4>
-                    <p className="type-body3">Verify Email </p>
+                  <div className="employee-details">
+                    <h4 className="type-title4">Sam Olabode</h4>
+                    <p className="type-body3">Lead Product</p>
                   </div>
-                </div>
-                <div className="priority">
-                  <Tag bordercolor="var(--red)">Priority</Tag>
-                  <p className="type-subtitle1">2 days</p>
-                </div>
-              </PendingTask>
-              <PendingTask>
-                <div className="icon-task">
+                </OnLeaveEmployee>
+                <OnLeaveEmployee>
                   <RoundIconBg
-                    bg="#FFEAEA" 
-                    icon={<SunIcon fill="var(--red)" />}
+                    bg="var(--grey-100)"
+                    type="text"
+                    icon={<span className="type-title3">SO</span>}
                   />
-                  <div className="task">
-                    <h4 className="type-title4">Time off requested</h4>
-                    <p className="type-body3">Employee </p>
+                  <div className="employee-details">
+                    <h4 className="type-title4">Sam Olabode</h4>
+                    <p className="type-body3">Lead Product</p>
                   </div>
-                </div>
-                <div className="priority">
-                  <Tag bordercolor="#F4BE50">Pending</Tag>
-                  <p className="type-subtitle1">2 days</p>
-                </div>
-              </PendingTask>
-              <PendingTask>
-                <div className="icon-task">
-                  <RoundIconBg
-                    bg="#FFEAEA" 
-                    icon={<SunIcon fill="var(--red)" />}
-                  />
-                  <div className="task">
-                    <h4 className="type-title4">Time off requested</h4>
-                    <p className="type-body3">Employee </p>
+                </OnLeaveEmployee>
+              </OnLeave>
+            </div>
+          </EmployeeSummaryRow>
+          <NewsRow>
+            <div className="news-titles">
+              <h3 className="type-title3">Announcements</h3>
+              <h3 className="type-title3">Events</h3>
+            </div>
+            <div className="wrapper">
+              <Announcements>
+                <div className="item">
+                  <div className="icon-group">
+                    <RoundIconBg
+                      bg="#FFEAEA"
+                      icon={<BookIcon fill="var(--red)" />}
+                    />
+                    <div className="announcement">
+                      <h4 className="type-title4">Earning Statement </h4>
+                      <p className="type-body3">
+                        Your February earning statement is ready!
+                      </p>
+                    </div>
                   </div>
+                  <Button
+                    bg="var(--white)"
+                    border="var(--lilac-400)"
+                    textcolor="var(--lilac-400)"
+                    className="news-btn"
+                  >
+                    View
+                  </Button>
                 </div>
-                <div className="priority">
-                  <Tag bordercolor="#F4BE50">Pending</Tag>
-                  <p className="type-subtitle1">2 days</p>
+                <div className="item">
+                  <div className="icon-group">
+                    <RoundIconBg
+                      bg="#FFEAEA"
+                      icon={<BookIcon fill="var(--red)" />}
+                    />
+                    <div className="announcement">
+                      <h4 className="type-title4">Earning Statement </h4>
+                      <p className="type-body3">
+                        Your February earning statement is ready!
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    bg="var(--white)"
+                    border="var(--lilac-400)"
+                    textcolor="var(--lilac-400)"
+                    className="news-btn"
+                  >
+                    View
+                  </Button>
                 </div>
-              </PendingTask>
-            </Events>
-          </div>
-        </NewsRow>
-      </Inner>
+              </Announcements>
+              <Events>
+                <PendingTask>
+                  <div className="icon-task">
+                    <RoundIconBg
+                      bg="var(--grey-100)"
+                      icon={<span className="type-title3">SO</span>}
+                    />
+                    <div className="task">
+                      <h4 className="type-title4">Email Verification</h4>
+                      <p className="type-body3">Verify Email </p>
+                    </div>
+                  </div>
+                  <div className="priority">
+                    <Tag bordercolor="var(--red)">Priority</Tag>
+                    <p className="type-subtitle1">2 days</p>
+                  </div>
+                </PendingTask>
+                <PendingTask>
+                  <div className="icon-task">
+                    <RoundIconBg
+                      bg="#FFEAEA"
+                      icon={<SunIcon fill="var(--red)" />}
+                    />
+                    <div className="task">
+                      <h4 className="type-title4">Time off requested</h4>
+                      <p className="type-body3">Employee </p>
+                    </div>
+                  </div>
+                  <div className="priority">
+                    <Tag bordercolor="#F4BE50">Pending</Tag>
+                    <p className="type-subtitle1">2 days</p>
+                  </div>
+                </PendingTask>
+                <PendingTask>
+                  <div className="icon-task">
+                    <RoundIconBg
+                      bg="#FFEAEA"
+                      icon={<SunIcon fill="var(--red)" />}
+                    />
+                    <div className="task">
+                      <h4 className="type-title4">Time off requested</h4>
+                      <p className="type-body3">Employee </p>
+                    </div>
+                  </div>
+                  <div className="priority">
+                    <Tag bordercolor="#F4BE50">Pending</Tag>
+                    <p className="type-subtitle1">2 days</p>
+                  </div>
+                </PendingTask>
+              </Events>
+            </div>
+          </NewsRow>
+        </Inner>
+      )}
       <AuthWelcomeModal
         isVisible={welcomeModalIsVisible}
         clickAction={() => {

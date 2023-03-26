@@ -21,15 +21,19 @@ const Container = styled("div")`
 `;
 
 const Inner = styled("div")`
-  width: 100%;
+width: 1030px;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
+  @media only screen and (min-width: 375px) and (max-width: 969px) {
+    width: 100%;
+  }
   .type-title3 {
     color: var(--grey-400);
   }
   .flexed-checks {
+    min-width: 100%;
     display: flex;
     align-items: center;
     gap: 2rem;

@@ -21,11 +21,14 @@ const Container = styled("div")`
 `;
 
 const Inner = styled("div")`
-  width: 100%;
+  width: 1030px;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
+  @media only screen and (min-width: 375px) and (max-width: 969px) {
+    width: 100%;
+  }
   .type-title3 {
     color: var(--grey-400);
   }
@@ -53,7 +56,7 @@ const Inner = styled("div")`
   }
   .main-text-div {
     display: flex;
-    max-width: 100%;
+    width: 100%;
     @media only screen and (min-width: 375px) and (max-width: 969px) {
       flex-wrap: wrap;
       padding-top: 5px;
