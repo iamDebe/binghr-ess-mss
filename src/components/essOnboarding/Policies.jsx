@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import CustomButton from "../CustomButton";
-import { CheckBox, TextField } from "../forms";
-import Spacer from "../Spacer";
+import CustomButton from "@/components/CustomButton";
+import { CheckBox, TextField } from "@/components/forms";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   width: 100%;

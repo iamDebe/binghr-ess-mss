@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "goober";
-import CustomButton from "../CustomButton";
-import { TextField } from "../forms";
+import CustomButton from "@/components/CustomButton";
+import { TextField } from "@/components/forms";
 
 const Container = styled("div")`
   width: 100%;

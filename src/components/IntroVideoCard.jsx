@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import Spacer from "./Spacer";
-import IntroVideoPlayerModal from "./IntroVideoPlayerModal";
+import Spacer from "@/components/Spacer";
+import IntroVideoPlayerModal from "@/components/IntroVideoPlayerModal";
 
 const Container = styled("div")`
   position: relative;

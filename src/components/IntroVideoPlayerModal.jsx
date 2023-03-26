@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "goober";
-import ModalPortal from "./ModalPortal";
-import CustomButton from "./CustomButton";
+import ModalPortal from "@/components/ModalPortal";
 
 export const Container = styled("div")`
   background-color: rgba(38, 38, 38, 0.75);

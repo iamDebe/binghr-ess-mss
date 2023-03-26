@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import ProgressBar from "../ProgressBar";
-import TermsAndCondition from "./TermsAndCondition";
-import TodoList from "./TodoList";
-import IntroductroryVideos from "./IntroductroryVideos";
-import AddressOne from "./AddressOne";
-import AddressTwo from "./AddressTwo";
-import EmergencyContact from "./EmergencyContact";
-import BankInformation from "./BankInformation";
-import Policies from "./Policies";
-import ProgressBarWithSteps from "../ProgressBarWithSteps";
-import Spacer from "../Spacer";
+import ProgressBar from "@/components/ProgressBar";
+import TermsAndCondition from "@/components/essOnboarding/TermsAndCondition";
+import TodoList from "@/components/essOnboarding/TodoList";
+import IntroductroryVideos from "@/components/essOnboarding/IntroductroryVideos";
+import AddressOne from "@/components/essOnboarding/AddressOne";
+import AddressTwo from "@/components/essOnboarding/AddressTwo";
+import EmergencyContact from "@/components/essOnboarding/EmergencyContact";
+import BankInformation from "@/components/essOnboarding/BankInformation";
+import Policies from "@/components/essOnboarding/Policies";
+import ProgressBarWithSteps from "@/components/ProgressBarWithSteps";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   width: 100%;

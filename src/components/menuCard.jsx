@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "goober";
-import RoundIconBg from "./RoundIconBg";
+import RoundIconBg from "@/components/RoundIconBg";
 
 const Container = styled("a")`
     display: flex;

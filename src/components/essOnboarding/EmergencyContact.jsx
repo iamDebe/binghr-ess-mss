@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "goober";
-import CustomButton from "../CustomButton";
-import { TextField } from "../forms";
-import Spacer from "../Spacer";
+import CustomButton from "@/components/CustomButton";
+import { TextField } from "@/components/forms";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   width: 100%;

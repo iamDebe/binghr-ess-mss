@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "goober";
-import { CheckBox } from "../forms";
-import CustomButton from "../CustomButton";
-import Spacer from "../Spacer";
+import { CheckBox } from "@/components/forms";
+import CustomButton from "@/components/CustomButton";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   width: 100%;

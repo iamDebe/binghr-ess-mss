@@ -1,9 +1,9 @@
 import React from "react";
 import { styled } from "goober";
-import { CheckBox } from "../forms";
-import CustomButton from "../CustomButton";
-import IntroVideoCard from "../IntroVideoCard";
-import Spacer from "../Spacer";
+import { CheckBox } from "@/components/forms";
+import CustomButton from "@/components/CustomButton";
+import IntroVideoCard from "@/components/IntroVideoCard";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   width: 100%;
