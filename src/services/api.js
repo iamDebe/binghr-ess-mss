@@ -2,7 +2,7 @@ import axios from "axios";
 import { decryptToken } from '@/utils/helpers';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: `${import.meta.env.VITE_BASE_URL}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -11,14 +11,16 @@ const api = axios.create({
 // Add a request interceptor to add the bearer token to the headers
 api.interceptors.request.use(async (config) => {
   const token = await decryptToken();
-  config.headers.Authorization = `Bearer ${token}`;
-  return config;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+
+    return config;
+  }
+  //unauthenticated, redirect to login
+  window.location.href = `${import.meta.env.VITE_BASE_URL}/login`;
 });
 
-console.log(api);
-
 const get = async (url) => {
-  console.log(url)
   const resp = await api.get(url);
   return resp.data;
 };

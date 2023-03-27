@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "goober";
-import { CheckBox } from "../forms";
-import CustomButton from "../CustomButton";
-import Spacer from "../Spacer";
+import { CheckBox } from "@/components/forms";
+import CustomButton from "@/components/CustomButton";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   width: 100%;
@@ -21,15 +21,19 @@ const Container = styled("div")`
 `;
 
 const Inner = styled("div")`
-  width: 100%;
+width: 1030px;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
+  @media only screen and (min-width: 375px) and (max-width: 969px) {
+    width: 100%;
+  }
   .type-title3 {
     color: var(--grey-400);
   }
   .flexed-checks {
+    min-width: 100%;
     display: flex;
     align-items: center;
     gap: 2rem;

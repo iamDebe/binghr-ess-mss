@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "goober";
-import SideNavbar from "@/components/sideNavbar";
+import SideNavbar from "@/components/SideNavbar";
 import { desktop, desktopMidi } from "@/globalStyle";
 // import TopBar from "@/components/topBar";
 

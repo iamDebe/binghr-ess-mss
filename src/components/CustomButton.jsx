@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "goober";
-import Spacer from "./Spacer";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   .button-div {

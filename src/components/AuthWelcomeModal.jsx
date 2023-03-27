@@ -1,8 +1,7 @@
 import React from "react";
 import { styled } from "goober";
-import ModalPortal from "./ModalPortal";
-import CustomButton from "./CustomButton";
-import Button from "./button";
+import ModalPortal from "@/components/ModalPortal";
+import Button from "@/components/button";
 
 export const Container = styled("div")`
   background-color: rgba(38, 38, 38, 0.75);
@@ -74,12 +73,6 @@ const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
           <div className="success-logo-div">
             <img src="/images/success-1.svg" />
           </div>
-          <CustomButton
-            width="100%"
-            variant="#27ae60"
-            label="Continue"
-            onClick={() => clickAction()}
-          />
           <div className="button-div">
             <Button
               bg="#27ae60"

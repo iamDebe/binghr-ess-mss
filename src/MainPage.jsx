@@ -3,17 +3,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EssHome from "./pages/EssHomepage";
 import EssMyProfilePage from "./pages/EssMyProfilePage";
 import ProfileSetup from "./pages/ProfileSetup";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import EssHome from "@/pages/EssHomepage";
+import ProfileSetup from "@/pages/ProfileSetup";
 window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {
   return (
-    <Router basename="/ess">
+    <Router>
       <Routes>
-        <Route path="/" element={<ProfileSetup />} />
         <Route path="/ess" element={<EssHome />} />
-        <Route path="/my-profile" element={<EssMyProfilePage />} />
-        <Route path="/" element={<EssHome />} /> 
-        <Route path="/profile" element={<ProfileSetup />} />
+        <Route path="ess/profile" element={<ProfileSetup />} />
+        <Route path="ess/my-profile" element={<EssMyProfilePage />} />
+        <Route path="*" element={<Navigate to="/ess" replace />} />
       </Routes>
     </Router>
   );

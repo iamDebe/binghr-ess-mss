@@ -1,9 +1,9 @@
 import React from "react";
 import { styled } from "goober";
-import { CheckBox } from "../forms";
-import CustomButton from "../CustomButton";
-import IntroVideoCard from "../IntroVideoCard";
-import Spacer from "../Spacer";
+import { CheckBox } from "@/components/forms";
+import CustomButton from "@/components/CustomButton";
+import IntroVideoCard from "@/components/IntroVideoCard";
+import Spacer from "@/components/Spacer";
 
 const Container = styled("div")`
   width: 100%;
@@ -17,7 +17,7 @@ const Container = styled("div")`
     width: 100%;
     display: flex;
     align-items: center;
-    flex-wrap; wrap;
+    gap: 2rem;
     @media only screen and (min-width: 375px) and (max-width: 969px) {
       flex-wrap: wrap;
       margin-top: 15px;
@@ -33,12 +33,13 @@ const Container = styled("div")`
 `;
 
 const Inner = styled("div")`
-  width: 100%;
+  width: 1030px;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
   @media only screen and (min-width: 375px) and (max-width: 969px) {
+    width: 100%;
     margin-top: 15px;
     margin-bottom: 15px;
   }

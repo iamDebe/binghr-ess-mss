@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "goober";
-import CustomButton from "../CustomButton";
-import { TextField } from "../forms";
+import CustomButton from "@/components/CustomButton";
+import { TextField } from "@/components/forms";
 
 const Container = styled("div")`
   width: 100%;
@@ -20,11 +20,14 @@ const Container = styled("div")`
 `;
 
 const Inner = styled("div")`
-  width: 100%;
+  width: 1030px;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
+  @media only screen and (min-width: 375px) and (max-width: 969px) {
+    width: 100%;
+  }
   .type-title3 {
     color: var(--grey-400);
   }
@@ -133,7 +136,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             iconPosition="right"
             iconUrl="/images/copy-success.svg"
           />
-          <div style={{ display: "flex" }}>
+          <div>
             <CustomButton
               width="111px"
               variant="white"

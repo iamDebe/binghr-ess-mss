@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import EssLayout from "../components/EssLayout";
-import MenuCard from "../components/menuCard";
-import { mobile, mobileMedium, tablet, desktopMidi } from "../globalStyle";
-import { ReactComponent as ProfileHomeIcon } from "../assets/images/profile-remove.svg";
-import { ReactComponent as MyPayIcon } from "../assets/images/note2.svg";
-import { ReactComponent as ClockIcon } from "../assets/images/clock.svg";
-import { ReactComponent as CalendarIcon } from "../assets/images/calendar.svg";
-import { ReactComponent as ChartIcon } from "../assets/images/chart.svg";
-import { ReactComponent as StarIcon } from "../assets/images/star.svg";
-import { ReactComponent as BookIcon } from "../assets/images/book.svg";
-import { ReactComponent as SunIcon } from "../assets/images/sun.svg";
-import AuthWelcomeModal from "../components/AuthWelcomeModal";
-import OnBoardingStepsContainer from "../components/essOnboarding/OnBoardingStepsContainer";
-import RoundIconBg from "../components/RoundIconBg";
-import Tag from "../components/tag";
-import Button from "../components/button";
+import EssLayout from "@/components/EssLayout";
+import MenuCard from "@/components/menuCard";
+import { mobile, mobileMedium, tablet, desktopMidi } from "@/globalStyle";
+import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
+import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
+import { ReactComponent as ClockIcon } from "@/assets/images/clock.svg";
+import { ReactComponent as CalendarIcon } from "@/assets/images/calendar.svg";
+import { ReactComponent as ChartIcon } from "@/assets/images/chart.svg";
+import { ReactComponent as StarIcon } from "@/assets/images/star.svg";
+import { ReactComponent as BookIcon } from "@/assets/images/book.svg";
+import { ReactComponent as SunIcon } from "@/assets/images/sun.svg";
+import AuthWelcomeModal from "@/components/AuthWelcomeModal";
+import OnBoardingStepsContainer from "@/components/essOnboarding/OnBoardingStepsContainer";
+import RoundIconBg from "@/components/RoundIconBg";
+import Tag from "@/components/tag";
+import Button from "@/components/button";
 
 const Inner = styled("div")`
   display: flex;
@@ -265,7 +265,9 @@ const EssHome = () => {
   return (
     <EssLayout>
       {onboardingViewIsVisible ? (
-        <OnBoardingStepsContainer onEndSteps={() => setOnboardingViewIsVisible(false)}  />
+        <OnBoardingStepsContainer
+          onEndSteps={() => setOnboardingViewIsVisible(false)}
+        />
       ) : (
         <Inner>
           <WelcomeSection>
