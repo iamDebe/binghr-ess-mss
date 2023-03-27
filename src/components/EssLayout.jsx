@@ -6,6 +6,7 @@ import { desktop, desktopMidi } from "@/globalStyle";
 
 const Wrapper = styled("div")`
     display: flex;
+    backgrouncolor: var(--red-100);
 `;
 
 const Main = styled("div")`
