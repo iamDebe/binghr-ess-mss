@@ -109,12 +109,8 @@ export const GlobalStyles = createGlobalStyles`
 
     --nav-width-collapsed: 7.375rem;
     --nav-width-expanded: 18.3125rem;
-
-    --left-nav-padding: var(--sp-3);
-    --nav-logo-height: var(--sp-14);
-    --nav-item-height: var(--sp-11);
-
-    --content-window-width: calc(100vw - var(--left-nav-width-expanded));
+    --content-window-width-expanded: calc(100vw - var(--nav-width-expanded));
+    --content-window-width-collapsed: calc(100vw - var(--nav-width-collapsed));
   
     /* font types */
     .type-title1 {
