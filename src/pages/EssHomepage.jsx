@@ -271,7 +271,7 @@ const Events = styled("div")`
 
 const EssHome = () => {
   // When we redirect to this page for the first time after newly registering, that is only when we will show the welcome modal, so we will ensure that we make an API call here on the first render to fetch user data and check the value of a particular field to determine if the user has previouly set up their profile or not
-  const [welcomeModalIsVisible, setWelcomeModalIsVisible] = useState(false);
+  const [welcomeModalIsVisible, setWelcomeModalIsVisible] = useState(true);
   const [onboardingViewIsVisible, setOnboardingViewIsVisible] = useState(false);
 
   return (
