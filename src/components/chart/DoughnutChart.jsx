@@ -36,7 +36,6 @@ const DoughnutChart = () => {
   const sliceThickness = {
     id: 'sliceThickness',
     beforeDatasetsDraw(chart, plugins){
-      console.log(chart);
       chart.getDatasetMeta(0).data[1].outerRadius = 90
       chart.getDatasetMeta(0).data[2].outerRadius = 90
       chart.getDatasetMeta(0).data[3].outerRadius = 90
@@ -89,4 +88,5 @@ export default DoughnutChart;
 
 const Wrapper = styled("div")`
   width: 70%;
+  align-self: center;
 `;

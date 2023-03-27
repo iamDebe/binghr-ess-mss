@@ -115,7 +115,7 @@ const SideNavbar = () => {
             </div>
             <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Profile</span>
           </a>
-          <a href="#" className="nav-item">
+          <a href="ess/mypay" className="nav-item ">
             <div className="icon">
               <MyPayIcon />
             </div>

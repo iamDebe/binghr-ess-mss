@@ -54,7 +54,7 @@ const DoughnutChartBenefit = () => {
   }
   }
     return ( 
-      <>
+      <Container>
         <Wrapper> 
             <Doughnut 
                 data={data}
@@ -62,14 +62,31 @@ const DoughnutChartBenefit = () => {
                 plugins={[textCenter]}
             />
         </Wrapper>
-       
-      </>
+        <div>
+            <label>Benefits</label><br />
+            <small>$20,000</small>
+        </div>
+      </ Container>
      );
 }
  
 export default DoughnutChartBenefit;
 
 const Wrapper = styled("div")`
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
+`;
+
+const Container = styled("div")`
+    display: flex;
+    div{
+      align-self: center;
+    }
+    small{
+      color: var(--grey-300);
+    }
+    label{
+      font-size: 14px;
+      color: var(--grey-400);
+    }
 `;

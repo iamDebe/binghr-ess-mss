@@ -54,6 +54,7 @@ const DoughnutChartPensions = () => {
   }
   }
     return ( 
+      <Container>
         <Wrapper> 
             <Doughnut 
                 data={data}
@@ -61,10 +62,28 @@ const DoughnutChartPensions = () => {
                 plugins={[textCenter]}
             />
         </Wrapper>
+         <div>
+          <label>Pensions</label><br />
+          <small>$300,000</small>
+         </div>
+      </Container>
      );
 }
 export default DoughnutChartPensions;
 const Wrapper = styled("div")`
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
-`
+`;
+const Container = styled("div")`
+    display: flex;
+    div{
+      align-self: center;
+    }
+    small{
+      color: var(--grey-300);
+    }
+    label{
+      font-size: 14px;
+      color: var(--grey-400);
+    }
+`;

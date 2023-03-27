@@ -123,6 +123,7 @@ const MyPay = () => {
                             <DoughnutChartBenefit />
                             <DoughnutChartPensions />
                         </SecondaryChartsWrapper>
+                        
                     </ChartWrapper>
                     {showAccountStatement && 
                         <PayrollTableWrapper>

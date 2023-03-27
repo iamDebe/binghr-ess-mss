@@ -3,6 +3,7 @@ import {styled} from "goober";
 import AccountStatement from './AccountStatement';
 import TextField from './forms/TextField';
 import Button from './button';
+import { ReactComponent as ChartIcon } from "@/assets/images/chart.svg";
 
 const PayrollTable = () => {
     const paymentData = [
@@ -88,9 +89,11 @@ const PayrollTable = () => {
                     margin="1.5rem 0rem"
                     padding="0.625rem"
                     border="var(--lilac-400)"
+                   
                 >
-                    Print Statement
+                    Print Statement 
                 </Button>
+                
             </EmailWrapper>
             <AccountStatementWrapper>
                 <AccountStatement paymentData={paymentData} /> 
@@ -109,6 +112,14 @@ const Wrapper = styled("div")`
     h4,h5{
         text-align: center;
         margin: .6rem 0rem;
+    }
+    h4{
+        font-size: 18px;
+        color: var(--grey-400);
+    }
+    h5{
+        color: var(--grey-300);
+
     }
 `;
 const EmployeeAcctDetailWrapper = styled("div")`
