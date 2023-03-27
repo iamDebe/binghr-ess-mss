@@ -24,3 +24,72 @@ export const employeeData = [
         userLost: 823
     }
 ]
+export const employeeDataYear = [
+    {
+        id: 1,
+        year: 2016,
+        userGain: 50,
+        cumm: '2,000,000',
+        
+    },
+    {
+        id: 2,
+        year: 2017,
+        userGain: 50,
+        cumm: '2,000,000',
+        
+    },
+   
+]
+export const employeeDataTaxes = [
+    {
+        id: 1,
+        year: 2016,
+        userGain: 80,
+        cumm: '2,000,000',
+        
+    },
+    {
+        id: 2,
+        year: 2017,
+        userGain: 20,
+        cumm: '2,000,000',
+        
+    },
+   
+]
+export const employeeDataBenefit = [
+    {
+        id: 1,
+        year: 2016,
+        userGain: 90,
+        cumm: '2,000,000',
+        
+    },
+    {
+        id: 2,
+        year: 2017,
+        userGain: 10,
+        cumm: '2,000,000',
+        
+    },
+   
+]
+export const employeeDataPensions = [
+    {
+        id: 1,
+        year: 2016,
+        userGain: 90,
+        cumm: '2,000,000',
+        
+    },
+    {
+        id: 2,
+        year: 2017,
+        userGain: 10,
+        cumm: '2,000,000',
+        
+    },
+   
+]
+

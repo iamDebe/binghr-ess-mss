@@ -1,46 +1,27 @@
+import React from 'react';
 import { styled } from 'goober';
-import React from 'react'
 
-const AccountStatement = () => {
+const AccountStatement = ({paymentData}) => {
   return (
     <Wrapper>
          <table className="table">
-                {/* <thead>
+                <thead>
                     <tr>
-                        <td>Allowances</td>
-                        <td>Amount</td>
+                        <td className='head'>Allowances</td>
+                        <td className='head'>Amount</td>
                     </tr>
-                </thead> */}
+                </thead>
             <tbody>
+                {paymentData.map((data, index)=>(
+                    <tr key={index}>
+                        <td>{data.title}</td>
+                        <td className='value'>{data.value}</td>
+                    </tr>
+                ))}
                 <tr>
-                    <td>Allowances</td>
-                    <td>Amount</td>
+                    <td className='subtotal'>Sub total</td>
+                    <td className='subtotal-value'>500,000</td>
                 </tr>
-                <tr>
-                    <td>Hours Worked</td>
-                    <td>100,000</td>
-                </tr>
-                <tr>
-                    <td>PTO</td>
-                    <td>700,000</td>
-                </tr>
-                <tr>
-                    <td>Federal Tax</td>
-                    <td>30,000</td>
-                </tr>
-                <tr>
-                    <td>Meal Allowance</td>
-                    <td>500,000</td>
-                </tr>
-                <tr>
-                    <td>Net Pay</td>
-                    <td>30,000</td>
-                </tr>
-                <tr>
-                    <td>Sub total</td>
-                    <td>500,000</td>
-                </tr>
-               
             </tbody>
         </table>
     </Wrapper>
@@ -50,23 +31,25 @@ const AccountStatement = () => {
 export default AccountStatement;
 
 const Wrapper = styled("div")`
-    padding: 0.5rem .8rem;
-    border-radius: .4rem;
-    margin-top: 1rem;
-
     tr{
         font-size: 12px;
     }
-
-
     td{
         padding: .5rem 1rem;
-
     }
-
-    tr:nth-child(odd){
+    tr:nth-child(even){
         background-color: #F9FAFB;
-
+    }
+    & .head{
+        font-size: 15px;
+        background-color: #F9FAFB;
+        
+    }
+    & .value {
+        color: var(--grey-300);
+    }
+    & .subtotal{
+        color: #0CA484;
     }
 
 `

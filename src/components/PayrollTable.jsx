@@ -5,6 +5,42 @@ import TextField from './forms/TextField';
 import Button from './button';
 
 const PayrollTable = () => {
+    const paymentData = [
+        {
+            title: "Pension",
+            value: 100000
+        },
+        {
+            title: "State Tax",
+            value: 700000
+        },
+        {
+            title: "Federal Tax",
+            value: 30000
+        },
+    ]
+    const paymentData2 = [
+        {
+            title: "Hours Worked",
+            value: 100000
+        },
+        {
+            title: "PTO",
+            value: 700000
+        },
+        {
+            title: "Federal Tax",
+            value: 30000
+        },
+        {
+            title: "Meal Allowance",
+            value: 500000
+        },
+        {
+            title: "Net Pay",
+            value: 30000
+        },
+    ]
   return (
     <Wrapper>
         <div>
@@ -12,23 +48,21 @@ const PayrollTable = () => {
             <h4>Payroll Statement</h4>
             <h5>Feb 2023</h5>
         </div>
-
         <EmployeeAcctDetailWrapper>
             <EmployeeAcctDetail>
                 <label className=''>Employee Name: <span>Bamgboye Pelumi</span></label>
-                <label className='keys'>Employee ID: <span>HR01</span></label>
                 <label className='keys'>Bank Name: <span>Zenith Bank</span></label>
+                <label className='keys'>Employee ID: <span>HR01</span></label>
             </EmployeeAcctDetail>
-           
             <EmployeeAcctDetail>
                 <label className=''>Department:  <span>Human  Resource</span></label>
-                <label className='keys'>Location: <span>Lagos</span></label>
-                <label className='keys'>Account Number: <span>2020****93</span></label>
+                <label className=''>Location: <span>Lagos</span></label>
+                <label className=''>Account Number: <span>2020****93</span></label>
             </EmployeeAcctDetail>
         </EmployeeAcctDetailWrapper>
         <AccountStatementWrapper>
-            <AccountStatement />   
-            <AccountStatement />   
+            <AccountStatement paymentData={paymentData2} />
+            <AccountStatement  paymentData={paymentData}/> 
         </AccountStatementWrapper>
         <Container>
             <EmailWrapper>
@@ -52,14 +86,15 @@ const PayrollTable = () => {
                     textcolor="var(--lilac-400)"
                     className="submit-button"
                     margin="1.5rem 0rem"
-                    padding="0.625rem 3rem"
+                    padding="0.625rem"
                     border="var(--lilac-400)"
                 >
                     Print Statement
                 </Button>
             </EmailWrapper>
-            
-            <AccountStatement /> 
+            <AccountStatementWrapper>
+                <AccountStatement paymentData={paymentData} /> 
+            </AccountStatementWrapper>
         </Container>
     </Wrapper>
   )
@@ -74,44 +109,37 @@ const Wrapper = styled("div")`
     h4,h5{
         text-align: center;
         margin: .6rem 0rem;
-
     }
-
 `;
-
 const EmployeeAcctDetailWrapper = styled("div")`
     background-color: #F9FAFB;
     padding: 0.5rem .8rem;
     border-radius: .4rem;
-
+    width: 100%;
 `;
-
 const EmployeeAcctDetail = styled("div")`
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    gap: 15px;
-
     label{
         font-size: 12px;
         margin: .3rem 0rem;
     }
-   
-
     span{
         color: #BBBEC3;
     }
 `;
-
 const AccountStatementWrapper = styled("div")`
     display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
 `;
-
 const Container = styled("div")`
     display: flex;
+    justify-content: space-between;
 `;
-
 const EmailWrapper = styled("div")`
-    width: 50%;
-    margin-top: .7rem;
+    width: 40%;
+    margin-top: 2rem;
 `;
 
