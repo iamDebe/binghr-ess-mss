@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "goober";
 import SideNavbar from "@/components/SideNavbar";
 import { desktop, desktopMidi } from "@/globalStyle";
@@ -6,10 +6,15 @@ import { desktop, desktopMidi } from "@/globalStyle";
 
 const Wrapper = styled("div")`
   width: 100%;
-  display: flex;
 `;
 
 const Main = styled("div")`
+    width: var(--content-window-width-expanded);
+    margin-left: auto;
+    padding: 2rem;
+    &.collapsed {
+        width: var(--content-window-width-collapsed);
+    }
     ${desktop} {
         padding: 2rem 4.0625rem 3.5rem 3.25rem;
     }
@@ -19,10 +24,15 @@ const Main = styled("div")`
 `;
 
 const EssLayout = ({ children }) => {
+    const [collapsed, setCollapsed] = useState(false);
+    const handleCollapse = () => {
+        setCollapsed(!collapsed);
+    };
+    
   return (
     <Wrapper>
-      <SideNavbar />
-      <Main>
+      <SideNavbar collapsed={collapsed} onToggleCollapse={handleCollapse} />
+      <Main className={collapsed ? "collapsed" : ""}>
         {/* <TopBar /> */}
         {children}
       </Main>
