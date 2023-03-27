@@ -1,17 +1,18 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import EssHome from "./pages/EssHomepage";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import EssHome from "@/pages/EssHomepage";
+import ProfileSetup from "@/pages/ProfileSetup";
 import MyPay from "./pages/MyPay";
-import ProfileSetup from "./pages/ProfileSetup";
 window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {
   return (
-    <Router basename="/ess">
+    <Router>
       <Routes>
-        <Route path="/" element={<EssHome />} /> 
-        <Route path="/profile" element={<ProfileSetup />} />
-        <Route path="/mypay" element={<MyPay />} />
+        <Route path="/ess" element={<EssHome />} /> 
+        <Route path="ess/profile" element={<ProfileSetup />} />
+        <Route path="ess/mypay" element={<MyPay />} />
+        <Route path="*" element={<Navigate to="/ess" replace />} />
       </Routes>
     </Router>
   );
