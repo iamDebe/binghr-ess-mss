@@ -11,6 +11,7 @@ import { ReactComponent as ChartIcon } from "@/assets/images/chart.svg";
 import { ReactComponent as StarIcon } from "@/assets/images/star.svg";
 import { ReactComponent as BookIcon } from "@/assets/images/book.svg";
 import { ReactComponent as SunIcon } from "@/assets/images/sun.svg";
+import { ReactComponent as WatchIcon } from "@/assets/images/watch.svg";
 import AuthWelcomeModal from "@/components/AuthWelcomeModal";
 import OnBoardingStepsContainer from "@/components/essOnboarding/OnBoardingStepsContainer";
 import RoundIconBg from "@/components/RoundIconBg";
@@ -49,6 +50,11 @@ const Inner = styled("div")`
       flex: 1 0 48%;
     }
   }
+  ${mobile} {
+    .onleave-wrapper {
+      display: none;
+    }
+  }
 `;
 const WelcomeSection = styled("div")`
   border: 0.5px solid var(--grey-5);
@@ -68,15 +74,7 @@ const MenuCardRow = styled("div")`
   align-items: center;
   gap: 1.375rem;
   ${mobile} {
-    flex-wrap: wrap;
-    a {
-      flex: 1 0 25%;
-    }
-  }
-  ${mobileMedium} {
-    a {
-      flex: 1 0 50%;
-    }
+    display: none;
   }
 `;
 const EmployeeSummaryRow = styled("div")`
@@ -207,8 +205,9 @@ const NewsRow = styled("div")`
     border: 1px solid var(--grey-100);
     border-radius: var(--br);
     padding: 0.625rem 1.625rem;
-    ${tablet} {
+    ${mobile} {
       flex-direction: column;
+      padding: 1rem 0.75rem;
     }
   }
   .news-btn {
@@ -222,6 +221,12 @@ const Announcements = styled("div")`
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
+  .title {
+    display: none;
+    ${mobile} {
+      display: block;
+    }
+  }
   .item {
     display: flex;
     justify-content: space-between;
@@ -241,9 +246,10 @@ const Announcements = styled("div")`
       color: var(--grey-300);
     }
   }
-  ${tablet} {
+  ${mobile} {
+    padding: 0 0 1.25rem 0;
     border-right: none;
-    padding-right: 0;
+    border-bottom: 1px solid var(--grey-200);
   }
 `;
 const Events = styled("div")`
@@ -252,8 +258,14 @@ const Events = styled("div")`
   gap: 1.375rem;
   padding: 1.125rem 0 1.125rem 1.25rem;
   flex: 1 0 48%;
-  ${tablet} {
-    padding-left: 0;
+  .title {
+    display: none;
+  }
+  ${mobile} {
+    padding: 1.25rem 0 0;
+    .title {
+      display: block;
+    }
   }
 `;
 
@@ -313,6 +325,8 @@ const EssHome = () => {
                 bg="var(--lilac-400)"
                 textcolor="var(--grey-25)"
                 className="clockin-btn"
+                leftIcon={<WatchIcon />}
+                iconColor="var(--grey-25)"
               >
                 Clock in
               </Button>
@@ -410,6 +424,9 @@ const EssHome = () => {
             </div>
             <div className="wrapper">
               <Announcements>
+                <div className="title">
+                  <h3 className="type-title3">Announcements</h3>
+                </div>
                 <div className="item">
                   <div className="icon-group">
                     <RoundIconBg
@@ -456,6 +473,9 @@ const EssHome = () => {
                 </div>
               </Announcements>
               <Events>
+                <div className="title">
+                  <h3 className="type-title3">Events</h3>
+                </div>
                 <PendingTask>
                   <div className="icon-task">
                     <RoundIconBg
