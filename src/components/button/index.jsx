@@ -16,11 +16,14 @@ const Container = styled("button")`
     outline: none;
     font-family: inherit;
     cursor: pointer;
+    svg {
+        fill: ${props => props.iconColor};
+    }
 `;
 
-const Button = ({ leftIcon, rightIcon, textcolor, bg, border, children, className, onClick}) => {
+const Button = ({ leftIcon, rightIcon, iconColor, textcolor, bg, border, children, className, onClick}) => {
   return (
-    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}onClick={onClick}>
+    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}onClick={onClick} iconColor={iconColor}>
       {leftIcon && leftIcon}
       {children}
       {rightIcon && rightIcon}
