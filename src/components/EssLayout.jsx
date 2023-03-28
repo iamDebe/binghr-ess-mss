@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "goober";
 import SideNavbar from "@/components/SideNavbar";
 import { desktop, desktopMidi } from "@/globalStyle";
-// import TopBar from "@/components/topBar";
+// import TopBar from "@/components/TopBar";
 
 const Wrapper = styled("div")`
   width: 100%;
