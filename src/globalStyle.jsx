@@ -1,4 +1,4 @@
-import { createGlobalStyles } from 'goober/global';
+import { createGlobalStyles } from "goober/global";
 
 export const HD = `@media screen and (min-width: 1800px)`;
 export const desktop = `@media screen and (max-width: 1440px)`;
@@ -169,5 +169,34 @@ export const GlobalStyles = createGlobalStyles`
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  .react-datepicker__input-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .date-picker {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px; 
+    color: #103C1B; 
+    border: none;
+    padding: 8px 10px;
+  }
+  .date-picker:focus{
+   background: white;
+   border: #ddd;
+  }
+  
+  .react-datepicker {
+    box-sizing: border-box;
+    min-height: 284px !important;
+    max-height: 284px !important;
+  }
+  
+  .react-datepicker-popper { 
+    z-index: 9999;
+    background:red;
   }
 `;

@@ -14,9 +14,7 @@ import Compensation from "../components/essMyProfile/Compensation";
 
 const Container = styled("div")`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  gap: 3rem;
   position: relative;
   margin-top: 100px;
   .onboarding-div {

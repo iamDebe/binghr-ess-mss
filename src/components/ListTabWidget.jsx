@@ -3,6 +3,7 @@ import { styled } from "goober";
 import ListTabsItem from "./ListTabItem";
 
 const Container = styled("div")`
+  width: 100%;
   background: #fcfcfd;
   text-align: center;
   .lw-ul {
@@ -11,7 +12,13 @@ const Container = styled("div")`
   }
 `;
 
-const ListTabsWidget = ({ tabs, activeTabLabel, handleTabClick, activeBgColor, activeTextColor }) => {
+const ListTabsWidget = ({
+  tabs,
+  activeTabLabel,
+  handleTabClick,
+  activeBgColor,
+  activeTextColor,
+}) => {
   return (
     <Container>
       <ul className="lw-ul">

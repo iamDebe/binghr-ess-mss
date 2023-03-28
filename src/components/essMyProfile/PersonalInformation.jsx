@@ -34,6 +34,10 @@ const Inner = styled("div")`
 const PersonalInformation = ({ continueAction, goBack, saveData }) => {
   const [personalInfo, showPersonalInfo] = useState(false);
   const [birthInfo, showbirthInfo] = useState(false);
+  const [demographicInfo, showDemographicInfo] = useState(false);
+  const [contactInfo, showContactInfo] = useState(false);
+  const [homeAddressInfo, showHomeAddressInfo] = useState(false);
+  const [mailingAddressInfo, showMailingAddressInfo] = useState(false);
   return (
     <Container>
       <Inner>
@@ -146,6 +150,225 @@ const PersonalInformation = ({ continueAction, goBack, saveData }) => {
               />
             </div>
           </div>
+        )}
+
+        <p
+          onClick={() => {
+            showDemographicInfo(!demographicInfo);
+          }}
+          className="type-title3"
+        >
+          Demographic Information
+        </p>
+
+        {demographicInfo && (
+          <>
+            <div className="main-text-div">
+              <div className="text-div">
+                <TextField
+                  id="gender"
+                  label="Gender"
+                  type="text"
+                  placeholder="Enter Gender"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="maritalstatus"
+                  label="Marital Status"
+                  type="text"
+                  placeholder="Enter Marital Status"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="ethnicgroup"
+                  label="Ethnic Group"
+                  type="text"
+                  placeholder="Enter Ethnic Group"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="nationalityh"
+                  label="Nationality"
+                  type="text"
+                  placeholder="Enter Nationality"
+                />
+              </div>
+            </div>
+            <div className="main-text-div">
+              <div className="text-div">
+                <TextField
+                  id="religion"
+                  label="Religion"
+                  type="text"
+                  placeholder="Enter Religion"
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        <p
+          onClick={() => {
+            showContactInfo(!contactInfo);
+          }}
+          className="type-title3"
+        >
+          Contact Information
+        </p>
+
+        {contactInfo && (
+          <div className="main-text-div">
+            <div className="text-div">
+              <TextField
+                id="phonenumber"
+                label="Phone Number"
+                type="text"
+                placeholder="Enter Phone Number"
+              />
+            </div>
+            <div className="text-div">
+              <TextField
+                id="secondaryphonenumber"
+                label="Secondary Phone Number"
+                type="text"
+                placeholder="Enter Secondary Phone Numbe"
+              />
+            </div>
+          </div>
+        )}
+
+        <p
+          onClick={() => {
+            showHomeAddressInfo(!homeAddressInfo);
+          }}
+          className="type-title3"
+        >
+          Home Address
+        </p>
+
+        {homeAddressInfo && (
+          <>
+            <div className="main-text-div">
+              <div className="text-div">
+                <TextField
+                  id="street"
+                  label="Street"
+                  type="text"
+                  placeholder="Enter Street Name"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="apartment"
+                  label="Apartment"
+                  type="text"
+                  placeholder="Enter Apartment Number"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="city"
+                  label="City"
+                  type="text"
+                  placeholder="Enter City Name"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="state"
+                  label="State"
+                  type="text"
+                  placeholder="Enter State Name"
+                />
+              </div>
+            </div>
+            <div className="main-text-div">
+              <div className="text-div">
+                <TextField
+                  id="country"
+                  label="Country"
+                  type="text"
+                  placeholder="Enter Country Name"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="postalCode"
+                  label="Postal Code"
+                  type="text"
+                  placeholder="Enter Postal Code"
+                />
+              </div>
+            </div>
+          </>
+        )}
+        <p
+          onClick={() => {
+            showMailingAddressInfo(!mailingAddressInfo);
+          }}
+          className="type-title3"
+        >
+          Mailing Address
+        </p>
+
+        {mailingAddressInfo && (
+          <>
+            <div className="main-text-div">
+              <div className="text-div">
+                <TextField
+                  id="street"
+                  label="Street"
+                  type="text"
+                  placeholder="Enter Street Name"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="apartment"
+                  label="Apartment"
+                  type="text"
+                  placeholder="Enter Apartment Number"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="city"
+                  label="City"
+                  type="text"
+                  placeholder="Enter City Name"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="state"
+                  label="State"
+                  type="text"
+                  placeholder="Enter State Name"
+                />
+              </div>
+            </div>
+            <div className="main-text-div">
+              <div className="text-div">
+                <TextField
+                  id="country"
+                  label="Country"
+                  type="text"
+                  placeholder="Enter Country Name"
+                />
+              </div>
+              <div className="text-div">
+                <TextField
+                  id="postalCode"
+                  label="Postal Code"
+                  type="text"
+                  placeholder="Enter Postal Code"
+                />
+              </div>
+            </div>
+          </>
         )}
       </Inner>
     </Container>
