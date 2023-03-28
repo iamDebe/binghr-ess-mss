@@ -1,8 +1,8 @@
 import React from 'react';
 import {styled} from "goober";
-import AccountStatement from './AccountStatement';
-import TextField from './forms/TextField';
-import Button from './button';
+import AccountStatement from '@/components/AccountStatement';
+import TextField from '@/components/forms/TextField';
+import Button from '@/components/button';
 import { ReactComponent as PrintIcon } from "@/assets/images/printer.svg";
 import { ReactComponent as EmailIcon } from "@/assets/images/sms.svg";
 import location from "@/assets/images/location.svg";
@@ -77,7 +77,7 @@ const PayrollTable = () => {
                     label="Email"
                     type="email"
                     placeholder="Enter Email"
-                    icon={location}
+                    icon={<EmailIcon  fill="var(--grey-25)" className="input-icon icon"/>}
                 />
                 <Button  
                     type="button"

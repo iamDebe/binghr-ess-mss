@@ -11,6 +11,8 @@ import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
 import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
 import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
+import { ReactComponent as PrintIcon } from "@/assets/images/printer.svg";
+
 import { tablet } from "@/globalStyle";
 import { desktopMidi, mobile } from "../globalStyle";
 import location from "@/assets/images/location.svg";
@@ -48,10 +50,10 @@ const MyPay = () => {
                     </ProxySearchWrapper>
                     <SearchFieldWrapper>
                         <SearchField 
+                            // icon={<CalenderIcon className="input-icon icon" />}
                             id="search"
                             type="search"
                             placeholder="search"
-
                         />
                     </SearchFieldWrapper>    
                     <IconsWrapper>
@@ -105,8 +107,7 @@ const MyPay = () => {
                                 label="Year/Month"
                                 type="date"
                                 placeholder="Select Month/Year"
-                                // icon={<CalenderIcon fill='var(--grey-300)'/>}
-                                icon={location}
+                                icon={<CalenderIcon className="input-icon icon" />}
 
                             />
                         </TextFieldWrapper>

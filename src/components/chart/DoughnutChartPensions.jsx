@@ -1,6 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { styled } from "goober";
-import { Chart, Doughnut } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 ChartJS.register(
     Tooltip,
     Legend,
