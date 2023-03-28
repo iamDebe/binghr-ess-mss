@@ -15,7 +15,7 @@ import { ReactComponent as WatchIcon } from "@/assets/images/watch.svg";
 import AuthWelcomeModal from "@/components/AuthWelcomeModal";
 import OnBoardingStepsContainer from "@/components/essOnboarding/OnBoardingStepsContainer";
 import RoundIconBg from "@/components/RoundIconBg";
-import Tag from "@/components/tag";
+import Tag from "@/components/Tag";
 import Button from "@/components/button";
 
 const Inner = styled("div")`
