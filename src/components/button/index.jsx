@@ -6,9 +6,7 @@ const Container = styled("button")`
     align-items: center;
     justify-content: center;
     gap: 0.625rem;
-    padding: ${(props) =>
-      props.padding ? `${props.padding}` : "0.625rem"};
-    margin:${(props)=> props.margin};
+    padding: 0.625rem;
     background: ${props => props.bg};
     color: ${props => props.textcolor};
     border: ${(props) =>
@@ -23,9 +21,9 @@ const Container = styled("button")`
     }
 `;
 
-const Button = ({ leftIcon, rightIcon, textcolor, bg, border, margin, padding, children, className, onClick}) => {
+const Button = ({ leftIcon, rightIcon, iconColor, textcolor, bg, border, children, className, onClick}) => {
   return (
-    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border} onClick={onClick} margin={margin} padding={padding}>
+    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}onClick={onClick} iconColor={iconColor}>
       {leftIcon && leftIcon}
       {children}
       {rightIcon && rightIcon}
