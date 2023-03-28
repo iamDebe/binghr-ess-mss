@@ -7,9 +7,6 @@ console.log('__dirname:', __dirname);
 
 export default defineConfig({
   plugins: [svgr(), react()],
-  build: {
-    outDir: 'builds'
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
