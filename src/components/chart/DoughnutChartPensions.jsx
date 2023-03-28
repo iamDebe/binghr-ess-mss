@@ -79,8 +79,8 @@ const DoughnutChartPensions = () => {
             />
         </Wrapper>
          <div>
-          <label>Pensions</label><br />
-          <small>$300,000</small>
+          <label className="type-body3">Pensions</label><br />
+          <small className="type-subtitle1">$300,000</small>
          </div>
       </Container>
      );

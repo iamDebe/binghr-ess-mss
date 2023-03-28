@@ -3,6 +3,13 @@ import {styled} from "goober";
 import AccountStatement from './AccountStatement';
 import TextField from './forms/TextField';
 import Button from './button';
+import { ReactComponent as PrintIcon } from "@/assets/images/printer.svg";
+import { ReactComponent as EmailIcon } from "@/assets/images/sms.svg";
+import location from "@/assets/images/location.svg";
+
+import { mobile } from "@/globalStyle";
+
+
 const PayrollTable = () => {
     const paymentData = [
         {
@@ -49,14 +56,14 @@ const PayrollTable = () => {
         </div>
         <EmployeeAcctDetailWrapper>
             <EmployeeAcctDetail>
-                <label className=''>Employee Name: <span>Bamgboye Pelumi</span></label>
-                <label className='keys'>Bank Name: <span>Zenith Bank</span></label>
-                <label className='keys'>Employee ID: <span>HR01</span></label>
+                <label className='type-title4'>Employee Name: <span>Bamgboye Pelumi</span></label>
+                <label className='keys type-title4'>Bank Name: <span>Zenith Bank</span></label>
+                <label className='keys type-title4'>Employee ID: <span>HR01</span></label>
             </EmployeeAcctDetail>
             <EmployeeAcctDetail>
-                <label className=''>Department:  <span>Human  Resource</span></label>
-                <label className=''>Location: <span>Lagos</span></label>
-                <label className=''>Account Number: <span>2020****93</span></label>
+                <label className='type-title4'>Department:  <span>Human  Resource</span></label>
+                <label className='type-title4'>Location: <span>Lagos</span></label>
+                <label className='type-title4'>Account Number: <span>2020****93</span></label>
             </EmployeeAcctDetail>
         </EmployeeAcctDetailWrapper>
         <AccountStatementWrapper>
@@ -70,6 +77,7 @@ const PayrollTable = () => {
                     label="Email"
                     type="email"
                     placeholder="Enter Email"
+                    icon={location}
                 />
                 <Button  
                     type="button"
@@ -87,6 +95,7 @@ const PayrollTable = () => {
                     margin="1.5rem 0rem"
                     padding="0.625rem"
                     border="var(--lilac-400)"
+                    rightIcon={<PrintIcon fill='var(--lilac-400)' />}
                    
                 >
                     Print Statement 
@@ -125,23 +134,32 @@ const EmployeeAcctDetailWrapper = styled("div")`
     padding: 0.5rem .8rem;
     border-radius: .4rem;
     width: 100%;
+
+   
 `;
 const EmployeeAcctDetail = styled("div")`
     width: 100%;
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
-    label{
-        font-size: 12px;
-        margin: .3rem 0rem;
-    }
+    margin: .5rem 0rem;
+    
+   
     span{
         color: #BBBEC3;
     }
+
+   
 `;
 const AccountStatementWrapper = styled("div")`
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     margin-top: 2rem;
+    
+    ${mobile}{
+        flex-wrap: wrap;
+    }
 `;
 const Container = styled("div")`
     display: flex;

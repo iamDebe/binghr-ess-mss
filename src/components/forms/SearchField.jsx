@@ -22,13 +22,13 @@ export const Wrapper = styled("div")`
 `;
 
 
-const SearchField = ({icon, optional, disabled, ref, ...props }) => {
+const SearchField = ({ icon, optional, disabled, ref, ...props }) => {
  
   return (
     <>
    
       <Wrapper>
-        <span> {icon && <img src={icon} className="search-icon icon" />} </span>
+        <span> {icon && <img src={icon} className="input-icon icon" />} </span>
         <input className="search" {...props} ref={ref} disabled={disabled}/>
       </Wrapper>
      

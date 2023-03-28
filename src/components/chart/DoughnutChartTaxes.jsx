@@ -80,8 +80,8 @@ const DoughnutChartTaxes = () => {
             />
         </Wrapper>
         <div>
-          <label>Taxes</label><br />
-          <small>$300,000</small>
+          <label className="type-body3">Taxes</label><br />
+          <small className="type-subtitle1">$300,000</small>
         </div>
      </Container>
      );

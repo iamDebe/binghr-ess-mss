@@ -81,8 +81,8 @@ const DoughnutChartYear = () => {
             />
         </Wrapper>
          <div>
-         <label>Year</label><br />
-         <small>$300,000</small>
+         <label className="type-body3">Year</label><br />
+         <small className="type-subtitle1">$300,000</small>
         </div>
      </Container>
      );

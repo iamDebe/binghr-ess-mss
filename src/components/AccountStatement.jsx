@@ -7,15 +7,15 @@ const AccountStatement = ({paymentData}) => {
          <table className="table">
                 <thead>
                     <tr>
-                        <td className='head'>Allowances</td>
-                        <td className='head'>Amount</td>
+                        <td className='head type-title3'>Allowances</td>
+                        <td className='head type-title3'>Amount</td>
                     </tr>
                 </thead>
             <tbody>
                 {paymentData.map((data, index)=>(
                     <tr key={index}>
-                        <td>{data.title}</td>
-                        <td className='value'>{data.value}</td>
+                        <td className='type-body3'>{data.title}</td>
+                        <td className='type-body3 value'>{data.value}</td>
                     </tr>
                 ))}
                 <tr>
@@ -41,7 +41,6 @@ const Wrapper = styled("div")`
         background-color: #F9FAFB;
     }
     & .head{
-        font-size: 15px;
         background-color: #F9FAFB;
         
     }

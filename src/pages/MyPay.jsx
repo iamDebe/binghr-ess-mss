@@ -10,6 +10,13 @@ import DoughnutChartYear from "@/components/chart/DoughnutChartYear";
 import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
 import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
+import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
+import { tablet } from "@/globalStyle";
+import { desktopMidi, mobile } from "../globalStyle";
+import location from "@/assets/images/location.svg";
+
+
+
 
 
 
@@ -44,6 +51,7 @@ const MyPay = () => {
                             id="search"
                             type="search"
                             placeholder="search"
+
                         />
                     </SearchFieldWrapper>    
                     <IconsWrapper>
@@ -97,6 +105,9 @@ const MyPay = () => {
                                 label="Year/Month"
                                 type="date"
                                 placeholder="Select Month/Year"
+                                // icon={<CalenderIcon fill='var(--grey-300)'/>}
+                                icon={location}
+
                             />
                         </TextFieldWrapper>
                         <Button  
@@ -144,16 +155,36 @@ const TopBarWrapper = styled("div")`
   border: 0.5px solid var(--grey-200);
   padding: 0.5rem 1.625rem 0.5rem 1.625rem;
   border-radius: 0.5rem;
-  width: 100%;
+
+  ${mobile}{
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
 `;
 const ProxySearchWrapper = styled("div")`
     display: flex;
     margin-right: 10rem;
+    ${tablet}{
+        margin-right: 0rem;
+    }
+    ${mobile}{
+        margin-right: 0rem;
+    }
 `;
 const SearchFieldWrapper = styled("div")`
     display: flex;
     align-self: center;
     margin: 0rem 1rem 0rem 10rem;
+
+    ${tablet}{
+        margin: 0rem 1rem 0rem 5rem;
+
+    }
+    ${mobile}{
+        margin: 0rem 1rem 0rem 2rem;
+
+    }
+    
 `;
 const TextFieldWrapper = styled("div")`
     align-self: center;
@@ -199,6 +230,7 @@ const DropdownWrapper = styled("div")`
     top: 60px;
     left: 35px;
    ul{
+    background-color: white;
     border: 1px solid var(--grey-100);
     list-style: none;
     font-size: 12px;
@@ -220,6 +252,10 @@ const ProfileSettingsWrapper = styled("div")`
    position: relative;
    display: flex;
    flex-direction: column;
+
+   ${mobile}{
+     justify-content: end;
+   }
 `;
 const ChartWrapper = styled("div")`
     display: flex;
@@ -228,22 +264,53 @@ const ChartWrapper = styled("div")`
     padding: 2rem;
     border: 1px solid var(--grey-200);
     border-radius: .5rem;
-    width: 50%;
+    width: 45%;
     height: fit-content;
+
+    ${desktopMidi} {
+        flex-wrap: nowrap;
+        width: 50%;
+      }
+
+    ${tablet} {
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        width: 80%;
+      }
+    ${mobile} {
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        width: 100%;
+      }
 `;
 const SecondaryChartsWrapper = styled("div")`
     align-self: center;
     width: 50%;
 `;
 const PayrollTableWrapper = styled("div")`
-    padding: 1rem;
+    padding: .3rem;
     border: 1px solid var(--grey-200);
     border-radius: .5rem;
-    margin: 0rem 0rem 0rem 1.5rem;
-    width: 80%;
+    width: 55%;
+
+    ${desktopMidi} {
+        flex-wrap: nowrap;
+        margin: 0rem;
+      }
+
+    ${tablet} {
+        flex-wrap: nowrap;
+        width: 100%;
+        margin: 0rem;
+      }
 `;
 const ChartAndPayrollWrapper = styled("div")`
     display: flex;
+    gap: 1rem;
+    
+    ${tablet} {
+        flex-wrap: wrap;
+      }
 `;
 const ButtonWrapper = styled("div")`
     display: flex;
