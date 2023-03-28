@@ -1,12 +1,28 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { styled } from "goober";
 import { Chart, Doughnut } from "react-chartjs-2";
-import { employeeDataYear } from "../../../data/db";
 ChartJS.register(
     Tooltip,
     Legend,
     ArcElement
 )
+const employeeDataYear = [
+  {
+      id: 1,
+      year: 2016,
+      userGain: 50,
+      cumm: '2,000,000',
+      
+  },
+  {
+      id: 2,
+      year: 2017,
+      userGain: 50,
+      cumm: '2,000,000',
+      
+  },
+ 
+]
 
 const DoughnutChartYear = () => {
   const data = {
