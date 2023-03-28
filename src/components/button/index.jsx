@@ -18,6 +18,9 @@ const Container = styled("button")`
     outline: none;
     font-family: inherit;
     cursor: pointer;
+    svg {
+        fill: ${props => props.iconColor};
+    }
 `;
 
 const Button = ({ leftIcon, rightIcon, textcolor, bg, border, margin, padding, children, className, onClick}) => {

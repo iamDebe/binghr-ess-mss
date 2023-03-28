@@ -6,21 +6,31 @@ import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
 import { ReactComponent as ClockIcon } from "@/assets/images/clock.svg";
 import { ReactComponent as CalendarIcon } from "@/assets/images/calendar.svg";
 import { ReactComponent as ChartIcon } from "@/assets/images/chart.svg";
+import { mobile } from "@/globalStyle";
 
 const Navbar = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
-  min-width: var(--nav-width-expanded);
+  height: 100vh;
+  width: var(--nav-width-expanded);
   background-color: #fff;
   transition: width 0.3s;
   box-shadow: 0px 4px 7px var(--blue-100);
+  position: fixed;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10;
   &.collapsed {
-    min-width: var(--nav-width-collapsed);
+    width: var(--nav-width-collapsed);
   }
   .bottom-nav {
     padding: 1.75rem 2.375rem;
+  }
+
+  ${mobile} {
+    position: absolute;
   }
 `;
 
@@ -89,18 +99,12 @@ const CollapseButton = styled("button")`
   color: #848484;
 `;
 
-const SideNavbar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
-  const handleCollapse = () => {
-    setCollapsed(!collapsed);
-  };
-
+const SideNavbar = ({ collapsed, onToggleCollapse }) => {
   return (
     <Navbar className={`sidebar ${collapsed ? "collapsed" : ""}`}>
       <div className="top-nav">
         <CompanyLogo className={`${collapsed ? "collapsed-logo" : ""}`}>
-          <img src="/images/barter.svg" width={collapsed ? "100%" : "100"} alt="company-logo" />
+          <img src="/images/barter.svg" width={collapsed ? "100" : "100"} alt="company-logo" />
         </CompanyLogo>
         <NavWrapper>
           <a href="#" className="nav-item active">
@@ -142,7 +146,7 @@ const SideNavbar = () => {
         </NavWrapper>
       </div>
       <div className="bottom-nav">
-        <CollapseButton className="collapse-button" onClick={handleCollapse}>
+        <CollapseButton className="collapse-button" onClick={onToggleCollapse}>
           <div className="icon">
             <NavHomeIcon fill="var(--grey-400)" />
           </div>
