@@ -6,7 +6,7 @@ import path from 'path';
 export default defineConfig({
   plugins: [svgr(), react()],
   build: {
-    outDir: 'build'
+    outDir: 'builds'
   },
   resolve: {
     alias: {
