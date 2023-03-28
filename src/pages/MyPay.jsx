@@ -1,15 +1,15 @@
 import React, {useState } from "react";
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
-import SearchField from "../components/forms/SearchField";
-import Button from "../components/button"
-import DoughnutChart from "../components/chart/DoughnutChart";
-import TextField from "../components/forms/TextField";
-import PayrollTable from "../components/PayrollTable";
-import DoughnutChartYear from "../components/chart/DoughnutChartYear";
-import DoughnutChartTaxes from "../components/chart/DoughnutChartTaxes";
-import DoughnutChartBenefit from "../components/chart/DoughnutChartBenefit";
-import DoughnutChartPensions from "../components/chart/DoughnutChartPensions";
+import SearchField from "@/components/forms/SearchField";
+import Button from "@/components/button"
+import DoughnutChart from "@/components/chart/DoughnutChart";
+import TextField from "@/components/forms/TextField";
+import PayrollTable from "@/components/PayrollTable";
+import DoughnutChartYear from "@/components/chart/DoughnutChartYear";
+import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
+import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
+import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
 
 
 
@@ -72,7 +72,7 @@ const MyPay = () => {
                                 </DropdownItemsWrapper>
                                 <DropdownItemsWrapper>
                                     <img src="/images/logout.svg" alt="" />
-                                    <li><a className="dropdown-item" href="#"> Logout</a></li>
+                                    <li><a className="dropdown-item logout" href="#"> Logout</a></li>
                                 </DropdownItemsWrapper>
                             </ul> }
                         </DropdownWrapper>
@@ -208,6 +208,9 @@ const DropdownWrapper = styled("div")`
 li{
     padding: .5rem .5rem;
     width: 100%
+}
+& .logout{
+    color: #EB5757;
 }
 `;
 const DropdownItemsWrapper = styled("div")`

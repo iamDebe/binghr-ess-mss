@@ -3,8 +3,6 @@ import {styled} from "goober";
 import AccountStatement from './AccountStatement';
 import TextField from './forms/TextField';
 import Button from './button';
-import { ReactComponent as ChartIcon } from "@/assets/images/chart.svg";
-
 const PayrollTable = () => {
     const paymentData = [
         {
