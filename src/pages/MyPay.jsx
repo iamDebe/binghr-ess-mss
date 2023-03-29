@@ -12,6 +12,13 @@ import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
 import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
 import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
+import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
+import { ReactComponent as NotificationIcon } from "@/assets/images/bell.svg";
+import { ReactComponent as SmsNotificationIcon } from "@/assets/images/sms-notification.svg";
+import { ReactComponent as ProfilePhoto } from "@/assets/images/ProfilePhoto.svg";
+import { ReactComponent as UserIcon } from "@/assets/images/user.svg";
+import { ReactComponent as ProgrammingIcon } from "@/assets/images/programming-arrow.svg";
+import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
 import { tablet, desktopMidi, mobile} from "@/globalStyle";
 
 
@@ -42,8 +49,8 @@ const MyPay = () => {
            <EssLayout>
                 <TopBarWrapper>
                     <ProxySearchWrapper>
-                        <ProxyIcon />
-                        <img src="/images/arrow-bottom.svg" alt="" />
+                        <ProxyIcon width={50} />
+                        <DropdownIcon  />
                     </ProxySearchWrapper>
                     <SearchFieldWrapper>
                         <SearchField 
@@ -55,31 +62,31 @@ const MyPay = () => {
                         />
                     </SearchFieldWrapper>    
                     <IconsWrapper>
-                        <img src="/images/bell.svg" alt="notification" />
-                        <img src="/images/sms-notification.svg" alt="notification" />
+                        <NotificationIcon  />
+                        <SmsNotificationIcon />
                     </IconsWrapper>
                     <ProfileSettingsWrapper>
                         <MyProfileWrapper>
-                            <div className="img-wrapper"><img src="/images/ProfilePhoto.svg" alt="" /></div>
+                            <div className="img-wrapper"><ProfilePhoto /></div>
                             <div >
                                 <a href="#" onClick={handleShowProfile}>
                                     Employee
                                 </a>
                             </div>
-                            <div onClick={handleShowProfile}><img src="/images/arrow-bottom.svg" alt="" /></div>
+                            <div onClick={handleShowProfile}><DropdownIcon /></div>
                         </MyProfileWrapper>
                         <DropdownWrapper>
                             {showProfileSettings && <ul className="dropdown-menu">
                                 <DropdownItemsWrapper>
-                                    <img src="/images/user.svg" alt="" />
+                                    <UserIcon  className="dropdown-icon" />
                                     <li><a className="dropdown-item" href="#"> My Profile</a></li>
                                 </DropdownItemsWrapper>
                                 <DropdownItemsWrapper>
-                                    <img src="/images/programming-arrow.svg" alt="" />
+                                    <ProgrammingIcon  className="dropdown-icon" />
                                     <li><a className="dropdown-item" href="#"> Proxy</a></li>
                                 </DropdownItemsWrapper>
                                 <DropdownItemsWrapper>
-                                    <img src="/images/logout.svg" alt="" />
+                                    <LogoutIcon  className="dropdown-icon" />
                                     <li><a className="dropdown-item logout" href="#"> Logout</a></li>
                                 </DropdownItemsWrapper>
                             </ul> }
@@ -162,6 +169,7 @@ const TopBarWrapper = styled("div")`
 `;
 const ProxySearchWrapper = styled("div")`
     display: flex;
+    align-self: center;
     margin-right: 10rem;
     ${tablet}{
         margin-right: 0rem;
@@ -192,6 +200,7 @@ const TextFieldWrapper = styled("div")`
 `;
 const IconsWrapper = styled("div")`
     display: flex;
+    align-self: center;
     justify-content: center;
         img{
             padding: 0rem .2rem;
@@ -226,6 +235,7 @@ const DropdownWrapper = styled("div")`
     position: absolute;
     top: 60px;
     left: 35px;
+    width: 100%;
    ul{
     background-color: white;
     border: 1px solid var(--grey-100);
@@ -244,6 +254,12 @@ li{
 `;
 const DropdownItemsWrapper = styled("div")`
     display: flex;
+    justify-content: start;
+
+    & .dropdown-icon{
+        margin-top: .3rem;
+    }
+
 `;
 const ProfileSettingsWrapper = styled("div")`
    position: relative;
