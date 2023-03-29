@@ -30,8 +30,6 @@ const MyPay = () => {
     }
     const handleShowAccountStatement = ()=>{
         setShowAccountStatement(!showAccountStatement)
-      
-
     }
 
     return (  
