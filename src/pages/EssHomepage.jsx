@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
-import MenuCard from "@/components/menuCard";
+import MenuCard from "@/components/MenuCardBox";
 import { mobile, mobileMedium, tablet, desktopMidi } from "@/globalStyle";
 import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
 import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
