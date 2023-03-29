@@ -1,7 +1,6 @@
 import React, {useState } from "react";
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
-import SearchField from "@/components/forms/SearchField";
 import Button from "@/components/button"
 import DoughnutChart from "@/components/chart/DoughnutChart";
 import TextField from "@/components/forms/TextField";
@@ -10,16 +9,8 @@ import DoughnutChartYear from "@/components/chart/DoughnutChartYear";
 import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
 import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
-import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
-import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
-import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
-import { ReactComponent as NotificationIcon } from "@/assets/images/bell.svg";
-import { ReactComponent as SmsNotificationIcon } from "@/assets/images/sms-notification.svg";
-import { ReactComponent as ProfilePhoto } from "@/assets/images/ProfilePhoto.svg";
-import { ReactComponent as UserIcon } from "@/assets/images/user.svg";
-import { ReactComponent as ProgrammingIcon } from "@/assets/images/programming-arrow.svg";
-import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
 import { tablet, desktopMidi, mobile} from "@/globalStyle";
+import TopBarWithSearch from "../components/TopBarWithSearch";
 
 
 
@@ -27,12 +18,9 @@ import { tablet, desktopMidi, mobile} from "@/globalStyle";
 
 
 const MyPay = () => {
-    const [showProfileSettings, setShowProfileSettings] = useState(false);
     const [showPayroll, setShowPayroll] = useState(false);
     const [showAccountStatement, setShowAccountStatement] = useState(false);
-    const handleShowProfile = ()=>{
-        setShowProfileSettings(!showProfileSettings)
-    }
+   
     const handleShowPayrollStatement = ()=>{
         setShowPayroll(!showPayroll)
         setShowAccountStatement(false)
@@ -47,52 +35,7 @@ const MyPay = () => {
     return (  
         <>
            <EssLayout>
-                <TopBarWrapper>
-                    <ProxySearchWrapper>
-                        <ProxyIcon width={50} />
-                        <DropdownIcon  />
-                    </ProxySearchWrapper>
-                    <SearchFieldWrapper>
-                        <SearchField 
-                            id="search"
-                            type="search"
-                            placeholder="search"
-                            // icon={<CalenderIcon className="input-icon icon" />}
-
-                        />
-                    </SearchFieldWrapper>    
-                    <IconsWrapper>
-                        <NotificationIcon  />
-                        <SmsNotificationIcon />
-                    </IconsWrapper>
-                    <ProfileSettingsWrapper>
-                        <MyProfileWrapper>
-                            <div className="img-wrapper"><ProfilePhoto /></div>
-                            <div >
-                                <a href="#" onClick={handleShowProfile}>
-                                    Employee
-                                </a>
-                            </div>
-                            <div onClick={handleShowProfile}><DropdownIcon /></div>
-                        </MyProfileWrapper>
-                        <DropdownWrapper>
-                            {showProfileSettings && <ul className="dropdown-menu">
-                                <DropdownItemsWrapper>
-                                    <UserIcon  className="dropdown-icon" />
-                                    <li><a className="dropdown-item" href="#"> My Profile</a></li>
-                                </DropdownItemsWrapper>
-                                <DropdownItemsWrapper>
-                                    <ProgrammingIcon  className="dropdown-icon" />
-                                    <li><a className="dropdown-item" href="#"> Proxy</a></li>
-                                </DropdownItemsWrapper>
-                                <DropdownItemsWrapper>
-                                    <LogoutIcon  className="dropdown-icon" />
-                                    <li><a className="dropdown-item logout" href="#"> Logout</a></li>
-                                </DropdownItemsWrapper>
-                            </ul> }
-                        </DropdownWrapper>
-                    </ProfileSettingsWrapper>
-                </TopBarWrapper>
+                <TopBarWithSearch />
                 <ButtonWrapper>
                     <Button  
                         type="button"
@@ -156,7 +99,7 @@ const MyPay = () => {
  
 export default MyPay;
 
-const TopBarWrapper = styled("div")`
+export const TopBarWrapper = styled("div")`
   display: flex;
   border: 0.5px solid var(--grey-200);
   padding: 0.5rem 1.625rem 0.5rem 1.625rem;
@@ -167,7 +110,7 @@ const TopBarWrapper = styled("div")`
     gap: .5rem;
   }
 `;
-const ProxySearchWrapper = styled("div")`
+export const ProxySearchWrapper = styled("div")`
     display: flex;
     align-self: center;
     margin-right: 10rem;
@@ -178,7 +121,7 @@ const ProxySearchWrapper = styled("div")`
         margin-right: 0rem;
     }
 `;
-const SearchFieldWrapper = styled("div")`
+export const SearchFieldWrapper = styled("div")`
     display: flex;
     align-self: center;
     margin: 0rem 1rem 0rem 10rem;
@@ -198,7 +141,7 @@ const TextFieldWrapper = styled("div")`
     margin: .5rem 2rem 0rem 1rem;
     width: 30%;
 `;
-const IconsWrapper = styled("div")`
+export const IconsWrapper = styled("div")`
     display: flex;
     align-self: center;
     justify-content: center;
@@ -206,7 +149,7 @@ const IconsWrapper = styled("div")`
             padding: 0rem .2rem;
         }
 `;
-const MyProfileWrapper = styled("div")`
+export const MyProfileWrapper = styled("div")`
     display: flex;
     align-items: center;
     align-self: center;
@@ -231,7 +174,7 @@ const MyProfileWrapper = styled("div")`
    }
     
 `;
-const DropdownWrapper = styled("div")`
+export const DropdownWrapper = styled("div")`
     position: absolute;
     top: 60px;
     left: 35px;
@@ -252,7 +195,7 @@ li{
     color: #EB5757;
 }
 `;
-const DropdownItemsWrapper = styled("div")`
+export const DropdownItemsWrapper = styled("div")`
     display: flex;
     justify-content: start;
 
@@ -261,7 +204,7 @@ const DropdownItemsWrapper = styled("div")`
     }
 
 `;
-const ProfileSettingsWrapper = styled("div")`
+export const ProfileSettingsWrapper = styled("div")`
    position: relative;
    margin-left: 2rem;
 
@@ -324,7 +267,7 @@ const ChartAndPayrollWrapper = styled("div")`
         flex-wrap: wrap;
       }
 `;
-const ButtonWrapper = styled("div")`
+export const ButtonWrapper = styled("div")`
     display: flex;
 `;
 
