@@ -13,7 +13,6 @@ import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
 import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
 import { tablet } from "@/globalStyle";
 import { desktopMidi, mobile } from "../globalStyle";
-import location from "@/assets/images/location.svg";
 
 
 
@@ -51,6 +50,7 @@ const MyPay = () => {
                             id="search"
                             type="search"
                             placeholder="search"
+                            // icon={<CalenderIcon className="input-icon icon" />}
 
                         />
                     </SearchFieldWrapper>    
@@ -105,8 +105,7 @@ const MyPay = () => {
                                 label="Year/Month"
                                 type="date"
                                 placeholder="Select Month/Year"
-                                // icon={<CalenderIcon fill='var(--grey-300)'/>}
-                                icon={location}
+                                icon={<CalenderIcon  className="input-icon icon" />}
 
                             />
                         </TextFieldWrapper>
@@ -204,8 +203,6 @@ const MyProfileWrapper = styled("div")`
     align-self: center;
     background: transparent;
     padding: .2rem;
-    margin-left: 2rem;
-    border: 2px solid transparent;
     border-radius: .5rem;
    .img-wrapper {
         border: 2px solid transparent;
@@ -250,8 +247,7 @@ const DropdownItemsWrapper = styled("div")`
 `;
 const ProfileSettingsWrapper = styled("div")`
    position: relative;
-   display: flex;
-   flex-direction: column;
+   margin-left: 2rem;
 
    ${mobile}{
      justify-content: end;

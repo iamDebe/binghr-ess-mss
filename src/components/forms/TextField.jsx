@@ -75,7 +75,7 @@ const TextField = React.forwardRef(({ label, icon, optional, disabled, ...props 
         {optional && <span>&nbsp;(Optional)</span>}
       </div>
       <input className="text-input" {...props} ref={ref} disabled={disabled} />
-      {icon && <img src={icon} className="input-icon icon" />}
+      {icon && icon }
     </Wrapper>
   );
 })
