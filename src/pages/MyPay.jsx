@@ -17,8 +17,6 @@ import { desktopMidi, mobile } from "../globalStyle";
 
 
 
-
-
 const MyPay = () => {
     const [showProfileSettings, setShowProfileSettings] = useState(false);
     const [showPayroll, setShowPayroll] = useState(false);
@@ -29,7 +27,6 @@ const MyPay = () => {
     const handleShowPayrollStatement = ()=>{
         setShowPayroll(!showPayroll)
         setShowAccountStatement(false)
-
     }
     const handleShowAccountStatement = ()=>{
         setShowAccountStatement(!showAccountStatement)
