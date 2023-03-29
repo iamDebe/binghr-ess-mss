@@ -11,8 +11,10 @@ import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
 import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
 import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
-import { tablet } from "@/globalStyle";
-import { desktopMidi, mobile } from "../globalStyle";
+import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
+import { tablet, desktopMidi, mobile} from "@/globalStyle";
+
+
 
 
 
@@ -27,9 +29,12 @@ const MyPay = () => {
     const handleShowPayrollStatement = ()=>{
         setShowPayroll(!showPayroll)
         setShowAccountStatement(false)
+
     }
     const handleShowAccountStatement = ()=>{
         setShowAccountStatement(!showAccountStatement)
+      
+
     }
 
     return (  
@@ -37,7 +42,7 @@ const MyPay = () => {
            <EssLayout>
                 <TopBarWrapper>
                     <ProxySearchWrapper>
-                        <img src="/images/proxy.svg" alt="" />
+                        <ProxyIcon />
                         <img src="/images/arrow-bottom.svg" alt="" />
                     </ProxySearchWrapper>
                     <SearchFieldWrapper>

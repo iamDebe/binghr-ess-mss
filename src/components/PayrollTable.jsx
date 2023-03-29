@@ -5,7 +5,6 @@ import TextField from '@/components/forms/TextField';
 import Button from '@/components/button';
 import { ReactComponent as PrintIcon } from "@/assets/images/printer.svg";
 import { ReactComponent as EmailIcon } from "@/assets/images/sms.svg";
-
 import { mobile } from "@/globalStyle";
 
 
