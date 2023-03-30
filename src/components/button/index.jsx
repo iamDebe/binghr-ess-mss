@@ -6,7 +6,9 @@ const Container = styled("button")`
     align-items: center;
     justify-content: center;
     gap: 0.625rem;
-    padding: 0.625rem;
+    padding: ${(props) =>
+      props.padding ? `${props.padding}` : "0.625rem"};
+    margin:${(props)=> props.margin};
     background: ${props => props.bg};
     color: ${props => props.textcolor};
     border: ${(props) =>
@@ -16,11 +18,14 @@ const Container = styled("button")`
     outline: none;
     font-family: inherit;
     cursor: pointer;
+    svg {
+        fill: ${props => props.iconColor};
+    }
 `;
 
-const Button = ({ leftIcon, rightIcon, textcolor, bg, border, children, className, onClick}) => {
+const Button = ({ leftIcon, rightIcon, textcolor, bg, border, margin, padding, children, className, onClick}) => {
   return (
-    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border}onClick={onClick}>
+    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border} onClick={onClick} margin={margin} padding={padding}>
       {leftIcon && leftIcon}
       {children}
       {rightIcon && rightIcon}
