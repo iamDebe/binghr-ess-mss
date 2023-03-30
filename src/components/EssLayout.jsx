@@ -39,15 +39,6 @@ const EssLayout = ({ children }) => {
     const closeSidebar = () => {
         setIsSidebarOpen(false);
     };
-
-    useEffect(() => {
-        const body = document.querySelector('body');
-        if (isSidebarOpen) {
-          body.style.overflow = 'hidden';
-        } else {
-          body.style.overflow = '';
-        }
-    }, [isSidebarOpen]);
     
   return (
     <Wrapper>
