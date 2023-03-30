@@ -36,6 +36,8 @@ const Navbar = styled("div")`
   }
   &.open {
     display: flex;
+    transform: translateX(0);
+    transition: transform 0.8s ease-in;
   }
   ${mobile} {
     display: none;
