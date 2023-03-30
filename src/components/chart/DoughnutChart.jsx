@@ -1,12 +1,6 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
 import { registerChart } from "@/utils/registerChart";
-// ChartJS.register(
-//     Tooltip,
-//     Legend,
-//     ArcElement
-// )
 
 registerChart()
  const employeeData = [
