@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { styled } from "goober";
+import React, { useEffect, useState } from "react";
+import { styled, css } from "goober";
+import { mobile } from "@/globalStyle";
 import ProgressBar from "@/components/ProgressBar";
 import TermsAndCondition from "@/components/essOnboarding/TermsAndCondition";
 import TodoList from "@/components/essOnboarding/TodoList";
-import IntroductroryVideos from "@/components/essOnboarding/IntroductroryVideos";
+import IntroductoryVideos from "@/components/essOnboarding/IntroductoryVideos";
 import AddressOne from "@/components/essOnboarding/AddressOne";
 import AddressTwo from "@/components/essOnboarding/AddressTwo";
 import EmergencyContact from "@/components/essOnboarding/EmergencyContact";
@@ -11,6 +12,7 @@ import BankInformation from "@/components/essOnboarding/BankInformation";
 import Policies from "@/components/essOnboarding/Policies";
 import ProgressBarWithSteps from "@/components/ProgressBarWithSteps";
 import Spacer from "@/components/Spacer";
+import { ReactComponent as WarningIcon } from "@/assets/images/warning.svg";
 
 const Container = styled("div")`
   width: 100%;
@@ -43,61 +45,75 @@ const Container = styled("div")`
 `;
 
 const WelcomeSection = styled("div")`
-  width: 100%;
-  background: rgba(242, 233, 185, 0.28);
-  border: 0.5px solid #f2c94c;
-  border-radius: 6px;
-  padding: 0.8125rem 1.625rem 0.8125rem 1.625rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.875rem;
-  .inner-div {
-    width: 100%;
+  width: 100%;
+  background: ${(props) => props.userStepsDone == 8 ? "rgba(221, 245, 217, 0.28)" : "rgba(242, 233, 185, 0.28)"};
+  border: 0.5px solid ${(props) =>
+    props.userStepsDone == 8 ? "var(--green-2)" : "var(--yellow)"};
+  border-radius: var(--br-lg);
+  padding: 0.8125rem 1.625rem 0.8125rem 1.625rem;
+  color: var(--grey-400);
+  .steps-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    ${mobile} {
+      width: 100%;
+    }
+  }
+  .warning-bg {
+    background: #F2D98E;
+    border-radius: var(--br);
+    min-height: 2.625rem;
+    min-width: 2.625rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    .steps-div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      @media only screen and (min-width: 375px) and (max-width: 969px) {
-        flex-wrap: wrap;
-      }
-    }
-    .type-title3 {
-      color: var(--grey-400);
-    }
-    .type-body2 {
-      color: var(--grey-300);
-    }
+    justify-content: center;
+  }
+  ${mobile} {
+    flex-direction: column-reverse;
   }
 `;
 
+const borderClass = css({
+  '--border-width': '0',
+});
+
 function OnBoardingStepsContainer({ onEndSteps = () => {} }) {
   const [stepsPercentage, setStepsPercentage] = useState(80);
-  const [allSteps, setAllSteps] = useState(7);
-  const [userStepsDone, setUserStepsDone] = useState(5);
+  const [allSteps, setAllSteps] = useState(8);
+  const [userStepsDone, setUserStepsDone] = useState(6);
   const [activeStep, setActiveStep] = useState(1);
+  const [borderWidth, setBorderWidth] = useState(0);
+
+  useEffect(() => {
+    setBorderWidth(100 * (activeStep / allSteps));
+  }, [activeStep, allSteps]);
+
+  const borderWidthClass = css({
+    '--border-width': `${borderWidth}%`,
+  }, borderClass);
 
   return (
-    <Container>
+    <Container className={borderWidthClass}>
       <WelcomeSection>
-        <div className="inner-div">
-          <div className="steps-div">
-            <p className="type-title3">
-              STEP {userStepsDone}/{allSteps}
-            </p>
-            <p className="type-body2">
-              Your onboarding process is not completed, you have two more stages
-              <br />
-              to complete this process!
-            </p>
-            <ProgressBar progressPercentage={stepsPercentage} />
-            <p className="type-body2">{`${stepsPercentage}% complete`}</p>
-          </div>
-          <div>
-            <img src="/images/onboarding-step-icon.svg" />
-          </div>
+        <div className="steps-div">
+          <p className="type-title3">
+            STEP {userStepsDone}/{allSteps}
+          </p>
+          <p className="type-body2">
+            Your onboarding process is not completed, you have two more stages
+            <br />
+            to complete this process!
+          </p>
+          <ProgressBar progressPercentage={stepsPercentage} />
+          <p className="type-body2">{`${stepsPercentage}% complete`}</p>
+        </div>
+        <div className="warning-bg">
+          <WarningIcon fill="var(--grey-25)" />
         </div>
       </WelcomeSection>
       <div className="onboarding-div">
@@ -118,7 +134,7 @@ function OnBoardingStepsContainer({ onEndSteps = () => {} }) {
           />
         )}
         {activeStep === 3 && (
-          <IntroductroryVideos
+          <IntroductoryVideos
             continueAction={() => setActiveStep(4)}
             goBack={() => setActiveStep(2)}
           />

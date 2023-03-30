@@ -4,19 +4,18 @@ import { CheckBox } from "@/components/forms";
 import CustomButton from "@/components/CustomButton";
 import IntroVideoCard from "@/components/IntroVideoCard";
 import Spacer from "@/components/Spacer";
+import ContainerTopBorder from "@/components/ContainerTopBorder";
 
 const Container = styled("div")`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-right: 0.5px solid #e0e0e0;
-  border-left: 0.5px solid #e0e0e0;
-  border-bottom: 0.5px solid #e0e0e0;
+  border: 0.5px solid var(--grey-5);
   border-radius: 4px;
   .intro-vid-div {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 2rem;
     @media only screen and (min-width: 375px) and (max-width: 969px) {
       flex-wrap: wrap;
@@ -24,16 +23,10 @@ const Container = styled("div")`
       margin-bottom: 15px;
     }
   }
-  .top-border {
-    width: 39%;
-    border-top: 7px solid #d2446e;
-    top: 0;
-    border-radius: 4px 0.5px 4px 0.5px;
-  }
 `;
 
 const Inner = styled("div")`
-  width: 1030px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
@@ -67,10 +60,10 @@ const Inner = styled("div")`
   }
 `;
 
-function IntroductroryVideos({ continueAction, goBack, saveData }) {
+function IntroductoryVideos({ continueAction, goBack, saveData }) {
   return (
     <Container>
-      <div className="top-border" />
+      <ContainerTopBorder />
       <Inner>
         <p className="type-title3">Introductory Videos</p>
         <div className="intro-vid-div">
@@ -138,4 +131,4 @@ function IntroductroryVideos({ continueAction, goBack, saveData }) {
   );
 }
 
-export default IntroductroryVideos;
+export default IntroductoryVideos;

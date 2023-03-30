@@ -6,8 +6,8 @@ const Container = styled("div")`
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    min-width: 2rem;
+    min-height: 2rem;
     background: ${props => props.bg};
     color: ${props => props.textcolor};
 `;

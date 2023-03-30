@@ -3,6 +3,7 @@ import { styled } from "goober";
 import CustomButton from "@/components/CustomButton";
 import { CheckBox, TextField } from "@/components/forms";
 import Spacer from "@/components/Spacer";
+import ContainerTopBorder from "@/components/ContainerTopBorder";
 
 const Container = styled("div")`
   width: 100%;
@@ -14,16 +15,10 @@ const Container = styled("div")`
     border: 0.5px solid #e0e0e0;
     border-radius: 4px;
   }
-  .top-border {
-    width: 100%;
-    border-top: 7px solid #d2446e;
-    top: 0;
-    border-radius: 4px 0.5px 4px 0.5px;
-  }
 `;
 
 const Inner = styled("div")`
-  width: 1030px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
@@ -114,7 +109,7 @@ function Policies({ continueAction, goBack, saveData }) {
       <div className="div">
         {!showPayrollPolicyForm &&
           !showCompensationPolicyForm &&
-          !showTandAPolicyForm && <div className="top-border" />}
+          !showTandAPolicyForm && <ContainerTopBorder />}
 
         <Inner>
           {showPayrollPolicyForm && (

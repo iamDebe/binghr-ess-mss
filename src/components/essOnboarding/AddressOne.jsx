@@ -2,25 +2,18 @@ import React from "react";
 import { styled } from "goober";
 import CustomButton from "@/components/CustomButton";
 import { TextField } from "@/components/forms";
+import ContainerTopBorder from "@/components/ContainerTopBorder";
 
 const Container = styled("div")`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-right: 0.5px solid #e0e0e0;
-  border-left: 0.5px solid #e0e0e0;
-  border-bottom: 0.5px solid #e0e0e0;
+  border: 0.5px solid var(--grey-5);
   border-radius: 4px;
-  .top-border {
-    width: 52%;
-    border-top: 7px solid #d2446e;
-    top: 0;
-    border-radius: 4px 0.5px 4px 0.5px;
-  }
 `;
 
 const Inner = styled("div")`
-  width: 1030px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
@@ -71,7 +64,7 @@ const Inner = styled("div")`
 function AddressOne({ continueAction, goBack, saveData }) {
   return (
     <Container>
-      <div className="top-border" />
+      <ContainerTopBorder />
       <Inner>
         <p className="type-title3">Address Information 1</p>
         <p className="type-body2">Home Address</p>

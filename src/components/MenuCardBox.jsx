@@ -12,14 +12,6 @@ const Container = styled("a")`
     gap: 19px;
     border: 1px solid var(--grey-100);
     border-radius: var(--br);
-    .icon-bg {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        width: 2rem;
-        height: 2rem;
-    }
     .menu-title {
         font-family: var(--lato-font);
         font-weight: 600;

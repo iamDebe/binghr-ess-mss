@@ -1,15 +1,14 @@
 import React from "react";
 import { styled } from "goober";
 import { CheckBox } from "@/components/forms";
-import CustomButton from "@/components/CustomButton";
+import Button from "@/components/Button";
+import ContainerTopBorder from "@/components/ContainerTopBorder";
 
 const Container = styled("div")`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-right: 0.5px solid #e0e0e0;
-  border-left: 0.5px solid #e0e0e0;
-  border-bottom: 0.5px solid #e0e0e0;
+  border: 0.5px solid var(--grey-5);
   border-radius: 4px;
   .top-border {
     width: 13%;
@@ -20,7 +19,7 @@ const Container = styled("div")`
 `;
 
 const Inner = styled("div")`
-  width: 1030px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
@@ -28,18 +27,18 @@ const Inner = styled("div")`
   @media only screen and (min-width: 375px) and (max-width: 969px) {
     width: 100%;
   }
-  .type-title3 {
-    color: var(--grey-400);
+  p.type-title3 {
+    color: var(--black);
   }
   .type-body2 {
-    color: var(--grey-300);
+    color: var(--grey-400);
   }
 `;
 
 function TermsAndCondition({ continueAction }) {
   return (
     <Container>
-      <div className="top-border" />
+      <ContainerTopBorder />
       <Inner>
         <p className="type-title3">Welcome</p>
         <p className="type-body2">
@@ -59,12 +58,16 @@ function TermsAndCondition({ continueAction }) {
           mollit anim id est laborum.
         </p>
         <CheckBox label="I agree to terms and condition" />
-        <CustomButton
-          width="111px"
-          variant="#6c3787"
-          label="Continue"
-          onClick={() => continueAction()}
-        />
+        <div>
+          <Button
+            bg="var(--lilac-400)"
+            textcolor="var(--grey-25)"
+            padding="0.625rem 1.625rem"
+            onClick={() => continueAction()}
+          >
+            Continue
+          </Button>
+        </div>
       </Inner>
     </Container>
   );

@@ -3,48 +3,42 @@ import { styled } from "goober";
 import { CheckBox } from "@/components/forms";
 import CustomButton from "@/components/CustomButton";
 import Spacer from "@/components/Spacer";
+import ContainerTopBorder from "@/components/ContainerTopBorder";
+import { mobile, mobileLarge } from "@/globalStyle";
 
 const Container = styled("div")`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-right: 0.5px solid #e0e0e0;
-  border-left: 0.5px solid #e0e0e0;
-  border-bottom: 0.5px solid #e0e0e0;
+  border: 0.5px solid var(--grey-5);
   border-radius: 4px;
-  .top-border {
-    width: 26%;
-    border-top: 7px solid #d2446e;
-    top: 0;
-    border-radius: 4px 0.5px 4px 0.5px;
-  }
 `;
 
 const Inner = styled("div")`
-width: 1030px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
-  @media only screen and (min-width: 375px) and (max-width: 969px) {
-    width: 100%;
+  p.type-title3 {
+    color: var(--black);
   }
-  .type-title3 {
-    color: var(--grey-400);
-  }
-  .flexed-checks {
-    min-width: 100%;
+  .tasks {
     display: flex;
-    align-items: center;
-    gap: 2rem;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-    }
-    .flexed-checks-inner {
-      margin-right: 100px;
+    align-items: baseline;
+    gap: 5.25rem;
+    .col {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
+      width: 100%;
+    }
+    ${mobile} {
+      gap: 2.5rem;
+    }
+    ${mobileLarge} {
+      flex-direction: column;
+      gap: 1.5rem;
     }
   }
   .button-groups {
@@ -52,18 +46,12 @@ width: 1030px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-    div {
+    gap: 1.125rem;
+    flex-wrap: wrap;
+    .prev-cont-btn {
       display: flex;
-      @media only screen and (min-width: 375px) and (max-width: 969px) {
-        flex-wrap: wrap;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
+      flex-wrap: wrap;
+      gap: 1.125rem;
     }
   }
 `;
@@ -72,22 +60,22 @@ function TodoList({ continueAction, goBack, saveData }) {
   return (
     <Container>
       <div className="top-border" />
+      <ContainerTopBorder />
       <Inner>
         <p className="type-title3">To Do List</p>
-        <div className="flexed-checks">
-          <div className="flexed-checks-inner">
+        <div className="tasks">
+          <div className="col">
             <CheckBox label="Document Confirmation" />
             <CheckBox label="Meet with head of HR" />
+            <CheckBox label="Team Introduction" />
+            <CheckBox label="Workspace Assignment" />
+            <CheckBox label="Team Orientation" />
           </div>
-          <div className="flexed-checks-inner">
+          <div className="col">
             <CheckBox label="Password Setup" />
             <CheckBox label="Setup Payroll" />
           </div>
         </div>
-        <CheckBox label="Team Introduction" />
-        <CheckBox label="Workspace Assignment" />
-        <CheckBox label="Team Orientation" />
-
         <div className="button-groups">
           <CustomButton
             width="111px"
@@ -97,7 +85,7 @@ function TodoList({ continueAction, goBack, saveData }) {
             iconPosition="right"
             iconUrl="/images/copy-success.svg"
           />
-          <div>
+          <div className="prev-cont-btn">
             <CustomButton
               width="111px"
               variant="white"
@@ -106,7 +94,6 @@ function TodoList({ continueAction, goBack, saveData }) {
               onClick={() => goBack()}
               secondaryBtn
             />
-            <Spacer width={20} />
             <CustomButton
               width="111px"
               variant="#6c3787"
