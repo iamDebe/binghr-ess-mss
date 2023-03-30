@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { styled } from "goober";
 import { ReactComponent as NavHomeIcon } from "@/assets/images/home-nav.svg";
 import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
@@ -6,6 +7,7 @@ import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
 import { ReactComponent as ClockIcon } from "@/assets/images/clock.svg";
 import { ReactComponent as CalendarIcon } from "@/assets/images/calendar.svg";
 import { ReactComponent as ChartIcon } from "@/assets/images/chart.svg";
+import { ReactComponent as CloseIcon } from "@/assets/images/close.svg";
 import { mobile } from "@/globalStyle";
 
 const Navbar = styled("div")`
@@ -27,17 +29,26 @@ const Navbar = styled("div")`
   }
   .bottom-nav {
     padding: 1.75rem 2.375rem;
+    width: 100%;
   }
-
+  .close-btn-wrapper {
+    margin: 0 auto;
+    width: auto;
+  }
+  &.open {
+    display: flex;
+    transform: translateX(0);
+    transition: transform 0.8s ease-in;
+  }
   ${mobile} {
-    position: absolute;
+    display: none;
   }
 `;
 
 const NavWrapper = styled("div")`
-  padding: 1.75rem 2.375rem;
   display: flex;
   flex-direction: column;
+  padding: 1.75rem 2.375rem;
   gap: 0.5rem;
   .nav-item {
     display: flex;
@@ -45,14 +56,14 @@ const NavWrapper = styled("div")`
     border-radius: 4px;
     padding: 0.75rem;
     gap: 15px;
-    color: #848484;
+    color: var(--grey-400);
     font-weight: 600;
     font-size: 12px;
     line-height: 140%;
     white-space: nowrap;
     min-height: 42px;
     svg {
-      fill: #858585;
+      fill: var(--grey-400);
     }
     &:hover,
     &.active {
@@ -89,70 +100,97 @@ const CompanyLogo = styled("div")`
 
 const CollapseButton = styled("button")`
   display: flex;
+  align-items: center;
   gap: 15px;
   cursor: pointer;
   padding: 0.75rem;
   width: 100%;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--br);
   font-family: inherit;
-  color: #848484;
+  color: var(--grey-400);
+  &.close-btn {
+    justify-content: center;
+    height: 2.625rem;
+    width: 2.625rem;
+    border-radius: 50%;
+  }
 `;
 
-const SideNavbar = ({ collapsed, onToggleCollapse }) => {
+const navItems = [
+  {
+    to: "/ess",
+    icon: <NavHomeIcon />,
+    title: "Home",
+  },
+  {
+    to: "/",
+    icon: <ProfileHomeIcon />,
+    title: "My Profile",
+  },
+  {
+    to: "/ess/my-pay",
+    icon: <MyPayIcon />,
+    title: "My Pay",
+  },
+  {
+    to: "/",
+    icon: <ClockIcon />,
+    title: "My Time Off",
+  },
+  {
+    to: "/",
+    icon: <CalendarIcon />,
+    title: "Timesheet",
+  },
+  {
+    to: "/",
+    icon: <ChartIcon />,
+    title: "Org Chart",
+  },
+];
+
+const SideNavbar = ({ collapsed, onToggleCollapse, isOpen, closeSidebar }) => {
+  const location = useLocation();
+  
   return (
-    <Navbar className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+    <Navbar
+      className={`${collapsed ? "collapsed" : ""} ${isOpen ? "open" : ""}`}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="top-nav">
         <CompanyLogo className={`${collapsed ? "collapsed-logo" : ""}`}>
           <img src="/images/barter.svg" width={collapsed ? "100" : "100"} alt="company-logo" />
         </CompanyLogo>
         <NavWrapper>
-          <a href="#" className="nav-item active">
-            <div className="icon">
-              <NavHomeIcon fill="var(--grey-400)" />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Home</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <ProfileHomeIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Profile</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <MyPayIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Pay</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <ClockIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Time Off</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <CalendarIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Timesheet</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <ChartIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Org Chart</span>
-          </a>
+          {navItems.map((item) => (
+            <Link
+              key={item.to+item.title}
+              to={item.to}
+              className={`nav-item ${location.pathname === item.to ? "active" : ""}`}
+            >
+              <div className="icon">{item.icon}</div>
+              <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>{item.title}</span>
+            </Link>
+          ))}
         </NavWrapper>
       </div>
-      <div className="bottom-nav">
-        <CollapseButton className="collapse-button" onClick={onToggleCollapse}>
-          <div className="icon">
-            <NavHomeIcon fill="var(--grey-400)" />
-          </div>
-          {!collapsed && <span>Collapse</span>}
-        </CollapseButton>
-      </div>
+        <div className={`bottom-nav ${isOpen ? "close-btn-wrapper" : ""}`}>
+          {isOpen ? (
+            <CollapseButton className="close-btn" onClick={closeSidebar}>
+              <div className="icon">
+                <CloseIcon fill="var(--red)" />
+              </div>
+            </CollapseButton>
+          ) : (
+            <CollapseButton onClick={onToggleCollapse}>
+              <div className="icon">
+                <NavHomeIcon fill="var(--grey-400)" />
+              </div>
+              {!collapsed && <span>Collapse</span>}
+            </CollapseButton>
+          )}
+        </div>
     </Navbar>
   );
 };
