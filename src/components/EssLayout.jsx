@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "goober";
 import SideNavbar from "@/components/SideNavbar";
-import { desktop, desktopMidi } from "@/globalStyle";
+import { mobile, desktop, desktopMidi } from "@/globalStyle";
+import MobileNav from "@/components/sideNavbar/MobileNav";
 // import TopBar from "@/components/topBar";
 
 const Wrapper = styled("div")`
@@ -21,17 +22,37 @@ const Main = styled("div")`
     ${desktopMidi} {
         padding: 2rem;
     }
+    ${mobile} {
+        width: 100% !Important;
+    }
 `;
 
 const EssLayout = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const handleCollapse = () => {
         setCollapsed(!collapsed);
     };
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+    const closeSidebar = () => {
+        setIsSidebarOpen(false);
+    };
+
+    useEffect(() => {
+        const body = document.querySelector('body');
+        if (isSidebarOpen) {
+          body.style.overflow = 'hidden';
+        } else {
+          body.style.overflow = '';
+        }
+    }, [isSidebarOpen]);
     
   return (
     <Wrapper>
-      <SideNavbar collapsed={collapsed} onToggleCollapse={handleCollapse} />
+      <SideNavbar collapsed={collapsed} onToggleCollapse={handleCollapse} isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
+      <MobileNav toggleSidebar={toggleSidebar} />
       <Main className={collapsed ? "collapsed" : ""}>
         {/* <TopBar /> */}
         {children}
