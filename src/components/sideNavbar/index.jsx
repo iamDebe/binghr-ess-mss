@@ -38,7 +38,7 @@ const Navbar = styled("div")`
     display: flex;
   }
   ${mobile} {
-    display: none; !important;
+    display: none;
   }
 `;
 
