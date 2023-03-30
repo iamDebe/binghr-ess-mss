@@ -9,7 +9,7 @@ import Calender from '@/components/Calender';
 
 
 
-const TimeSheet = () => {
+const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
 
 
   return (
@@ -37,6 +37,7 @@ const TimeSheet = () => {
                             margin="3rem 0rem"
                             padding=".5rem 1.2rem"
                             border="var(--lilac-400)"
+                            onClick={handleShowModal}
                         >
                             Recalculate
                         </Button>
@@ -72,7 +73,7 @@ const TimeSheet = () => {
                         </TotalWrapper>
                     </HourSelectWrapper>
                 </Container>  
-                <Calender />  
+                <Calender setShowModal={setShowModal} showModal={showModal} handleShowModal={handleShowModal}/>  
         </EssLayout>
     </>
   )
