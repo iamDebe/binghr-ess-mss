@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { styled } from "goober";
 import { ReactComponent as NavHomeIcon } from "@/assets/images/home-nav.svg";
 import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
@@ -116,7 +117,41 @@ const CollapseButton = styled("button")`
   }
 `;
 
+const navItems = [
+  {
+    to: "/ess",
+    icon: <NavHomeIcon />,
+    title: "Home",
+  },
+  {
+    to: "/",
+    icon: <ProfileHomeIcon />,
+    title: "My Profile",
+  },
+  {
+    to: "/ess/my-pay",
+    icon: <MyPayIcon />,
+    title: "My Pay",
+  },
+  {
+    to: "/",
+    icon: <ClockIcon />,
+    title: "My Time Off",
+  },
+  {
+    to: "/",
+    icon: <CalendarIcon />,
+    title: "Timesheet",
+  },
+  {
+    to: "/",
+    icon: <ChartIcon />,
+    title: "Org Chart",
+  },
+];
+
 const SideNavbar = ({ collapsed, onToggleCollapse, isOpen, closeSidebar }) => {
+  const location = useLocation();
   
   return (
     <Navbar
@@ -128,42 +163,16 @@ const SideNavbar = ({ collapsed, onToggleCollapse, isOpen, closeSidebar }) => {
           <img src="/images/barter.svg" width={collapsed ? "100" : "100"} alt="company-logo" />
         </CompanyLogo>
         <NavWrapper>
-          <a href="#" className="nav-item active">
-            <div className="icon">
-              <NavHomeIcon fill="var(--grey-400)" />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Home</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <ProfileHomeIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Profile</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <MyPayIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Pay</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <ClockIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>My Time Off</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <CalendarIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Timesheet</span>
-          </a>
-          <a href="#" className="nav-item">
-            <div className="icon">
-              <ChartIcon />
-            </div>
-            <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>Org Chart</span>
-          </a>
+          {navItems.map((item) => (
+            <Link
+              key={item.to+item.title}
+              to={item.to}
+              className={`nav-item ${location.pathname === item.to ? "active" : ""}`}
+            >
+              <div className="icon">{item.icon}</div>
+              <span className={`nav-item-title ${collapsed ? "collapsed" : ""}`}>{item.title}</span>
+            </Link>
+          ))}
         </NavWrapper>
       </div>
         <div className={`bottom-nav ${isOpen ? "close-btn-wrapper" : ""}`}>
