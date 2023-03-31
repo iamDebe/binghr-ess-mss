@@ -5,9 +5,7 @@ import Button from "@/components/button"
 import TopBarWithSearch from '@/components/TopBarWithSearch';
 import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg"
 import Calender from '@/components/Calender';
-
-
-
+import { desktopMidi, tablet } from '../globalStyle';
 
 const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
 
@@ -83,9 +81,21 @@ export default TimeSheet;
 
 const Container = styled("div")`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: .5rem;
     width: fit-content;
+
+    ${desktopMidi}{
+        justify-content: space-center;
+    
+
+    }
+    ${tablet}{
+        justify-content: space-center;
+    
+
+    }
 `;
 
 const BtnWrapper = styled("div")`
@@ -105,8 +115,8 @@ const HourSelectWrapper = styled("div")`
 
     & .wrapper{
         background-color: var(--grey-100);
-        padding: .3rem .27rem;
-        border-radius: .5rem;
+        padding: .3rem .25rem;
+        border-radius: .3rem;
     }
     label{
         color: var(--grey-500);
@@ -121,6 +131,18 @@ const WeekWrapper = styled("div")`
     display: flex;
     align-self: center;
     gap: 1.2rem;
+
+    & .wrapper label{
+        display: flex;
+        justify-content: space-around;
+     }
+
+    ${desktopMidi}{
+        & .wrapper label{
+           display: flex;
+           justify-content: space-around;
+        }
+    }
 `;
 
 const TotalWrapper = styled("div")`
@@ -129,10 +151,20 @@ const TotalWrapper = styled("div")`
         background-color: var(--red-400);
         align-self: center;
         padding: .4rem;
-        border-radius: .5rem;
+        border-radius: .3rem;
     }
+    & .total-wrapper label{
+        display: flex;
+        justify-content: space-around;
+     }
     & .total-label, .total-span{
         color: var(--grey-50);
+    }
+    ${desktopMidi}{
+        & .total-wrapper label{
+           display: flex;
+           justify-content: space-around;
+        }
     }
 `;
 

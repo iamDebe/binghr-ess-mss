@@ -1,5 +1,5 @@
 import { styled } from 'goober';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Button from "@/components/button";
 import {ReactComponent as NextIcon} from "@/assets/images/next.svg";
 import {ReactComponent as BackIcon} from "@/assets/images/back.svg";
@@ -7,27 +7,119 @@ import {ReactComponent as ClockInIcon} from "@/assets/images/clockin.svg";
 import {ReactComponent as MealTImeIcon} from "@/assets/images/mealtime.svg";
 import {ReactComponent as MealEndIcon} from "@/assets/images/mealend.svg";
 import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
-import { currentMonth, currentDate, calendarData } from '../utils/calenderData';
 
-const Calender = ({}) => {
+const Calender = () => {
 
     const [showModal, setShowModal] = useState(false)
-
+    const [weeks, setWeeks] = useState([])
+    const [currentMonth, setCurrentMonth] = useState(0)
+    const [thisMonth, setThisMonth] = useState("")
     const handleShowModal = ()=>{
         setShowModal(!showModal);
     }
     
-    
-   
+    const generateCalender = ()=>{
+        
+        // Get the current date
+        const currentDate = new Date();
+        
+        // Set the start date to 1 year ago from today
+        const startDate = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
+
+        // Set the end date to 1 year ahead from today
+        const endDate = new Date(currentDate.getFullYear() + 1, currentDate.getMonth(), currentDate.getDate());
+        
+        // Loop through each month between the start and end dates
+        for (let month = startDate.getMonth()+currentMonth; month <= endDate.getMonth()+currentMonth; month++) {
+           
+            // Create a new date object for the current month
+            const thisMonth = new Date(currentDate.getFullYear(), month, 1);
+        
+            // Get the number of days in the current month
+            const numDaysInMonth = new Date(thisMonth.getFullYear(), thisMonth.getMonth() + 1, 0).getDate();
+        
+            // set the month and year header
+            setThisMonth(thisMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }))
+           
+            // Calculate the day of the week for the first day of the month
+            const firstDayOfWeek = new Date(thisMonth.getFullYear(), thisMonth.getMonth(), 1).getDay();
+        
+            // Calculate the number of blank days to add before the first day of the month
+            const numBlankDays = (firstDayOfWeek + 6) % 7;
+        
+            // Create an array of empty spaces for the blank days
+            const blankDays = new Array(numBlankDays).fill('  ');
+
+
+            new Array(numBlankDays).fill('  ');
+
+            
+            
+
+            // 
+            
+        
+            // Create an array of days for the current month
+            const monthDays = [...Array(numDaysInMonth).keys()].map(dd => { return{
+                day:dd+1,
+                clocked:false,
+                clockedData:{}
+            }});
+
+            
+            
+            // console.log(monthDays);
+            // Combine the arrays of blank days and month days
+            const allDays = [...blankDays, ...monthDays];
+        
+            // Split the days into rows of 7
+            const rows = allDays.reduce((rows, day, index) => {
+            if (index % 7 === 0) {
+                rows.push(allDays.slice(index, index + 7));
+            }
+
+            
+            setWeeks(rows);
+            
+            return rows;
+            }, []);
+        
+        }
+
+    }
+
+    const mm = ""
+
+  
+
+    const updateClockInState =(outer, inner)=>{
+       
+       const newWeekData = [...weeks];
+       newWeekData[outer][inner].clocked = true;
+       setWeeks(newWeekData);
+      
+    }
+
+    useEffect(()=>{
+        generateCalender();
+    },[currentMonth])
+
+    useEffect(()=>{
+        console.log(weeks)
+    },[weeks])
       
   return (
     <Container>
         <CalenderTitle>
-            <p className='date-year'>{currentMonth[0].month} {currentMonth[0].year}</p>
+            <p className='date-year'>{thisMonth !== "" && thisMonth}</p>
             <CalenderControlsWrapper>
-                <BackIcon  className="swipe"/>
-                <div className='day-wrapper type-body3'>Today</div>
-                <NextIcon className="swipe"/>
+                <BackIcon  className="swipe" onClick={()=>{
+                    setCurrentMonth((prevCurrentMonth)=> prevCurrentMonth-1)}
+                    }/>
+                <div className='day-wrapper type-body3' onClick={()=>setCurrentMonth(0)}>Today</div>
+                <NextIcon className="swipe" onClick={()=>{
+                    setCurrentMonth((prevCurrentMonth)=> prevCurrentMonth+1)}
+                    }/>
             </CalenderControlsWrapper>
         </CalenderTitle>
         <div className='line'></div>
@@ -41,25 +133,45 @@ const Calender = ({}) => {
             <li className='type-title3 weekdays'>Sat</li>
             <li className='type-title3 weekdays'>Sun</li>
 
-           
-           
-      
+          
+            
+           {weeks.map((row, index)=>{
+               
+                return (
+                <Fragment key={index}>
+                    
+                    {row.map((day, ii)=>(
 
-            {/* {  <div className='overlay' onClick={handleShowModal}>
-                    <div>
-                    <span className='action'><ClockInIcon  fill="var(--grey-400)"/>ClockIn In</span><span className=' type-body3 time'>09:01am</span>
-                    </div>
-                    <div>
-                    <span className='action'><MealTImeIcon />Meal Time</span><span className=' type-body3 time'>12:30pm</span>
-                    </div>
-                    <div>
-                    <span className='action'><MealEndIcon />Meal End</span><span className=' type-body3 time'>01:01pm</span>
-                    </div>
-                    <div>
-                    <span className='action'><ClockInIcon  fill="var(--grey-400)"/>Clock Out</span><span className=' type-body3 time'>05:20pm</span>
-                    </div>
-                </div>
-            } */}
+                        <li key={ii} className='days' 
+                            onClick={()=>{
+                            updateClockInState(index, ii)
+                        }}>
+                        {day.day} {day.clocked==true ? 
+                            <div className='overlay' onClick={handleShowModal} >
+                                <div  className='clockin-wrapper type-body3'>
+                                    <span className='action'><ClockInIcon  fill="var(--grey-400)"/>ClockIn In</span>
+                                    <span className='time'>09:01am</span>
+                                </div>
+                                <div className='clockin-wrapper type-body3'>
+                                    <span className='action'><MealTImeIcon />Meal Time</span>
+                                    <span className='time'>12:30pm</span>
+                                </div>
+                                <div className='clockin-wrapper type-body3'>
+                                    <span className='action'><MealEndIcon />Meal End</span>
+                                    <span className='time'>01:01pm</span>
+                                </div>
+                                <div className='clockin-wrapper type-body3'>
+                                    <span className='action'><ClockInIcon  fill="var(--grey-400)"/>Clock Out</span>
+                                    <span className='time'>05:20pm</span>
+                                </div>
+                            </div> 
+                        : ""  }
+                        </li>
+                    ))}
+                    
+                </Fragment >
+                ) 
+           })} 
            
             {  showModal && <div className='calculate-modal'>
                 <div>
@@ -87,7 +199,7 @@ const Calender = ({}) => {
             }
            
         </CalenderMain>
-
+       
 
         
     </Container>
@@ -152,7 +264,6 @@ const CalenderMain = styled("div")`
         
         li, a{
             list-style: none;
-            font
         }
         & .weekdays{
             border-bottom: 2px solid var(--red-400);
@@ -179,52 +290,52 @@ const CalenderMain = styled("div")`
         }
         .overlay {
             display: flex;
-            gap: .6rem;
             flex-direction: column;
-            justify-content: center;
-            position: absolute;
-            top: 327px;
-            background-color: var(--grey-200);
-            height: 108px;
-            width: 133.5px;
-
-        div{
-            display: flex;
-            gap: .6rem;
             justify-content: space-around;
-        }
-        & .icon{
-            align-self: center;
-        }
-        & .action{
-            font-size: .65rem;
-            display: flex;
-            justify-content: start;
-            gap: .2rem;
-            color: var(--grey-400);
-            cursor: pointer;
+            position: absolute;
+            top: 0;
+            background-color: var(--grey-200);
+            height: 100%;
+            width: 100%;
 
+
+            & .clockin-wrapper{
+                display: flex;
+                gap:10px;
+                justify-content: space-around;
+            }
+            & .icon{
+                align-self: center;
+            }
+            & .action{
+                display: flex;
+                gap: .5rem;
+                font-size: .65rem;
+                color: var(--grey-400);
+                cursor: pointer;
+
+
+            }
+            & .time{
+                color: var(--grey-300);
+                font-size: .65rem;
+                cursor: pointer;
+            }
         }
-        & .time{
-            color: var(--grey-300);
-            font-size: .65rem;
-            cursor: pointer;
+        .calculate-modal{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            top: 193px;
+            right: 74px;
+            background-color: white;
+            padding: 1rem;
+            border: 1px solid var(--grey-200);
+            border-radius: .5rem;
+            width: 18%;
+            
         }
-    }
-    .calculate-modal{
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        top: 193px;
-        right: 74px;
-        background-color: white;
-        padding: 1rem;
-        border: 1px solid var(--grey-200);
-        border-radius: .5rem;
-        width: 18%;
-        
-    }
 `;
 
 const CalculateWrapper = styled("div")`
@@ -249,6 +360,4 @@ const CalculateWrapper = styled("div")`
         align-self:center;
     }
 `;
-
-
 
