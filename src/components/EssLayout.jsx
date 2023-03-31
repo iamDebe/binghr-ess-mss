@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styled } from "goober";
 import SideNavbar from "@/components/SideNavbar";
 import { mobile, desktop, desktopMidi } from "@/globalStyle";
-import MobileNav from "@/components/sideNavbar/MobileNav";
+import MobileNav from "@/components/SideNavbar/MobileNav";
 // import TopBar from "@/components/topBar";
 
 const Wrapper = styled("div")`
