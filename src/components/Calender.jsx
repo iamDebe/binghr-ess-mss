@@ -1,5 +1,5 @@
 import { styled } from 'goober';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Button from "@/components/button";
 import {ReactComponent as NextIcon} from "@/assets/images/next.svg";
 import {ReactComponent as BackIcon} from "@/assets/images/back.svg";
@@ -7,6 +7,7 @@ import {ReactComponent as ClockInIcon} from "@/assets/images/clockin.svg";
 import {ReactComponent as MealTImeIcon} from "@/assets/images/mealtime.svg";
 import {ReactComponent as MealEndIcon} from "@/assets/images/mealend.svg";
 import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
+import { currentMonth, currentDate, calendarData } from '../utils/calenderData';
 
 const Calender = ({}) => {
 
@@ -15,10 +16,14 @@ const Calender = ({}) => {
     const handleShowModal = ()=>{
         setShowModal(!showModal);
     }
+    
+    
+   
+      
   return (
     <Container>
         <CalenderTitle>
-            <p className='date-year'>February 2023</p>
+            <p className='date-year'>{currentMonth[0].month} {currentMonth[0].year}</p>
             <CalenderControlsWrapper>
                 <BackIcon  className="swipe"/>
                 <div className='day-wrapper type-body3'>Today</div>
@@ -35,43 +40,12 @@ const Calender = ({}) => {
             <li className='type-title3 weekdays'>Fri</li>
             <li className='type-title3 weekdays'>Sat</li>
             <li className='type-title3 weekdays'>Sun</li>
-            <li className='days'>30</li>
-            <li className='days active'>31</li>
-            <li className='days active'>1<a href=""></a></li>
-            <li className='days active'>2<a href=""></a></li>
-            <li className='days active'>3<a href=""></a></li>
-            <li className='days active'>4<a href=""></a></li>
-            <li className='days'>5<a href=""></a></li>
-            <li className='days'>6<a href=""></a></li>
-            <li className='days'>7<a href=""></a></li>
-            <li className='days'>8<a href=""></a></li>
-            <li className='days'>9<a href=""></a></li>
-            <li className='days'>10<a href=""></a></li>
-            <li className='days'>11<a href=""></a></li>
-            <li className='days'>12<a href=""></a></li>
-            <li className='days'>13<a href=""></a></li>
-            <li className='days'>14<a href=""></a></li>
-            <li className='days'>15<a href=""></a></li>
-            <li className='days'>16<a href=""></a></li>
-            <li className='days'>17<a href=""></a></li>
-            <li className='days'>18<a href=""></a></li>
-            <li className='days'>19<a href=""></a></li>
-            <li className='days'>20<a href=""></a></li>
-            <li className='days'>21<a href=""></a></li>
-            <li className='days'>22<a href=""></a></li>
-            <li className='days'>23<a href=""></a></li>
-            <li className='days'>24<a href=""></a></li>
-            <li className='days'>25<a href=""></a></li>
-            <li className='days'>26<a href=""></a></li>
-            <li className='days'>27<a href=""></a></li>
-            <li className='days'>28<a href=""></a></li>
-            <li className='days'>1<a href=""></a></li>
-            <li className='days'>2<a href=""></a></li>
-            <li className='days'>3<a href=""></a></li>
-            <li className='days'>4<a href=""></a></li>
-            <li className='days'>5<a href=""></a></li>
 
-            {  <div className='overlay' onClick={handleShowModal}>
+           
+           
+      
+
+            {/* {  <div className='overlay' onClick={handleShowModal}>
                     <div>
                     <span className='action'><ClockInIcon  fill="var(--grey-400)"/>ClockIn In</span><span className=' type-body3 time'>09:01am</span>
                     </div>
@@ -85,7 +59,7 @@ const Calender = ({}) => {
                     <span className='action'><ClockInIcon  fill="var(--grey-400)"/>Clock Out</span><span className=' type-body3 time'>05:20pm</span>
                     </div>
                 </div>
-            }
+            } */}
            
             {  showModal && <div className='calculate-modal'>
                 <div>
@@ -113,6 +87,8 @@ const Calender = ({}) => {
             }
            
         </CalenderMain>
+
+
         
     </Container>
   )
@@ -178,41 +154,39 @@ const CalenderMain = styled("div")`
             list-style: none;
             font
         }
-    & .weekdays{
-        border-bottom: 2px solid var(--red-400);
-        text-align: center;
-        margin: 1rem 0rem 0rem 0rem;
-    }
-    & .days{
-            position: relative;
-            border-bottom: 2px solid var(--grey-200);
-            border-right: 2px solid var(--grey-200);
+        & .weekdays{
+            border-bottom: 2px solid var(--red-400);
             text-align: center;
-            line-height: 7rem;
-            font-size: 2.5rem;
-            color: var(--grey-200);
-            font-weight: normal;
-            cursor: pointer;
+            margin: 1rem 0rem 0rem 0rem;
+        }
+        & .days{
+                position: relative;
+                border-bottom: 2px solid var(--grey-200);
+                border-right: 2px solid var(--grey-200);
+                text-align: center;
+                line-height: 7rem;
+                font-size: 2.5rem;
+                color: var(--grey-200);
+                font-weight: normal;
+                cursor: pointer;
 
             &:nth-of-type(7n + 7) {
                 border-right: 0;
               }
-           
-
-    }
-    & .active {
-        background-color: var(--grey-100);
-    }
-    .overlay {
-        display: flex;
-        gap: .6rem;
-        flex-direction: column;
-        justify-content: center;
-        position: absolute;
-        top: 327px;
-        background-color: var(--grey-200);
-        height: 108px;
-        width: 133.5px;
+        }
+        & .active {
+            background-color: var(--grey-100);
+        }
+        .overlay {
+            display: flex;
+            gap: .6rem;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: 327px;
+            background-color: var(--grey-200);
+            height: 108px;
+            width: 133.5px;
 
         div{
             display: flex;
