@@ -331,7 +331,7 @@ const EssHome = () => {
                 Clock in
               </Button>
               <EmployeeInfo>
-                <img src="/images/profile-img.png" alt="" />
+                <img src="/ess/images/profile-img.png" alt="" />
                 <EmployeeDetails>
                   <div className="row">
                     <p className="type-title3">Name</p>

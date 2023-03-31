@@ -48,7 +48,7 @@ const PayrollTable = () => {
   return (
     <Wrapper>
         <div>
-            <img src="/images/barter.svg" alt="" />
+            <img src="/ess/images/barter.svg" alt="" />
             <h4>Payroll Statement</h4>
             <h5>Feb 2023</h5>
         </div>

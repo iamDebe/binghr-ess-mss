@@ -160,7 +160,7 @@ const SideNavbar = ({ collapsed, onToggleCollapse, isOpen, closeSidebar }) => {
     >
       <div className="top-nav">
         <CompanyLogo className={`${collapsed ? "collapsed-logo" : ""}`}>
-          <img src="/images/barter.svg" width={collapsed ? "100" : "100"} alt="company-logo" />
+          <img src="/ess/images/barter.svg" width={collapsed ? "100" : "100"} alt="company-logo" />
         </CompanyLogo>
         <NavWrapper>
           {navItems.map((item) => (

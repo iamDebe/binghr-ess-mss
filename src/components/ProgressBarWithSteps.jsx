@@ -37,32 +37,32 @@ const ProgressBarWithSteps = () => {
     <Container>
       <ul className="progress-num">
         <li>
-          <img src="/images/checkmark.svg" />
+          <img src="/ess/images/checkmark.svg" />
         </li>
         <div className="progress-bar"></div>
 
         <li>
-          <img src="/images/checkmark.svg" />
+          <img src="/ess/images/checkmark.svg" />
         </li>
         <div className="progress-bar"></div>
 
         <li>
-          <img src="/images/checkmark.svg" />
+          <img src="/ess/images/checkmark.svg" />
         </li>
         <div className="progress-bar"></div>
 
         <li>
-          <img src="/images/checkmark.svg" />
+          <img src="/ess/images/checkmark.svg" />
         </li>
         <div className="progress-bar"></div>
 
         <li>
-          <img src="/images/checkmark.svg" />
+          <img src="/ess/images/checkmark.svg" />
         </li>
         <div className="progress-bar"></div>
 
         <li>
-          <img src="/images/checkmark.svg" />
+          <img src="/ess/images/checkmark.svg" />
         </li>
       </ul>
     </Container>

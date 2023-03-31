@@ -43,7 +43,7 @@ const IntroVideoPlayerModal = ({ closeModal, isVisible = false, videoUrl }) => {
             }}
             className="cancel-icon"
           >
-            <img src="/images/close-icon.svg" />
+            <img src="/ess/images/close-icon.svg" />
           </div>
         </div>
         <video width="90%" height="90%" controls className="video">

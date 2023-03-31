@@ -56,7 +56,7 @@ const IntroVideoCard = ({ title, date, previewImageUrl, videoUrl }) => {
             }}
             className="play-btn"
           >
-            <img src="/images/play-circle.svg" />
+            <img src="/ess/images/play-circle.svg" />
           </div>
         </div>
         <div className="foot-div">
