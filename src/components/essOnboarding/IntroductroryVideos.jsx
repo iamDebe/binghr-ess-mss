@@ -77,31 +77,31 @@ function IntroductroryVideos({ continueAction, goBack, saveData }) {
           <IntroVideoCard
             title="Building meaningful relationship "
             date="12 Feb, 2022"
-            previewImageUrl="/images/intro-vid.png"
+            previewImageUrl="/ess/images/intro-vid.png"
             videoUrl="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
           />
           <IntroVideoCard
             title="Communicating Directly With Superior  "
             date="12 Feb, 2022"
-            previewImageUrl="/images/intro-vid.png"
+            previewImageUrl="/ess/images/intro-vid.png"
             videoUrl="https://www.youtube.com/watch?v=B1GO1HPLp7Y"
           />
           <IntroVideoCard
             title="Setting Up Your Workspace "
             date="12 Feb, 2022"
-            previewImageUrl="/images/intro-vid.png"
+            previewImageUrl="/ess/images/intro-vid.png"
             videoUrl="https://www.youtube.com/watch?v=IDj1OBG5Tpw"
           />
           <IntroVideoCard
             title="Setting up your payroll"
             date="12 Feb, 2022"
-            previewImageUrl="/images/intro-vid.png"
+            previewImageUrl="/ess/images/intro-vid.png"
             videoUrl="https://www.youtube.com/watch?v=1Xi4fMfwsQg"
           />
           <IntroVideoCard
             title="How Employee Timesheet works"
             date="12 Feb, 2022"
-            previewImageUrl="/images/intro-vid.png"
+            previewImageUrl="/ess/images/intro-vid.png"
             videoUrl="https://www.youtube.com/watch?v=APCWOBUZNjc"
           />
         </div>
@@ -113,7 +113,7 @@ function IntroductroryVideos({ continueAction, goBack, saveData }) {
             label="Save"
             onClick={() => saveData()}
             iconPosition="right"
-            iconUrl="/images/copy-success.svg"
+            iconUrl="/ess/images/copy-success.svg"
           />
           <div>
             <CustomButton

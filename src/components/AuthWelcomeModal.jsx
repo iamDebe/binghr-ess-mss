@@ -67,11 +67,11 @@ const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
         <div className="inner-div">
           <div className="logo-div">
             {/* USE COMPANY LOGO FROM URL */}
-            <img src="/images/barter.svg" />
+            <img src="/ess/images/barter.svg" />
           </div>
           <p className="type-title2">You have Signed up Successfully</p>
           <div className="success-logo-div">
-            <img src="/images/success-1.svg" />
+            <img src="/ess/images/success-1.svg" />
           </div>
           <div className="button-div">
             <Button

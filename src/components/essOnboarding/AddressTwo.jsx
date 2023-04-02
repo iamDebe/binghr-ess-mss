@@ -137,7 +137,7 @@ function AddressTwo({ continueAction, goBack, saveData }) {
             label="Save"
             onClick={() => saveData()}
             iconPosition="right"
-            iconUrl="/images/copy-success.svg"
+            iconUrl="/ess/images/copy-success.svg"
           />
           <div style={{ display: "flex" }}>
             <CustomButton
