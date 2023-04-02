@@ -28,9 +28,13 @@ const EssHome = () => {
   const personalInfo = snapshot?.personalInformation;
   const jobInfo = snapshot?.jobInformation;
 
+  console.log(snapshot);
+
   useEffect(() => {
     store.getPersonalInformation();
     store.getJobInformation();
+    store.getEvents();
+    store.getEmployeeOnLeave();
   }, []);
 
   return (

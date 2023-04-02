@@ -4,6 +4,8 @@ import methods from '@/services/api';
 const initialState = {
   personalInformation: null,
   compensation: null,
+  events: null,
+  employeeOnLeave: null,
   employmentInformation: null,
   jobInformation: null,
   documents: null,
@@ -34,7 +36,26 @@ const store = proxy({
       }
     }
   },
- 
+  async getEvents() {
+    if (!store.events) {
+      try {
+        const response = await methods.get("/home-info/events");
+        this.events = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  async getEmployeeOnLeave() {
+    if (!store.employeeOnLeave) {
+      try {
+        const response = await methods.get("/home-info/employees-on-leave");
+        this.employeeOnLeave = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
 });
 
 export default store;
