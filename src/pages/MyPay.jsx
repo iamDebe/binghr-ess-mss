@@ -9,8 +9,12 @@ import DoughnutChartYear from "@/components/chart/DoughnutChartYear";
 import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
 import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
+import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
+import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
+import { ReactComponent as NotificationIcon } from "@/assets/images/bell.svg";
 import { tablet, desktopMidi, mobile} from "@/globalStyle";
-import TopBarWithSearch from "../components/TopBarWithSearch";
+import TopBarWithSearch from "@/components/TopBarWithSearch";
+import { Link } from "react-router-dom";
 
 
 
@@ -35,7 +39,52 @@ const MyPay = () => {
     return (  
         <>
            <EssLayout>
-                <TopBarWithSearch />
+                <TopBarWithSearch >
+                    <ProxySearchWrapper>
+                        <ProxyIcon width={50} />
+                        <DropdownIcon  />
+                    </ProxySearchWrapper>
+                    <SearchFieldWrapper>
+                        <SearchField 
+                            id="search"
+                            type="search"
+                            placeholder="search"
+                            // icon={<CalenderIcon className="input-icon icon" />}
+
+                        />
+                    </SearchFieldWrapper>    
+                    <IconsWrapper>
+                        <NotificationIcon  />
+                        <SmsNotificationIcon />
+                    </IconsWrapper>
+                    <ProfileSettingsWrapper>
+                        <MyProfileWrapper>
+                            <div className="img-wrapper"><ProfilePhoto /></div>
+                            <div >
+                                <a href="#" onClick={handleShowProfile}>
+                                    Employee
+                                </a>
+                            </div>
+                            <div onClick={handleShowProfile}><DropdownIcon /></div>
+                        </MyProfileWrapper>
+                        <DropdownWrapper>
+                            {showProfileSettings && <ul className="dropdown-menu">
+                                <DropdownItemsWrapper>
+                                    <UserIcon  className="dropdown-icon" />
+                                    <li><Link className="dropdown-item" to="/ess/profile"> My Profile</Link></li>
+                                </DropdownItemsWrapper>
+                                <DropdownItemsWrapper>
+                                    <ProgrammingIcon  className="dropdown-icon" />
+                                    <li><a className="dropdown-item" href="#"> Proxy</a></li>
+                                </DropdownItemsWrapper>
+                                <DropdownItemsWrapper>
+                                    <LogoutIcon  className="dropdown-icon" />
+                                    <li><a className="dropdown-item logout" href="#"> Logout</a></li>
+                                </DropdownItemsWrapper>
+                            </ul> }
+                        </DropdownWrapper>
+                    </ProfileSettingsWrapper>
+                
                 <ButtonWrapper>
                     <Button  
                         type="button"
@@ -91,6 +140,7 @@ const MyPay = () => {
                         </PayrollTableWrapper>
                     }
                 </ChartAndPayrollWrapper>
+                </ TopBarWithSearch>
            </EssLayout>
         </>
     );

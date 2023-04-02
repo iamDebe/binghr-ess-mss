@@ -96,7 +96,7 @@ function OnBoardingStepsContainer({ onEndSteps = () => {} }) {
             <p className="type-body2">{`${stepsPercentage}% complete`}</p>
           </div>
           <div>
-            <img src="/images/onboarding-step-icon.svg" />
+            <img src="/ess/images/onboarding-step-icon.svg" />
           </div>
         </div>
       </WelcomeSection>

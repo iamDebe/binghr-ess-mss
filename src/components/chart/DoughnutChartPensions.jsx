@@ -2,8 +2,8 @@ import { registerChart } from "@/utils/registerChart";
 import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
 
-registerChart();
 
+registerChart();
 const employeeDataPensions = [
   {
       id: 1,

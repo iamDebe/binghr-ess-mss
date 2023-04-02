@@ -8,6 +8,8 @@ import {ReactComponent as MealTImeIcon} from "@/assets/images/mealtime.svg";
 import {ReactComponent as MealEndIcon} from "@/assets/images/mealend.svg";
 import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 
+import {desktopMidi} from "@/globalStyle";
+
 const Calender = () => {
 
     const [showModal, setShowModal] = useState(false)
@@ -125,24 +127,27 @@ const Calender = () => {
         <div className='line'></div>
 
         <CalenderMain>
-            <li className='type-title3 weekdays'>Mon</li>
-            <li className='type-title3 weekdays'>Tue</li>
-            <li className='type-title3 weekdays'>Wed</li>
-            <li className='type-title3 weekdays'>Tue</li>
-            <li className='type-title3 weekdays'>Fri</li>
-            <li className='type-title3 weekdays'>Sat</li>
-            <li className='type-title3 weekdays'>Sun</li>
+            <div className='weekday-wrapper'>
+
+                <li className='type-title3 weekdays'>Mon</li>
+                <li className='type-title3 weekdays'>Tue</li>
+                <li className='type-title3 weekdays'>Wed</li>
+                <li className='type-title3 weekdays'>Tue</li>
+                <li className='type-title3 weekdays'>Fri</li>
+                <li className='type-title3 weekdays'>Sat</li>
+                <li className='type-title3 weekdays'>Sun</li>
+            </div>
 
           
             
            {weeks.map((row, index)=>{
                
                 return (
-                <Fragment key={index}>
+                <div className='days-wrapper ' key={index}>
                     
                     {row.map((day, ii)=>(
 
-                        <li key={ii} className='days' 
+                        <li key={ii} className='days type-body5' 
                             onClick={()=>{
                             updateClockInState(index, ii)
                         }}>
@@ -169,7 +174,7 @@ const Calender = () => {
                         </li>
                     ))}
                     
-                </Fragment >
+                </div >
                 ) 
            })} 
            
@@ -209,7 +214,8 @@ const Calender = () => {
 export default Calender;
 
 const Container = styled("div")`
-    border: 2px solid var(--red-300);
+    border: 1px solid var(--red-300);
+    border-radius: var(--br);
 
     .line{
         display: flex;
@@ -218,6 +224,10 @@ const Container = styled("div")`
         margin: .2rem auto;
         background-color: var(--red-200);
     }
+
+${desktopMidi}{
+    margin-top: 2rem;
+}
 `;
 
 const CalenderTitle = styled("div")`
@@ -231,7 +241,7 @@ const CalenderTitle = styled("div")`
 
     .day-wrapper{
         background-color: var(--red-100);
-        border-radius: 1rem;
+        border-radius: var(--br);
         padding: .5rem .8rem;
         margin: 0rem .5rem;
         color: var(--red-300);
@@ -255,36 +265,45 @@ const CalenderControlsWrapper = styled("div")`
 `;
  
 const CalenderMain = styled("div")`
-        display: grid;
-        width: 100%;
-        grid-template-columns: repeat(7, minmax(120px, 1fr));
-        grid-template-rows: 40px;
-        grid-auto-rows: 110px;
-        overflow: auto;
         
-        li, a{
-            list-style: none;
+        .weekday-wrapper{
+            display:flex;
+            justify-content: space-around;
+            border-bottom: 1px solid var(--red-400);
+            padding: 0rem 0rem 1rem 0rem;
+            width: 100%;
+
         }
-        & .weekdays{
-            border-bottom: 2px solid var(--red-400);
-            text-align: center;
-            margin: 1rem 0rem 0rem 0rem;
-        }
-        & .days{
+        .days-wrapper{
+            display:flex;
+            justify-content: space-evenly;
+            width: 100%;
+            
+            & .days{
                 position: relative;
-                border-bottom: 2px solid var(--grey-200);
-                border-right: 2px solid var(--grey-200);
+                border-bottom: 1px solid var(--grey-200);
+                border-right: 1px solid var(--grey-200);
+                padding: 2.5rem 0rem;
                 text-align: center;
-                line-height: 7rem;
-                font-size: 2.5rem;
                 color: var(--grey-200);
-                font-weight: normal;
                 cursor: pointer;
+                width: 100%;
 
             &:nth-of-type(7n + 7) {
                 border-right: 0;
               }
+            }
         }
+        
+        li{
+            list-style: none;
+        }
+        & .weekdays{
+            text-align: center;
+            margin: 1rem 0rem 0rem 0rem;
+            color: var(--grey-500);
+        }
+       
         & .active {
             background-color: var(--grey-100);
         }
@@ -332,7 +351,7 @@ const CalenderMain = styled("div")`
             background-color: white;
             padding: 1rem;
             border: 1px solid var(--grey-200);
-            border-radius: .5rem;
+            border-radius: var(--br);
             width: 18%;
             
         }

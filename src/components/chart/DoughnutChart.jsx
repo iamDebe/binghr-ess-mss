@@ -1,9 +1,8 @@
-import { registerChart } from "@/utils/registerChart";
 import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
+import { registerChart } from "@/utils/registerChart";
 
-registerChart();
-
+registerChart()
  const employeeData = [
   {
       id: 1,

@@ -11,9 +11,9 @@ function Main() {
     <Router>
       <Routes>
         <Route path="/ess" element={<EssHome />} /> 
-        <Route path="ess/profile" element={<ProfileSetup />} />
-        <Route path="ess/mypay" element={<MyPay />} />
-        <Route path="ess/timesheet" element={<TimeSheet />} />
+        <Route path="/ess/timesheet" element={<TimeSheet />} />
+        <Route path="/ess/profile" element={<ProfileSetup />} />
+        <Route path="/ess/my-pay" element={<MyPay />} />
         <Route path="*" element={<Navigate to="/ess" replace />} />
       </Routes>
     </Router>

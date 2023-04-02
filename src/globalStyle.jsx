@@ -163,10 +163,9 @@ export const GlobalStyles = createGlobalStyles`
     }
     .type-body5 {
       font-size: 36px;
-      font-weight: 300;
+      font-weight: lighter;
       line-height: 51px;
       letter-spacing: 0rem;
-      text-align: left;
 
     }
     

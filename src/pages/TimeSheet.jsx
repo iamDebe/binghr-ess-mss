@@ -5,7 +5,7 @@ import Button from "@/components/button"
 import TopBarWithSearch from '@/components/TopBarWithSearch';
 import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg"
 import Calender from '@/components/Calender';
-import { desktopMidi, tablet } from '../globalStyle';
+import { desktopMidi, tablet } from '@/globalStyle';
 
 const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
 
@@ -88,12 +88,9 @@ const Container = styled("div")`
 
     ${desktopMidi}{
         justify-content: space-center;
-    
-
     }
     ${tablet}{
         justify-content: space-center;
-    
 
     }
 `;
@@ -108,9 +105,13 @@ const HourSelectWrapper = styled("div")`
     align-self: center;
     gap: 2rem;
     border: 1px solid var(--grey-100);
-    border-radius: .3rem;
+    border-radius: var(--br);
     padding: .3rem 1rem;
     width: fit-content;
+
+    ${desktopMidi}{
+       
+    }
 
 
     & .wrapper{
