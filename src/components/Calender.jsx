@@ -320,8 +320,13 @@ const CalenderMain = styled("div")`
 
             & .clockin-wrapper{
                 display: flex;
-                gap:10px;
+                flex-wrap: wrap;
+                gap:.625rem;
                 justify-content: space-around;
+
+                ${desktopMidi}{
+                    gap: 0px;
+                }
             }
             & .icon{
                 align-self: center;
