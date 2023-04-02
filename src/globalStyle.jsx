@@ -161,6 +161,14 @@ export const GlobalStyles = createGlobalStyles`
       font-size: 0.875rem;
       line-height: 155.5%;
     }
+    .type-body5 {
+      font-size: 36px;
+      font-weight: lighter;
+      line-height: 51px;
+      letter-spacing: 0rem;
+
+    }
+    
   }
   a {
     text-decoration: none;
