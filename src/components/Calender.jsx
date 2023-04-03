@@ -113,7 +113,7 @@ const Calender = () => {
   return (
     <Container>
         <CalenderTitle>
-            <p className='date-year'>{thisMonth !== "" && thisMonth}</p>
+            <p className='date-year type-title2'>{thisMonth !== "" && thisMonth}</p>
             <CalenderControlsWrapper>
                 <BackIcon  className="swipe" onClick={()=>{
                     setCurrentMonth((prevCurrentMonth)=> prevCurrentMonth-1)}
@@ -224,10 +224,6 @@ const Container = styled("div")`
         margin: .2rem auto;
         background-color: var(--red-200);
     }
-
-${desktopMidi}{
-    margin-top: 2rem;
-}
 `;
 
 const CalenderTitle = styled("div")`
@@ -235,13 +231,21 @@ const CalenderTitle = styled("div")`
     justify-content: space-between;
     padding: .5rem 1.2rem;
 
+    .date-year{
+        color: var(--grey-500);
+
+        @media screen and (max-width: 480px){
+            font-size: .8rem;
+        }
+    }
+
     p{
         align-self: center;
     }
 
     .day-wrapper{
         background-color: var(--red-100);
-        border-radius: var(--br);
+        border-radius: 25px;
         padding: .5rem .8rem;
         margin: 0rem .5rem;
         color: var(--red-300);
@@ -249,6 +253,9 @@ const CalenderTitle = styled("div")`
     }
     .swipe{
         cursor: pointer;
+
+        @media screen and (max-width: 480px){
+        }
     }
 
     
@@ -265,35 +272,38 @@ const CalenderControlsWrapper = styled("div")`
 `;
  
 const CalenderMain = styled("div")`
+
+
+   
+    
+    .weekday-wrapper{
+        display:flex;
+        justify-content: space-around;
+        border-bottom: 1px solid var(--red-400);
+        padding: 0rem 0rem 1rem 0rem;
+        width: 100%;
+
+    }
+    .days-wrapper{
+        display:flex;
+        justify-content: space-evenly;
+        width: 100%;
         
-        .weekday-wrapper{
-            display:flex;
-            justify-content: space-around;
-            border-bottom: 1px solid var(--red-400);
-            padding: 0rem 0rem 1rem 0rem;
+        & .days{
+            position: relative;
+            border-bottom: 1px solid var(--grey-200);
+            border-right: 1px solid var(--grey-200);
+            text-align: center;
+            color: var(--grey-200);
+            cursor: pointer;
             width: 100%;
+            font-size: 1.5rem;
 
-        }
-        .days-wrapper{
-            display:flex;
-            justify-content: space-evenly;
-            width: 100%;
-            
-            & .days{
-                position: relative;
-                border-bottom: 1px solid var(--grey-200);
-                border-right: 1px solid var(--grey-200);
-                padding: 2.5rem 0rem;
-                text-align: center;
-                color: var(--grey-200);
-                cursor: pointer;
-                width: 100%;
-
-            &:nth-of-type(7n + 7) {
-                border-right: 0;
-              }
+        &:nth-of-type(7n + 7) {
+            border-right: 0;
             }
         }
+    }
         
         li{
             list-style: none;
