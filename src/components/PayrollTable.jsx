@@ -47,7 +47,7 @@ const PayrollTable = () => {
     ]
   return (
     <Wrapper>
-        <div>
+        <div className='logo-wrapper'>
             <img src="/ess/images/barter.svg" alt="" />
             <h4>Payroll Statement</h4>
             <h5>Feb 2023</h5>
@@ -111,6 +111,7 @@ const PayrollTable = () => {
 export default PayrollTable;
 
 const Wrapper = styled("div")`
+    padding: 24px 4px;
     img{
         margin: 0 auto;
     }
@@ -129,9 +130,10 @@ const Wrapper = styled("div")`
 `;
 const EmployeeAcctDetailWrapper = styled("div")`
     background-color: #F9FAFB;
-    padding: 0.5rem .8rem;
+    padding: 0.5rem .7rem;
     border-radius: .4rem;
     width: 100%;
+    
 
    
 `;
