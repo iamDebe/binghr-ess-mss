@@ -1,15 +1,16 @@
 import React, {useState } from "react";
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
+import SearchField from "@/components/forms/SearchField";
 import Button from "@/components/button"
 import DoughnutChart from "@/components/chart/DoughnutChart";
 import TextField from "@/components/forms/TextField";
-import SearchField from "@/components/forms/SearchField";
 import PayrollTable from "@/components/PayrollTable";
 import DoughnutChartYear from "@/components/chart/DoughnutChartYear";
 import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
 import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
+import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
 import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
 import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
 import { ReactComponent as NotificationIcon } from "@/assets/images/bell.svg";
@@ -19,8 +20,8 @@ import { ReactComponent as UserIcon } from "@/assets/images/user.svg";
 import { ReactComponent as ProgrammingIcon } from "@/assets/images/programming-arrow.svg";
 import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
 import { tablet, desktopMidi, mobile} from "@/globalStyle";
-import TopBarWithSearch from "@/components/TopBarWithSearch";
 import { Link } from "react-router-dom";
+import { mobileMedium } from "../globalStyle";
 
 
 
@@ -28,17 +29,16 @@ import { Link } from "react-router-dom";
 
 
 const MyPay = () => {
+    const [showProfileSettings, setShowProfileSettings] = useState(false);
     const [showPayroll, setShowPayroll] = useState(false);
     const [showAccountStatement, setShowAccountStatement] = useState(false);
-   
+    const handleShowProfile = ()=>{
+        setShowProfileSettings(!showProfileSettings)
+    }
     const handleShowPayrollStatement = ()=>{
         setShowPayroll(!showPayroll)
         setShowAccountStatement(false)
-    }
 
-    const [showProfileSettings, setShowProfileSettings] = useState(false);
-    const handleShowProfile = ()=>{
-        setShowProfileSettings(!showProfileSettings)
     }
     const handleShowAccountStatement = ()=>{
         setShowAccountStatement(!showAccountStatement)
@@ -49,7 +49,7 @@ const MyPay = () => {
     return (  
         <>
            <EssLayout>
-                <TopBarWithSearch >
+                <TopBarWrapper>
                     <ProxySearchWrapper>
                         <ProxyIcon width={50} />
                         <DropdownIcon  />
@@ -94,7 +94,7 @@ const MyPay = () => {
                             </ul> }
                         </DropdownWrapper>
                     </ProfileSettingsWrapper>
-                
+                </TopBarWrapper>
                 <ButtonWrapper>
                     <Button  
                         type="button"
@@ -150,7 +150,6 @@ const MyPay = () => {
                         </PayrollTableWrapper>
                     }
                 </ChartAndPayrollWrapper>
-                </ TopBarWithSearch>
            </EssLayout>
         </>
     );
@@ -174,10 +173,17 @@ export const ProxySearchWrapper = styled("div")`
     display: flex;
     align-self: center;
     margin-right: 10rem;
+
+    ${desktopMidi}{
+        margin-right: 0rem;
+    }
     ${tablet}{
         margin-right: 0rem;
     }
     ${mobile}{
+        margin-right: 0rem;
+    }
+    ${mobileMedium}{
         margin-right: 0rem;
     }
 `;
@@ -185,6 +191,10 @@ export const SearchFieldWrapper = styled("div")`
     display: flex;
     align-self: center;
     margin: 0rem 1rem 0rem 10rem;
+
+    ${desktopMidi}{
+        margin-right: 0rem;
+    }
 
     ${tablet}{
         margin: 0rem 1rem 0rem 5rem;
@@ -194,9 +204,12 @@ export const SearchFieldWrapper = styled("div")`
         margin: 0rem 1rem 0rem 2rem;
 
     }
+    ${mobileMedium}{
+        margin-right: 0rem;
+    }
     
 `;
-const TextFieldWrapper = styled("div")`
+export const TextFieldWrapper = styled("div")`
     align-self: center;
     margin: .5rem 2rem 0rem 1rem;
     width: 30%;
@@ -272,7 +285,7 @@ export const ProfileSettingsWrapper = styled("div")`
      justify-content: end;
    }
 `;
-const ChartWrapper = styled("div")`
+export const ChartWrapper = styled("div")`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -298,11 +311,11 @@ const ChartWrapper = styled("div")`
         width: 100%;
       }
 `;
-const SecondaryChartsWrapper = styled("div")`
+export const SecondaryChartsWrapper = styled("div")`
     align-self: center;
     width: 50%;
 `;
-const PayrollTableWrapper = styled("div")`
+export const PayrollTableWrapper = styled("div")`
     padding: .3rem;
     border: 1px solid var(--grey-200);
     border-radius: .5rem;
@@ -319,7 +332,7 @@ const PayrollTableWrapper = styled("div")`
         margin: 0rem;
       }
 `;
-const ChartAndPayrollWrapper = styled("div")`
+export const ChartAndPayrollWrapper = styled("div")`
     display: flex;
     gap: 1rem;
     
