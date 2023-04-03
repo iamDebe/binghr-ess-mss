@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "goober";
+import { ReactComponent as CheckIcon } from "@/assets/images/checkmark.svg";
 
 const Container = styled("div")`
   position: relative;
@@ -36,32 +37,27 @@ const ProgressBarWithSteps = () => {
     <Container>
       <ul className="progress-num">
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
       </ul>
     </Container>

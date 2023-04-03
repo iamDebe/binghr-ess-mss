@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import { styled } from "goober";
 
 export const Wrapper = styled("div")`
-position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;

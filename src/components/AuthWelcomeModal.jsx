@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "goober";
 import ModalPortal from "@/components/ModalPortal";
 import Button from "@/components/button";
+import { ReactComponent as SuccessIcon } from "@/assets/images/success-1.svg";
 
 export const Container = styled("div")`
   background-color: rgba(38, 38, 38, 0.75);
@@ -71,7 +72,7 @@ const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
           </div>
           <p className="type-title2">You have Signed up Successfully</p>
           <div className="success-logo-div">
-            <img src="/ess/images/success-1.svg" />
+            <SuccessIcon />
           </div>
           <div className="button-div">
             <Button

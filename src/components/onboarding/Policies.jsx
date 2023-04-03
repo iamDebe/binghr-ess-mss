@@ -50,14 +50,16 @@ function Policies({ continueAction, goBack, saveData }) {
                   </div>
                 </div>
               </div>
-              <CustomButton
-                width="111px"
-                variant="#BDBDBD"
-                label="Save"
+              <Button
+                bg="var(--grey-4)"
+                textcolor="var(--grey-25)"
+                rightIcon={<CopySuccess stroke="var(--grey-25)"/>}
+                iconcolor="var(--grey-25)"
                 onClick={() => setShowPayrollPolicyForm(false)}
-                iconPosition="right"
-                iconUrl="/ess/images/copy-success.svg"
-              />
+                className="save-btn"
+              >
+                Save
+              </Button>
             </>
           )}
           {showCompensationPolicyForm && (
@@ -89,14 +91,16 @@ function Policies({ continueAction, goBack, saveData }) {
                   </div>
                 </div>
               </div>
-              <CustomButton
-                width="111px"
-                variant="#BDBDBD"
-                label="Save"
+              <Button
+                bg="var(--grey-4)"
+                textcolor="var(--grey-25)"
+                rightIcon={<CopySuccess stroke="var(--grey-25)"/>}
+                iconcolor="var(--grey-25)"
                 onClick={() => setShowCompensationPolicyForm(false)}
-                iconPosition="right"
-                iconUrl="/ess/images/copy-success.svg"
-              />
+                className="save-btn"
+              >
+                Save
+              </Button>
             </>
           )}
           {showTandAPolicyForm && (
@@ -128,14 +132,16 @@ function Policies({ continueAction, goBack, saveData }) {
                   </div>
                 </div>
               </div>
-              <CustomButton
-                width="111px"
-                variant="#BDBDBD"
-                label="Save"
+              <Button
+                bg="var(--grey-4)"
+                textcolor="var(--grey-25)"
+                rightIcon={<CopySuccess stroke="var(--grey-25)"/>}
+                iconcolor="var(--grey-25)"
                 onClick={() => setShowTandAPolicyForm(false)}
-                iconPosition="right"
-                iconUrl="/ess/images/copy-success.svg"
-              />
+                className="save-btn"
+              >
+                Save
+              </Button>
             </>
           )}
           {!showPayrollPolicyForm &&

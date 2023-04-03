@@ -7,9 +7,10 @@ import {
 } from "@/assets/wrappers";
 import OnboardingLayout from "@/components/OnboardingLayout";
 import { TextField, SelectField, CheckBox } from "@/components/forms";
-import location from "@/assets/images/location.svg";
+import { ReactComponent as LocationIcon } from "@/assets/images/location.svg";
 import { Link } from "react-router-dom";
 import Button from "@/components/button";
+import { ReactComponent as CameraIcon } from "@/assets/images/camera.svg";
 
 const nameTitle = ["Select Title", "Dr", "Mr.", "Mrs.", "Ms."];
 const profileSteps = {
@@ -38,7 +39,7 @@ const profileSteps = {
               <label htmlFor="file">BP</label>
               <div className="upload-image-wrapper">
                 <span className="upload-image-text">Upload</span>{" "}
-                <img src="/ess/images/camera.svg" />
+                <CameraIcon stroke="#292D32" />
               </div>
             </UploadImageWrapper>
             <InputsWrapper>
@@ -119,7 +120,8 @@ const profileSteps = {
                 label="Location"
                 type="text"
                 placeholder="Enter Location"
-                icon={location}
+                icon={<LocationIcon stroke="#BBBEC4" className="input-icon icon" />}
+                className="input-icon"
               />
               <TextField
                 id="org1"
@@ -247,6 +249,7 @@ const profileSteps = {
                 label="State of Birth"
                 type="text"
                 placeholder="Enter Country of Birth"
+                className="textfield-width"
               />
             </InputsWrapper>
             {() => setStep({ ...step, step1: false, step2: true, step3: true })}
