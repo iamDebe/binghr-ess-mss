@@ -2,99 +2,11 @@ import React, { useState } from "react";
 import { styled } from "goober";
 import CustomButton from "@/components/CustomButton";
 import { CheckBox, TextField } from "@/components/forms";
-import Spacer from "@/components/Spacer";
 import ContainerTopBorder from "@/components/ContainerTopBorder";
-
-const Container = styled("div")`
-  width: 100%;
-  .div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 0.5px solid #e0e0e0;
-    border-radius: 4px;
-  }
-`;
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  @media only screen and (min-width: 375px) and (max-width: 969px) {
-    width: 100%;
-  }
-  .type-title3 {
-    color: var(--grey-400);
-  }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-  .button-groups {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-    div {
-      display: flex;
-      @media only screen and (min-width: 375px) and (max-width: 969px) {
-        flex-wrap: wrap;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-    }
-  }
-  .main-text-div {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-  }
-  .form-div {
-    padding: 10px;
-    border: 0.5px solid #e0e0e0;
-  }
-  .flexed-div {
-    width: full;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-    .sign-div {
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      width: 50%;
-      @media only screen and (min-width: 375px) and (max-width: 969px) {
-        width: 100%;
-        flex-wrap: wrap;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-      .fn-div {
-        width: 200px;
-        padding-top: 18px;
-      }
-    }
-  }
-`;
+import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
+import Button from "@/components/button";
+import { Container, Inner, HeaderText } from "@/components/EssOnboarding/CommonStyles";
 
 function Policies({ continueAction, goBack, saveData }) {
   const [showPayrollPolicyForm, setShowPayrollPolicyForm] = useState(false);
@@ -110,11 +22,10 @@ function Policies({ continueAction, goBack, saveData }) {
         {!showPayrollPolicyForm &&
           !showCompensationPolicyForm &&
           !showTandAPolicyForm && <ContainerTopBorder />}
-
         <Inner>
           {showPayrollPolicyForm && (
             <>
-              <p className="type-title3">Payroll Policy</p>
+              <p className="type-title3 title">Payroll Policy</p>
               <div className="form-div">
                 <p className="type-body2">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -134,8 +45,6 @@ function Policies({ continueAction, goBack, saveData }) {
                 </div>
                 <div className="sign-div">
                   <p className="type-title3">Type Full Name as signature </p>
-                  <Spacer width={10} />
-
                   <div className="fn-div">
                     <TextField placeholder="Type Full Name Here" />
                   </div>
@@ -147,13 +56,13 @@ function Policies({ continueAction, goBack, saveData }) {
                 label="Save"
                 onClick={() => setShowPayrollPolicyForm(false)}
                 iconPosition="right"
-                iconUrl="/images/copy-success.svg"
+                iconUrl="/ess/images/copy-success.svg"
               />
             </>
           )}
           {showCompensationPolicyForm && (
             <>
-              <p className="type-title3">Compensation Policy</p>
+              <p className="type-title3 title">Compensation Policy</p>
               <div className="form-div">
                 <p className="type-body2">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -173,7 +82,7 @@ function Policies({ continueAction, goBack, saveData }) {
                 </div>
                 <div className="sign-div">
                   <p className="type-title3">Type Full Name as signature </p>
-                  <Spacer width={10} />
+                  
 
                   <div className="fn-div">
                     <TextField placeholder="Type Full Name Here" />
@@ -186,13 +95,13 @@ function Policies({ continueAction, goBack, saveData }) {
                 label="Save"
                 onClick={() => setShowCompensationPolicyForm(false)}
                 iconPosition="right"
-                iconUrl="/images/copy-success.svg"
+                iconUrl="/ess/images/copy-success.svg"
               />
             </>
           )}
           {showTandAPolicyForm && (
             <>
-              <p className="type-title3">Time and Attendance Policy</p>
+              <p className="type-title3 title">Time and Attendance Policy</p>
               <div className="form-div">
                 <p className="type-body2">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -212,7 +121,7 @@ function Policies({ continueAction, goBack, saveData }) {
                 </div>
                 <div className="sign-div">
                   <p className="type-title3">Type Full Name as signature </p>
-                  <Spacer width={10} />
+                  
 
                   <div className="fn-div">
                     <TextField placeholder="Type Full Name Here" />
@@ -225,7 +134,7 @@ function Policies({ continueAction, goBack, saveData }) {
                 label="Save"
                 onClick={() => setShowTandAPolicyForm(false)}
                 iconPosition="right"
-                iconUrl="/images/copy-success.svg"
+                iconUrl="/ess/images/copy-success.svg"
               />
             </>
           )}
@@ -233,10 +142,11 @@ function Policies({ continueAction, goBack, saveData }) {
             !showCompensationPolicyForm &&
             !showTandAPolicyForm && (
               <>
-                <p className="type-title3">Policies</p>
-                <p className="type-body2">Assigned Policies</p>
-
-                <div className="main-text-div">
+              <HeaderText>
+                <p className="type-title3 title">Policies</p>
+                <p className="type-body2 sub-title">Assigned Policies</p>
+              </HeaderText>
+                <div className="form-wrapper">
                   <div>
                     <CheckBox label="Payroll Policy" />
                   </div>
@@ -254,7 +164,7 @@ function Policies({ continueAction, goBack, saveData }) {
                     />
                   </div>
                 </div>
-                <div className="main-text-div">
+                <div className="form-wrapper">
                   <div>
                     <CheckBox label="Compensation Policy" />
                   </div>
@@ -271,7 +181,7 @@ function Policies({ continueAction, goBack, saveData }) {
                     />
                   </div>
                 </div>
-                <div className="main-text-div">
+                <div className="form-wrapper">
                   <div>
                     <CheckBox label="Time And Attendance" />
                   </div>
@@ -289,33 +199,35 @@ function Policies({ continueAction, goBack, saveData }) {
                   </div>
                 </div>
 
-                <div className="button-groups">
-                  <CustomButton
-                    width="111px"
-                    variant="#BDBDBD"
-                    label="Save"
+                <ButtonGroups>
+                  <Button
+                    bg="var(--grey-4)"
+                    textcolor="var(--grey-25)"
+                    rightIcon={<CopySuccess stroke="var(--grey-25)"/>}
+                    iconcolor="var(--grey-25)"
                     onClick={() => saveData()}
-                    iconPosition="right"
-                    iconUrl="/images/copy-success.svg"
-                  />
-                  <div>
-                    <CustomButton
-                      width="111px"
-                      variant="white"
-                      textColor="#6C3787"
-                      label="Previous"
+                    className="save-btn"
+                  >
+                    Save
+                  </Button>
+                  <div className="prev-cont-btn">
+                    <Button
+                      border="var(--lilac-400)"
+                      bg="var(--white)"
+                      textcolor="var(--lilac-400)"
                       onClick={() => goBack()}
-                      secondaryBtn
-                    />
-                    <Spacer width={20} />
-                    <CustomButton
-                      width="111px"
-                      variant="#6c3787"
-                      label="Continue"
+                    >
+                      Previous
+                    </Button>
+                    <Button
+                      bg="var(--lilac-400)"
+                      textcolor="var(--grey-25)"
                       onClick={() => continueAction()}
-                    />
+                    >
+                      Continue
+                    </Button>
                   </div>
-                </div>
+                </ButtonGroups>
               </>
             )}
         </Inner>

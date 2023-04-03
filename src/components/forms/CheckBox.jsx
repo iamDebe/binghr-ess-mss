@@ -6,13 +6,14 @@ export const Wrapper = styled("div")`
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  margin-bottom: 0.7rem;
   width: 100%;
   & input[type="checkbox"] {
     accent-color: var(--red-400);
+    cursor: pointer;
   }
   & input[type="radio"] {
     accent-color: var(--red-400);
+    cursor: pointer;
   }
   .label {
     font-size: 12px;

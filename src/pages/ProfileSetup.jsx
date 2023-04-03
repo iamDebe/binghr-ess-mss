@@ -27,7 +27,7 @@ const profileSteps = {
           <>
             {/* Step 1 content */}
             <FormLogoWrapper>
-              <img src="/images/barter.svg" width="85" alt="barter" />
+              <img src="/ess/images/barter.svg" width="85" alt="barter" />
             </FormLogoWrapper>
             <UploadImageWrapper>
               <div className="upload-title">
@@ -38,7 +38,7 @@ const profileSteps = {
               <label htmlFor="file">BP</label>
               <div className="upload-image-wrapper">
                 <span className="upload-image-text">Upload</span>{" "}
-                <img src="/images/camera.svg" />
+                <img src="/ess/images/camera.svg" />
               </div>
             </UploadImageWrapper>
             <InputsWrapper>
@@ -105,7 +105,7 @@ const profileSteps = {
           <>
             {/* Step 2 content */}
             <FormLogoWrapper>
-              <img src="/images/barter.svg" width="85" alt="barter" />
+              <img src="/ess/images/barter.svg" width="85" alt="barter" />
             </FormLogoWrapper>
             <UploadImageWrapper>
               <div className="upload-title">
@@ -210,7 +210,7 @@ const profileSteps = {
           <>
             {/* Step 3 content */}
             <FormLogoWrapper>
-              <img src="/images/barter.svg" width="85" alt="barter" />
+              <img src="/ess/images/barter.svg" width="85" alt="barter" />
             </FormLogoWrapper>
             <UploadImageWrapper>
               <div className="upload-title">

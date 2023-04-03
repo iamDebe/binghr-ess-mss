@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
 import MenuCard from "@/components/MenuCardBox";
-import { mobile, mobileMedium, tablet, desktopMidi } from "@/globalStyle";
+import { mobile, mobileSmall, tablet, desktopMidi } from "@/globalStyle";
 import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
 import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
 import { ReactComponent as ClockIcon } from "@/assets/images/clock.svg";
@@ -13,7 +13,7 @@ import { ReactComponent as BookIcon } from "@/assets/images/book.svg";
 import { ReactComponent as SunIcon } from "@/assets/images/sun.svg";
 import { ReactComponent as WatchIcon } from "@/assets/images/watch.svg";
 import AuthWelcomeModal from "@/components/AuthWelcomeModal";
-import OnBoardingStepsContainer from "@/components/essOnboarding/OnBoardingStepsContainer";
+import OnBoardingStepsContainer from "@/components/EssOnboarding/OnBoardingStepsContainer";
 import RoundIconBg from "@/components/RoundIconBg";
 import Tag from "@/components/Tag";
 import Button from "@/components/button";
@@ -326,12 +326,12 @@ const EssHome = () => {
                 textcolor="var(--grey-25)"
                 className="clockin-btn"
                 leftIcon={<WatchIcon />}
-                iconColor="var(--grey-25)"
+                iconcolor="var(--grey-25)"
               >
                 Clock in
               </Button>
               <EmployeeInfo>
-                <img src="/images/profile-img.png" alt="" />
+                <img src="/ess/images/profile-img.png" alt="" />
                 <EmployeeDetails>
                   <div className="row">
                     <p className="type-title3">Name</p>

@@ -1,129 +1,73 @@
 import React from "react";
-import { styled } from "goober";
-import CustomButton from "@/components/CustomButton";
 import { TextField } from "@/components/forms";
-import Spacer from "@/components/Spacer";
-import ContainerTopBorder from "@/components/ContainerTopBorder";
-
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid var(--grey-5);
-  border-radius: 4px;
-`;
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  @media only screen and (min-width: 375px) and (max-width: 969px) {
-    width: 100%;
-  }
-  .type-title3 {
-    color: var(--grey-400);
-  }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-  .button-groups {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-    div {
-      display: flex;
-      @media only screen and (min-width: 375px) and (max-width: 969px) {
-        flex-wrap: wrap;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-    }
-  }
-  .main-text-div {
-    display: flex;
-    width: 100%;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-  }
-  .text-div {
-    padding-right: 30px;
-    width: 230px;
-  }
-`;
+import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
+import Button from "@/components/button";
+import { HeaderText } from "@/components/EssOnboarding/CommonStyles";
+import OnboardingTemplate from "./OnboardingTemplate";
 
 function BankInformation({ continueAction, goBack, saveData }) {
   return (
-    <Container>
-      <ContainerTopBorder />
-      <Inner>
-        <p className="type-title3">Bank Account Information</p>
-        <p className="type-body2">Bank Details</p>
-        <div className="main-text-div">
-          <div className="text-div">
-            <TextField
-              id="bankname"
-              label="Bank Name"
-              type="text"
-              placeholder="Enter Bank Name"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="accountname"
-              label="Account Name"
-              type="text"
-              placeholder="Enter Account Name"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="accountnumber"
-              label="Account Number"
-              type="text"
-              placeholder="Enter Account Number"
-            />
-          </div>
-        </div>
-        <div className="button-groups">
-          <CustomButton
-            width="111px"
-            variant="#BDBDBD"
-            label="Save"
-            onClick={() => saveData()}
-            iconPosition="right"
-            iconUrl="/images/copy-success.svg"
+    <OnboardingTemplate>
+      <div className="main-content">
+        <HeaderText>
+          <p className="type-title3 title">Bank Account Information</p>
+          <p className="type-body2 sub-title">Bank Details</p>
+        </HeaderText>
+        <div className="form-wrapper">
+          <TextField
+            id="bankname"
+            label="Bank Name"
+            type="text"
+            placeholder="Enter Bank Name"
+            className="field-flex-basis"
           />
-          <div>
-            <CustomButton
-              width="111px"
-              variant="white"
-              textColor="#6C3787"
-              label="Previous"
-              onClick={() => goBack()}
-              secondaryBtn
-            />
-            <Spacer width={20} />
-            <CustomButton
-              width="111px"
-              variant="#6c3787"
-              label="Continue"
-              onClick={() => continueAction()}
-            />
-          </div>
+          <TextField
+            id="accountname"
+            label="Account Name"
+            type="text"
+            placeholder="Enter Account Name"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="accountnumber"
+            label="Account Number"
+            type="text"
+            placeholder="Enter Account Number"
+            className="field-flex-basis"
+          />
         </div>
-      </Inner>
-    </Container>
+      </div>
+      <ButtonGroups>
+        <Button
+          bg="var(--grey-4)"
+          textcolor="var(--grey-25)"
+          rightIcon={<CopySuccess stroke="var(--grey-25)"/>}
+          iconcolor="var(--grey-25)"
+          onClick={() => saveData()}
+          className="save-btn"
+        >
+          Save
+        </Button>
+        <div className="prev-cont-btn">
+          <Button
+            border="var(--lilac-400)"
+            bg="var(--white)"
+            textcolor="var(--lilac-400)"
+            onClick={() => goBack()}
+          >
+            Previous
+          </Button>
+          <Button
+            bg="var(--lilac-400)"
+            textcolor="var(--grey-25)"
+            onClick={() => continueAction()}
+          >
+            Continue
+          </Button>
+        </div>
+      </ButtonGroups>
+    </OnboardingTemplate>
   );
 }
 

@@ -1,147 +1,87 @@
 import React from "react";
-import { styled } from "goober";
-import CustomButton from "@/components/CustomButton";
 import { TextField } from "@/components/forms";
-import Spacer from "@/components/Spacer";
-import ContainerTopBorder from "@/components/ContainerTopBorder";
-
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid var(--grey-5);
-  border-radius: 4px;
-`;
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  @media only screen and (min-width: 375px) and (max-width: 969px) {
-    width: 100%;
-  }
-  .type-title3 {
-    color: var(--grey-400);
-  }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-  .button-groups {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-    div {
-      display: flex;
-      @media only screen and (min-width: 375px) and (max-width: 969px) {
-        flex-wrap: wrap;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-    }
-  }
-  .main-text-div {
-    display: flex;
-    max-width: 100%;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-  }
-  .text-div {
-    padding-right: 30px;
-    width: 230px;
-  }
-`;
+import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
+import Button from "@/components/button";
+import { HeaderText } from "@/components/EssOnboarding/CommonStyles";
+import OnboardingTemplate from "./OnboardingTemplate";
 
 function EmergencyContact({ continueAction, goBack, saveData }) {
   return (
-    <Container>
-      <ContainerTopBorder />
-      <Inner>
-        <p className="type-title3">Emergency Contact Information</p>
-        <p className="type-body2">Next of Kin</p>
-        <div className="main-text-div">
-          <div className="text-div">
-            <TextField
-              id="firstname"
-              label="Next of Kin First Name"
-              type="text"
-              placeholder="Enter Next of Kin First Name"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="firstname"
-              label="Next of Kin Last Name"
-              type="text"
-              placeholder="Enter Next of Kin Last Name"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="phoneNumber"
-              label="Telephone Number"
-              type="text"
-              placeholder="Enter Telephone Number"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="homeAddress"
-              label="Home Address"
-              type="text"
-              placeholder="Enter Home Address"
-            />
-          </div>
-        </div>
-        <div className="main-text-div">
-          <div className="text-div">
-            <TextField
-              id="office"
-              label="Office Address"
-              type="text"
-              placeholder="Enter Office Address"
-            />
-          </div>
-        </div>
-        <div className="button-groups">
-          <CustomButton
-            width="111px"
-            variant="#BDBDBD"
-            label="Save"
-            onClick={() => saveData()}
-            iconPosition="right"
-            iconUrl="/images/copy-success.svg"
+    <OnboardingTemplate>
+      <div className="main-content">
+        <HeaderText>
+          <p className="type-title3 title">Emergency Contact Information</p>
+          <p className="type-body2 sub-title">Next of Kin</p>
+        </HeaderText>
+        <div className="form-wrapper">
+          <TextField
+            id="firstname"
+            label="Next of Kin First Name"
+            type="text"
+            placeholder="Enter Next of Kin First Name"
+            className="field-flex-basis"
           />
-          <div>
-            <CustomButton
-              width="111px"
-              variant="white"
-              textColor="#6C3787"
-              label="Previous"
-              onClick={() => goBack()}
-              secondaryBtn
-            />
-            <Spacer width={20} />
-            <CustomButton
-              width="111px"
-              variant="#6c3787"
-              label="Continue"
-              onClick={() => continueAction()}
-            />
-          </div>
+          <TextField
+            id="firstname"
+            label="Next of Kin Last Name"
+            type="text"
+            placeholder="Enter Next of Kin Last Name"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="phoneNumber"
+            label="Telephone Number"
+            type="text"
+            placeholder="Enter Telephone Number"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="homeAddress"
+            label="Home Address"
+            type="text"
+            placeholder="Enter Home Address"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="office"
+            label="Office Address"
+            type="text"
+            placeholder="Enter Office Address"
+            className="field-flex-basis"
+          />
         </div>
-      </Inner>
-    </Container>
+      </div>
+      <ButtonGroups>
+        <Button
+          bg="var(--grey-4)"
+          textcolor="var(--grey-25)"
+          rightIcon={<CopySuccess stroke="var(--grey-25)"/>}
+          iconcolor="var(--grey-25)"
+          onClick={() => saveData()}
+          className="save-btn"
+        >
+          Save
+        </Button>
+        <div className="prev-cont-btn">
+          <Button
+            border="var(--lilac-400)"
+            bg="var(--white)"
+            textcolor="var(--lilac-400)"
+            onClick={() => goBack()}
+          >
+            Previous
+          </Button>
+          <Button
+            bg="var(--lilac-400)"
+            textcolor="var(--grey-25)"
+            onClick={() => continueAction()}
+          >
+            Continue
+          </Button>
+        </div>
+      </ButtonGroups>
+    </OnboardingTemplate>
   );
 }
 

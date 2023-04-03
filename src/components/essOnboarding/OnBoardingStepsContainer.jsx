@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { styled, css } from "goober";
 import { mobile } from "@/globalStyle";
 import ProgressBar from "@/components/ProgressBar";
-import TermsAndCondition from "@/components/essOnboarding/TermsAndCondition";
-import TodoList from "@/components/essOnboarding/TodoList";
-import IntroductoryVideos from "@/components/essOnboarding/IntroductoryVideos";
-import AddressOne from "@/components/essOnboarding/AddressOne";
-import AddressTwo from "@/components/essOnboarding/AddressTwo";
-import EmergencyContact from "@/components/essOnboarding/EmergencyContact";
-import BankInformation from "@/components/essOnboarding/BankInformation";
-import Policies from "@/components/essOnboarding/Policies";
+import TermsAndCondition from "@/components/EssOnboarding/TermsAndCondition";
+import TodoList from "@/components/EssOnboarding/TodoList";
+import IntroductoryVideos from "@/components/EssOnboarding/IntroductoryVideos";
+import AddressOne from "@/components/EssOnboarding/AddressOne";
+import AddressTwo from "@/components/EssOnboarding/AddressTwo";
+import EmergencyContact from "@/components/EssOnboarding/EmergencyContact";
+import BankInformation from "@/components/EssOnboarding/BankInformation";
+import Policies from "@/components/EssOnboarding/Policies";
 import ProgressBarWithSteps from "@/components/ProgressBarWithSteps";
-import Spacer from "@/components/Spacer";
 import { ReactComponent as WarningIcon } from "@/assets/images/warning.svg";
 
 const Container = styled("div")`
@@ -119,7 +118,6 @@ function OnBoardingStepsContainer({ onEndSteps = () => {} }) {
       <div className="onboarding-div">
         <div className="div">
           <p className="type-title2">Onboarding</p>
-          <Spacer width={50} />
         </div>
         <ProgressBarWithSteps />
       </div>

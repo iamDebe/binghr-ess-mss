@@ -20,6 +20,7 @@ import { ReactComponent as UserIcon } from "@/assets/images/user.svg";
 import { ReactComponent as ProgrammingIcon } from "@/assets/images/programming-arrow.svg";
 import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
 import { tablet, desktopMidi, mobile} from "@/globalStyle";
+import { Link } from "react-router-dom";
 
 
 
@@ -79,7 +80,7 @@ const MyPay = () => {
                             {showProfileSettings && <ul className="dropdown-menu">
                                 <DropdownItemsWrapper>
                                     <UserIcon  className="dropdown-icon" />
-                                    <li><a className="dropdown-item" href="#"> My Profile</a></li>
+                                    <li><Link className="dropdown-item" to="/ess/profile"> My Profile</Link></li>
                                 </DropdownItemsWrapper>
                                 <DropdownItemsWrapper>
                                     <ProgrammingIcon  className="dropdown-icon" />

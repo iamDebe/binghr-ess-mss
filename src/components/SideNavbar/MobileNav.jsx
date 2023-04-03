@@ -18,7 +18,7 @@ const Container = styled("div")`
 const MobileNav = ({ toggleSidebar }) => {
     return (
         <Container>
-            <img src="/images/barter.svg" width="85" alt="company-logo" />
+            <img src="/ess/images/barter.svg" width="85" alt="company-logo" />
             <Button bg="none" onClick={toggleSidebar}>
                 <MenuIcon fill="#292D32" />
             </Button>

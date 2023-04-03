@@ -5,8 +5,8 @@ export const desktop = `@media screen and (max-width: 1440px)`;
 export const desktopMidi = `@media screen and (max-width: 1280px)`;
 export const tablet = `@media screen and (max-width: 1023px)`;
 export const mobile = `@media screen and (max-width: 767px)`;
-export const mobileLarge = `@media screen and (max-width: 520px)`;
-export const mobileMedium = `@media screen and (max-width: 480px)`;
+export const mobileMedium = `@media screen and (max-width: 520px)`;
+export const mobileSmall = `@media screen and (max-width: 480px)`;
 
 export const GlobalStyles = createGlobalStyles`
   @font-face {
@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyles`
     /* colors */
     --white: #ffffff;
     --black: #000000;
+    --grey-4: #BDBDBD;
     --grey-5: #E0E0E0;
     --grey-25: #fcfcfd;
     --grey-50: #f9fafb;

@@ -1,154 +1,94 @@
 import React from "react";
-import { styled } from "goober";
-import CustomButton from "@/components/CustomButton";
 import { TextField } from "@/components/forms";
-import ContainerTopBorder from "@/components/ContainerTopBorder";
-
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid var(--grey-5);
-  border-radius: 4px;
-`;
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  @media only screen and (min-width: 375px) and (max-width: 969px) {
-    width: 100%;
-  }
-  .type-title3 {
-    color: var(--grey-400);
-  }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-  .button-groups {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-    div {
-      display: flex;
-      @media only screen and (min-width: 375px) and (max-width: 969px) {
-        flex-wrap: wrap;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-    }
-  }
-  .main-text-div {
-    display: flex;
-    max-width: 100%;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      flex-wrap: wrap;
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
-  }
-  .text-div {
-    padding-right: 30px;
-    width: 230px;
-  }
-`;
+import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
+import Button from "@/components/button";
+import { HeaderText } from "@/components/EssOnboarding/CommonStyles";
+import OnboardingTemplate from "./OnboardingTemplate";
 
 function AddressOne({ continueAction, goBack, saveData }) {
   return (
-    <Container>
-      <ContainerTopBorder />
-      <Inner>
-        <p className="type-title3">Address Information 1</p>
-        <p className="type-body2">Home Address</p>
-        <div className="main-text-div">
-          <div className="text-div">
-            <TextField
-              id="street"
-              label="Street"
-              type="text"
-              placeholder="Enter Street Name"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="apartment"
-              label="Apartment"
-              type="text"
-              placeholder="Enter Apartment Number"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="city"
-              label="City"
-              type="text"
-              placeholder="Enter City Name"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="state"
-              label="State"
-              type="text"
-              placeholder="Enter State Name"
-            />
-          </div>
-        </div>
-        <div className="main-text-div">
-          <div className="text-div">
-            <TextField
-              id="country"
-              label="Country"
-              type="text"
-              placeholder="Enter Country Name"
-            />
-          </div>
-          <div className="text-div">
-            <TextField
-              id="postalCode"
-              label="Postal Code"
-              type="text"
-              placeholder="Enter Postal Code"
-            />
-          </div>
-        </div>
-        <div className="button-groups">
-          <CustomButton
-            width="111px"
-            variant="#BDBDBD"
-            label="Save"
-            onClick={() => saveData()}
-            iconPosition="right"
-            iconUrl="/images/copy-success.svg"
+    <OnboardingTemplate>
+      <div className="main-content">
+        <HeaderText>
+          <p className="type-title3 title">Address Information 1</p>
+          <p className="type-body2 sub-title">Home Address</p>
+        </HeaderText>
+        <div className="form-wrapper">
+          <TextField
+            id="street"
+            label="Street"
+            type="text"
+            placeholder="Enter Street Name"
+            className="field-flex-basis"
           />
-          <div>
-            <CustomButton
-              width="111px"
-              variant="white"
-              textColor="#6C3787"
-              label="Previous"
-              onClick={() => goBack()}
-              secondaryBtn
-            />
-            <div style={{ width: "20px" }} />
-            <CustomButton
-              width="111px"
-              variant="#6c3787"
-              label="Continue"
-              onClick={() => continueAction()}
-            />
-          </div>
+          <TextField
+            id="apartment"
+            label="Apartment"
+            type="text"
+            placeholder="Enter Apartment Number"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="city"
+            label="City"
+            type="text"
+            placeholder="Enter City Name"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="state"
+            label="State"
+            type="text"
+            placeholder="Enter State Name"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="country"
+            label="Country"
+            type="text"
+            placeholder="Enter Country Name"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="postalCode"
+            label="Postal Code"
+            type="text"
+            placeholder="Enter Postal Code"
+            className="field-flex-basis"
+          />
         </div>
-      </Inner>
-    </Container>
+      </div>
+      <ButtonGroups>
+        <Button
+          bg="var(--grey-4)"
+          textcolor="var(--grey-25)"
+          rightIcon={<CopySuccess stroke="var(--grey-25)"/>}
+          iconcolor="var(--grey-25)"
+          onClick={() => saveData()}
+          className="save-btn"
+        >
+          Save
+        </Button>
+        <div className="prev-cont-btn">
+          <Button
+            border="var(--lilac-400)"
+            bg="var(--white)"
+            textcolor="var(--lilac-400)"
+            onClick={() => goBack()}
+          >
+            Previous
+          </Button>
+          <Button
+            bg="var(--lilac-400)"
+            textcolor="var(--grey-25)"
+            onClick={() => continueAction()}
+          >
+            Continue
+          </Button>
+        </div>
+      </ButtonGroups>
+    </OnboardingTemplate>
   );
 }
 
