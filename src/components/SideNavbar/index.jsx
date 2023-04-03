@@ -139,7 +139,7 @@ const navItems = [
     title: "My Time Off",
   },
   {
-    to: "/",
+    to: "/ess/timesheet",
     icon: <CalendarIcon />,
     title: "Timesheet",
   },
