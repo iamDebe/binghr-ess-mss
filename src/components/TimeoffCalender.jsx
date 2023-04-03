@@ -87,8 +87,6 @@ const TimeoffCalender = () => {
 
     const mm = ""
 
-  
-
     const highlightTimeoffRange =(outer, inner)=>{
         const newWeekData = [...weeks];
         newWeekData[outer][inner].isActive = newWeekData[outer][inner].isActive === true ? false: true;

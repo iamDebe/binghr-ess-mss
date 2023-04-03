@@ -4,6 +4,7 @@ import EssLayout from "@/components/EssLayout";
 import Button from "@/components/button"
 import DoughnutChart from "@/components/chart/DoughnutChart";
 import TextField from "@/components/forms/TextField";
+import SearchField from "@/components/forms/SearchField";
 import PayrollTable from "@/components/PayrollTable";
 import DoughnutChartYear from "@/components/chart/DoughnutChartYear";
 import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
@@ -12,6 +13,11 @@ import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
 import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
 import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
 import { ReactComponent as NotificationIcon } from "@/assets/images/bell.svg";
+import { ReactComponent as SmsNotificationIcon } from "@/assets/images/sms-notification.svg";
+import { ReactComponent as ProfilePhoto } from "@/assets/images/ProfilePhoto.svg";
+import { ReactComponent as UserIcon } from "@/assets/images/user.svg";
+import { ReactComponent as ProgrammingIcon } from "@/assets/images/programming-arrow.svg";
+import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
 import { tablet, desktopMidi, mobile} from "@/globalStyle";
 import TopBarWithSearch from "@/components/TopBarWithSearch";
 import { Link } from "react-router-dom";
@@ -28,7 +34,11 @@ const MyPay = () => {
     const handleShowPayrollStatement = ()=>{
         setShowPayroll(!showPayroll)
         setShowAccountStatement(false)
+    }
 
+    const [showProfileSettings, setShowProfileSettings] = useState(false);
+    const handleShowProfile = ()=>{
+        setShowProfileSettings(!showProfileSettings)
     }
     const handleShowAccountStatement = ()=>{
         setShowAccountStatement(!showAccountStatement)
