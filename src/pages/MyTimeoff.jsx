@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import EssLayout from "@/components/EssLayout";
 import TopBarWithSearch from "@/components/TopBarWithSearch";
 import Button from "@/components/button";
-import { ButtonWrapper } from '@/pages/MyPay';
+import { ButtonWrapper } from '@/assets/wrappers/TopBarWithSearchWrapper';
 import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg";
 import TimeoffCalender from '@/components/TimeoffCalender';
 

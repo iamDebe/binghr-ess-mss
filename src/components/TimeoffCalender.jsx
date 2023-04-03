@@ -200,10 +200,6 @@ const TimeoffCalender = () => {
 export default TimeoffCalender
 
 
-
-
-
-
 const Container = styled("div")`
     border: 1px solid var(--red-300);
     border-radius: var(--br);
@@ -215,10 +211,6 @@ const Container = styled("div")`
         margin: .2rem auto;
         background-color: var(--red-200);
     }
-
-${desktopMidi}{
-    margin-top: 2rem;
-}
 `;
 
 const CalenderTitle = styled("div")`
@@ -226,13 +218,21 @@ const CalenderTitle = styled("div")`
     justify-content: space-between;
     padding: .5rem 1.2rem;
 
+    .date-year{
+        color: var(--grey-500);
+
+        @media screen and (max-width: 480px){
+            font-size: .8rem;
+        }
+    }
+
     p{
         align-self: center;
     }
 
     .day-wrapper{
         background-color: var(--red-100);
-        border-radius: var(--br);
+        border-radius: 25px;
         padding: .5rem .8rem;
         margin: 0rem .5rem;
         color: var(--red-300);
@@ -240,6 +240,9 @@ const CalenderTitle = styled("div")`
     }
     .swipe{
         cursor: pointer;
+
+        @media screen and (max-width: 480px){
+        }
     }
 
     
@@ -256,35 +259,35 @@ const CalenderControlsWrapper = styled("div")`
 `;
  
 const CalenderMain = styled("div")`
+
+    .weekday-wrapper{
+        display:flex;
+        justify-content: space-around;
+        border-bottom: 1px solid var(--red-400);
+        padding: 0rem 0rem 1rem 0rem;
+        width: 100%;
+
+    }
+    .days-wrapper{
+        display:flex;
+        justify-content: space-evenly;
+        width: 100%;
         
-        .weekday-wrapper{
-            display:flex;
-            justify-content: space-around;
-            border-bottom: 1px solid var(--red-400);
-            padding: 0rem 0rem 1rem 0rem;
+        & .days{
+            position: relative;
+            border-bottom: 1px solid var(--grey-200);
+            border-right: 1px solid var(--grey-200);
+            text-align: center;
+            color: var(--grey-200);
+            cursor: pointer;
             width: 100%;
+            font-size: 1.5rem;
 
-        }
-        .days-wrapper{
-            display:flex;
-            justify-content: space-evenly;
-            width: 100%;
-            
-            & .days{
-                position: relative;
-                border-bottom: 1px solid var(--grey-200);
-                border-right: 1px solid var(--grey-200);
-                padding: 2.5rem 0rem;
-                text-align: center;
-                color: var(--grey-200);
-                cursor: pointer;
-                width: 100%;
-
-            &:nth-of-type(7n + 7) {
-                border-right: 0;
-              }
+        &:nth-of-type(7n + 7) {
+            border-right: 0;
             }
         }
+    }
         
         li{
             list-style: none;
@@ -303,7 +306,45 @@ const CalenderMain = styled("div")`
             height: 100%;
             width: 100%;
         }
-        
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            position: absolute;
+            top: 0;
+            background-color: var(--grey-200);
+            height: 100%;
+            width: 100%;
+
+
+            & .clockin-wrapper{
+                display: flex;
+                flex-wrap: wrap;
+                gap:.625rem;
+                justify-content: space-around;
+
+                ${desktopMidi}{
+                    gap: 0px;
+                }
+            }
+            & .icon{
+                align-self: center;
+            }
+            & .action{
+                display: flex;
+                gap: .5rem;
+                font-size: .65rem;
+                color: var(--grey-400);
+                cursor: pointer;
+
+
+            }
+            & .time{
+                color: var(--grey-300);
+                font-size: .65rem;
+                cursor: pointer;
+            }
+        }
         .reason-modal{
             position: absolute;
             display: flex;
@@ -326,15 +367,14 @@ const CalenderMain = styled("div")`
 
 const CalculateWrapper = styled("div")`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: .8rem;
     & .icon-wrapper{
         display: flex;
-        height: 35px;
-        width: 35px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
         box-shadow: -2px 2px 2px 2px var(--grey-100);
-        cursor: pointer;
 
         & .icon{
             align-self:center;
@@ -343,13 +383,12 @@ const CalculateWrapper = styled("div")`
         }
 
     }
-    h5{
-        color: var(--grey-400);
-    }
-   
     .date-wrapper{
         align-self:center;
     }
-   
 `;
+
+
+
+
 
