@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { styled } from "goober";
 import Spacer from "@/components/Spacer";
 import IntroVideoPlayerModal from "@/components/IntroVideoPlayerModal";
+import { ReactComponent as PlayCircle } from "@/assets/images/play-circle.svg";
 
 const Container = styled("div")`
   position: relative;
@@ -56,7 +57,7 @@ const IntroVideoCard = ({ title, date, previewImageUrl, videoUrl }) => {
             }}
             className="play-btn"
           >
-            <img src="/ess/images/play-circle.svg" />
+            <PlayCircle />
           </div>
         </div>
         <div className="foot-div">
