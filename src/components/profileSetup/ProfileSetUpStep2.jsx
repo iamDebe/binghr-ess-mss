@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "@/components/button";
 import {
@@ -7,11 +7,19 @@ import {
   UploadImageWrapper,
   FormLogoWrapper,
 } from "@/assets/wrappers";
-import location from "@/assets/images/location.svg";
+import { ReactComponent as LocationIcon } from "@/assets/images/location.svg";
 import { TextField, SelectField } from "@/components/forms";
+import { useSnapshot } from "valtio";
+import store from "@/services/store";
 
-const ProfileSetUpStep2 = ({setStep}) => {
-    return (
+const ProfileSetUpStep2 = ({setStep, step}) => {
+  const snapshot = useSnapshot(store);
+  const demographicInfo = snapshot?.demographicInformation;
+  useEffect(() => {
+    store.getDemographicInformation();
+  }, []);
+
+  return (
       <FormWrapper>
           <FormLogoWrapper>
             <img src="/ess/images/barter.svg" width="85" alt="barter" />
@@ -28,7 +36,7 @@ const ProfileSetUpStep2 = ({setStep}) => {
               label="Location"
               type="text"
               placeholder="Enter Location"
-              icon={location}
+              Icon={LocationIcon}
             />
             <TextField
               id="org1"
@@ -60,36 +68,47 @@ const ProfileSetUpStep2 = ({setStep}) => {
             />
             <SelectField id="religion" label="Religion">
               <option value="">Select Religion</option>
-              <option value="christian">Christian</option>
-              <option value="muslim">Muslim</option>
-              <option value="hindu">Hindu</option>
+              {demographicInfo?.religion?.map(item => {
+                return (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+                );
+              })}
             </SelectField>
           </InputsWrapper>
           <InputsWrapper>
             <SelectField id="gender" label="Gender">
               <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="nonBinary">Non-Binary</option>
+              {demographicInfo?.genders?.map(item => {
+                return (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+                );
+              })}
             </SelectField>
             <SelectField id="maritalStatus" label="Marital Status">
               <option value="">Select Marital Status</option>
-              <option value="single">Single</option>
-              <option value="married">Married</option>
-              <option value="divorce">Divorce</option>
+              {demographicInfo?.marital_status?.map(item => {
+                return (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+                );
+              })}
             </SelectField>
           </InputsWrapper>
           <InputsWrapper>
             <SelectField id="nationality" label="Nationality">
               <option value="">Select Nationality</option>
-              <option value="nigeria">Nigeria</option>
-              <option value="ghana">Ghana</option>
+              {demographicInfo?.nationality?.map(item => {
+                return (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+                );
+              })}
             </SelectField>
             <SelectField id="ethnicGroup" label="Ethnic Group Status">
               <option value="">Select Ethnic Group</option>
-              <option value="yoruba">Yoruba</option>
-              <option value="ibo">Ibo</option>
-              <option value="hausa">Hausa</option>
+              {demographicInfo?.ethnic_group?.map(item => {
+                return (
+                  <option key={item.id} value={item.id}>{item.name}</option>
+                );
+              })}
             </SelectField>
           </InputsWrapper>
           <Button
@@ -107,13 +126,13 @@ const ProfileSetUpStep2 = ({setStep}) => {
             to="/"
             className="back"
             onClick={() =>
-              setStep({ ...step, step1: true, step2: false, step3: false })
+              setStep({ ...step, step1: false, step2: false, step3: true })
             }
           >
             <p className="back">back</p>
           </Link>
       </FormWrapper>
-    );
+  );
 }
 
 export default ProfileSetUpStep2;

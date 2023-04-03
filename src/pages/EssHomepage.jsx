@@ -26,9 +26,7 @@ const EssHome = () => {
   const [onboardingViewIsVisible, setOnboardingViewIsVisible] = useState(false);
   const snapshot = useSnapshot(store);
   const personalInfo = snapshot?.personalInformation;
-  const jobInfo = snapshot?.jobInformation;
-
-  console.log(snapshot);
+  const orgData = snapshot?.orgData;
 
   useEffect(() => {
     store.getPersonalInformation();
@@ -102,15 +100,15 @@ const EssHome = () => {
                   </div>
                   <div className="row">
                     <p className="type-title3">Job</p>
-                    <p className="type-body2">{jobInfo?.[0].business_title}</p>
+                    <p className="type-body2">{orgData?.job}</p>
                   </div>
                   <div className="row">
                     <p className="type-title3">Department</p>
-                    <p className="type-body2">Design</p>
+                    <p className="type-body2">{orgData?.department}</p>
                   </div>
                   <div className="row">
                     <p className="type-title3">Hire Date</p>
-                    <p className="type-body2">{jobInfo?.[0].effective_start_date}</p>
+                    <p className="type-body2">{orgData?.hire_date}</p>
                   </div>
                 </EmployeeDetails>
               </EmployeeInfo>

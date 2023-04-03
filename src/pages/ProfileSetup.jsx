@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import OnboardingLayout from "@/components/OnboardingLayout";
-import ProfileSetUpStep1 from "@/components/ProfileSetUpStep1";
-import ProfileSetUpStep2 from "@/components/ProfileSetUpStep2";
-import ProfileSetUpStep3 from "@/components/ProfileSetUpStep3";
+import ProfileSetUpStep1 from "@/components/profileSetup/ProfileSetUpStep1";
+import ProfileSetUpStep2 from "@/components/profileSetup/ProfileSetUpStep2";
+import ProfileSetUpStep3 from "@/components/profileSetup/ProfileSetUpStep3";
 
 const profileSteps = {
-  step1: true,
+  step1: false,
   step2: false,
-  step3: false,
+  step3: true,
 };
 
   const ProfileSetup = () => {

@@ -11,7 +11,8 @@ const initialState = {
   documents: null,
   employmentProperties: null,
   security: null,
-  demographicInformation: null
+  demographicInformation: null,
+  orgData: null,
 };
 
 const store = proxy({
@@ -46,6 +47,26 @@ const store = proxy({
       }
     }
   },
+  async getDemographicInformation() {
+    if (!store.demographicInformation) {
+      try {
+        const response = await methods.get("/onboarding/demographic-information");
+        this.demographicInformation = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  async getOrgData() {
+    if (!store.orgData) {
+      try {
+        const response = await methods.get("/onboarding/employment-data");
+        this.orgData = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
   async getEmployeeOnLeave() {
     if (!store.employeeOnLeave) {
       try {
@@ -54,6 +75,29 @@ const store = proxy({
       } catch (error) {
         console.error(error);
       }
+    }
+  },
+  async postPersonalInfo(data) {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+      const response = await methods.post("/onboarding/profile", data, config);
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  },
+  async postOtherInfo(data) {
+    try {
+      const response = await methods.put("/onboarding/birth-information", data);
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error;
     }
   },
 });

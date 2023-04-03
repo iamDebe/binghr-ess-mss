@@ -64,7 +64,7 @@ export const Wrapper = styled("div")`
 `;
 
 
-const TextField = React.forwardRef(({ label, icon, optional, disabled, ...props }, ref) => {
+const TextField = React.forwardRef(({ label, Icon, optional, disabled, ...props }, ref) => {
   useEffect(()=>{
   }, [disabled]);
   return (
@@ -74,7 +74,7 @@ const TextField = React.forwardRef(({ label, icon, optional, disabled, ...props 
         {optional && <span>&nbsp;(Optional)</span>}
       </div>
       <input className="text-input" {...props} ref={ref} disabled={disabled} />
-      {icon && icon }
+      {Icon && <Icon/> }
     </Wrapper>
   );
 })

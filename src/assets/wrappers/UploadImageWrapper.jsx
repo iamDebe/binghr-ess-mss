@@ -1,5 +1,6 @@
 import { styled } from "goober";
 export const UploadImageWrapper = styled("div")`
+  cursor: pointer;
   .upload-title {
     display: flex;
     justify-content: space-between;

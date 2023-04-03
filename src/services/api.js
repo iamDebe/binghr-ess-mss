@@ -26,11 +26,16 @@ const get = async (url) => {
   return resp.data;
 };
 
-const post =async ({ url, data, config }) => {
-  const resp = await api.post(url, data);
+const post =async (url, data, config = {}) => {
+  const resp = await api.post(url, data, config);
   return resp.data;
 };
 
-const methods = {get, post};
+const put =async (url, data, config = {}) => {
+  const resp = await api.put(url, data, config);
+  return resp.data;
+};
+
+const methods = {get, post, put};
 
 export default methods;
