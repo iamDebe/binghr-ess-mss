@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { styled } from "goober";
-import { TopBarWrapper } from "@/pages/MyPay";
 import {
     DropdownWrapper, 
     IconsWrapper, 
@@ -8,8 +7,10 @@ import {
     ProfileSettingsWrapper, 
     ProxySearchWrapper, 
     SearchFieldWrapper, 
-    DropdownItemsWrapper 
-} from "@/pages/MyPay";
+    DropdownItemsWrapper,
+    TopBarWrapper,
+    RightHandSideWrapper
+} from "@/assets/wrappers/TopBarWithSearchWrapper";
 import SearchField from "@/components/forms/SearchField";
 import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
 import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
@@ -33,48 +34,51 @@ const TopBarWithSearch = () => {
                 <ProxyIcon width={50} />
                 <DropdownIcon  />
             </ProxySearchWrapper>
-            <SearchFieldWrapper>
-                <SearchField 
-                      id="search"
-                      type="search"
-                      placeholder="search"
-                
-                />
-            </SearchFieldWrapper>
-            <IconsWrapper>
-                <NotificationIcon  />
-                <SmsNotificationIcon />
-            </IconsWrapper>
-            <ProfileSettingsWrapper>
-                <MyProfileWrapper>
-                    <div className="img-wrapper"><ProfilePhoto /></div>
-                        <div >
-                            <a href="#" onClick={handleShowProfile}>
-                                Employee
-                            </a>
-                        </div>
-                    <div onClick={handleShowProfile}><DropdownIcon /></div>
-                </MyProfileWrapper>
-                <DropdownWrapper>
-                    {showProfileSettings && <ul className="dropdown-menu">
-                        <DropdownItemsWrapper>
-                            <UserIcon  className="dropdown-icon" />
-                            <li><a className="dropdown-item" href="/ess/profile"> My Profile</a></li>
-                        </DropdownItemsWrapper>
-                        <DropdownItemsWrapper>
-                            <ProgrammingIcon  className="dropdown-icon" />
-                            <li><a className="dropdown-item" href="#"> Proxy</a></li>
-                        </DropdownItemsWrapper>
-                        <DropdownItemsWrapper>
-                            <LogoutIcon  className="dropdown-icon" />
-                            <li><a className="dropdown-item logout" href="#"> Logout</a></li>
-                        </DropdownItemsWrapper>
-                    </ul> }
-                </DropdownWrapper>
-            </ProfileSettingsWrapper>
+            <RightHandSideWrapper>
+                <SearchFieldWrapper>
+                    <SearchField 
+                        id="search"
+                        type="search"
+                        placeholder="search"
+                    
+                    />
+                </SearchFieldWrapper>
+                <IconsWrapper>
+                    <NotificationIcon  />
+                    <SmsNotificationIcon />
+                </IconsWrapper>
+                <ProfileSettingsWrapper>
+                    <MyProfileWrapper>
+                        <div className="img-wrapper"><ProfilePhoto /></div>
+                            <div >
+                                <a href="#" onClick={handleShowProfile}>
+                                    Employee
+                                </a>
+                            </div>
+                        <div onClick={handleShowProfile}><DropdownIcon /></div>
+                    </MyProfileWrapper>
+                    <DropdownWrapper>
+                        {showProfileSettings && <ul className="dropdown-menu">
+                            <DropdownItemsWrapper>
+                                <UserIcon  className="dropdown-icon" />
+                                <li><a className="dropdown-item" href="/ess/profile"> My Profile</a></li>
+                            </DropdownItemsWrapper>
+                            <DropdownItemsWrapper>
+                                <ProgrammingIcon  className="dropdown-icon" />
+                                <li><a className="dropdown-item" href="#"> Proxy</a></li>
+                            </DropdownItemsWrapper>
+                            <DropdownItemsWrapper>
+                                <LogoutIcon  className="dropdown-icon" />
+                                <li><a className="dropdown-item logout" href="#"> Logout</a></li>
+                            </DropdownItemsWrapper>
+                        </ul> }
+                    </DropdownWrapper>
+                </ProfileSettingsWrapper>
+            </RightHandSideWrapper>
         </TopBarWrapper>
     </>
   )
 }
 
-export default TopBarWithSearch
+export default TopBarWithSearch;
+
