@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { styled } from "goober";
 import RoundIconBg from "@/components/RoundIconBg";
 
-const Container = styled("a")`
+const Container = styled(Link)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +24,7 @@ const Container = styled("a")`
 
 const MenuCard = ({ link, icon, iconBg, title }) => {
     return (
-        <Container href={link}>
+        <Container to={link}>
             <RoundIconBg bg={iconBg} icon={icon}/>
             <p className="menu-title">{title}</p>
         </Container>
