@@ -1,6 +1,6 @@
 import React from "react";
 import { CheckBox } from "@/components/forms";
-import Button from "@/components/Button";
+import Button from "@/components/button";
 import { HeaderText } from "@/components/onboarding/CommonStyles";
 import OnboardingTemplate from "@/components/onboarding/OnboardingTemplate";
 
