@@ -3,7 +3,7 @@ import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
 import Button from "@/components/button"
 import TopBarWithSearch from '@/components/TopBarWithSearch';
-import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg"
+import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg";
 import Calender from '@/components/Calender';
 import { desktopMidi, tablet } from '@/globalStyle';
 

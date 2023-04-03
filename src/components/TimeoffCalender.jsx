@@ -1,21 +1,23 @@
-import { styled } from 'goober';
 import React, { Fragment, useEffect, useState } from 'react';
+import { styled } from 'goober';
 import Button from "@/components/button";
 import {ReactComponent as NextIcon} from "@/assets/images/next.svg";
 import {ReactComponent as BackIcon} from "@/assets/images/back.svg";
-import {ReactComponent as ClockInIcon} from "@/assets/images/clockin.svg";
-import {ReactComponent as MealTImeIcon} from "@/assets/images/mealtime.svg";
-import {ReactComponent as MealEndIcon} from "@/assets/images/mealend.svg";
 import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
-
+import SelectField from '@/components/forms/SelectField';
+import TextAreaField from '@/components/forms/TextAreaField';
 import {desktopMidi} from "@/globalStyle";
 
-const Calender = () => {
+const timeOfReason = ["Select Time of Reason", "Sick Leave", "Vacation", "Honey Moon"];
 
-    const [showModal, setShowModal] = useState(false)
-    const [weeks, setWeeks] = useState([])
-    const [currentMonth, setCurrentMonth] = useState(0)
-    const [thisMonth, setThisMonth] = useState("")
+
+const TimeoffCalender = () => {
+ 
+    const [showModal, setShowModal] = useState(false);
+    const [weeks, setWeeks] = useState([]);
+    const [currentMonth, setCurrentMonth] = useState(0);
+    const [thisMonth, setThisMonth] = useState("");
+    const [toggleActive, setToggleActive] = useState(true);
     const handleShowModal = ()=>{
         setShowModal(!showModal);
     }
@@ -54,17 +56,12 @@ const Calender = () => {
 
 
             new Array(numBlankDays).fill('  ');
-
-            
-            
-
-            // 
-            
         
             // Create an array of days for the current month
             const monthDays = [...Array(numDaysInMonth).keys()].map(dd => { return{
                 day:dd+1,
                 clocked:false,
+                isActive: false,
                 clockedData:{}
             }});
 
@@ -92,12 +89,12 @@ const Calender = () => {
 
   
 
-    const updateClockInState =(outer, inner)=>{
-       
-       const newWeekData = [...weeks];
-       newWeekData[outer][inner].clocked = true;
-       setWeeks(newWeekData);
-      
+    const highlightTimeoffRange =(outer, inner)=>{
+        const newWeekData = [...weeks];
+        newWeekData[outer][inner].isActive = newWeekData[outer][inner].isActive === true ? false: true;
+        setWeeks(newWeekData);
+        setToggleActive(!toggleActive)
+
     }
 
     useEffect(()=>{
@@ -105,7 +102,6 @@ const Calender = () => {
     },[currentMonth])
 
     useEffect(()=>{
-        console.log(weeks)
     },[weeks])
       
   return (
@@ -145,30 +141,14 @@ const Calender = () => {
                     
                     {row.map((day, ii)=>(
 
-                        <li key={ii} className='days type-body5' 
+                        <li key={ii} className={`days type-body5` }
                             onClick={()=>{
-                            updateClockInState(index, ii)
-                        }}>
-                        {day.day} {day.clocked==true ? 
-                            <div className='overlay' onClick={handleShowModal} >
-                                <div  className='clockin-wrapper type-body3'>
-                                    <span className='action'><ClockInIcon  fill="var(--grey-400)"/>ClockIn In</span>
-                                    <span className='time'>09:01am</span>
-                                </div>
-                                <div className='clockin-wrapper type-body3'>
-                                    <span className='action'><MealTImeIcon />Meal Time</span>
-                                    <span className='time'>12:30pm</span>
-                                </div>
-                                <div className='clockin-wrapper type-body3'>
-                                    <span className='action'><MealEndIcon />Meal End</span>
-                                    <span className='time'>01:01pm</span>
-                                </div>
-                                <div className='clockin-wrapper type-body3'>
-                                    <span className='action'><ClockInIcon  fill="var(--grey-400)"/>Clock Out</span>
-                                    <span className='time'>05:20pm</span>
-                                </div>
-                            </div> 
-                        : ""  }
+                                highlightTimeoffRange(index, ii)
+                            }}>
+                            {day.day} {day.isActive ? 
+                                <div className="active" onClick={handleShowModal}>
+                                </div> 
+                            : ""  }
                         </li>
                     ))}
                     
@@ -176,27 +156,37 @@ const Calender = () => {
                 ) 
            })} 
            
-            {  showModal && <div className='calculate-modal'>
+            {showModal && <div className='reason-modal'>
                 <div>
                     <CalculateWrapper>
                         <div className='date-wrapper'>
-                            <div className='type-body3'>Wed, <span >1 Feb</span> - <span >Sun, </span><span >5 Feb</span></div>
+                           <h5 className='type-title2'>Time of Reason</h5>
                         </div>
-                        <div className="icon-wrapper">
+                        <div className="icon-wrapper"  onClick={handleShowModal}>
                             <RemoveIcon width={30} className="icon" />
                         </div>
                     </CalculateWrapper>
                    
                 </div>
+                <p className='type-title3 reason-month'>{thisMonth}</p>
+               <SelectField label="Reason" placeholder="hello">
+                {timeOfReason.map((title) => (
+                            <option key={title} value={title}>
+                            {title}
+                            </option>
+                        ))}
+                </SelectField>
+                <TextAreaField  label="Description" placeholder="Type here..." rows={5} cols={30} />
                 <Button 
                     type="button"
                     bg="var(--lilac-400)"
                     textcolor="var(--grey-25)"
                     className="submit-button"
                     padding=".5rem 1.2rem"
+                    margin="0rem 0rem 1rem 0rem"
                     onClick={handleShowModal}
                 >
-                    Calculate
+                    Request Approval
                 </Button>
                 </div>
             }
@@ -209,7 +199,12 @@ const Calender = () => {
   )
 }
 
-export default Calender;
+export default TimeoffCalender
+
+
+
+
+
 
 const Container = styled("div")`
     border: 1px solid var(--red-300);
@@ -303,43 +298,15 @@ const CalenderMain = styled("div")`
         }
        
         & .active {
-            background-color: var(--grey-100);
-        }
-        .overlay {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
             position: absolute;
             top: 0;
-            background-color: var(--grey-200);
+            background-color: var(--grey-50);
+            opacity: .8;
             height: 100%;
             width: 100%;
-
-
-            & .clockin-wrapper{
-                display: flex;
-                gap:10px;
-                justify-content: space-around;
-            }
-            & .icon{
-                align-self: center;
-            }
-            & .action{
-                display: flex;
-                gap: .5rem;
-                font-size: .65rem;
-                color: var(--grey-400);
-                cursor: pointer;
-
-
-            }
-            & .time{
-                color: var(--grey-300);
-                font-size: .65rem;
-                cursor: pointer;
-            }
         }
-        .calculate-modal{
+        
+        .reason-modal{
             position: absolute;
             display: flex;
             flex-direction: column;
@@ -347,24 +314,29 @@ const CalenderMain = styled("div")`
             top: 193px;
             right: 74px;
             background-color: white;
-            padding: 1rem;
+            padding: 1.5rem;
             border: 1px solid var(--grey-200);
             border-radius: var(--br);
             width: 18%;
             
+            
+        }
+        & .reason-month{
+            color: var(--grey-300);
         }
 `;
 
 const CalculateWrapper = styled("div")`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: .8rem;
     & .icon-wrapper{
         display: flex;
-        height: 40px;
-        width: 40px;
+        height: 35px;
+        width: 35px;
         border-radius: 50%;
         box-shadow: -2px 2px 2px 2px var(--grey-100);
+        cursor: pointer;
 
         & .icon{
             align-self:center;
@@ -373,8 +345,13 @@ const CalculateWrapper = styled("div")`
         }
 
     }
+    h5{
+        color: var(--grey-400);
+    }
+   
     .date-wrapper{
         align-self:center;
     }
+   
 `;
 

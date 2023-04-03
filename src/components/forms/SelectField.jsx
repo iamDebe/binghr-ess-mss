@@ -18,7 +18,7 @@ export const Wrapper = styled("div")`
     color: var(--grey-300);
     font-family: inherit;
     font-size: 12px;
-    padding: 0.5rem 2.4rem 0.5rem 1rem;
+    padding: 0.5rem 2rem 0.5rem 1rem;
     border: 0.5px solid var(--grey-200);
     border-radius: 2px;
     outline: none;
