@@ -7,7 +7,7 @@ const OnboardingLayout = ({ children }) => {
     <OnboardingWrapper>
       <div className="header">
         <Link to="/">
-          <img src="/images/logo.svg" width="113" alt="BingHR" />
+          <img src="/ess/images/logo.svg" width="113" alt="BingHR" />
         </Link>
       </div>
       {children}
