@@ -1,39 +1,53 @@
 import React from "react";
 import { TextField } from "@/components/forms";
-import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { ButtonGroups } from "@/components/onboarding/CommonStyles";
 import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
 import Button from "@/components/button";
-import { HeaderText } from "@/components/EssOnboarding/CommonStyles";
-import OnboardingTemplate from "./OnboardingTemplate";
+import { HeaderText } from "@/components/onboarding/CommonStyles";
+import OnboardingTemplate from "@/components/onboarding/OnboardingTemplate";
 
-function BankInformation({ continueAction, goBack, saveData }) {
+function EmergencyContact({ continueAction, goBack, saveData }) {
   return (
     <OnboardingTemplate>
       <div className="main-content">
         <HeaderText>
-          <p className="type-title3 title">Bank Account Information</p>
-          <p className="type-body2 sub-title">Bank Details</p>
+          <p className="type-title3 title">Emergency Contact Information</p>
+          <p className="type-body2 sub-title">Next of Kin</p>
         </HeaderText>
         <div className="form-wrapper">
           <TextField
-            id="bankname"
-            label="Bank Name"
+            id="firstname"
+            label="Next of Kin First Name"
             type="text"
-            placeholder="Enter Bank Name"
+            placeholder="Enter Next of Kin First Name"
             className="field-flex-basis"
           />
           <TextField
-            id="accountname"
-            label="Account Name"
+            id="firstname"
+            label="Next of Kin Last Name"
             type="text"
-            placeholder="Enter Account Name"
+            placeholder="Enter Next of Kin Last Name"
             className="field-flex-basis"
           />
           <TextField
-            id="accountnumber"
-            label="Account Number"
+            id="phoneNumber"
+            label="Telephone Number"
             type="text"
-            placeholder="Enter Account Number"
+            placeholder="Enter Telephone Number"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="homeAddress"
+            label="Home Address"
+            type="text"
+            placeholder="Enter Home Address"
+            className="field-flex-basis"
+          />
+          <TextField
+            id="office"
+            label="Office Address"
+            type="text"
+            placeholder="Enter Office Address"
             className="field-flex-basis"
           />
         </div>
@@ -71,4 +85,4 @@ function BankInformation({ continueAction, goBack, saveData }) {
   );
 }
 
-export default BankInformation;
+export default EmergencyContact;

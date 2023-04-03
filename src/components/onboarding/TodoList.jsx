@@ -1,10 +1,10 @@
 import React from "react";
 import { CheckBox } from "@/components/forms";
-import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { ButtonGroups } from "@/components/onboarding/CommonStyles";
 import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
 import Button from "@/components/button";
-import { HeaderText } from "@/components/EssOnboarding/CommonStyles";
-import OnboardingTemplate from "./OnboardingTemplate";
+import { HeaderText } from "@/components/onboarding/CommonStyles";
+import OnboardingTemplate from "@/components/onboarding/OnboardingTemplate";
 
 function TodoList({ continueAction, goBack, saveData }) {
   return (

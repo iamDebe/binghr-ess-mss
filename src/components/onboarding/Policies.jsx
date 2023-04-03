@@ -3,10 +3,10 @@ import { styled } from "goober";
 import CustomButton from "@/components/CustomButton";
 import { CheckBox, TextField } from "@/components/forms";
 import ContainerTopBorder from "@/components/ContainerTopBorder";
-import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { ButtonGroups } from "@/components/onboarding/CommonStyles";
 import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
 import Button from "@/components/button";
-import { Container, Inner, HeaderText } from "@/components/EssOnboarding/CommonStyles";
+import { Container, Inner, HeaderText } from "@/components/onboarding/CommonStyles";
 
 function Policies({ continueAction, goBack, saveData }) {
   const [showPayrollPolicyForm, setShowPayrollPolicyForm] = useState(false);

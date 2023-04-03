@@ -1,19 +1,20 @@
 import React from "react";
-import { TextField } from "@/components/forms";
-import { ButtonGroups } from "@/components/EssOnboarding/CommonStyles";
+import { CheckBox, TextField } from "@/components/forms";
+import { ButtonGroups } from "@/components/onboarding/CommonStyles";
 import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
 import Button from "@/components/button";
-import { HeaderText } from "@/components/EssOnboarding/CommonStyles";
-import OnboardingTemplate from "./OnboardingTemplate";
+import { HeaderText } from "@/components/onboarding/CommonStyles";
+import OnboardingTemplate from "@/components/onboarding/OnboardingTemplate";
 
-function AddressOne({ continueAction, goBack, saveData }) {
+function AddressTwo({ continueAction, goBack, saveData }) {
   return (
     <OnboardingTemplate>
       <div className="main-content">
         <HeaderText>
-          <p className="type-title3 title">Address Information 1</p>
-          <p className="type-body2 sub-title">Home Address</p>
+          <p className="type-title3 title">Address Information 2</p>
+          <p className="type-body2 sub-title">Mailing Address</p>
         </HeaderText>
+        <CheckBox label="Same as home address" />
         <div className="form-wrapper">
           <TextField
             id="street"
@@ -92,4 +93,4 @@ function AddressOne({ continueAction, goBack, saveData }) {
   );
 }
 
-export default AddressOne;
+export default AddressTwo;

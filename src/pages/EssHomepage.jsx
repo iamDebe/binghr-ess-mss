@@ -14,7 +14,7 @@ import { ReactComponent as SunIcon } from "@/assets/images/sun.svg";
 import { ReactComponent as WatchIcon } from "@/assets/images/watch.svg";
 import AuthWelcomeModal from "@/components/AuthWelcomeModal";
 import store from "@/services/store";
-import OnBoardingStepsContainer from "@/components/essOnboarding/OnBoardingStepsContainer";
+import OnBoardingStepsContainer from "@/components/onboarding/OnBoardingStepsContainer";
 import RoundIconBg from "@/components/RoundIconBg";
 import Tag from "@/components/Tag";
 import Button from "@/components/button";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Inner } from "@/components/EssOnboarding/CommonStyles";
+import { Container, Inner } from "@/components/onboarding/CommonStyles";
 
 function OnboardingTemplate({ children }) {
   return (

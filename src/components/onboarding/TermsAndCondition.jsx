@@ -1,8 +1,8 @@
 import React from "react";
 import { CheckBox } from "@/components/forms";
 import Button from "@/components/Button";
-import { HeaderText } from "@/components/EssOnboarding/CommonStyles";
-import OnboardingTemplate from "@/components/EssOnboarding/OnboardingTemplate";
+import { HeaderText } from "@/components/onboarding/CommonStyles";
+import OnboardingTemplate from "@/components/onboarding/OnboardingTemplate";
 
 function TermsAndCondition({ continueAction }) {
   return (
