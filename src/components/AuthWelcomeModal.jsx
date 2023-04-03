@@ -79,6 +79,7 @@ const AuthWelcomeModal = ({ clickAction, closeModal, isVisible = false }) => {
               textcolor="var(--grey-25)"
               className="button"
               onClick={() => clickAction()}
+              width="100%"
             >
               Continue
             </Button>

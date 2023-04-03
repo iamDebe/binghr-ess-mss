@@ -1,42 +1,33 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import Spacer from "@/components/Spacer";
 import IntroVideoPlayerModal from "@/components/IntroVideoPlayerModal";
 import { ReactComponent as PlayCircle } from "@/assets/images/play-circle.svg";
 
 const Container = styled("div")`
-  position: relative;
-  width: 168px;
-  border: none;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  margin-right: auto;
-  gap: 4;
-  @media only screen and (min-width: 375px) and (max-width: 969px) {
-    flex-wrap: wrap;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  gap: 0.75rem;
+  max-width: 168px;
+  .image-wrapper {
+    position: relative;
   }
-  img {
-    width: 100%;
-    height: 121px;
+  .video-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  .foot-div {
-    background: none;
-    line-height: 8;
-    padding-top: 10px;
+  .type-subtitle1 {
+    color: var(--grey-400);
   }
   .play-btn {
     cursor: pointer;
     position: absolute;
-    top: 12.5%;
-    left: 50%;
+    top: 33%;
+    left: 37.5%;
     height: 42px;
     width: 42px;
     z-index: 2;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
     color: white;
     .play-btn:hover {
       background: #eee;
@@ -49,7 +40,7 @@ const IntroVideoCard = ({ title, date, previewImageUrl, videoUrl }) => {
   return (
     <>
       <Container>
-        <div className="img-div">
+        <div className="image-wrapper">
           <img src={previewImageUrl} />
           <div
             onClick={() => {
@@ -60,9 +51,8 @@ const IntroVideoCard = ({ title, date, previewImageUrl, videoUrl }) => {
             <PlayCircle />
           </div>
         </div>
-        <div className="foot-div">
+        <div className="video-info-wrapper">
           <p className="type-title4">{title}</p>
-          <Spacer height={5} />
           <p className="type-subtitle1">Posted: {date}</p>
         </div>
       </Container>

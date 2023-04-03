@@ -133,9 +133,6 @@ const EmployeeAcctDetailWrapper = styled("div")`
     padding: 0.5rem .7rem;
     border-radius: .4rem;
     width: 100%;
-    
-
-   
 `;
 const EmployeeAcctDetail = styled("div")`
     width: 100%;
@@ -143,20 +140,15 @@ const EmployeeAcctDetail = styled("div")`
     display: flex;
     justify-content: space-between;
     margin: .5rem 0rem;
-    
-   
     span{
         color: #BBBEC3;
     }
-
-   
 `;
 const AccountStatementWrapper = styled("div")`
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     margin-top: 2rem;
-    
     ${mobile}{
         flex-wrap: wrap;
     }
