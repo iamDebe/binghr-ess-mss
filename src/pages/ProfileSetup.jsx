@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import OnboardingLayout from "@/components/OnboardingLayout";
 import ProfileSetUpStep1 from "@/components/profileSetup/ProfileSetUpStep1";
 import ProfileSetUpStep2 from "@/components/profileSetup/ProfileSetUpStep2";

@@ -23,4 +23,7 @@ export const FormWrapper = styled("form")`
     width: 100%;
     margin-top: 3.25rem;
   }
+  .textfield-width {
+    flex-basis: calc(50% - 9px);
+  }
 `;

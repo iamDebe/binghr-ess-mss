@@ -22,11 +22,6 @@ import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
 import { tablet, desktopMidi, mobile} from "@/globalStyle";
 import { Link } from "react-router-dom";
 
-
-
-
-
-
 const MyPay = () => {
     const [showProfileSettings, setShowProfileSettings] = useState(false);
     const [showPayroll, setShowPayroll] = useState(false);
@@ -35,14 +30,11 @@ const MyPay = () => {
         setShowProfileSettings(!showProfileSettings)
     }
     const handleShowPayrollStatement = ()=>{
-        setShowPayroll(!showPayroll)
-        setShowAccountStatement(false)
-
+        setShowPayroll(!showPayroll);
+        setShowAccountStatement(false);
     }
     const handleShowAccountStatement = ()=>{
-        setShowAccountStatement(!showAccountStatement)
-      
-
+        setShowAccountStatement(!showAccountStatement);
     }
 
     return (  
@@ -59,7 +51,6 @@ const MyPay = () => {
                             type="search"
                             placeholder="search"
                             // icon={<CalenderIcon className="input-icon icon" />}
-
                         />
                     </SearchFieldWrapper>    
                     <IconsWrapper>
@@ -105,7 +96,7 @@ const MyPay = () => {
                     >
                         View Payroll Statement
                     </Button>
-                { showPayroll &&
+                {showPayroll &&
                     <>
                         <TextFieldWrapper>
                             <TextField 
@@ -130,7 +121,7 @@ const MyPay = () => {
                             Enter
                         </Button>
                     </>
-                    }
+                }
                 </ButtonWrapper>
                 <ChartAndPayrollWrapper>
                     <ChartWrapper>
@@ -183,14 +174,11 @@ const SearchFieldWrapper = styled("div")`
     display: flex;
     align-self: center;
     margin: 0rem 1rem 0rem 10rem;
-
-    ${tablet}{
+    ${tablet} {
         margin: 0rem 1rem 0rem 5rem;
-
     }
-    ${mobile}{
+    ${mobile} {
         margin: 0rem 1rem 0rem 2rem;
-
     }
     
 `;
@@ -203,9 +191,9 @@ const IconsWrapper = styled("div")`
     display: flex;
     align-self: center;
     justify-content: center;
-        img{
-            padding: 0rem .2rem;
-        }
+    img{
+        padding: 0rem .2rem;
+    }
 `;
 const MyProfileWrapper = styled("div")`
     display: flex;
@@ -214,22 +202,21 @@ const MyProfileWrapper = styled("div")`
     background: transparent;
     padding: .2rem;
     border-radius: .5rem;
-   .img-wrapper {
+    .img-wrapper {
         border: 2px solid transparent;
         width: 40px;
         height: 40px;
         border-radius: 50%;
-
-    img{
-        height:100%;
-        width: 100%;
-        border-radius: 50%;
-    } 
-   }
-   a {
+        img {
+            height:100%;
+            width: 100%;
+            border-radius: 50%;
+        } 
+    }
+    a {
         margin: 0 .8rem;
         font-size: 12px;
-   }
+    }
     
 `;
 const DropdownWrapper = styled("div")`
@@ -237,35 +224,32 @@ const DropdownWrapper = styled("div")`
     top: 60px;
     left: 35px;
     width: 100%;
-   ul{
-    background-color: white;
-    border: 1px solid var(--grey-100);
-    list-style: none;
-    font-size: 12px;
-    padding: .4rem 1rem;
-    border-radius: .5rem;
-} 
-li{
-    padding: .5rem .5rem;
-    width: 100%
-}
-& .logout{
-    color: #EB5757;
-}
+    ul {
+        background-color: white;
+        border: 1px solid var(--grey-100);
+        list-style: none;
+        font-size: 12px;
+        padding: .4rem 1rem;
+        border-radius: .5rem;
+    } 
+    li {
+        padding: .5rem .5rem;
+        width: 100%
+    }
+    &.logout{
+        color: #EB5757;
+    }
 `;
 const DropdownItemsWrapper = styled("div")`
     display: flex;
     justify-content: start;
-
     & .dropdown-icon{
         margin-top: .3rem;
     }
-
 `;
 const ProfileSettingsWrapper = styled("div")`
    position: relative;
    margin-left: 2rem;
-
    ${mobile}{
      justify-content: end;
    }
@@ -283,18 +267,17 @@ const ChartWrapper = styled("div")`
     ${desktopMidi} {
         flex-wrap: nowrap;
         width: 50%;
-      }
-
+    }
     ${tablet} {
         flex-wrap: nowrap;
         justify-content: space-evenly;
         width: 80%;
-      }
+    }
     ${mobile} {
         flex-wrap: nowrap;
         justify-content: space-evenly;
         width: 100%;
-      }
+    }
 `;
 const SecondaryChartsWrapper = styled("div")`
     align-self: center;
@@ -305,27 +288,23 @@ const PayrollTableWrapper = styled("div")`
     border: 1px solid var(--grey-200);
     border-radius: .5rem;
     width: 55%;
-
     ${desktopMidi} {
         flex-wrap: nowrap;
         margin: 0rem;
-      }
-
+    }
     ${tablet} {
         flex-wrap: nowrap;
         width: 100%;
         margin: 0rem;
-      }
+    }
 `;
 const ChartAndPayrollWrapper = styled("div")`
     display: flex;
     gap: 1rem;
-    
     ${tablet} {
         flex-wrap: wrap;
-      }
+    }
 `;
 const ButtonWrapper = styled("div")`
     display: flex;
 `;
-
