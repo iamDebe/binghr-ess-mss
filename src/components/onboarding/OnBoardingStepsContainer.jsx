@@ -43,15 +43,14 @@ const Container = styled("div")`
   }
 `;
 
-const WelcomeSection = styled("div")`
+const welcomeSectionStyles = `
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.875rem;
   width: 100%;
-  background: ${(props) => props.userStepsDone == 8 ? "rgba(221, 245, 217, 0.28)" : "rgba(242, 233, 185, 0.28)"};
-  border: 0.5px solid ${(props) =>
-    props.userStepsDone == 8 ? "var(--green-2)" : "var(--yellow)"};
+  background: var(--welcome-bg-color);
+  border: 0.5px solid var(--welcome-border);
   border-radius: var(--br-lg);
   padding: 0.8125rem 1.625rem 0.8125rem 1.625rem;
   color: var(--grey-400);
@@ -82,9 +81,9 @@ const borderClass = css({
 });
 
 function OnBoardingStepsContainer({ onEndSteps = () => {} }) {
-  const [stepsPercentage, setStepsPercentage] = useState(80);
+  const [stepsPercentage, setStepsPercentage] = useState(10);
   const [allSteps, setAllSteps] = useState(8);
-  const [userStepsDone, setUserStepsDone] = useState(6);
+  const [userStepsDone, setUserStepsDone] = useState(1);
   const [activeStep, setActiveStep] = useState(1);
   const [borderWidth, setBorderWidth] = useState(0);
 
@@ -95,6 +94,16 @@ function OnBoardingStepsContainer({ onEndSteps = () => {} }) {
   const borderWidthClass = css({
     '--border-width': `${borderWidth}%`,
   }, borderClass);
+
+  const customStyles = `
+    --welcome-bg-color: ${userStepsDone == 8 ? "rgba(221, 245, 217, 0.28)" : "rgba(242, 233, 185, 0.28)"};
+    --welcome-border: ${userStepsDone == 8 ? "var(--green-2)" : "var(--yellow)"};
+  `;
+
+  const WelcomeSection = styled("div")`
+    ${welcomeSectionStyles}
+    ${customStyles}
+  `;
 
   return (
     <Container className={borderWidthClass}>

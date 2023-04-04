@@ -1,20 +1,30 @@
 import React from "react";
 import { styled } from "goober";
 
-const Container = styled("div")`
+const roundIconStyles = `
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     min-width: 2rem;
+    max-width: 2rem;
     min-height: 2rem;
-    background: ${props => props.bg};
-    color: ${props => props.textcolor};
+    max-height: 2rem;
+    background: var(--roundicon-bg);
+    color: var(--roundicon-text-color);
 `;
 
-const RoundIconBg = ({ icon, bg = "var(--grey-100)", textcolor="var(--grey-300)" }) => {
+const RoundIconBg = ({ icon, bg, textcolor }) => {
+    const customStyles = `
+    --roundicon-bg: ${bg || "var(--grey-100)"};
+    --roundicon-text-color: ${textcolor || "var(--grey-300)"};
+  `;
+  const Container = styled("div")`
+    ${roundIconStyles}
+    ${customStyles}
+  `;
     return (
-        <Container bg={bg} textcolor={textcolor}>
+        <Container>
             {icon}
         </Container>
     );
