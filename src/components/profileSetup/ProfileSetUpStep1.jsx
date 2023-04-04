@@ -7,21 +7,31 @@ import {
   FormLogoWrapper,
 } from "@/assets/wrappers";
 import { TextField, SelectField, CheckBox } from "@/components/forms";
+import { ReactComponent as CameraIcon } from "@/assets/images/camera.svg";
 import store from "@/services/store";
 import { useSnapshot } from "valtio";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { validateForm } from "@/utils/helpers";
 
 const ProfileSetUpStep1 = ({setStep, step}) => {
   const fileInputRef = useRef(null);
-  const [selectedAvatar, setSelectedAvatar] = useState(null);
   const snapshot = useSnapshot(store);
   const personalInfo = snapshot?.personalInformation;
+  const [selectedAvatar, setSelectedAvatar] = useState(personalInfo?.avatar);
+  const [suffix, setSuffix] = useState(personalInfo?.suffix);
   const nameTitle = ["Select Title", "Dr", "Mr.", "Mrs.", "Ms."];
+
+  console.log(suffix)
 
   useEffect(() => {
     store.getPersonalInformation();
   }, []);
+
+  useEffect(() => {
+    setSelectedAvatar(personalInfo?.avatar);
+    setSuffix(personalInfo?.suffix);
+  }, [personalInfo?.avatar, personalInfo?.suffix]);
 
   const getFirstLetter = (text) => {
     return text ? text.charAt(0).toUpperCase() : '';
@@ -42,12 +52,16 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
     reader.readAsDataURL(file);
   };
 
+  const handleSelectChange = (event) => {
+    setSuffix(event.target.value);
+  };
+
   const handleSubmit = async (e) => {
     // Prevent the browser from reloading the page
     e.preventDefault();
 
     if (!selectedAvatar) {
-      toast("Avatar is required");
+      toast.error("Avatar is required");
       return;
     }
 
@@ -55,17 +69,22 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
     const form = e.target;
     const formData = new FormData(form);
 
-    if (formData.get('suffix') === "Select Title") {
-      toast("Title is required");
+    const validationRules = {
+      suffix: { required: true },
+    };
+    const errors = validateForm(formData, validationRules);
+    if (Object.keys(errors).length > 0) {
+      const firstError = Object.values(errors)[0];
+      toast.error(firstError);
       return;
     }
+
     const resp = await store.postPersonalInfo(formData);
-    console.log(resp);
-    if (resp.errors) {
-      toast(resp.response.data.message)
-    } else {
-      toast(resp.message);
+    if (resp.status === "success") {
+      toast.success(resp.message);
       setStep({ ...step, step1: false, step2: true })
+    } else {
+      toast.error(resp.response.data.message)
     }
   }
 
@@ -87,11 +106,17 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
         )}
         <div className="upload-image-wrapper" onClick={() => {fileInputRef?.current.click()}}>
           <span className="upload-image-text">Upload</span>{" "}
-          <img src="/ess/images/camera.svg" />
+          <CameraIcon stroke="#292D32" />
         </div>
       </UploadImageWrapper>
       <InputsWrapper>
-        <SelectField id="title" name="suffix" label="Title">
+        <SelectField
+          id="title"
+          name="suffix"
+          value={suffix}
+          onChange={handleSelectChange}
+          label="Title"
+        >
           {nameTitle.map((title) => (
             <option key={title} value={title}>
               {title}
@@ -123,6 +148,7 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
           id="middleName"
           label="Middle Name"
           name="middlename"
+          defaultValue={personalInfo?.middlename}
           type="text"
           placeholder="Enter Middle Name"
         />
@@ -133,6 +159,7 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
           id="preferredFirstName"
           label="Preferred First Name"
           name="prefered_firstname"
+          defaultValue={personalInfo?.prefered_first_name}
           type="text"
           placeholder="Enter Preferred Name"
         />
@@ -141,6 +168,7 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
           id="preferredLastName"
           name="prefered_lastname"
           label="Preferred Last Name"
+          defaultValue={personalInfo?.preferred_last_name}
           type="text"
           placeholder="Enter Preferred Name"
         />

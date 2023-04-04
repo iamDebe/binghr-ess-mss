@@ -12,6 +12,8 @@ const initialState = {
   employmentProperties: null,
   security: null,
   demographicInformation: null,
+  countries: null,
+  states: {},
   orgData: null,
 };
 
@@ -77,6 +79,24 @@ const store = proxy({
       }
     }
   },
+  async getCountries() {
+    if (!store.countries) {
+      try {
+        const response = await methods.get("/countries");
+        this.countries = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  async getStates(countryId) {
+    try {
+      const response = await methods.get(`/states/${countryId}`);
+      this.states[countryId] = response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
   async postPersonalInfo(data) {
     try {
       const config = {
@@ -91,7 +111,7 @@ const store = proxy({
       return error;
     }
   },
-  async postOtherInfo(data) {
+  async postBirthInfo(data) {
     try {
       const response = await methods.put("/onboarding/birth-information", data);
       return response;
@@ -100,6 +120,15 @@ const store = proxy({
       return error;
     }
   },
+  async postDemographicInfo(data) {
+    try {
+      const response = await methods.put("/my-profile/demographic-information", data);
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
+  }
 });
 
 export default store;
