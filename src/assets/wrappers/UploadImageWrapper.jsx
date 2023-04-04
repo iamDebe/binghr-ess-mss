@@ -8,6 +8,9 @@ export const UploadImageWrapper = styled("div")`
     font-size: 18px;
     line-height: 23px;
   }
+  .step2-3 {
+    margin-bottom: 2.9375rem;
+  }
   .step-text {
     color: var(--red-400);
   }

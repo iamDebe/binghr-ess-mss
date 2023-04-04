@@ -77,9 +77,9 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
         <img src="/ess/images/barter.svg" width="85" alt="barter" />
       </FormLogoWrapper>
       <UploadImageWrapper>
-        <div className="upload-title">
-          <h3>Profile Setup</h3>
-          <h3 className="step-text">STEP 2 OF 3</h3>
+        <div className="upload-title step2-3">
+          <h3 className="type-title2">Profile Setup</h3>
+          <h3 className="step-text type-title3">STEP 2 OF 3</h3>
         </div>
       </UploadImageWrapper>
       <InputsWrapper>
@@ -199,6 +199,7 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
         bg="var(--lilac-400)"
         textcolor="var(--grey-25)"
         className="submit-button"
+        width="100%"
       >
         Continue
       </Button>

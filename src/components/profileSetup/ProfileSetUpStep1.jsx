@@ -95,8 +95,8 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
       </FormLogoWrapper>
       <UploadImageWrapper>
         <div className="upload-title">
-          <h3>Profile Setup</h3>
-          <h3 className="step-text">STEP 1 OF 3</h3>
+          <h3 className="type-title2">Profile Setup</h3>
+          <h3 className="step-text type-title3">STEP 1 OF 3</h3>
         </div>
         <input type="file" ref={fileInputRef} id="file" name="avatar" accept="image/*" onChange={handleAvatarChange} />
         {selectedAvatar ? (
@@ -179,6 +179,7 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
         bg="var(--lilac-400)"
         textcolor="var(--grey-25)"
         className="submit-button"
+        width="100%"
       >
         Continue
       </Button>
