@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "goober";
 import IntroVideoPlayerModal from "@/components/IntroVideoPlayerModal";
+import { ReactComponent as PlayCircle } from "@/assets/images/play-circle.svg";
 
 const Container = styled("div")`
   border-radius: 4px;
@@ -47,7 +48,7 @@ const IntroVideoCard = ({ title, date, previewImageUrl, videoUrl }) => {
             }}
             className="play-btn"
           >
-            <img src="/ess/images/play-circle.svg" />
+            <PlayCircle />
           </div>
         </div>
         <div className="video-info-wrapper">
