@@ -54,9 +54,6 @@ export const Container = styled("div")`
     bottom: 0;
     padding-left: 15px;
     padding-right: 15px;
-    .button {
-      width: 100%;
-    }
   }
 `;
 
