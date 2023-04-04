@@ -13,13 +13,16 @@ const Container = styled("div")`
     ${mobile} {
         display: flex;
     }
+    ${Button} {
+        max-height: 2.75rem;
+    }
 `;
 
 const MobileNav = ({ toggleSidebar }) => {
     return (
         <Container>
             <img src="/ess/images/barter.svg" width="85" alt="company-logo" />
-            <Button bg="none" onClick={toggleSidebar}>
+            <Button bg="none" width="2.75rem" onClick={toggleSidebar}>
                 <MenuIcon fill="#292D32" />
             </Button>
         </Container>
