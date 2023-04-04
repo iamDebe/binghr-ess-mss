@@ -24,6 +24,7 @@ const Main = styled("div")`
     }
     ${mobile} {
         width: 100% !Important;
+        padding: 1.25rem;
     }
 `;
 

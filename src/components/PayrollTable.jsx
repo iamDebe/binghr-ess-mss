@@ -77,19 +77,15 @@ const PayrollTable = () => {
                     placeholder="Enter Email"
                     icon={<EmailIcon  className="input-icon icon"/>}
                 />
-                <Button  
-                    type="button"
+                <Button
                     bg="var(--lilac-400)"
                     textcolor="var(--grey-25)"
-                    className="submit-button"
                 >
                     Send Copy To Email
                 </Button>
-                <Button  
-                    type="button"
+                <Button
                     bg="var(--white)"
                     textcolor="var(--lilac-400)"
-                    className="submit-button"
                     margin="1.5rem 0rem"
                     padding="0.625rem"
                     border="var(--lilac-400)"

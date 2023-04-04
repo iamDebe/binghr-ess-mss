@@ -91,8 +91,8 @@ const MyPay = () => {
                         onClick={handleShowPayrollStatement}
                         bg="var(--lilac-400)"
                         textcolor="var(--grey-25)"
-                        className="submit-button"
                         margin="3rem 0rem"
+                        width="11.75rem"
                     >
                         View Payroll Statement
                     </Button>
@@ -113,7 +113,6 @@ const MyPay = () => {
                             onClick={handleShowAccountStatement}
                             bg="var(--white)"
                             textcolor="var(--lilac-400)"
-                            className="submit-button"
                             margin="3rem 0rem"
                             padding="0.625rem 3rem"
                             border="var(--lilac-400)"
