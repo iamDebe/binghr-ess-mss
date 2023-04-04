@@ -22,8 +22,6 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
   const [suffix, setSuffix] = useState(personalInfo?.suffix);
   const nameTitle = ["Select Title", "Dr", "Mr.", "Mrs.", "Ms."];
 
-  console.log(suffix)
-
   useEffect(() => {
     store.getPersonalInformation();
   }, []);

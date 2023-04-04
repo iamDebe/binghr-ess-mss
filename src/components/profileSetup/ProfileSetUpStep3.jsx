@@ -41,7 +41,6 @@ const ProfileSetUpStep3 = ({setStep, step}) => {
 
   const handleSelectChange = (key, e) => {
     const value = e.target.value;
-    console.log(value);
     if (key === "country") {
       store.getStates(value);
       setSelectedCountryId(value);

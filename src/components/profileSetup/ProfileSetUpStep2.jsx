@@ -41,8 +41,6 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
     setSelectedValues({...selectedValues, [key]: event.target.value});
   };
 
-  console.log()
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Read the form data
