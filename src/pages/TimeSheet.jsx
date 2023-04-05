@@ -2,31 +2,27 @@ import React from 'react';
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
 import Button from "@/components/button"
-import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg";
+import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg"
 import Calender from '@/components/Calender';
-import { desktopMidi} from '@/globalStyle';
+import { desktopMidi } from '@/globalStyle';
 
 const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
-
-
   return (
     <EssLayout >
         <FlexColumnWrapper>
             <Container>
                 <BtnWrapper>
-                    <Button 
-                        type="button"
+                    <Button
                         bg="var(--lilac-400)"
                         textcolor="var(--grey-25)"
                         className="submit-button"
-                        width="--button-width"
-                        iconColor="white"
-                        leftIcon={<WatchIcon  />}
+                        width="8.75rem"
+                        iconcolor="var(--grey-25)"
+                        leftIcon={<WatchIcon />}
                     >
                         Clock In
                     </Button>
-                    <Button  
-                        type="button"
+                    <Button
                         bg="var(--white)"
                         textcolor="var(--lilac-400)"
                         className="submit-button"
@@ -88,7 +84,7 @@ const Container = styled("div")`
     flex-wrap: wrap;
     justify-content: space-between;
     gap: .5rem;
-    width: 100%;
+    width: 100%; 
 `;
 const BtnWrapper = styled("div")`
     display: flex;
@@ -123,10 +119,9 @@ const WeekWrapper = styled("div")`
     .wrapper label{
         display: flex;
         justify-content: space-around;
-     }
-
+    }
     ${desktopMidi}{
-        & .wrapper label{
+        .wrapper label{
            display: flex;
            justify-content: space-around;
         }
@@ -134,21 +129,21 @@ const WeekWrapper = styled("div")`
 `;
 const TotalWrapper = styled("div")`
     display: flex;
-    .total-wrapper{
+    .total-wrapper {
         background-color: var(--red-400);
         align-self: center;
         padding: .4rem;
         border-radius: .3rem;
+        label {
+            display: flex;
+            justify-content: space-around;
+        }
     }
-    .total-wrapper label{
-        display: flex;
-        justify-content: space-around;
-     }
     .total-label, .total-span{
         color: var(--grey-50);
     }
     ${desktopMidi}{
-        & .total-wrapper label{
+        .total-wrapper label{
            display: flex;
            justify-content: space-around;
         }

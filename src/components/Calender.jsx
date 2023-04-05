@@ -7,7 +7,7 @@ import {ReactComponent as ClockInIcon} from "@/assets/images/clockin.svg";
 import {ReactComponent as MealTImeIcon} from "@/assets/images/mealtime.svg";
 import {ReactComponent as MealEndIcon} from "@/assets/images/mealend.svg";
 import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
-import {desktopMidi, desktop} from "@/globalStyle";
+import { tablet, desktopMidi, desktop } from "@/globalStyle";
 
 const Calender = () => {
     
@@ -126,50 +126,67 @@ const Calender = () => {
                 <li className='type-title3 weekdays'>Sat</li>
                 <li className='type-title3 weekdays'>Sun</li>
             </div>
-            {weeks.map((row, index)=>{
-                    return (
-                    <div className='days-wrapper ' key={index}>
-                        {row.map((day, ii)=>(
-                            <li key={ii} className='days type-body5' 
-                                onClick={()=>{
-                                updateClockInState(index, ii)
-                                }}
-                                
-                            >
-                                {day.day} {day.clocked==true ? 
-                                    <div className='overlay' onClick={handleShowModal} >
-                                        <div  className='clockin-wrapper type-body3'>
-                                            <span className='action'><ClockInIcon  fill="var(--grey-400)"/>ClockIn In</span>
-                                            <span className='time'>09:01am</span>
-                                        </div>
-                                        <div className='clockin-wrapper type-body3'>
-                                            <span className='action'><MealTImeIcon />Meal Time</span>
-                                            <span className='time'>12:30pm</span>
-                                        </div>
-                                        <div className='clockin-wrapper type-body3'>
-                                            <span className='action'><MealEndIcon />Meal End</span>
-                                            <span className='time'>01:01pm</span>
-                                        </div>
-                                        <div className='clockin-wrapper type-body3'>
-                                            <span className='action'><ClockInIcon  fill="var(--grey-400)"/>Clock Out</span>
-                                            <span className='time'>05:20pm</span>
-                                        </div>
-                                    </div> 
-                                : ""  }
-                            </li>
-                        ))}
-                        
-                    </div >
-                    ) 
-            })} 
-            {showModal && 
+
+          
+            
+           {weeks.map((row, index)=>{
+               
+                return (
+                <div className='days-wrapper ' key={index}>
+                    
+                    {row.map((day, ii)=>(
+
+                        <li key={ii} className='days type-body5' 
+                            onClick={()=>{
+                            updateClockInState(index, ii)
+                        }}>
+                        {day.day} {day.clocked==true ? 
+                            <div className='overlay' onClick={handleShowModal} >
+                                <div  className='clockin-wrapper type-body3'>
+                                    <div className='action'>
+                                        <ClockInIcon fill="var(--grey-400)"/>
+                                        <span className="action-text calendar-overlay-title">ClockIn In</span>
+                                    </div>
+                                    <div className='time calendar-overlay-time'>09:01am</div>
+                                </div>
+                                <div className='clockin-wrapper type-body3'>
+                                    <div className='action'>
+                                        <MealTImeIcon />
+                                        <span className="action-text calendar-overlay-title">Meal Time</span>
+                                    </div>
+                                    <div className='time calendar-overlay-time'>12:30pm</div>
+                                </div>
+                                <div className='clockin-wrapper type-body3'>
+                                    <div className='action'>
+                                        <MealEndIcon />
+                                        <span className="action-text calendar-overlay-title">Meal End</span>
+                                    </div>
+                                    <div className='time calendar-overlay-time'>01:01pm</div>
+                                </div>
+                                <div className='clockin-wrapper type-body3'>
+                                    <div className='action'>
+                                        <ClockInIcon  fill="var(--grey-400)"/>
+                                        <span className="action-text calendar-overlay-title">Clock Out</span>
+                                    </div>
+                                    <div className='time calendar-overlay-time'>05:20pm</div>
+                                </div>
+                            </div> 
+                        : ""  }
+                        </li>
+                    ))}
+                    
+                </div >
+                ) 
+           })} 
+           
+            {showModal &&
                 <div className='calculate-modal'>
                     <CalculateWrapper>
                         <div className='date-wrapper'>
                             <div className='type-body3'>Wed, <span >1 Feb</span> - <span >Sun, </span><span >5 Feb</span></div>
                         </div>
-                        <div className="icon-wrapper">
-                            <RemoveIcon width={30} className="icon" onClick={handleShowModal} />
+                        <div className="icon-wrapper" onClick={handleShowModal}>
+                            <RemoveIcon width={30} className="icon" />
                         </div>
                     </CalculateWrapper>
                     <Button 
@@ -261,7 +278,7 @@ const CalenderMain = styled("div")`
         display:flex;
         justify-content: space-evenly;
         width: 100%;
-        .days{
+        .days {
             position: relative;
             border-bottom: 1px solid var(--grey-200);
             border-right: 1px solid var(--grey-200);
@@ -271,8 +288,8 @@ const CalenderMain = styled("div")`
             width: 100%;
             padding: 1.5rem 0rem;
             font-size: 1.5rem;
-        &:nth-of-type(7n + 7) {
-            border-right: 0;
+            &:nth-of-type(7n + 7) {
+                border-right: 0;
             }
         }
     }
@@ -320,10 +337,15 @@ const CalenderMain = styled("div")`
                 font-size: .65rem;
                 color: var(--grey-400);
                 cursor: pointer;
+                .action-text {
+                    ${tablet}  {
+                        display: none;
+                    }
+                }
+
             }
             .time{
                 color: var(--grey-300);
-                font-size: .65rem;
                 cursor: pointer;
             }
         }
@@ -363,6 +385,7 @@ const CalculateWrapper = styled("div")`
         height: 40px;
         width: 40px;
         border-radius: 50%;
+        cursor: pointer;
         box-shadow: -2px 2px 2px 2px var(--grey-100);
 
         .icon{

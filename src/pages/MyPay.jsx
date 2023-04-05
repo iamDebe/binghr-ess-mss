@@ -34,8 +34,7 @@ const MyPay = () => {
         <EssLayout>
             <FlexColumnWrapper>
                 <ButtonWrapper>
-                    <Button  
-                        type="button"
+                    <Button
                         onClick={handleShowPayrollStatement}
                         bg="var(--lilac-400)"
                         textcolor="var(--grey-25)"
@@ -83,9 +82,8 @@ const MyPay = () => {
                 </ChartAndPayrollWrapper>
             </FlexColumnWrapper>
         </EssLayout>
-    );
-       
-}
+    );    
+};
  
 export default MyPay;
 
