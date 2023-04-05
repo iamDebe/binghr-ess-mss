@@ -76,10 +76,13 @@ const PayrollTable = () => {
                     type="email"
                     placeholder="Enter Email"
                     icon={<EmailIcon  className="input-icon icon"/>}
+
                 />
                 <Button
                     bg="var(--lilac-400)"
                     textcolor="var(--grey-25)"
+                    width="--button-width"
+
                 >
                     Send Copy To Email
                 </Button>
@@ -87,9 +90,9 @@ const PayrollTable = () => {
                     bg="var(--white)"
                     textcolor="var(--lilac-400)"
                     margin="1.5rem 0rem"
-                    padding="0.625rem 1rem"
                     border="var(--lilac-400)"
-                    rightIcon={<PrintIcon fill='var(--lilac-400)' />}
+                    width="--button-width"
+                    rightIcon={<PrintIcon fill='var(--button-svg-color)' />}
                    
                 >
                     Print Statement 

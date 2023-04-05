@@ -50,12 +50,12 @@ const TopBarWithSearch = () => {
                 <ProfileSettingsWrapper>
                     <MyProfileWrapper>
                         <div className="img-wrapper"><ProfilePhoto /></div>
-                            <div >
-                                <a href="#" onClick={handleShowProfile}>
-                                    Employee
-                                </a>
-                            </div>
-                        <div onClick={handleShowProfile}><DropdownIcon /></div>
+                        <div >
+                            <a href="#" onClick={handleShowProfile}>
+                                Employee
+                            </a>
+                        </div>
+                        <div onClick={handleShowProfile} className="drop-down-icon"><DropdownIcon /></div>
                     </MyProfileWrapper>
                     <DropdownWrapper>
                         {showProfileSettings && <ul className="dropdown-menu">
