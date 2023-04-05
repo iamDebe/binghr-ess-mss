@@ -15,7 +15,7 @@ import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
 import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
 import { ReactComponent as NotificationIcon } from "@/assets/images/bell.svg";
 import { ReactComponent as SmsNotificationIcon } from "@/assets/images/sms-notification.svg";
-import { ReactComponent as ProfilePhoto } from "@/assets/images/ProfilePhoto.svg";
+import { ReactComponent as ProfilePhoto } from "@/assets/images/profile-img.svg";
 import { ReactComponent as UserIcon } from "@/assets/images/user.svg";
 import { ReactComponent as ProgrammingIcon } from "@/assets/images/programming-arrow.svg";
 import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
@@ -104,8 +104,7 @@ const MyPay = () => {
                                 label="Year/Month"
                                 type="date"
                                 placeholder="Select Month/Year"
-                                icon={<CalenderIcon  className="input-icon icon" />}
-
+                                icon={<CalenderIcon className="input-icon icon" />}
                             />
                         </TextFieldWrapper>
                         <Button  
@@ -206,9 +205,9 @@ const MyProfileWrapper = styled("div")`
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        img {
-            height:100%;
-            width: 100%;
+        svg {
+            height: 40px;
+            width: 40px;
             border-radius: 50%;
         } 
     }
