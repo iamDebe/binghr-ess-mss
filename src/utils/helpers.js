@@ -53,3 +53,22 @@ export const decryptToken = async () => {
 
   return null;
 }
+
+export const validateForm = (formData, validationRules) => {
+  const errors = {};
+  for (const field in validationRules) {
+    const rules = validationRules[field];
+    const value = formData.get(field);
+
+    // Check if the field is required
+    if (rules.required && !value) {
+      errors[field] = `${field} is required`;
+    }
+
+    // Check if the field matches a regex pattern
+    if (rules.pattern && value && !rules.pattern.test(value)) {
+      errors[field] = `${field} is invalid`;
+    }
+  }
+  return errors;
+};

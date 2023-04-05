@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "goober";
 import ModalPortal from "@/components/ModalPortal";
+import { ReactComponent as CloseIcon } from "@/assets/images/close-icon.svg";
 
 export const Container = styled("div")`
   background-color: rgba(38, 38, 38, 0.75);
@@ -43,7 +44,7 @@ const IntroVideoPlayerModal = ({ closeModal, isVisible = false, videoUrl }) => {
             }}
             className="cancel-icon"
           >
-            <img src="/ess/images/close-icon.svg" />
+            <CloseIcon />
           </div>
         </div>
         <video width="90%" height="90%" controls className="video">

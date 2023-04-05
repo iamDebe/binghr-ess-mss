@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "goober";
+import { ReactComponent as CheckIcon } from "@/assets/images/checkmark.svg";
 
 const Container = styled("div")`
   position: relative;
@@ -11,7 +12,6 @@ const Container = styled("div")`
     height: 1px;
     width: 60px;
     margin-top: 10px;
-    left: 10%;
     @media only screen and (min-width: 375px) and (max-width: 969px) {
       width: 20px;
     }
@@ -37,32 +37,27 @@ const ProgressBarWithSteps = () => {
     <Container>
       <ul className="progress-num">
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
         <div className="progress-bar"></div>
-
         <li>
-          <img src="/ess/images/checkmark.svg" />
+          <CheckIcon />
         </li>
       </ul>
     </Container>
