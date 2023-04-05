@@ -5,6 +5,7 @@ import ProfileSetup from "@/pages/ProfileSetup";
 import MyPay from "@/pages/MyPay";
 import MyTimeOff from "@/pages/MyTimeoff";
 import TimeSheet from "@/pages/TimeSheet"; 
+import OrgChart from "@/pages/OrgChart";
 window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {
@@ -16,6 +17,7 @@ function Main() {
         <Route path="/ess/profile" element={<ProfileSetup />} />
         <Route path="/ess/my-pay" element={<MyPay />} />
         <Route path="/ess/my-timeoff" element={<MyTimeOff />} />
+        <Route path="/ess/orgchart" element={<OrgChart />} />
         <Route path="*" element={<Navigate to="/ess" replace />} />
       </Routes>
     </Router>

@@ -144,7 +144,7 @@ const navItems = [
     title: "Timesheet",
   },
   {
-    to: "/",
+    to: "/ess/orgchart",
     icon: <ChartIcon />,
     title: "Org Chart",
   },
