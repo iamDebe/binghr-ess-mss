@@ -87,7 +87,7 @@ const PayrollTable = () => {
                 <Button
                     bg="var(--white)"
                     textcolor="var(--lilac-400)"
-                    margin="1.5rem 0rem"
+                    margin="0.875rem 0 0"
                     border="var(--lilac-400)"
                     width="10rem"
                     rightIcon={<PrintIcon fill='var(--button-svg-color)' />}
@@ -161,8 +161,12 @@ const Container = styled("div")`
 const EmailWrapper = styled("div")`
     width: 100%;
     margin-top: 2rem;
+    --textfield-width: 90%;
+    --textfield-margin-bottom: 1.25rem;
 `;
 const AccountStatementSingle = styled("div")`
     width: 100%;
+    ${mobile} {
+        margin-top: 0.875rem;
+    }
 `;
-
