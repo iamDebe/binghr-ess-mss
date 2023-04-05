@@ -19,9 +19,12 @@ export const TopBarWrapper = styled("div")`
   box-sizing: border-box;
 
 
-  @media screen and (max-width: 976px){
-    flex-wrap: wrap;
-  }
+
+  @media screen and (max-width: 574px){
+    padding: 0rem;
+    border: none;
+    gap: 40px;
+   }
 `;
 export const ProxySearchWrapper = styled("div")`
     display: flex;
@@ -32,9 +35,10 @@ export const ProxySearchWrapper = styled("div")`
       flex: .5;
     }
 
-    @media screen and (max-width: 507px){
-      display: none;
-     }
+    @media screen and (max-width: 976px){
+      display:none;
+    }
+  
    
 `;
 
@@ -44,24 +48,22 @@ export const RightHandSideWrapper = styled("div")  `
     flex-wrap: nowrap;
     flex: 1;
     
-    @media screen and (max-width: 567px){
-        justify-content: start;
-        width: 100%;
+
+    @media screen and (max-width: 574px){
+      justify-content: space-between;
+      gap: 30px
+      
      }
+
+   
+
+   
      @media screen and (max-width: 490px){
       justify-content: space-between;
 
    }
-    @media screen and (max-width: 375px){
-      justify-content: center;
-        
-     }
-     
-
-    
-
    
-
+     
     
 `;
 export const SearchFieldWrapper = styled("div")`
@@ -71,10 +73,13 @@ export const SearchFieldWrapper = styled("div")`
 
     @media screen and (max-width: 567px){
       width: 35%;
+      flex: .8;
      }
-    @media screen and (max-width: 499px){
-        display: none;
+     @media screen and (max-width: 574px){
+      flex: .8;
      }
+
+
   
      
 
@@ -92,6 +97,14 @@ export const TextFieldWrapper = styled("div")`
     align-self: center;
     margin: .5rem 2rem 0rem 1rem;
     width: 30%;
+    
+    @media screen and (max-width: 592px){
+     flex: 1;
+      
+     }
+   
+
+     
 `;
 export const IconsWrapper = styled("div")`
     display: flex;
@@ -99,13 +112,18 @@ export const IconsWrapper = styled("div")`
     gap: 10px;
     justify-content: space-between;
 
-    @media screen and (max-width: 567px){
-      gap: 5px;
+
+    @media screen and (max-width: 574px){
+      gap:10px;
+      margin-left: auto;
+      
      }
 
-     @media screen and (max-width: 375px){
-      width: 25%;
-   }
+   
+
+     
+
+     
      
 `;
 export const MyProfileWrapper = styled("div")`
@@ -143,15 +161,18 @@ export const MyProfileWrapper = styled("div")`
 
         }
    }
-
-   @media screen and (max-width: 567px){
-    flex: 0;
+   .drop-down-icon{
+    @media screen and (max-width: 866px){
+      display: none;
+     }
+    @media screen and (max-width: 766px){
+      display: block;
+     }
    }
-   @media screen and (max-width: 375px){
-    justify-content: start;
-    gap: 5px;
+   @media screen and (max-width: 574px){
+    display: none;
    }
-   
+  
   
     
 `;
@@ -243,6 +264,8 @@ export const PayrollTableWrapper = styled("div")`
 export const ChartAndPayrollWrapper = styled("div")`
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
+    
     
     ${tablet} {
         flex-wrap: wrap;
@@ -250,4 +273,23 @@ export const ChartAndPayrollWrapper = styled("div")`
 `;
 export const ButtonWrapper = styled("div")`
     display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+
+    
+
+   
+
+    @media screen and (max-width: 376px){
+      gap: 10px;
+     }
+
+    @media screen and (max-width: 352px){
+      flex-wrap: wrap;
+     }
+     
+
+    
 `;

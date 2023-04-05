@@ -46,7 +46,7 @@ const MyPay = () => {
                             >
                                 View Payroll Statement
                             </Button>
-                            {showPayroll &&
+                        {showPayroll &&
                             <>
                                 <TextFieldWrapper>
                                     <TextField 
@@ -68,7 +68,7 @@ const MyPay = () => {
                                 Enter
                                 </Button>
                             </>
-                            }
+                        }
                         </ButtonWrapper>
                         <ChartAndPayrollWrapper>
                             <ChartWrapper>
