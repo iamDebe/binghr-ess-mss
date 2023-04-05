@@ -22,8 +22,9 @@ const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
                             bg="var(--lilac-400)"
                             textcolor="var(--grey-25)"
                             className="submit-button"
-                            padding=".5rem 1.2rem"
-                            leftIcon={<WatchIcon  fill="white" />}
+                            width="--button-width"
+                            iconColor="white"
+                            leftIcon={<WatchIcon  />}
                         >
                             Clock In
                         </Button>

@@ -9,6 +9,7 @@ import {ReactComponent as MealEndIcon} from "@/assets/images/mealend.svg";
 import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 
 import {desktopMidi} from "@/globalStyle";
+import { desktop } from '../globalStyle';
 
 const Calender = () => {
 
@@ -179,27 +180,25 @@ const Calender = () => {
            })} 
            
             {  showModal && <div className='calculate-modal'>
-                <div>
-                    <CalculateWrapper>
-                        <div className='date-wrapper'>
-                            <div className='type-body3'>Wed, <span >1 Feb</span> - <span >Sun, </span><span >5 Feb</span></div>
-                        </div>
-                        <div className="icon-wrapper">
-                            <RemoveIcon width={30} className="icon" />
-                        </div>
-                    </CalculateWrapper>
-                   
-                </div>
-                <Button 
-                    type="button"
-                    bg="var(--lilac-400)"
-                    textcolor="var(--grey-25)"
-                    className="submit-button"
-                    padding=".5rem 1.2rem"
-                    onClick={handleShowModal}
-                >
-                    Calculate
-                </Button>
+                        
+                        <CalculateWrapper>
+                            <div className='date-wrapper'>
+                                <div className='type-body3'>Wed, <span >1 Feb</span> - <span >Sun, </span><span >5 Feb</span></div>
+                            </div>
+                            <div className="icon-wrapper">
+                                <RemoveIcon width={30} className="icon" />
+                            </div>
+                        </CalculateWrapper>
+                        <Button 
+                            type="button"
+                            bg="var(--lilac-400)"
+                            textcolor="var(--grey-25)"
+                            className="submit-button"
+                            onClick={handleShowModal}
+                            width="--button-width"
+                        >
+                            Calculate
+                        </Button>
                 </div>
             }
            
@@ -297,6 +296,7 @@ const CalenderMain = styled("div")`
             color: var(--grey-200);
             cursor: pointer;
             width: 100%;
+            padding: 1.5rem 0rem;
             font-size: 1.5rem;
 
         &:nth-of-type(7n + 7) {
@@ -367,15 +367,26 @@ const CalenderMain = styled("div")`
             padding: 1rem;
             border: 1px solid var(--grey-200);
             border-radius: var(--br);
-            width: 18%;
+
+            ${desktop}{
+                width: 20%;
+            }
+
+            @media screen and (max-width: 780px){
+                width: 30%;
+            }
+            @media screen and (max-width: 542px){
+                width: 50%;
+            }
             
         }
 `;
 
 const CalculateWrapper = styled("div")`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: .8rem;
+    width: 100%;
     & .icon-wrapper{
         display: flex;
         height: 40px;
