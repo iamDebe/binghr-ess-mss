@@ -1,9 +1,7 @@
-import React, { Children, useState } from 'react';
-import EssLayout from "@/components/EssLayout"
-import TopBarWithSearch from "@/components/TopBarWithSearch"
+import React, { useState } from 'react';
+import EssLayout from "@/components/EssLayout";
 import EmployeeCard from '@/components/EmployeeCard';
-import { ReactComponent as ProfilePhoto } from "@/assets/images/ProfilePhoto.svg";
-
+import { ReactComponent as ProfilePhoto } from "@/assets/images/profile-img.svg";
 import { styled } from 'goober';
 import { mobileSmall } from '@/globalStyle';
 
@@ -20,70 +18,52 @@ const OrgChart = () => {
     }
 
   return (
-    <>
-        <EssLayout>
-            <TopBarWithSearch />
-                <OrgChartWrapper>
-                {showSeniorStaff &&
-                        <ChildrenWrapper>
-                            <EmployeeCard 
-                            // topIcon={<CollapseUp />}
-                            name={"Akinkpelumi"}
-                            photo={<ProfilePhoto />}
-                            title={"UX Lead"}
-                            department={"Product"}
-                           
-                            // bottomIcon={<CollapseDown />}
-                                />
-                            <EmployeeCard 
-                            // topIcon={<CollapseUp />}
-                            name={"Akinkpelumi"}
-                            photo={<ProfilePhoto />}
-                            title={"UX Lead"}
-                            department={"Product"}
-                           
-                            // bottomIcon={<CollapseDown />}
-                            />
-                        </ChildrenWrapper>
-                    }
-                    <ParentWrapper >
-                        <EmployeeCard 
-                            handleSeniorStaffVisibility={handleSeniorStaffVisibility}
-                            name={"Mojo Face"}
-                            photo={<ProfilePhoto />}
-                            title={"UX Lead"}
-                            department={"Product"}
-                            handleJuniorStaffVisibility={handleJuniorStaffVisibility}
+    <EssLayout>
+        <OrgChartWrapper>
+            {showSeniorStaff &&
+                <ChildrenWrapper>
+                    <EmployeeCard 
+                    name={"Akinkpelumi"}
+                    photo={<ProfilePhoto />}
+                    title={"UX Lead"}
+                    department={"Product"}
                         />
-                    </ParentWrapper>
-                        
-                        
-                    {showJuniorStaff &&
-                        <ChildrenWrapper>
-                            <EmployeeCard 
-                            // topIcon={<CollapseUp />}
-                            name={"Golden Moses"}
-                            photo={<ProfilePhoto />}
-                            title={"UX Lead"}
-                            department={"Product"}
-                           
-                            // bottomIcon={<CollapseDown />}
-                                />
-                            <EmployeeCard 
-                            // topIcon={<CollapseUp />}
-                            name={"Golden Moses"}
-                            photo={<ProfilePhoto />}
-                            title={"UX Lead"}
-                            department={"Product"}
-                           
-                            // bottomIcon={<CollapseDown />}
-                            />
-                        </ChildrenWrapper>
-                    }
-                        
-                </OrgChartWrapper>
-        </EssLayout>
-    </>
+                    <EmployeeCard 
+                    name={"Akinkpelumi"}
+                    photo={<ProfilePhoto />}
+                    title={"UX Lead"}
+                    department={"Product"}
+                    />
+                </ChildrenWrapper>
+            }
+            <ParentWrapper >
+                <EmployeeCard 
+                    handleSeniorStaffVisibility={handleSeniorStaffVisibility}
+                    name={"Mojo Face"}
+                    photo={<ProfilePhoto />}
+                    title={"UX Lead"}
+                    department={"Product"}
+                    handleJuniorStaffVisibility={handleJuniorStaffVisibility}
+                />
+            </ParentWrapper>
+            {showJuniorStaff &&
+                <ChildrenWrapper>
+                    <EmployeeCard 
+                    name={"Golden Moses"}
+                    photo={<ProfilePhoto />}
+                    title={"UX Lead"}
+                    department={"Product"}
+                        />
+                    <EmployeeCard 
+                    name={"Golden Moses"}
+                    photo={<ProfilePhoto />}
+                    title={"UX Lead"}
+                    department={"Product"}
+                    />
+                </ChildrenWrapper>
+            }
+        </OrgChartWrapper>
+    </EssLayout>
   )
 }
 
@@ -97,7 +77,6 @@ const OrgChartWrapper = styled("div")`
     gap: 5rem;
     margin-top: 2rem;
     padding: 1rem;
-
     ${mobileSmall}{
         gap: 2rem;
     }
@@ -111,7 +90,6 @@ const ChildrenWrapper = styled("div")`
     display: flex;
     justify-content: center;
     gap: 5rem;
-
     ${mobileSmall}{
         gap: 2rem;
         flex-wrap: wrap;

@@ -1,8 +1,7 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { styled } from 'goober';
 import { ReactComponent as CollapseDown } from "@/assets/images/collapse-down.svg";
 import { ReactComponent as CollapseUp } from "@/assets/images/collapse-up.svg";
-import { mobileSmall } from '../globalStyle';
 
 
 

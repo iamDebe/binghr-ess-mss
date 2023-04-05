@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import EssLayout from "@/components/EssLayout";
-import TopBarWithSearch from "@/components/TopBarWithSearch";
 import Button from "@/components/button";
-import { ButtonWrapper } from '@/assets/wrappers/TopBarWithSearchWrapper';
 import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg";
-import TimeoffCalender from '@/components/TimeoffCalender';
+import TimeoffCalender from '@/components/TimeoffCalender'
 import { styled } from 'goober';
 
 
@@ -20,7 +18,6 @@ const MyTimeOff = () => {
   return (
     <>
         <EssLayout>
-          <TopBarWithSearch />
             <ButtonWrapper>
               <Button 
                 type="button"
@@ -44,3 +41,6 @@ const MyTimeOff = () => {
 
 export default MyTimeOff;
 
+const ButtonWrapper = styled("div")`
+    width: 20%;
+`;

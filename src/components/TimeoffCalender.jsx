@@ -7,7 +7,7 @@ import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 import SelectField from '@/components/forms/SelectField';
 import TextAreaField from '@/components/forms/TextAreaField';
 import {desktopMidi} from "@/globalStyle";
-import { mobile, tablet } from '../globalStyle';
+import { mobile, tablet } from '@/globalStyle';
 
 const timeOfReason = ["Select Time of Reason", "Sick Leave", "Vacation", "Honey Moon"];
 
@@ -283,6 +283,7 @@ const CalenderMain = styled("div")`
             color: var(--grey-200);
             cursor: pointer;
             width: 100%;
+            padding: 1.5rem 0rem;
             font-size: 1.5rem;
 
         &:nth-of-type(7n + 7) {
