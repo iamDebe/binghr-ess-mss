@@ -7,6 +7,7 @@ import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 import SelectField from '@/components/forms/SelectField';
 import TextAreaField from '@/components/forms/TextAreaField';
 import {desktopMidi} from "@/globalStyle";
+import { mobile, tablet } from '../globalStyle';
 
 const timeOfReason = ["Select Time of Reason", "Sick Leave", "Vacation", "Honey Moon"];
 
@@ -182,6 +183,7 @@ const TimeoffCalender = () => {
                     className="submit-button"
                     padding=".5rem 1.2rem"
                     margin="0rem 0rem 1rem 0rem"
+                    width="--button-width"
                     onClick={handleShowModal}
                 >
                     Request Approval
@@ -356,8 +358,23 @@ const CalenderMain = styled("div")`
             padding: 1.5rem;
             border: 1px solid var(--grey-200);
             border-radius: var(--br);
-            width: 18%;
+            width: 20%;
             
+            ${desktopMidi}{
+                width: 30%;
+            }
+            ${mobile}{
+                width: 40%;
+            }
+
+            @media screen and (max-width: 566px){
+                width: 40%;
+                padding: 1rem;
+            }
+            @media screen and (max-width: 476px){
+                width: 60%;
+                padding: .7rem;
+            }
             
         }
         & .reason-month{
@@ -367,7 +384,7 @@ const CalenderMain = styled("div")`
 
 const CalculateWrapper = styled("div")`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: .8rem;
     & .icon-wrapper{
         display: flex;
@@ -385,6 +402,13 @@ const CalculateWrapper = styled("div")`
     }
     .date-wrapper{
         align-self:center;
+    }
+
+    ${tablet}{
+
+        h5{
+            font-size: .9rem;
+        }
     }
 `;
 

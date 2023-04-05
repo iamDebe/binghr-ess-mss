@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'goober';
-import {mobile, tablet, desktop, desktopMidi, mobileMedium} from"@/globalStyle"
+import {mobile, tablet, desktopMidi,  mobileSmall} from"@/globalStyle"
 
 const TopBarWithSearchWrapper = () => {
   return (
@@ -78,20 +78,6 @@ export const SearchFieldWrapper = styled("div")`
      @media screen and (max-width: 574px){
       flex: .8;
      }
-
-
-  
-     
-
-
-    ${tablet}{
-        
-    }
-    ${mobile}{
-      
-
-    }
-    
 `;
 export const TextFieldWrapper = styled("div")`
     align-self: center;
@@ -100,31 +86,17 @@ export const TextFieldWrapper = styled("div")`
     
     @media screen and (max-width: 592px){
      flex: 1;
-      
      }
-   
-
-     
 `;
 export const IconsWrapper = styled("div")`
     display: flex;
     align-self: center;
     gap: 10px;
     justify-content: space-between;
-
-
     @media screen and (max-width: 574px){
       gap:10px;
       margin-left: auto;
-      
      }
-
-   
-
-     
-
-     
-     
 `;
 export const MyProfileWrapper = styled("div")`
     display: flex;
@@ -134,18 +106,14 @@ export const MyProfileWrapper = styled("div")`
     padding: .2rem;
     border-radius: .5rem;
     cursor: pointer;
-
-  
    .img-wrapper {
         border: 2px solid transparent;
         width: 40px;
         height: 40px;
         border-radius: 50%;
-
         @media screen and (max-width: 375px){
           width: 20%;
        }
-
     img{
         height:100%;
         width: 100%;
@@ -172,9 +140,6 @@ export const MyProfileWrapper = styled("div")`
    @media screen and (max-width: 574px){
     display: none;
    }
-  
-  
-    
 `;
 export const DropdownWrapper = styled("div")`
     position: absolute;
@@ -277,18 +242,35 @@ export const ButtonWrapper = styled("div")`
     align-items: center;
     margin-top: 2rem;
     flex-wrap: wrap;
+    width: 20%;
+
+    @media screen and (max-width: 1185px){
+      width: 30%;
+      margin-top: .5rem;
+
+    }
+
+      ${tablet}{
+        width: 40%;
+      margin-top: .5rem;
+
+      }
+    
+      ${mobileSmall}{
+        width: 50%;
+        margin-top: 0rem;
+
+      }
+
+      @media screen and (max-width: 376px){
+        width: 100%;
+        margin-top: .5rem;
+  
+      }
 
     
 
-   
-
-    @media screen and (max-width: 376px){
-      gap: 10px;
-     }
-
-    @media screen and (max-width: 352px){
-      flex-wrap: wrap;
-     }
+    
      
 
     

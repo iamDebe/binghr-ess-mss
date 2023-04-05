@@ -5,6 +5,7 @@ import Button from "@/components/button";
 import { ButtonWrapper } from '@/assets/wrappers/TopBarWithSearchWrapper';
 import {ReactComponent as WatchIcon} from "@/assets/images/watch.svg";
 import TimeoffCalender from '@/components/TimeoffCalender';
+import { styled } from 'goober';
 
 
 
@@ -20,24 +21,26 @@ const MyTimeOff = () => {
     <>
         <EssLayout>
           <TopBarWithSearch />
-          <ButtonWrapper>
-            <Button 
-              type="button"
-              bg="var(--lilac-400)"
-              textcolor="var(--grey-25)"
-              className="submit-button"
-              margin="3rem 0rem"
-              padding=".5rem 1.2rem"
-              rightIcon={<WatchIcon  fill="white" />}
-              onClick={handleShowCalender}
-            >
-              Request Timeoff
-            </Button>
-          </ButtonWrapper>
+            <ButtonWrapper>
+              <Button 
+                type="button"
+                bg="var(--lilac-400)"
+                textcolor="var(--grey-25)"
+                className="submit-button"
+                margin="3rem 0rem"
+                padding="1rem"
+                rightIcon={<WatchIcon  fill="white" />}
+                onClick={handleShowCalender}
+                width="--button-width"
+              >
+                Request Timeoff
+              </Button>
+            </ButtonWrapper>
           {showCalender && <TimeoffCalender />}
         </EssLayout>
     </>
   )
 }
 
-export default MyTimeOff
+export default MyTimeOff;
+
