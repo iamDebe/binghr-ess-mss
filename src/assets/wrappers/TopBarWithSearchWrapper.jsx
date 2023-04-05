@@ -250,4 +250,18 @@ export const ChartAndPayrollWrapper = styled("div")`
 `;
 export const ButtonWrapper = styled("div")`
     display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+
+    input{
+      width: 100%;
+    }
+
+    @media screen and (max-width: 480px){
+      
+
+    } 
+    
 `;
