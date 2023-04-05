@@ -19,7 +19,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
-    "react-toastify": "^9.1.1",
+    "react-toastify": "^9.1.2",
     "valtio": "^1.10.3",
     "vite-plugin-svgr": "^2.4.0",
     "yup": "^1.0.2"

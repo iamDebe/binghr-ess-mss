@@ -1,35 +1,50 @@
 import React from "react";
 import { styled } from "goober";
 
-const Container = styled("button")`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.625rem;
-    padding: ${(props) =>
-      props.padding ? `${props.padding}` : "0.625rem"};
-    margin:${(props)=> props.margin};
-    background: ${props => props.bg};
-    color: ${props => props.textcolor};
-    border: ${(props) =>
-        props.border ? `1px solid ${props.border}` : "none"};
-    border-radius: var(--br);
-    text-align: center;
-    outline: none;
-    font-family: inherit;
-    cursor: pointer;
-    svg {
-        fill: ${props => props.iconColor};
-    }
+const buttonStyles = `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  max-height: 2.375rem;
+  max-width: var(--button-width);
+  width: 100%;
+  padding: var(--button-padding);
+  margin: var(--button-margin);
+  background: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: 1px solid var(--button-border, none);
+  border-radius: var(--br);
+  text-align: center;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+  svg {
+    fill: var(--button-svg-color);
+  }
 `;
 
-const Button = ({ leftIcon, rightIcon, textcolor, bg, border, margin, padding, children, className, onClick}) => {
+const Button = ({ leftIcon, rightIcon, iconcolor, textcolor, bg, border, margin, padding, width, children, className="", onClick, as = "button", type="button"}) => {
+  const customStyles = `
+    --button-padding: ${padding || "0.625rem"};
+    --button-margin: ${margin || "0"};
+    --button-bg-color: ${bg};
+    --button-text-color: ${textcolor};
+    --button-svg-color: ${iconcolor || "inherit"};
+    --button-width: ${width || "6.25rem"};
+    --button-border: ${border || "none"};
+  `;
+  const StyledButton = styled("button")`
+    ${buttonStyles}
+    ${customStyles}
+  `;
+
   return (
-    <Container className={`type-title3 ${className}`} bg={bg} textcolor={textcolor} border={border} onClick={onClick} margin={margin} padding={padding}>
+    <StyledButton className={`type-title3 ${className}`} onClick={onClick} type={type}>
       {leftIcon && leftIcon}
       {children}
       {rightIcon && rightIcon}
-    </Container>
+    </StyledButton>
   );
 };
 

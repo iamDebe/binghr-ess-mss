@@ -5,11 +5,13 @@ import Main from '@/MainPage';
 import { setup } from "goober";
 import { GlobalStyles } from '@/globalStyle';
 
-Sentry.init({
-  dsn: "https://e09442c4952b4c4cb8bda5b17e8f3def@o4504934536642560.ingest.sentry.io/4504935029014528",
-  integrations: [new Sentry.BrowserTracing()],
-  tracesSampleRate: 1.0,
-});
+if (import.meta.env.NODE_ENV === 'production') {
+  Sentry.init({
+    dsn: "https://e09442c4952b4c4cb8bda5b17e8f3def@o4504934536642560.ingest.sentry.io/4504935029014528",
+    integrations: [new Sentry.BrowserTracing()],
+    tracesSampleRate: 1.0,
+  });
+}
 
 setup(React.createElement);
 

@@ -259,9 +259,5 @@ export const ButtonWrapper = styled("div")`
       width: 100%;
     }
 
-    @media screen and (max-width: 480px){
-      
-
-    } 
     
 `;

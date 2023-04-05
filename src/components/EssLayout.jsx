@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "goober";
-import SideNavbar from "@/components/SideNavbar";
+import SideNavbar from "@/components/sidebar";
 import { mobile, desktop, desktopMidi } from "@/globalStyle";
-import MobileNav from "@/components/SideNavbar/MobileNav";
+import MobileNav from "@/components/sidebar/MobileNav";
 // import TopBar from "@/components/topBar";
 
 const Wrapper = styled("div")`
@@ -24,6 +24,7 @@ const Main = styled("div")`
     }
     ${mobile} {
         width: 100% !Important;
+        padding: 1.25rem;
     }
 `;
 

@@ -19,87 +19,75 @@ import { ButtonWrapper,
 } from "@/assets/wrappers/TopBarWithSearchWrapper";
 import { styled } from "goober";
 
-
-
-
-
-
 const MyPay = () => {
     const [showPayroll, setShowPayroll] = useState(false);
     const [showAccountStatement, setShowAccountStatement] = useState(false);
     const handleShowPayrollStatement = ()=>{
-        setShowPayroll(!showPayroll)
-        setShowAccountStatement(false)
+        setShowPayroll(!showPayroll);
+        setShowAccountStatement(false);
     }
     const handleShowAccountStatement = ()=>{
-        setShowAccountStatement(!showAccountStatement)
-      
-
+        setShowAccountStatement(!showAccountStatement);
     }
 
     return (  
         <>
            <EssLayout>
-                <TopBarWithSearch />
-                
-                <FlexColumnWrapper>
-                <ButtonWrapper>
-                        <Button  
-                            type="button"
-                            onClick={handleShowPayrollStatement}
-                            bg="var(--lilac-400)"
-                            textcolor="var(--grey-25)"
-                            className="submit-button"
-                            
-                        >
-                            View Payroll Statement
-                        </Button>
-                    { showPayroll &&
-                        <>
-                            <TextFieldWrapper>
-                                <TextField 
-                                    id="selectMonth"
-                                    label="Year/Month"
-                                    type="date"
-                                    placeholder="Select Month/Year"
-                                    icon={<CalenderIcon  className="input-icon icon " />}
-                                    className="input"
+               <TopBarWithSearch />
 
-                                />
-                            </TextFieldWrapper>
+                    <FlexColumnWrapper>
+                        <ButtonWrapper>
                             <Button  
                                 type="button"
-                                onClick={handleShowAccountStatement}
-                                bg="var(--white)"
-                                textcolor="var(--lilac-400)"
-                                className="submit-button"
-                                border="var(--lilac-400)"
-                                padding=".5rem 1.6rem"
+                                onClick={handleShowPayrollStatement}
+                                bg="var(--lilac-400)"
+                                textcolor="var(--grey-25)"
+                                width="11.75rem"
                             >
-                                Enter
+                                View Payroll Statement
                             </Button>
-                        </>
+                        {showPayroll &&
+                            <>
+                                <TextFieldWrapper>
+                                    <TextField 
+                                        id="selectMonth"
+                                        label="Year/Month"
+                                        type="date"
+                                        placeholder="Select Month/Year"
+                                        icon={<CalenderIcon  className="input-icon icon" />}
+
+                                    />
+                                </TextFieldWrapper>
+                                <Button  
+                                    type="button"
+                                    onClick={handleShowAccountStatement}
+                                    bg="var(--white)"
+                                    textcolor="var(--lilac-400)"
+                                    border="var(--lilac-400)"
+                                >
+                                Enter
+                                </Button>
+                            </>
                         }
-                    </ButtonWrapper>
-                    <ChartAndPayrollWrapper>
-                        <ChartWrapper>
-                            <DoughnutChart />
-                            <SecondaryChartsWrapper>
-                                <DoughnutChartYear />
-                                <DoughnutChartTaxes />
-                                <DoughnutChartBenefit />
-                                <DoughnutChartPensions />
-                            </SecondaryChartsWrapper>
-                            
-                        </ChartWrapper>
-                        {showAccountStatement && 
-                            <PayrollTableWrapper>
-                                <PayrollTable />
-                            </PayrollTableWrapper>
-                        }
-                    </ChartAndPayrollWrapper>
-                </FlexColumnWrapper>
-                  
+                        </ButtonWrapper>
+                        <ChartAndPayrollWrapper>
+                            <ChartWrapper>
+                                <DoughnutChart />
+                                <SecondaryChartsWrapper>
+                                    <DoughnutChartYear />
+                                    <DoughnutChartTaxes />
+                                    <DoughnutChartBenefit />
+                                    <DoughnutChartPensions />
+                                </SecondaryChartsWrapper>
+                                
+                            </ChartWrapper>
+                            {showAccountStatement && 
+                                <PayrollTableWrapper>
+                                    <PayrollTable />
+                                </PayrollTableWrapper>
+                            }
+                        </ChartAndPayrollWrapper>
+                    </FlexColumnWrapper>
            </EssLayout>
         </>
     );

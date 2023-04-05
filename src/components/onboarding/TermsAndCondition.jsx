@@ -1,48 +1,17 @@
 import React from "react";
-import { styled } from "goober";
 import { CheckBox } from "@/components/forms";
-import CustomButton from "@/components/CustomButton";
-
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border-right: 0.5px solid #e0e0e0;
-  border-left: 0.5px solid #e0e0e0;
-  border-bottom: 0.5px solid #e0e0e0;
-  border-radius: 4px;
-  .top-border {
-    width: 13%;
-    border-top: 7px solid #d2446e;
-    top: 0;
-    border-radius: 4px 0.5px 4px 0.5px;
-  }
-`;
-
-const Inner = styled("div")`
-  width: 1030px;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  @media only screen and (min-width: 375px) and (max-width: 969px) {
-    width: 100%;
-  }
-  .type-title3 {
-    color: var(--grey-400);
-  }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-`;
+import Button from "@/components/button";
+import { HeaderText } from "@/components/onboarding/CommonStyles";
+import OnboardingTemplate from "@/components/onboarding/OnboardingTemplate";
 
 function TermsAndCondition({ continueAction }) {
   return (
-    <Container>
-      <div className="top-border" />
-      <Inner>
-        <p className="type-title3">Welcome</p>
-        <p className="type-body2">
+    <OnboardingTemplate>
+      <div className="main-content">
+        <HeaderText>
+          <p className="type-title3 title">Welcome</p>
+        </HeaderText>
+        <p className="type-body2 welcome-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -59,14 +28,18 @@ function TermsAndCondition({ continueAction }) {
           mollit anim id est laborum.
         </p>
         <CheckBox label="I agree to terms and condition" />
-        <CustomButton
-          width="111px"
-          variant="#6c3787"
-          label="Continue"
+      </div>
+      <div>
+        <Button
+          bg="var(--lilac-400)"
+          textcolor="var(--grey-25)"
+          padding="0.625rem 1.625rem"
           onClick={() => continueAction()}
-        />
-      </Inner>
-    </Container>
+        >
+          Continue
+        </Button>
+      </div>
+    </OnboardingTemplate>
   );
 }
 
