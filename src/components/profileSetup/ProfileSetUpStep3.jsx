@@ -13,10 +13,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSnapshot } from "valtio";
 import { validateForm } from "@/utils/helpers";
+import Spinner from "@/assets/images/spinner.gif";
 
 const ProfileSetUpStep3 = ({setStep, step}) => {
   const [selectedCountryId, setSelectedCountryId] = useState("");
   const [selectedStateId, setSelectedStateId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const snapshot = useSnapshot(store);
   const countries = snapshot?.countries;
@@ -51,6 +53,7 @@ const ProfileSetUpStep3 = ({setStep, step}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     // Read the form data
     const form = e.target;
     const formData = new FormData(form);
@@ -64,9 +67,11 @@ const ProfileSetUpStep3 = ({setStep, step}) => {
     if (Object.keys(errors).length > 0) {
       const firstError = Object.values(errors)[0];
       toast.error(firstError);
+      setIsLoading(false);
       return;
     }
     const resp = await store.postBirthInfo(formData);
+    setIsLoading(false);
     if (resp.status === "success") {
       toast.success(resp.message);
       navigate("/ess/home");
@@ -143,25 +148,31 @@ const ProfileSetUpStep3 = ({setStep, step}) => {
           })}
         </SelectField>
       </InputsWrapper>
-      <Button
-        type="submit"
-        className="submit-button"
-        bg="var(--lilac-400)"
-        textcolor="var(--grey-25)"
-        width="100%"
-      >
-        Continue
-      </Button>
-      <Link
-        to="/"
-        className="back"
-        onClick={(event) => {
-          event.preventDefault();
-          setStep({ ...step, step1: false, step2: true, step3: false })
-        }}
-      >
-        <p className="back">back</p>
-      </Link>
+      {isLoading ? (
+          <img src={Spinner} alt="spinner" width="80" style={{display: 'block', margin: '0 auto'}} />
+        ) : (
+          <>
+             <Button
+              type="submit"
+              className="submit-button"
+              bg="var(--lilac-400)"
+              textcolor="var(--grey-25)"
+              width="100%"
+            >
+              Continue
+            </Button>
+            <Link
+              to="/"
+              className="back"
+              onClick={(event) => {
+                event.preventDefault();
+                setStep({ ...step, step1: false, step2: true, step3: false })
+              }}
+            >
+              <p className="back">back</p>
+            </Link>
+          </>
+        )}
       <ToastContainer />
     </FormWrapper>
   );
