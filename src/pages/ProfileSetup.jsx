@@ -5,9 +5,9 @@ import ProfileSetUpStep2 from "@/components/profileSetup/ProfileSetUpStep2";
 import ProfileSetUpStep3 from "@/components/profileSetup/ProfileSetUpStep3";
 
 const profileSteps = {
-  step1: true,
+  step1: false,
   step2: false,
-  step3: false,
+  step3: true,
 };
 
   const ProfileSetup = () => {
