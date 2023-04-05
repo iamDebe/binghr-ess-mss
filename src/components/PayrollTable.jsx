@@ -76,24 +76,23 @@ const PayrollTable = () => {
                     type="email"
                     placeholder="Enter Email"
                     icon={<EmailIcon  className="input-icon icon"/>}
+
                 />
-                <Button  
-                    type="button"
+                <Button
                     bg="var(--lilac-400)"
                     textcolor="var(--grey-25)"
-                    className="submit-button"
+                    width="--button-width"
+
                 >
                     Send Copy To Email
                 </Button>
-                <Button  
-                    type="button"
+                <Button
                     bg="var(--white)"
                     textcolor="var(--lilac-400)"
-                    className="submit-button"
                     margin="1.5rem 0rem"
-                    padding="0.625rem"
                     border="var(--lilac-400)"
-                    rightIcon={<PrintIcon fill='var(--lilac-400)' />}
+                    width="--button-width"
+                    rightIcon={<PrintIcon fill='var(--button-svg-color)' />}
                    
                 >
                     Print Statement 
@@ -133,9 +132,6 @@ const EmployeeAcctDetailWrapper = styled("div")`
     padding: 0.5rem .7rem;
     border-radius: .4rem;
     width: 100%;
-    
-
-   
 `;
 const EmployeeAcctDetail = styled("div")`
     width: 100%;
@@ -143,20 +139,15 @@ const EmployeeAcctDetail = styled("div")`
     display: flex;
     justify-content: space-between;
     margin: .5rem 0rem;
-    
-   
     span{
         color: #BBBEC3;
     }
-
-   
 `;
 const AccountStatementWrapper = styled("div")`
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     margin-top: 2rem;
-    
     ${mobile}{
         flex-wrap: wrap;
     }

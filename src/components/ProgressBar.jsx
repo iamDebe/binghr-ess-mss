@@ -3,13 +3,13 @@ import { styled } from "goober";
 
 const Container = styled("div")`
   width: 100%;
-  height: 18px;
+  height: 0.25rem;
   background: #eeeeee;
-  border-radius: 8px;
+  border-radius: var(--br-xl);
   .progress-bar {
     height: 100%;
-    background: #667085;
-    border-radius: 8px;
+    background: var(--grey-400);
+    border-radius: var(--br-xl);
   }
 `;
 

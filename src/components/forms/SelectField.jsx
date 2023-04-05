@@ -21,6 +21,7 @@ export const Wrapper = styled("div")`
     padding: 0.5rem 2rem 0.5rem 1rem;
     border: 0.5px solid var(--grey-200);
     border-radius: 2px;
+    width: inherit;
     outline: none;
     &::placeholder {
       font-family: inherit;

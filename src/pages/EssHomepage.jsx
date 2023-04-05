@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
 import MenuCard from "@/components/MenuCardBox";
-import { mobile, mobileMedium, tablet, desktopMidi } from "@/globalStyle";
+import { mobile, mobileSmall, tablet, desktopMidi } from "@/globalStyle";
 import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
 import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
 import { ReactComponent as ClockIcon } from "@/assets/images/clock.svg";
@@ -14,7 +14,7 @@ import { ReactComponent as SunIcon } from "@/assets/images/sun.svg";
 import { ReactComponent as WatchIcon } from "@/assets/images/watch.svg";
 import AuthWelcomeModal from "@/components/AuthWelcomeModal";
 import store from "@/services/store";
-import OnBoardingStepsContainer from "@/components/essOnboarding/OnBoardingStepsContainer";
+import OnBoardingStepsContainer from "@/components/onboarding/OnBoardingStepsContainer";
 import RoundIconBg from "@/components/RoundIconBg";
 import Tag from "@/components/Tag";
 import Button from "@/components/button";
@@ -26,11 +26,13 @@ const EssHome = () => {
   const [onboardingViewIsVisible, setOnboardingViewIsVisible] = useState(false);
   const snapshot = useSnapshot(store);
   const personalInfo = snapshot?.personalInformation;
-  const jobInfo = snapshot?.jobInformation;
+  const orgData = snapshot?.orgData;
 
   useEffect(() => {
     store.getPersonalInformation();
     store.getJobInformation();
+    store.getEvents();
+    store.getEmployeeOnLeave();
   }, []);
 
   return (
@@ -58,7 +60,7 @@ const EssHome = () => {
               title="My Profile"
             />
             <MenuCard
-              link="#"
+              link="/ess/my-pay"
               icon={<MyPayIcon fill="#858585" />}
               title="My Pay"
             />
@@ -85,7 +87,7 @@ const EssHome = () => {
                 textcolor="var(--grey-25)"
                 className="clockin-btn"
                 leftIcon={<WatchIcon />}
-                iconColor="var(--grey-25)"
+                iconcolor="var(--grey-25)"
               >
                 Clock in
               </Button>
@@ -98,15 +100,15 @@ const EssHome = () => {
                   </div>
                   <div className="row">
                     <p className="type-title3">Job</p>
-                    <p className="type-body2">{jobInfo?.[0].business_title}</p>
+                    <p className="type-body2">{orgData?.job}</p>
                   </div>
                   <div className="row">
                     <p className="type-title3">Department</p>
-                    <p className="type-body2">Design</p>
+                    <p className="type-body2">{orgData?.department}</p>
                   </div>
                   <div className="row">
                     <p className="type-title3">Hire Date</p>
-                    <p className="type-body2">{jobInfo?.[0].effective_start_date}</p>
+                    <p className="type-body2">{orgData?.hire_date}</p>
                   </div>
                 </EmployeeDetails>
               </EmployeeInfo>
