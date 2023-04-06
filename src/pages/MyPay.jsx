@@ -13,7 +13,6 @@ import { ButtonWrapper,
     ChartAndPayrollWrapper,
     ChartWrapper,
     SecondaryChartsWrapper,
-    TextFieldWrapper,
     PayrollTableWrapper
 } from "@/components/MyPayCommonStyles";
 import { styled } from "goober";
@@ -49,7 +48,7 @@ const MyPay = () => {
                                 label="Year / Month"
                                 type="date"
                                 placeholder="Select Month/Year"
-                                icon={<CalenderIcon  className="input-icon icon" />}
+                                icon={<CalenderIcon className="input-icon icon" />}
                             />
                             <Button  
                                 type="button"
@@ -93,6 +92,3 @@ const FlexColumnWrapper = styled("div")`
     flex-direction: column;
     gap: .5rem;
 `;
-
-
-

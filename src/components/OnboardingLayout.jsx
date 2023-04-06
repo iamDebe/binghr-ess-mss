@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { OnboardingWrapper } from "@/assets/wrappers";
+import { ReactComponent as Logo } from "@/assets/images/logo.svg";
+
 
 const OnboardingLayout = ({ children }) => {
   return (
     <OnboardingWrapper>
       <div className="header">
         <Link to="/">
-          <img src="/ess/images/logo.svg" width="113" alt="BingHR" />
+          <Logo />
         </Link>
       </div>
       {children}
