@@ -17,9 +17,9 @@ input {
   color: var(--grey-400);
   font-family: inherit;
   font-size: 12px;
-  padding: 0.5rem 2.4rem 0.5rem 1rem;
+  padding: 0.5rem 2.4rem 0.5rem 1.8rem;
   border: 0.5px solid var(--grey-200);
-  border-radius: 2px;
+  border-radius: var(--br);
   outline: none;
   &::placeholder {
     font-family: inherit;
