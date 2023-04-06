@@ -271,7 +271,7 @@ const EssHome = () => {
                             {key === "birthdays" && (
                               <Tag bordercolor="var(--red)">Send wishes</Tag>
                             )}
-                            <p className="type-subtitle1">{formatDate(item.start_date)}</p>
+                            <p className="type-subtitle1">{item?.start_date && formatDate(item.start_date)}</p>
                           </div>
                         </div>
                       </PendingTask>

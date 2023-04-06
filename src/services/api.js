@@ -10,7 +10,7 @@ const api = axios.create({
 
 // Add a request interceptor to add the bearer token to the headers
 api.interceptors.request.use(async (config) => {
-  const token = await decryptToken();
+  const token = "64|PoFceQqavpjHuzmU1QhDkqMApshfTll8VykmZt7y"//await decryptToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
 
