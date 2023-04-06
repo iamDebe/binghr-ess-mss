@@ -12,7 +12,7 @@ import store from "@/services/store";
 import { useSnapshot } from "valtio";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { validateForm } from "@/utils/helpers";
+import { validateForm, getFirstLetter } from "@/utils/helpers";
 import Spinner from "@/assets/images/spinner.gif";
 
 const ProfileSetUpStep1 = ({setStep, step}) => {
@@ -32,10 +32,6 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
     setSelectedAvatar(personalInfo?.avatar);
     setSuffix(personalInfo?.suffix);
   }, [personalInfo?.avatar, personalInfo?.suffix]);
-
-  const getFirstLetter = (text) => {
-    return text ? text.charAt(0).toUpperCase() : '';
-  }
 
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
