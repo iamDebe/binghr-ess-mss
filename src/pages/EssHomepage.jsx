@@ -380,6 +380,7 @@ const EmployeeInfo = styled("div")`
   gap: 2rem;
   border: 0.5px solid var(--grey-5);
   border-radius: 0 var(--br) var(--br) 0;
+  min-height: 9.375rem;
   img {
     max-width: 145px;
     max-height: 138px;
@@ -428,6 +429,9 @@ const PendingTasks = styled("div")`
   border: 0.5px solid var(--grey-5);
   border-radius: var(--br);
   padding: 1.1rem 1.875rem 1.1rem 1.25rem;
+  height: 9.375rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 const PendingTask = styled("div")`
   display: flex;
@@ -463,6 +467,9 @@ const OnLeave = styled("div")`
   border: 0.5px solid var(--grey-5);
   border-radius: var(--br);
   padding: 1.25rem 1rem;
+  height: 9.375rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 const OnLeaveEmployee = styled("div")`
   display: flex;
