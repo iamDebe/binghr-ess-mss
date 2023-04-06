@@ -47,16 +47,16 @@ const PayrollTable = () => {
     ]
   return (
     <Wrapper>
-        <div className='logo-wrapper'>
-            <img src="/ess/images/barter.svg" alt="" />
-            <h4>Payroll Statement</h4>
-            <h5>Feb 2023</h5>
+        <div className="logo-wrapper">
+            <img src="/ess/images/barter.svg" alt="company logo" />
+            <h4 className="type-title2">Payroll Statement</h4>
+            <p className="type-title3">Feb 2023</p>
         </div>
         <EmployeeAcctDetailWrapper>
             <EmployeeAcctDetail>
                 <label className='type-title4'>Employee Name: <span>Bamgboye Pelumi</span></label>
-                <label className='keys type-title4'>Bank Name: <span>Zenith Bank</span></label>
-                <label className='keys type-title4'>Employee ID: <span>HR01</span></label>
+                <label className='type-title4'>Bank Name: <span>Zenith Bank</span></label>
+                <label className='type-title4'>Employee ID: <span>HR01</span></label>
             </EmployeeAcctDetail>
             <EmployeeAcctDetail>
                 <label className='type-title4'>Department:  <span>Human  Resource</span></label>
@@ -66,7 +66,7 @@ const PayrollTable = () => {
         </EmployeeAcctDetailWrapper>
         <AccountStatementWrapper>
             <AccountStatement paymentData={paymentData2} />
-            <AccountStatement  paymentData={paymentData}/> 
+            <AccountStatement paymentData={paymentData}/> 
         </AccountStatementWrapper>
         <Container>
             <EmailWrapper>
@@ -80,25 +80,25 @@ const PayrollTable = () => {
                 <Button
                     bg="var(--lilac-400)"
                     textcolor="var(--grey-25)"
+                    width="10rem"
                 >
                     Send Copy To Email
                 </Button>
                 <Button
                     bg="var(--white)"
                     textcolor="var(--lilac-400)"
-                    margin="1.5rem 0rem"
-                    padding="0.625rem"
+                    margin="0.875rem 0 0"
                     border="var(--lilac-400)"
-                    rightIcon={<PrintIcon fill='var(--lilac-400)' />}
-                   
+                    width="10rem"
+                    rightIcon={<PrintIcon fill='var(--button-svg-color)' />}
                 >
                     Print Statement 
                 </Button>
                 
             </EmailWrapper>
-            <AccountStatementWrapper>
+            <AccountStatementSingle>
                 <AccountStatement paymentData={paymentData} /> 
-            </AccountStatementWrapper>
+            </AccountStatementSingle>
         </Container>
     </Wrapper>
   )
@@ -108,26 +108,25 @@ export default PayrollTable;
 
 const Wrapper = styled("div")`
     padding: 24px 4px;
-    img{
-        margin: 0 auto;
-    }
-    h4,h5{
-        text-align: center;
-        margin: .6rem 0rem;
-    }
-    h4{
-        font-size: 18px;
-        color: var(--grey-400);
-    }
-    h5{
-        color: var(--grey-300);
-
+    .logo-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        .type-title2 {
+            color: var(--grey-400);
+        }
+        .type-title3 {
+            color: var(--grey-300);
+        }
     }
 `;
 const EmployeeAcctDetailWrapper = styled("div")`
-    background-color: #F9FAFB;
+    background-color: var(--grey-50);
     padding: 0.5rem .7rem;
-    border-radius: .4rem;
+    margin-top: 1.5rem;
+    border-radius: var(--br);
     width: 100%;
 `;
 const EmployeeAcctDetail = styled("div")`
@@ -136,14 +135,15 @@ const EmployeeAcctDetail = styled("div")`
     display: flex;
     justify-content: space-between;
     margin: .5rem 0rem;
+    color: #454749;
     span{
-        color: #BBBEC3;
+        color: var(--grey-300);
     }
 `;
 const AccountStatementWrapper = styled("div")`
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.875rem;
     margin-top: 2rem;
     ${mobile}{
         flex-wrap: wrap;
@@ -152,9 +152,21 @@ const AccountStatementWrapper = styled("div")`
 const Container = styled("div")`
     display: flex;
     justify-content: space-between;
+    gap: 0.875rem;
+    ${mobile}{
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
 `;
 const EmailWrapper = styled("div")`
-    width: 40%;
+    width: 100%;
     margin-top: 2rem;
+    --textfield-width: 90%;
+    --textfield-margin-bottom: 1.25rem;
 `;
-
+const AccountStatementSingle = styled("div")`
+    width: 100%;
+    ${mobile} {
+        margin-top: 0.875rem;
+    }
+`;

@@ -3,7 +3,7 @@ import { styled } from "goober";
 import SideNavbar from "@/components/sidebar";
 import { mobile, desktop, desktopMidi } from "@/globalStyle";
 import MobileNav from "@/components/sidebar/MobileNav";
-// import TopBar from "@/components/topBar";
+import TopBar from "@/components/TopBarMain";
 
 const Wrapper = styled("div")`
   width: 100%;
@@ -46,7 +46,7 @@ const EssLayout = ({ children }) => {
       <SideNavbar collapsed={collapsed} onToggleCollapse={handleCollapse} isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
       <MobileNav toggleSidebar={toggleSidebar} />
       <Main className={collapsed ? "collapsed" : ""}>
-        {/* <TopBar /> */}
+        <TopBar />
         {children}
       </Main>
     </Wrapper>

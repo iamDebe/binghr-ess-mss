@@ -12,6 +12,7 @@ import { ReactComponent as StarIcon } from "@/assets/images/star.svg";
 import { ReactComponent as BookIcon } from "@/assets/images/book.svg";
 import { ReactComponent as SunIcon } from "@/assets/images/sun.svg";
 import { ReactComponent as WatchIcon } from "@/assets/images/watch.svg";
+import { ReactComponent as ProfileImg } from "@/assets/images/profile-img.svg";
 import AuthWelcomeModal from "@/components/AuthWelcomeModal";
 import store from "@/services/store";
 import OnBoardingStepsContainer from "@/components/onboarding/OnBoardingStepsContainer";
@@ -100,7 +101,11 @@ const EssHome = () => {
                 Clock in
               </Button>
               <EmployeeInfo>
-                <img src={userAvatarUrl ?? "/ess/images/profile-img.png"} alt="" />
+                {userAvatarUrl ? (
+                  <img src={userAvatarUrl} alt="" />
+                ) : (
+                  <ProfileImg />
+                )}
                 <EmployeeDetails>
                   <div className="row">
                     <p className="type-title3">Name</p>

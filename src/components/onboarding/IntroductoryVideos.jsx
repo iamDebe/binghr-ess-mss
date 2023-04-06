@@ -3,6 +3,7 @@ import { CheckBox } from "@/components/forms";
 import IntroVideoCard from "@/components/IntroVideoCard";
 import { ButtonGroups } from "@/components/onboarding/CommonStyles";
 import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
+import { ReactComponent as IntroVidImg } from "@/assets/images/intro-vid.svg";
 import Button from "@/components/button";
 import { HeaderText } from "@/components/onboarding/CommonStyles";
 import OnboardingTemplate from "@/components/onboarding/OnboardingTemplate";
@@ -18,31 +19,31 @@ function IntroductoryVideos({ continueAction, goBack, saveData }) {
           <IntroVideoCard
             title="Building meaningful relationship "
             date="12 Feb, 2022"
-            previewImageUrl="/ess/images/intro-vid.png"
+            previewImageUrl={<IntroVidImg />}
             videoUrl="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
           />
           <IntroVideoCard
             title="Communicating Directly With Superior  "
             date="12 Feb, 2022"
-            previewImageUrl="/ess/images/intro-vid.png"
+            previewImageUrl={<IntroVidImg />}
             videoUrl="https://www.youtube.com/watch?v=B1GO1HPLp7Y"
           />
           <IntroVideoCard
             title="Setting Up Your Workspace "
             date="12 Feb, 2022"
-            previewImageUrl="/ess/images/intro-vid.png"
+            previewImageUrl={<IntroVidImg />}
             videoUrl="https://www.youtube.com/watch?v=IDj1OBG5Tpw"
           />
           <IntroVideoCard
             title="Setting up your payroll"
             date="12 Feb, 2022"
-            previewImageUrl="/ess/images/intro-vid.png"
+            previewImageUrl={<IntroVidImg />}
             videoUrl="https://www.youtube.com/watch?v=1Xi4fMfwsQg"
           />
           <IntroVideoCard
             title="How Employee Timesheet works"
             date="12 Feb, 2022"
-            previewImageUrl="/ess/images/intro-vid.png"
+            previewImageUrl={<IntroVidImg />}
             videoUrl="https://www.youtube.com/watch?v=APCWOBUZNjc"
           />
         </div>
