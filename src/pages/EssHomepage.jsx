@@ -116,7 +116,7 @@ const EssHome = () => {
                   </div>
                   <div className="row">
                     <p className="type-title3">Hire Date</p>
-                    <p className="type-body2">{formatDate(orgData?.hire_date)}</p>
+                    <p className="type-body2">{orgData?.hire_date && formatDate(orgData.hire_date)}</p>
                   </div>
                 </EmployeeDetails>
               </EmployeeInfo>
