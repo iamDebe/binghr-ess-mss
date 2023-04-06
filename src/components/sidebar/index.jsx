@@ -124,7 +124,7 @@ const navItems = [
     title: "Home",
   },
   {
-    to: "/",
+    to: "/ess/profile",
     icon: <ProfileHomeIcon />,
     title: "My Profile",
   },
@@ -134,12 +134,12 @@ const navItems = [
     title: "My Pay",
   },
   {
-    to: "/",
+    to: "/ess/my-timeoff",
     icon: <ClockIcon />,
     title: "My Time Off",
   },
   {
-    to: "/",
+    to: "/ess/timesheet",
     icon: <CalendarIcon />,
     title: "Timesheet",
   },

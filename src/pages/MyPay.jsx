@@ -32,8 +32,7 @@ const MyPay = () => {
         <EssLayout>
             <FlexColumnWrapper>
                 <ButtonWrapper>
-                    <Button  
-                        type="button"
+                    <Button
                         onClick={handleShowPayrollStatement}
                         bg="var(--lilac-400)"
                         textcolor="var(--grey-25)"
