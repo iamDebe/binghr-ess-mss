@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from 'goober';
 import  { mobile } from"@/globalStyle"
+import store from "@/services/store";
+import { useSnapshot } from "valtio";
 import SearchField from "@/components/forms/SearchField";
 import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
 import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
@@ -84,7 +86,7 @@ const MyProfileWrapper = styled("div")`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    svg {
+    svg, img {
       height:100%;
       width: 100%;
       border-radius: 50%;
@@ -147,9 +149,18 @@ const ProfileSettingsWrapper = styled("div")`
 
 const TopBar = () => {
   const [showProfileSettings, setShowProfileSettings] = useState(false);
+  const snapshot = useSnapshot(store);
+  const personalInfo = snapshot?.personalInformation;
+  const [userAvatarUrl, setUserAvatarUrl] = useState("")
+  
   const handleShowProfile = ()=>{
       setShowProfileSettings(!showProfileSettings)
   }
+
+  useEffect(() => {
+    setUserAvatarUrl(personalInfo?.avatar)
+  }, [personalInfo?.avatar]);
+
   return (
     <TopBarWrapper>
       <ProxySearchWrapper>
@@ -170,7 +181,13 @@ const TopBar = () => {
         </IconsWrapper>
         <ProfileSettingsWrapper>
           <MyProfileWrapper>
-            <div className="img-wrapper"><ProfilePhoto /></div>
+            <div className="img-wrapper">
+              {userAvatarUrl ? (
+                <img src={userAvatarUrl} alt="" />
+              ) : (
+                <ProfilePhoto />
+              )}
+            </div>
             <div>
               <a href="#" onClick={handleShowProfile}>
                 Employee
