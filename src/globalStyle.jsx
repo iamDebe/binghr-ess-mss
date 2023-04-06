@@ -172,10 +172,18 @@ export const GlobalStyles = createGlobalStyles`
       font-size: 36px;
       font-weight: lighter;
       line-height: 51px;
-      letter-spacing: 0rem;
-
+      letter-spacing: 0em;
     }
-    
+    .calendar-overlay-title {
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 163.2%;
+    }
+    .calendar-overlay-time {
+      font-size: 10px;
+      font-weight: 450;
+      line-height: 163.2%;
+    }
   }
   a {
     text-decoration: none;
