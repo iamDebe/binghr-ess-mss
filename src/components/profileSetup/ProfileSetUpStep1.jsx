@@ -13,6 +13,7 @@ import { useSnapshot } from "valtio";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { validateForm } from "@/utils/helpers";
+import Spinner from "@/assets/images/spinner.gif";
 
 const ProfileSetUpStep1 = ({setStep, step}) => {
   const fileInputRef = useRef(null);
@@ -20,6 +21,7 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
   const personalInfo = snapshot?.personalInformation;
   const [selectedAvatar, setSelectedAvatar] = useState(personalInfo?.avatar);
   const [suffix, setSuffix] = useState(personalInfo?.suffix);
+  const [isLoading, setIsLoading] = useState(false);
   const nameTitle = ["Select Title", "Dr", "Mr.", "Mrs.", "Ms."];
 
   useEffect(() => {
@@ -57,9 +59,11 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
   const handleSubmit = async (e) => {
     // Prevent the browser from reloading the page
     e.preventDefault();
+    setIsLoading(true);
 
     if (!selectedAvatar) {
       toast.error("Avatar is required");
+      setIsLoading(false);
       return;
     }
 
@@ -74,10 +78,12 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
     if (Object.keys(errors).length > 0) {
       const firstError = Object.values(errors)[0];
       toast.error(firstError);
+      setIsLoading(false);
       return;
     }
 
     const resp = await store.postPersonalInfo(formData);
+    setIsLoading(false);
     if (resp.status === "success") {
       toast.success(resp.message);
       setStep({ ...step, step1: false, step2: true })
@@ -172,15 +178,19 @@ const ProfileSetUpStep1 = ({setStep, step}) => {
         />
       </InputsWrapper>
       <CheckBox label="No Preferred Name" />
-      <Button
-        type="submit"
-        bg="var(--lilac-400)"
-        textcolor="var(--grey-25)"
-        className="submit-button"
-        width="100%"
-      >
-        Continue
-      </Button>
+      {isLoading ? (
+        <img src={Spinner} alt="spinner" width="80" style={{display: 'block', margin: '0 auto'}} />
+      ) : (
+        <Button
+          type="submit"
+          bg="var(--lilac-400)"
+          textcolor="var(--grey-25)"
+          className="submit-button"
+          width="100%"
+        >
+          Continue
+        </Button>
+      )}
       <ToastContainer />
     </FormWrapper>
   );

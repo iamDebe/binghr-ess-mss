@@ -13,7 +13,7 @@ const buttonStyles = `
   margin: var(--button-margin);
   background: var(--button-bg-color);
   color: var(--button-text-color);
-  border: 1px solid var(--button-border, none);
+  border: 1px solid var(--button-border);
   border-radius: var(--br);
   text-align: center;
   outline: none;
@@ -24,7 +24,7 @@ const buttonStyles = `
   }
 `;
 
-const Button = ({ leftIcon, rightIcon, iconcolor, textcolor, bg, border, margin, padding, width, children, className="", onClick, as = "button", type="button"}) => {
+const Button = ({ leftIcon, rightIcon, iconcolor, textcolor, bg, border, margin, padding, width, children, className="", onClick, type="button"}) => {
   const customStyles = `
     --button-padding: ${padding || "0.625rem"};
     --button-margin: ${margin || "0"};
