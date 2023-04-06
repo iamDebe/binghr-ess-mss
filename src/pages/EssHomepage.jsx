@@ -30,6 +30,7 @@ const EssHome = () => {
   const employeeOnLeave = snapshot?.employeeOnLeave;
   const events = snapshot?.events;
   const orgData = snapshot?.orgData;
+  const [userAvatarUrl, setUserAvatarUrl] = useState("")
 
   useEffect(() => {
     store.getPersonalInformation();
@@ -37,6 +38,10 @@ const EssHome = () => {
     store.getEmployeeOnLeave();
     store.getOrgData();
   }, []);
+
+  useEffect(() => {
+    setUserAvatarUrl(personalInfo?.avatar)
+  }, [personalInfo?.avatar]);
 
   return (
     <EssLayout>
@@ -95,7 +100,7 @@ const EssHome = () => {
                 Clock in
               </Button>
               <EmployeeInfo>
-                <img src="/ess/images/profile-img.png" alt="" />
+                <img src={userAvatarUrl ?? "/ess/images/profile-img.png"} alt="" />
                 <EmployeeDetails>
                   <div className="row">
                     <p className="type-title3">Name</p>
@@ -111,7 +116,7 @@ const EssHome = () => {
                   </div>
                   <div className="row">
                     <p className="type-title3">Hire Date</p>
-                    <p className="type-body2">{orgData?.hire_date}</p>
+                    <p className="type-body2">{formatDate(orgData?.hire_date)}</p>
                   </div>
                 </EmployeeDetails>
               </EmployeeInfo>

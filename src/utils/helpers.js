@@ -82,19 +82,28 @@ export const capitalize = (text) => {
 }
 
 export const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const day = date.getDate();
-  let daySuffix = 'th';
-  if (day === 1 || day === 21 || day === 31) {
-    daySuffix = 'st';
-  } else if (day === 2 || day === 22) {
-    daySuffix = 'nd';
-  } else if (day === 3 || day === 23) {
-    daySuffix = 'rd';
-  }
-  const formattedDate = `${monthNames[date.getMonth()]} ${day}${daySuffix}, ${date.getFullYear()}`;
+  const [year, month, day] = dateString.split(/[-/]/);
+  const date = new Date(year, month - 1, day);
+  const dayNumber = date.getDate();
+  const monthName = date.toLocaleString('default', { month: 'short' });
+  const suffix = getDaySuffix(dayNumber);
+  const formattedDate = `${monthName} ${dayNumber}${suffix}, ${date.getFullYear()}`;
   return formattedDate;
 }
 
+const getDaySuffix = (day) => {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  } else {
+    const lastDigit = day % 10;
+    if (lastDigit === 1) {
+      return 'st';
+    } else if (lastDigit === 2) {
+      return 'nd';
+    } else if (lastDigit === 3) {
+      return 'rd';
+    } else {
+      return 'th';
+    }
+  }
+}
