@@ -6,7 +6,7 @@ import { ReactComponent as ProxyIcon } from "@/assets/images/proxy.svg";
 import { ReactComponent as DropdownIcon } from "@/assets/images/arrow-bottom.svg";
 import { ReactComponent as NotificationIcon } from "@/assets/images/bell.svg";
 import { ReactComponent as SmsNotificationIcon } from "@/assets/images/sms-notification.svg";
-import { ReactComponent as ProfilePhoto } from "@/assets/images/ProfilePhoto.svg";
+import { ReactComponent as ProfilePhoto } from "@/assets/images/profile-img.svg";
 import { ReactComponent as UserIcon } from "@/assets/images/user.svg";
 import { ReactComponent as ProgrammingIcon } from "@/assets/images/programming-arrow.svg";
 import { ReactComponent as LogoutIcon } from "@/assets/images/logout.svg";
@@ -41,16 +41,13 @@ const ProxySearchWrapper = styled("div")`
 `;
 const RightHandSideWrapper = styled("div")  `
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 1rem;
   flex-wrap: nowrap;
   flex: 1;
-  @media screen and (max-width: 574px){
+  ${mobile} {
     justify-content: space-between;
-    gap: 30px;
   }
-  @media screen and (max-width: 490px) {
-    justify-content: space-between;
-  } 
 `;
 const SearchFieldWrapper = styled("div")`
   display: flex;
@@ -87,10 +84,7 @@ const MyProfileWrapper = styled("div")`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    @media screen and (max-width: 375px){
-      width: 20%;
-    }
-    img {
+    svg {
       height:100%;
       width: 100%;
       border-radius: 50%;
@@ -139,7 +133,6 @@ const DropdownWrapper = styled("div")`
 const DropdownItemsWrapper = styled("div")`
   display: flex;
   justify-content: start;
-
   & .dropdown-icon{
       margin-top: .3rem;
   }
@@ -147,9 +140,8 @@ const DropdownItemsWrapper = styled("div")`
 const ProfileSettingsWrapper = styled("div")`
   position: relative;
   margin-left: 2rem;
-
   ${mobile}{
-    justify-content: end;
+    display: none;
   }
 `;
 
