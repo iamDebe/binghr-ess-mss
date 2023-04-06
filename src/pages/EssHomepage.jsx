@@ -239,9 +239,9 @@ const EssHome = () => {
                   <h3 className="type-title3">Events</h3>
                 </div>
                 {events && Object.keys(events)?.map((key) => (
-                  <>
-                    {events[key].map((item) => (
-                      <PendingTask>
+                  <React.Fragment key={key}>
+                    {events[key].map((item, index) => (
+                      <PendingTask key={index}>
                         <div className="icon-task">
                           {key === "birthdays" ? (
                             <RoundIconBg
@@ -271,7 +271,7 @@ const EssHome = () => {
                         </div>
                       </PendingTask>
                     ))}
-                  </>
+                  </React.Fragment>
                 ))}
               </Events>
             </div>
