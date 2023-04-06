@@ -72,3 +72,29 @@ export const validateForm = (formData, validationRules) => {
   }
   return errors;
 };
+
+export const getFirstLetter = (text) => {
+  return text ? text.charAt(0).toUpperCase() : '';
+}
+
+export const capitalize = (text) => {
+  return text.replace(/_/g, ' ').replace(/^\w|\s\w/g, c => c.toUpperCase())
+}
+
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const day = date.getDate();
+  let daySuffix = 'th';
+  if (day === 1 || day === 21 || day === 31) {
+    daySuffix = 'st';
+  } else if (day === 2 || day === 22) {
+    daySuffix = 'nd';
+  } else if (day === 3 || day === 23) {
+    daySuffix = 'rd';
+  }
+  const formattedDate = `${monthNames[date.getMonth()]} ${day}${daySuffix}, ${date.getFullYear()}`;
+  return formattedDate;
+}
+

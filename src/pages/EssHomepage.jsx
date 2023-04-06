@@ -19,6 +19,7 @@ import RoundIconBg from "@/components/RoundIconBg";
 import Tag from "@/components/Tag";
 import Button from "@/components/button";
 import { useSnapshot } from "valtio";
+import { getFirstLetter, capitalize, formatDate } from "@/utils/helpers";
 
 const EssHome = () => {
   // When we redirect to this page for the first time after newly registering, that is only when we will show the welcome modal, so we will ensure that we make an API call here on the first render to fetch user data and check the value of a particular field to determine if the user has previouly set up their profile or not
@@ -26,13 +27,15 @@ const EssHome = () => {
   const [onboardingViewIsVisible, setOnboardingViewIsVisible] = useState(false);
   const snapshot = useSnapshot(store);
   const personalInfo = snapshot?.personalInformation;
+  const employeeOnLeave = snapshot?.employeeOnLeave;
+  const events = snapshot?.events;
   const orgData = snapshot?.orgData;
 
   useEffect(() => {
     store.getPersonalInformation();
-    store.getJobInformation();
     store.getEvents();
     store.getEmployeeOnLeave();
+    store.getOrgData();
   }, []);
 
   return (
@@ -153,28 +156,21 @@ const EssHome = () => {
             <div className="onleave-wrapper">
               <h3 className="type-title3">Employee On Leave</h3>
               <OnLeave>
-                <OnLeaveEmployee>
-                  <RoundIconBg
-                    bg="var(--grey-100)"
-                    type="text"
-                    icon={<span className="type-title3">SO</span>}
-                  />
-                  <div className="employee-details">
-                    <h4 className="type-title4">Sam Olabode</h4>
-                    <p className="type-body3">Lead Product</p>
-                  </div>
-                </OnLeaveEmployee>
-                <OnLeaveEmployee>
-                  <RoundIconBg
-                    bg="var(--grey-100)"
-                    type="text"
-                    icon={<span className="type-title3">SO</span>}
-                  />
-                  <div className="employee-details">
-                    <h4 className="type-title4">Sam Olabode</h4>
-                    <p className="type-body3">Lead Product</p>
-                  </div>
-                </OnLeaveEmployee>
+                {employeeOnLeave && employeeOnLeave?.map((item, index) => {
+                  return (
+                    <OnLeaveEmployee key={index}>
+                      <RoundIconBg
+                        bg="var(--grey-100)"
+                        type="text"
+                        icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
+                      />
+                      <div className="employee-details">
+                        <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
+                        <p className="type-body3">{item?.jobTitle}</p>
+                      </div>
+                    </OnLeaveEmployee>
+                  )
+                })}
               </OnLeave>
             </div>
           </EmployeeSummaryRow>
@@ -237,54 +233,41 @@ const EssHome = () => {
                 <div className="title">
                   <h3 className="type-title3">Events</h3>
                 </div>
-                <PendingTask>
-                  <div className="icon-task">
-                    <RoundIconBg
-                      bg="var(--grey-100)"
-                      icon={<span className="type-title3">SO</span>}
-                    />
-                    <div className="task">
-                      <h4 className="type-title4">Email Verification</h4>
-                      <p className="type-body3">Verify Email </p>
-                    </div>
-                  </div>
-                  <div className="priority">
-                    <Tag bordercolor="var(--red)">Priority</Tag>
-                    <p className="type-subtitle1">2 days</p>
-                  </div>
-                </PendingTask>
-                <PendingTask>
-                  <div className="icon-task">
-                    <RoundIconBg
-                      bg="#FFEAEA"
-                      icon={<SunIcon fill="var(--red)" />}
-                    />
-                    <div className="task">
-                      <h4 className="type-title4">Time off requested</h4>
-                      <p className="type-body3">Employee </p>
-                    </div>
-                  </div>
-                  <div className="priority">
-                    <Tag bordercolor="#F4BE50">Pending</Tag>
-                    <p className="type-subtitle1">2 days</p>
-                  </div>
-                </PendingTask>
-                <PendingTask>
-                  <div className="icon-task">
-                    <RoundIconBg
-                      bg="#FFEAEA"
-                      icon={<SunIcon fill="var(--red)" />}
-                    />
-                    <div className="task">
-                      <h4 className="type-title4">Time off requested</h4>
-                      <p className="type-body3">Employee </p>
-                    </div>
-                  </div>
-                  <div className="priority">
-                    <Tag bordercolor="#F4BE50">Pending</Tag>
-                    <p className="type-subtitle1">2 days</p>
-                  </div>
-                </PendingTask>
+                {events && Object.keys(events)?.map((key) => (
+                  <>
+                    {events[key].map((item) => (
+                      <PendingTask>
+                        <div className="icon-task">
+                          {key === "birthdays" ? (
+                            <RoundIconBg
+                              bg="var(--grey-100)"
+                              icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
+                            />
+                          ) : (
+                            <RoundIconBg
+                              bg="#FFEAEA"
+                              icon={<SunIcon fill="var(--red)" />}
+                            />
+                          )}
+                          <div className="task">
+                            {key === "birthdays" ? (
+                              <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
+                            ) : (
+                              <h4 className="type-title4">{item?.name}</h4>
+                            )}
+                            <p className="type-body3">{capitalize(key)}</p>
+                          </div>
+                          <div className="priority">
+                            {key === "birthdays" && (
+                              <Tag bordercolor="var(--red)">Send wishes</Tag>
+                            )}
+                            <p className="type-subtitle1">{formatDate(item.start_date)}</p>
+                          </div>
+                        </div>
+                      </PendingTask>
+                    ))}
+                  </>
+                ))}
               </Events>
             </div>
           </NewsRow>
