@@ -12,7 +12,7 @@ import { useSnapshot } from "valtio";
 import store from "@/services/store";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { validateForm } from "@/utils/helpers";
+import { validateForm, capitalize } from "@/utils/helpers";
 import Spinner from "@/assets/images/spinner.gif";
 
 const ProfileSetUpStep2 = ({setStep, step}) => {
@@ -104,7 +104,7 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
                 <TextField
                   key={key}
                   id={key}
-                  label={key.replace(/_/g, ' ').replace(/^\w|\s\w/g, c => c.toUpperCase())}
+                  label={capitalize(key)}
                   type="text"
                   defaultValue={value}
                   disabled={true}
