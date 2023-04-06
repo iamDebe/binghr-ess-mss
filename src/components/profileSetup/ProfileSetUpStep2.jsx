@@ -7,24 +7,27 @@ import {
   UploadImageWrapper,
   FormLogoWrapper,
 } from "@/assets/wrappers";
-import { ReactComponent as LocationIcon } from "@/assets/images/location.svg";
 import { TextField, SelectField } from "@/components/forms";
 import { useSnapshot } from "valtio";
 import store from "@/services/store";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { validateForm } from "@/utils/helpers";
+import { validateForm, capitalize } from "@/utils/helpers";
+import Spinner from "@/assets/images/spinner.gif";
 
 const ProfileSetUpStep2 = ({setStep, step}) => {
   const snapshot = useSnapshot(store);
   const demographicInfo = snapshot?.demographicInformation;
   const countries = snapshot?.countries;
   const personalInfo = snapshot?.personalInformation;
+  const orgData = snapshot?.orgData;
   const [selectedValues, setSelectedValues] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     store.getDemographicInformation();
     store.getCountries();
+    store.getOrgData();
   }, []);
 
   useEffect(() => {
@@ -43,6 +46,7 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     // Read the form data
     const form = e.target;
     const formData = new FormData(form);
@@ -57,10 +61,11 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
     if (Object.keys(errors).length > 0) {
       const firstError = Object.values(errors)[0];
       toast.error(firstError);
+      setIsLoading(false);
       return;
     }
     const resp = await store.postDemographicInfo(formData);
-
+    setIsLoading(false);
     if (resp.status === "success") {
       toast.success(resp.message);
       setStep({ ...step, step1: false, step2: false, step3: true })
@@ -80,43 +85,35 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
           <h3 className="step-text type-title3">STEP 2 OF 3</h3>
         </div>
       </UploadImageWrapper>
+      {orgData &&
+        // Convert the object to an array of [key, value] entries
+        Object.entries(orgData)
+          // Group every two entries into a subarray
+          .reduce((acc, curr, index) => {
+            if (index % 2 === 0) {
+              acc.push([curr]);
+            } else {
+              acc[acc.length - 1].push(curr);
+            }
+            return acc;
+          }, [])
+          // Map over the subarrays and render each group of two <TextField> elements
+        .map((group, index) => (
+          <InputsWrapper key={index}>
+              {group.map(([key, value]) => (
+                <TextField
+                  key={key}
+                  id={key}
+                  label={capitalize(key)}
+                  type="text"
+                  defaultValue={value}
+                  disabled={true}
+                  className="input-icon"
+                />
+              ))}
+         </InputsWrapper>
+      ))}
       <InputsWrapper>
-        <TextField
-          id="location"
-          label="Location"
-          type="text"
-          placeholder="Enter Location"
-          icon={<LocationIcon stroke="#BBBEC4" className="input-icon icon" />}
-          className="input-icon"
-        />
-        <TextField
-          id="org1"
-          label="Organization Hierarchy 1"
-          type="text"
-          placeholder="Enter Organization Hierarchy 1"
-        />
-      </InputsWrapper>
-      <InputsWrapper>
-        <TextField
-          id="org2"
-          label="Organization Hierarchy 2"
-          type="text"
-          placeholder="Enter Organization Hierarchy 2"
-        />
-        <TextField
-          id="org3"
-          label="Organization Hierarchy 3"
-          type="text"
-          placeholder="Enter Organization Hierarchy 3"
-        />
-      </InputsWrapper>
-      <InputsWrapper>
-        <TextField
-          id="org4"
-          label="Organization Hierarchy 4"
-          type="text"
-          placeholder="Enter Organization Hierarchy 4"
-        />
         <SelectField
           id="religion"
           name="religion"
@@ -192,25 +189,31 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
           })}
         </SelectField>
       </InputsWrapper>
-      <Button
-        type="submit"
-        bg="var(--lilac-400)"
-        textcolor="var(--grey-25)"
-        className="submit-button"
-        width="100%"
-      >
-        Continue
-      </Button>
-      <Link
-        to="/"
-        className="back"
-        onClick={(event) => {
-          event.preventDefault();
-          setStep({ ...step, step1: true, step2: false, step3: false })
-        }}
-      >
-        <p className="back">back</p>
-      </Link>
+      {isLoading ? (
+          <img src={Spinner} alt="spinner" width="80" style={{display: 'block', margin: '0 auto'}} />
+        ) : (
+          <>
+            <Button
+              type="submit"
+              bg="var(--lilac-400)"
+              textcolor="var(--grey-25)"
+              className="submit-button"
+              width="100%"
+            >      
+              Continue
+            </Button>
+            <Link
+            to="/"
+            className="back"
+            onClick={(event) => {
+              event.preventDefault();
+              setStep({ ...step, step1: true, step2: false, step3: false })
+            }}
+          >
+            <p className="back">back</p>
+          </Link>
+        </>
+        )}
       <ToastContainer />
     </FormWrapper>
   );

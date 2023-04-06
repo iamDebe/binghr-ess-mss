@@ -41,7 +41,7 @@ const IntroVideoCard = ({ title, date, previewImageUrl, videoUrl }) => {
     <>
       <Container>
         <div className="image-wrapper">
-          <img src={previewImageUrl} />
+          {previewImageUrl}
           <div
             onClick={() => {
               setShowVideoPlayer(true);

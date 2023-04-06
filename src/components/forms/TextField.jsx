@@ -31,7 +31,9 @@ export const Wrapper = styled("div")`
       background: var(--grey-100);
       border: 1px solid var(--grey-200);
     }
-    &[type="date"]::-webkit-calendar-picker-indicator {
+    &[type="date"]::-webkit-calendar-picker-indicator,
+    &[type="date"]::-moz-calendar-picker-indicator,
+    &[type="date"]::-ms-calendar-picker-indicator {
       opacity: 0;
       cursor: pointer;
       transform: translateX(23px);
