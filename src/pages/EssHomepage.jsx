@@ -163,26 +163,28 @@ const EssHome = () => {
                 </PendingTask>
               </PendingTasks>
             </div>
-            <div className="onleave-wrapper">
-              <h3 className="type-title3">Employee On Leave</h3>
-              <OnLeave>
-                {employeeOnLeave && employeeOnLeave?.map((item, index) => {
-                  return (
-                    <OnLeaveEmployee key={index}>
-                      <RoundIconBg
-                        bg="var(--grey-100)"
-                        type="text"
-                        icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
-                      />
-                      <div className="employee-details">
-                        <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
-                        <p className="type-body3">{item?.jobTitle}</p>
-                      </div>
-                    </OnLeaveEmployee>
-                  )
-                })}
-              </OnLeave>
-            </div>
+            {employeeOnLeave && 
+              <div className="onleave-wrapper">
+                <h3 className="type-title3">Employee On Leave</h3>
+                <OnLeave>
+                  {employeeOnLeave && employeeOnLeave?.map((item, index) => {
+                    return (
+                      <OnLeaveEmployee key={index}>
+                        <RoundIconBg
+                          bg="var(--grey-100)"
+                          type="text"
+                          icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
+                        />
+                        <div className="employee-details">
+                          <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
+                          <p className="type-body3">{item?.jobTitle}</p>
+                        </div>
+                      </OnLeaveEmployee>
+                    )
+                  })}
+                </OnLeave>
+              </div>
+            }
           </EmployeeSummaryRow>
           <NewsRow>
             <div className="news-titles">
@@ -310,23 +312,23 @@ const Inner = styled("div")`
     gap: 1rem;
   }
   .employee-wrapper {
-    flex: 1 0 30%;
+    flex: 0.42 0 30%;
   }
   .pending-task-wrapper {
-    flex: 1 0 24%;
+    flex: 0.32 0 24%;
   }
   .onleave-wrapper {
-    flex: 1 0 15%;
+    flex: 0.26 0 15%;
   }
   ${tablet} {
     .employee-wrapper {
-      flex: 1 0 48%;
+      flex-basis: 100%;
     }
     .pending-task-wrapper {
-      flex: 1 0 48%;
+      flex-basis: calc(50% - 11px);
     }
     .onleave-wrapper {
-      flex: 1 0 48%;
+      flex-basis: calc(50% - 11px);
     }
   }
   ${mobile} {
@@ -491,7 +493,7 @@ const NewsRow = styled("div")`
     border: 1px solid var(--grey-100);
     border-radius: var(--br);
     padding: 0.625rem 1.625rem;
-    ${mobile} {
+    ${tablet} {
       flex-direction: column;
       padding: 1rem 0.75rem;
     }
@@ -509,12 +511,13 @@ const Announcements = styled("div")`
   gap: 1.75rem;
   .title {
     display: none;
-    ${mobile} {
+    ${tablet} {
       display: block;
     }
   }
   .item {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 0.875rem;
     width: 100%;
@@ -532,7 +535,7 @@ const Announcements = styled("div")`
       color: var(--grey-300);
     }
   }
-  ${mobile} {
+  ${tablet} {
     padding: 0 0 1.25rem 0;
     border-right: none;
     border-bottom: 1px solid var(--grey-200);
@@ -547,7 +550,7 @@ const Events = styled("div")`
   .title {
     display: none;
   }
-  ${mobile} {
+  ${tablet} {
     padding: 1.25rem 0 0;
     .title {
       display: block;
