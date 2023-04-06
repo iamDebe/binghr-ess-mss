@@ -9,14 +9,13 @@ import DoughnutChartTaxes from "@/components/chart/DoughnutChartTaxes";
 import DoughnutChartBenefit from "@/components/chart/DoughnutChartBenefit";
 import DoughnutChartPensions from "@/components/chart/DoughnutChartPensions";
 import { ReactComponent as CalenderIcon } from "@/assets/images/calendar.svg";
-import TopBarWithSearch from "@/components/TopBarWithSearch";
-import { ButtonWrapper, 
-    ChartAndPayrollWrapper, 
-    ChartWrapper, 
-    SecondaryChartsWrapper, 
-    TextFieldWrapper, 
-    PayrollTableWrapper 
-} from "@/assets/wrappers/TopBarWithSearchWrapper";
+import { ButtonWrapper,
+    ChartAndPayrollWrapper,
+    ChartWrapper,
+    SecondaryChartsWrapper,
+    TextFieldWrapper,
+    PayrollTableWrapper
+} from "@/components/MyPayCommonStyles";
 import { styled } from "goober";
 
 const MyPay = () => {
@@ -30,66 +29,59 @@ const MyPay = () => {
         setShowAccountStatement(!showAccountStatement);
     }
 
-    return (  
-        <>
-           <EssLayout>
-               <TopBarWithSearch />
-
-                    <FlexColumnWrapper>
-                        <ButtonWrapper>
+    return (
+        <EssLayout>
+            <FlexColumnWrapper>
+                <ButtonWrapper>
+                    <Button  
+                        type="button"
+                        onClick={handleShowPayrollStatement}
+                        bg="var(--lilac-400)"
+                        textcolor="var(--grey-25)"
+                        width="11.75rem"
+                    >
+                        View Payroll Statement
+                    </Button>
+                    {showPayroll &&
+                        <div className="payroll-search">
+                            <TextField 
+                                id="selectMonth"
+                                label="Year / Month"
+                                type="date"
+                                placeholder="Select Month/Year"
+                                icon={<CalenderIcon  className="input-icon icon" />}
+                            />
                             <Button  
                                 type="button"
-                                onClick={handleShowPayrollStatement}
-                                bg="var(--lilac-400)"
-                                textcolor="var(--grey-25)"
-                                width="11.75rem"
+                                onClick={handleShowAccountStatement}
+                                bg="var(--white)"
+                                textcolor="var(--lilac-400)"
+                                border="var(--lilac-400)"
                             >
-                                View Payroll Statement
-                            </Button>
-                        {showPayroll &&
-                            <>
-                                <TextFieldWrapper>
-                                    <TextField 
-                                        id="selectMonth"
-                                        label="Year/Month"
-                                        type="date"
-                                        placeholder="Select Month/Year"
-                                        icon={<CalenderIcon  className="input-icon icon" />}
-
-                                    />
-                                </TextFieldWrapper>
-                                <Button  
-                                    type="button"
-                                    onClick={handleShowAccountStatement}
-                                    bg="var(--white)"
-                                    textcolor="var(--lilac-400)"
-                                    border="var(--lilac-400)"
-                                >
                                 Enter
-                                </Button>
-                            </>
-                        }
-                        </ButtonWrapper>
-                        <ChartAndPayrollWrapper>
-                            <ChartWrapper>
-                                <DoughnutChart />
-                                <SecondaryChartsWrapper>
-                                    <DoughnutChartYear />
-                                    <DoughnutChartTaxes />
-                                    <DoughnutChartBenefit />
-                                    <DoughnutChartPensions />
-                                </SecondaryChartsWrapper>
-                                
-                            </ChartWrapper>
-                            {showAccountStatement && 
-                                <PayrollTableWrapper>
-                                    <PayrollTable />
-                                </PayrollTableWrapper>
-                            }
-                        </ChartAndPayrollWrapper>
-                    </FlexColumnWrapper>
-           </EssLayout>
-        </>
+                            </Button>
+                        </div>
+                    }
+                </ButtonWrapper>
+                <ChartAndPayrollWrapper>
+                    <ChartWrapper>
+                        <DoughnutChart />
+                        <SecondaryChartsWrapper>
+                            <DoughnutChartYear />
+                            <DoughnutChartTaxes />
+                            <DoughnutChartBenefit />
+                            <DoughnutChartPensions />
+                        </SecondaryChartsWrapper>
+                        
+                    </ChartWrapper>
+                    {showAccountStatement && 
+                        <PayrollTableWrapper>
+                            <PayrollTable />
+                        </PayrollTableWrapper>
+                    }
+                </ChartAndPayrollWrapper>
+            </FlexColumnWrapper>
+        </EssLayout>
     );
        
 }
