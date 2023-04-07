@@ -68,7 +68,7 @@ const ProfileSetUpStep2 = ({setStep, step}) => {
     setIsLoading(false);
     if (resp.status === "success") {
       toast.success(resp.message);
-      setStep({ ...step, step1: false, step2: false, step3: true })
+      setStep({ ...step, step1: false, step2: false, step3: true });
     } else {
       toast.error(resp?.response?.data?.message)
     }
