@@ -94,7 +94,7 @@ const EssHome = () => {
             </WelcomeSection>
             <MenuCardRow>
               <MenuCard
-                link="#"
+                link="/ess/my-profile"
                 icon={<ProfileHomeIcon fill="#858585" />}
                 title="My Profile"
               />

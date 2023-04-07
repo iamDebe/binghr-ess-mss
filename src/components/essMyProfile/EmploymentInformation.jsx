@@ -1,8 +1,11 @@
 import React from "react";
 import { styled } from "goober";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import CustomButton from "../CustomButton";
 import { TextField } from "../forms";
+import { ReactComponent as PenIcon } from "@/assets/images/pen-icon.svg";
+import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
+import Button from "@/components/button";
 
 const Container = styled("div")`
   width: 100%;
@@ -17,8 +20,8 @@ const Inner = styled("div")`
   flex-direction: column;
   padding: 1.625rem;
   gap: 2rem;
-  .type-title3 {
-    color: var(--grey-400);
+  .title {
+    color: var(--grey-500);
   }
   .type-body2 {
     color: var(--grey-300);
@@ -53,17 +56,18 @@ const EmploymentInformation = ({ continueAction, goBack, saveData }) => {
         <p className="type-title2">Employment Information </p>
         <div className="inner-container">
           <div className="flexed-header">
-            <p className="type-title3">Employment Data </p>
+            <p className="type-title3 title">Employment Data </p>
             <div>
-              <CustomButton
-                onClick={() => {}}
-                variant="white"
-                textColor="#6C3787"
-                label="Edit"
-                iconUrl="/images/pen-icon.svg"
-                secondaryBtn
+              <Button
+                bg="var(--grey-25)"
+                border="var(--lilac-400)"
+                textcolor="var(--lilac-400)"
+                rightIcon={<PenIcon fill="var(--lilac-400)" />}
+                iconcolor="var(--grey-25)"
                 width="93px"
-              />
+              >
+                Edit
+              </Button>
             </div>
           </div>
           <div className="main-text-div">
@@ -120,14 +124,15 @@ const EmploymentInformation = ({ continueAction, goBack, saveData }) => {
             </div>
           </div>
           <div className="button-groups">
-            <CustomButton
+            <Button
+              bg="var(--lilac-400)"
+              textcolor="var(--grey-25)"
+              rightIcon={<CopySuccess fill="var(--lilac-400)" />}
+              iconcolor="var(--grey-25)"
               width="111px"
-              variant="#6c3787"
-              label="Save"
-              onClick={() => saveData()}
-              iconPosition="right"
-              iconUrl="/images/copy-success.svg"
-            />
+            >
+              Save
+            </Button>
           </div>
         </div>
       </Inner>

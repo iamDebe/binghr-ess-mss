@@ -17,6 +17,7 @@ const Inner = styled("div")`
   gap: 2rem;
   .type-title3 {
     color: var(--grey-400);
+    cursor: pointer;
   }
   .type-body2 {
     color: var(--grey-300);

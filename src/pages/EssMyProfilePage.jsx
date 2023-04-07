@@ -16,7 +16,6 @@ const Container = styled("div")`
   width: 100%;
   gap: 3rem;
   position: relative;
-  margin-top: 100px;
   .onboarding-div {
     width: 70%;
     display: flex;
@@ -62,7 +61,6 @@ const EssMyProfilePage = () => {
 
         <div>
           {activeTabLabel === "Personal Information" && <PersonalInformation />}
-
           {activeTabLabel === "Employment Information" && (
             <EmploymentInformation />
           )}

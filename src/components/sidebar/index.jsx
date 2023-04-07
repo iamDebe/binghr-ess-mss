@@ -124,7 +124,7 @@ const navItems = [
     title: "Home",
   },
   {
-    to: "/",
+    to: "/my-profile",
     icon: <ProfileHomeIcon />,
     title: "My Profile",
   },

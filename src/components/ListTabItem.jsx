@@ -24,6 +24,7 @@ const ListTabsItem = ({
           padding: "6px 12px",
           fontWeight: 600,
           border: "none",
+          cursor: "pointer"
         }}
         type="button"
         onClick={() => {
