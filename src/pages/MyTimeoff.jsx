@@ -26,7 +26,8 @@ const MyTimeOff = () => {
                 className="submit-button"
                 margin="3rem 0rem"
                 padding="1rem"
-                rightIcon={<WatchIcon  fill="white" />}
+                rightIcon={<WatchIcon  />}
+                iconcolor="var(--grey-25)"
                 onClick={handleShowCalender}
                 width="--button-width"
               >

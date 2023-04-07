@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
 import Button from "@/components/button"
@@ -7,21 +7,50 @@ import Calender from '@/components/Calender';
 import { desktopMidi } from '@/globalStyle';
 
 const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
+
+    const buttonParams = [ 
+           { bgColor: "var(--lilac-400)",
+             btnText: "Clock In" 
+            },
+           { bgColor: " var(--orange-400)",
+             btnText: " Meal In"
+            },
+           { bgColor: "var(--highblue)",
+             btnText: "Meal Out"
+            },
+           { bgColor: "var(--lilac-400)",
+             btnText: "Clock Out"
+            }
+          
+    ]
+    const [currentBtnStyling, seturrentBtnStyling] = useState(0)
+
+    const handleBtnChange = ()=>{
+            if(currentBtnStyling === (buttonParams.length - 1) ){
+                seturrentBtnStyling(0)
+            }else {
+                seturrentBtnStyling((prevCurrentBtnStyling) => prevCurrentBtnStyling + 1 )
+
+            }
+
+    }
   return (
     <EssLayout >
         <FlexColumnWrapper>
             <Container>
                 <BtnWrapper>
-                    <Button
-                        bg="var(--lilac-400)"
+                   <Button
+                        bg={buttonParams[currentBtnStyling].bgColor}
                         textcolor="var(--grey-25)"
                         className="submit-button"
                         width="8.75rem"
                         iconcolor="var(--grey-25)"
                         leftIcon={<WatchIcon />}
+                        onClick={handleBtnChange}
                     >
-                        Clock In
+                       {buttonParams[currentBtnStyling].btnText}
                     </Button>
+                    
                     <Button
                         bg="var(--white)"
                         textcolor="var(--lilac-400)"

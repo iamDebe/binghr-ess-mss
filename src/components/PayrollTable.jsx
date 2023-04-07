@@ -90,7 +90,9 @@ const PayrollTable = () => {
                     margin="0.875rem 0 0"
                     border="var(--lilac-400)"
                     width="10rem"
-                    rightIcon={<PrintIcon fill='var(--button-svg-color)' />}
+                    rightIcon={<PrintIcon  />}
+                    iconcolor="var(--grey-25)"
+
                 >
                     Print Statement 
                 </Button>

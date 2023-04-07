@@ -1,23 +1,19 @@
 import { styled } from 'goober';
 import React, { useEffect, useState } from 'react';
-import Button from "@/components/button";
 import {ReactComponent as NextIcon} from "@/assets/images/next.svg";
 import {ReactComponent as BackIcon} from "@/assets/images/back.svg";
-import {ReactComponent as ClockInIcon} from "@/assets/images/clockin.svg";
-import {ReactComponent as MealTImeIcon} from "@/assets/images/mealtime.svg";
-import {ReactComponent as MealEndIcon} from "@/assets/images/mealend.svg";
-import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 import { tablet, desktopMidi, desktop } from "@/globalStyle";
+import CalculateModal from '@/components/CalculateModal';
+import ClockinOverlay from '@/components/ClockinOverlay';
+import { mobile } from '@/globalStyle';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Calender = () => {
     
-    const [showModal, setShowModal] = useState(false)
-    const [weeks, setWeeks] = useState([])
-    const [currentMonth, setCurrentMonth] = useState(0)
-    const [thisMonth, setThisMonth] = useState("")
-    const handleShowModal = ()=>{
-        setShowModal(!showModal);
-    }
+  
+    const [weeks, setWeeks] = useState([]);
+    const [currentMonth, setCurrentMonth] = useState(0);
+    const [thisMonth, setThisMonth] = useState("");
     
     const generateCalender = ()=>{
         
@@ -51,23 +47,31 @@ const Calender = () => {
             // Create an array of empty spaces for the blank days
             const blankDays = new Array(numBlankDays).fill('  ');
 
-
-            new Array(numBlankDays).fill('  ');
-        
             // Create an array of days for the current month
             const monthDays = [...Array(numDaysInMonth).keys()].map(dd => { return{
                 day:dd+1,
                 clocked:false,
+                showModal: false,
+                showOverlay: false,
                 clockedData:{}
             }});
 
             // Combine the arrays of blank days and month days
             const allDays = [...blankDays, ...monthDays];
-        
+            
             // Split the days into rows of 7
             const rows = allDays.reduce((rows, day, index) => {
+               
             if (index % 7 === 0) {
-                rows.push(allDays.slice(index, index + 7));
+                const eachWeek = allDays.slice(index, index + 7)
+
+                if(eachWeek.length < 7){
+                    const numberOfDaysLeft = (7 - eachWeek.length)
+                    for (let i = 0; i < numberOfDaysLeft; i++) {
+                        eachWeek.push(" ")
+                    }
+                }
+                rows.push(eachWeek);
             }
 
             setWeeks(rows);
@@ -79,26 +83,43 @@ const Calender = () => {
 
     }
 
-    const mm = ""
+    // const mm = ""
 
-    const updateClockInState =(outer, inner)=>{
+    const clockIn =(outer, inner)=>{
        const newWeekData = [...weeks];
-       newWeekData[outer][inner].clocked = true;
+       if(newWeekData[outer][inner].clocked === false){
+            newWeekData[outer][inner].clocked = true;
+            newWeekData[outer][inner].showModal = true;
+        }else{
+            newWeekData[outer][inner].clocked = false;
+           
+        }
+       
        setWeeks(newWeekData);
     }
-
-    // const showClockinOverlay = (outer, inner)=>{
-    //    const newWeekData = [...weeks];
-    //    newWeekData[outer][inner].clocked = true;
-
-    // }
+    const hideCalculateModal =(outer, inner)=>{
+       const newWeekData = [...weeks];
+       newWeekData[outer][inner].showModal = false;
+       setWeeks(newWeekData);
+    }
+    const showOverlay =(outer, inner)=>{
+       const newWeekData = [...weeks];
+       newWeekData[outer][inner].showOverlay = true;
+       setWeeks(newWeekData);
+    }
+    const hideOverlay =(outer, inner)=>{
+       const newWeekData = [...weeks];
+       if(newWeekData[outer][inner].clocked === false){
+           newWeekData[outer][inner].showOverlay = false;
+           setWeeks(newWeekData);
+        }
+    }
 
     useEffect(()=>{
         generateCalender();
     },[currentMonth])
 
     useEffect(()=>{
-        console.log(weeks)
     },[weeks])
       
   return (
@@ -126,81 +147,45 @@ const Calender = () => {
                 <li className='type-title3 weekdays'>Sat</li>
                 <li className='type-title3 weekdays'>Sun</li>
             </div>
-
-          
-            
            {weeks.map((row, index)=>{
-               
                 return (
-                <div className='days-wrapper ' key={index}>
-                    
-                    {row.map((day, ii)=>(
-
-                        <li key={ii} className='days type-body5' 
-                            onClick={()=>{
-                            updateClockInState(index, ii)
-                        }}>
-                        {day.day} {day.clocked==true ? 
-                            <div className='overlay' onClick={handleShowModal} >
-                                <div  className='clockin-wrapper type-body3'>
-                                    <div className='action'>
-                                        <ClockInIcon fill="var(--grey-400)"/>
-                                        <span className="action-text calendar-overlay-title">ClockIn In</span>
-                                    </div>
-                                    <div className='time calendar-overlay-time'>09:01am</div>
-                                </div>
-                                <div className='clockin-wrapper type-body3'>
-                                    <div className='action'>
-                                        <MealTImeIcon />
-                                        <span className="action-text calendar-overlay-title">Meal Time</span>
-                                    </div>
-                                    <div className='time calendar-overlay-time'>12:30pm</div>
-                                </div>
-                                <div className='clockin-wrapper type-body3'>
-                                    <div className='action'>
-                                        <MealEndIcon />
-                                        <span className="action-text calendar-overlay-title">Meal End</span>
-                                    </div>
-                                    <div className='time calendar-overlay-time'>01:01pm</div>
-                                </div>
-                                <div className='clockin-wrapper type-body3'>
-                                    <div className='action'>
-                                        <ClockInIcon  fill="var(--grey-400)"/>
-                                        <span className="action-text calendar-overlay-title">Clock Out</span>
-                                    </div>
-                                    <div className='time calendar-overlay-time'>05:20pm</div>
-                                </div>
-                            </div> 
-                        : ""  }
-                        </li>
-                    ))}
-                    
-                </div >
+                    <div className='days-wrapper ' key={index}>
+                        {row.map((day, ii)=>(
+                            <li key={ii} className='days type-body5' 
+                                onClick={()=>{
+                                    if(typeof(day) != "string"){
+                                        clockIn(index, ii)
+                                    }
+                                }}
+                                onMouseOver={()=>{
+                                    if(typeof(day) != "string"){
+                                        showOverlay(index, ii)
+                                    }
+                                }}
+                                onMouseOut={()=>{hideOverlay(index, ii)}}
+                            >
+                                {day.day}  {day.showOverlay === true &&
+                                        <ClockinOverlay  day={day} />
+                                } 
+                                <AnimatePresence>
+                                    { (day.clocked === true && day.showModal === true) ? 
+                                        <motion.div
+                                            key="box"
+                                            initial={{y: "0%", x: "100%", opacity: 0}}
+                                            animate={{y:-75, x:0, opacity: 1, scale: 1}}
+                                            exit={{y: "0%", x: "100%", opacity: 0}}
+                                            transition={{duration: 0.2, ease: "easeInOut"}}
+                                        >
+                                            <CalculateModal  hideCalculateModal={hideCalculateModal} weekIndex = {index} dayIndex={ii} clocked={day.clocked} show={day.showModal}  />
+                                        </motion.div>
+                                    : ''
+                                    }
+                                </AnimatePresence>
+                            </li>
+                        ))}
+                    </div >
                 ) 
            })} 
-           
-            {showModal &&
-                <div className='calculate-modal'>
-                    <CalculateWrapper>
-                        <div className='date-wrapper'>
-                            <div className='type-body3'>Wed, <span >1 Feb</span> - <span >Sun, </span><span >5 Feb</span></div>
-                        </div>
-                        <div className="icon-wrapper" onClick={handleShowModal}>
-                            <RemoveIcon width={30} className="icon" />
-                        </div>
-                    </CalculateWrapper>
-                    <Button 
-                        type="button"
-                        bg="var(--lilac-400)"
-                        textcolor="var(--grey-25)"
-                        className="submit-button"
-                        onClick={handleShowModal}
-                        width="--button-width"
-                    >
-                        Calculate
-                    </Button>
-                </div>
-            }
         </CalenderMain>
     </Container>
   )
@@ -252,20 +237,14 @@ const CalenderTitle = styled("div")`
         @media screen and (max-width: 480px){
         }
     }
-
-    
 `;
-
 const CalenderControlsWrapper = styled("div")`
     display: flex;
     align-self: center;
-
     div{
         align-self: center;
     }
-    
 `;
- 
 const CalenderMain = styled("div")`
     .weekday-wrapper{
         display:flex;
@@ -310,8 +289,8 @@ const CalenderMain = styled("div")`
             flex-direction: column;
             justify-content: space-around;
             position: absolute;
-            top: 0;
-            background-color: var(--grey-200);
+            top: -.4px;
+            background-color: var(--white);
             justify-content: center;
             gap: 10px;
             margin: 0.5px;
@@ -322,7 +301,6 @@ const CalenderMain = styled("div")`
                 flex-wrap: wrap;
                 gap:.625rem;
                 justify-content: space-around;
-
                 ${desktopMidi}{
                     gap: 0px;
                 }
@@ -342,7 +320,6 @@ const CalenderMain = styled("div")`
                         display: none;
                     }
                 }
-
             }
             .time{
                 color: var(--grey-300);
@@ -354,49 +331,27 @@ const CalenderMain = styled("div")`
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            top: 193px;
-            right: 74px;
+            top: -100px;
+            right: 0;
             background-color: white;
-            padding: 1rem;
+            padding: .4rem .5rem;
             border: 1px solid var(--grey-200);
             border-radius: var(--br);
-
             ${desktop}{
-                width: 20%;
+                width: 100%;
             }
-
-            @media screen and (max-width: 780px){
-                width: 30%;
+            ${desktopMidi}{
+                width: 200%;
             }
-            @media screen and (max-width: 542px){
-                width: 50%;
+            ${tablet}{
+                width: 200%;
             }
-            
+            ${mobile}{
+                width: 200%;
+            }
+           
         }
 `;
 
-const CalculateWrapper = styled("div")`
-    display: flex;
-    justify-content: space-between;
-    gap: .8rem;
-    width: 100%;
-    .icon-wrapper{
-        display: flex;
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: -2px 2px 2px 2px var(--grey-100);
 
-        .icon{
-            align-self:center;
-            justify-content:center;
-            margin: 0 auto;
-        }
-
-    }
-    .date-wrapper{
-        align-self:center;
-    }
-`;
 
