@@ -15,7 +15,7 @@ import { useSnapshot } from "valtio";
 import { validateForm } from "@/utils/helpers";
 import Spinner from "@/assets/images/spinner.gif";
 
-const ProfileSetUpStep3 = ({setStep, step}) => {
+const ProfileSetUpStep3 = ({setStep, step, handleSuccess}) => {
   const [selectedCountryId, setSelectedCountryId] = useState("");
   const [selectedStateId, setSelectedStateId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -74,7 +74,7 @@ const ProfileSetUpStep3 = ({setStep, step}) => {
     setIsLoading(false);
     if (resp.status === "success") {
       toast.success(resp.message);
-      navigate("/ess/home");
+      handleSuccess();
     } else {
       toast.error(resp.response.data.message)
     }

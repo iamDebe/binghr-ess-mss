@@ -183,7 +183,7 @@ const TopBar = () => {
               <ul className="dropdown-menu">
                 <DropdownItemsWrapper>
                   <UserIcon  className="dropdown-icon" />
-                  <li><a className="dropdown-item" href="/ess/profile"> My Profile</a></li>
+                  <li><a className="dropdown-item" href="#"> My Profile</a></li>
                 </DropdownItemsWrapper>
                 <DropdownItemsWrapper>
                   <ProgrammingIcon  className="dropdown-icon" />

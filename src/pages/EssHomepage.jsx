@@ -21,277 +21,313 @@ import Tag from "@/components/Tag";
 import Button from "@/components/button";
 import { useSnapshot } from "valtio";
 import { getFirstLetter, capitalize, formatDate } from "@/utils/helpers";
+import ProfileSetup from "@/pages/ProfileSetup";
 
 const EssHome = () => {
-  // When we redirect to this page for the first time after newly registering, that is only when we will show the welcome modal, so we will ensure that we make an API call here on the first render to fetch user data and check the value of a particular field to determine if the user has previouly set up their profile or not
-  const [welcomeModalIsVisible, setWelcomeModalIsVisible] = useState(true);
+  const [showProfile, setShowProfile] = useState(false);
+  const [welcomeModalIsVisible, setWelcomeModalIsVisible] = useState(false);
   const [onboardingViewIsVisible, setOnboardingViewIsVisible] = useState(false);
+  const [userAvatarUrl, setUserAvatarUrl] = useState("");
   const snapshot = useSnapshot(store);
   const personalInfo = snapshot?.personalInformation;
   const employeeOnLeave = snapshot?.employeeOnLeave;
   const events = snapshot?.events;
   const orgData = snapshot?.orgData;
-  const [userAvatarUrl, setUserAvatarUrl] = useState("")
+  const onboardingStatus = snapshot?.onboardingStatus;
 
   useEffect(() => {
     store.getPersonalInformation();
     store.getEvents();
     store.getEmployeeOnLeave();
     store.getOrgData();
+    store.getOnboardingStatus();
   }, []);
+  useEffect(() => {
+    if (personalInfo) {
+      if (!personalInfo.completed_profile_onboarding) {
+        setShowProfile(true);
+      }
+    }
+  }, [personalInfo?.completed_profile_onboarding]);
 
   useEffect(() => {
-    setUserAvatarUrl(personalInfo?.avatar)
+    switch (onboardingStatus?.status) {
+      case "In Progress":
+        setOnboardingViewIsVisible(true);
+        break;
+      case "Success":
+        setOnboardingViewIsVisible(false);
+        break;
+      default:
+        break;
+    }
+  }, [onboardingStatus]);
+
+  // useEffect(() => {
+  //   setWelcomeModalIsVisible(!!state?.showModal);
+  // }, [state]);
+
+  useEffect(() => {
+    setUserAvatarUrl(personalInfo?.avatar);
   }, [personalInfo?.avatar]);
 
+  const handleSuccess = () => {
+    setShowProfile(false);
+    setWelcomeModalIsVisible(true);
+  };
+
   return (
-    <EssLayout>
-      {onboardingViewIsVisible ? (
-        <OnBoardingStepsContainer
-          onEndSteps={() => setOnboardingViewIsVisible(false)}
-        />
-      ) : (
-        <Inner>
-          <WelcomeSection>
-            <p className="type-title3">Hi User,</p>
-            <p className="type-body2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              ut malesuada massa. Sed sodales arcu in eleifend aliquam. Nam id
-              ex viverra, mattis turpis sed, ullamcorper metus. Integer
-              fermentum, sapien sed fringilla condimentum, diam dui ultricies
-              risus.
-            </p>
-          </WelcomeSection>
-          <MenuCardRow>
-            <MenuCard
-              link="#"
-              icon={<ProfileHomeIcon fill="#858585" />}
-              title="My Profile"
-            />
-            <MenuCard
-              link="/ess/my-pay"
-              icon={<MyPayIcon fill="#858585" />}
-              title="My Pay"
-            />
-            <MenuCard
-              link="#"
-              icon={<ClockIcon fill="#858585" />}
-              title="My Time Off"
-            />
-            <MenuCard
-              link="#"
-              icon={<CalendarIcon fill="#858585" />}
-              title="Timesheet"
-            />
-            <MenuCard
-              link="#"
-              icon={<ChartIcon fill="#858585" />}
-              title="Org Chart"
-            />
-          </MenuCardRow>
-          <EmployeeSummaryRow>
-            <div className="employee-wrapper">
-              <Button
-                bg="var(--lilac-400)"
-                textcolor="var(--grey-25)"
-                className="clockin-btn"
-                leftIcon={<WatchIcon />}
-                iconcolor="var(--grey-25)"
-              >
-                Clock in
-              </Button>
-              <EmployeeInfo>
-                {userAvatarUrl ? (
-                  <img src={userAvatarUrl} alt="" />
-                ) : (
-                  <ProfileImg />
-                )}
-                <EmployeeDetails>
-                  <div className="row">
-                    <p className="type-title3">Name</p>
-                    <p className="type-body2">{personalInfo?.lastname} {personalInfo?.firstname}</p>
-                  </div>
-                  <div className="row">
-                    <p className="type-title3">Job</p>
-                    <p className="type-body2">{orgData?.job}</p>
-                  </div>
-                  <div className="row">
-                    <p className="type-title3">Department</p>
-                    <p className="type-body2">{orgData?.department}</p>
-                  </div>
-                  <div className="row">
-                    <p className="type-title3">Hire Date</p>
-                    <p className="type-body2">{orgData?.hire_date && formatDate(orgData.hire_date)}</p>
-                  </div>
-                </EmployeeDetails>
-              </EmployeeInfo>
-            </div>
-            <div className="pending-task-wrapper">
-              <h3 className="type-title3">Pending Tasks</h3>
-              <PendingTasks>
-                <PendingTask>
-                  <div className="icon-task">
-                    <RoundIconBg
-                      bg="#FFEAEA"
-                      icon={<StarIcon fill="var(--red)" />}
-                    />
-                    <div className="task">
-                      <h4 className="type-title4">Email Verification</h4>
-                      <p className="type-body3">Verify Email </p>
+    showProfile ? (
+      <ProfileSetup handleSuccess={handleSuccess} />
+    ) : (
+      <EssLayout>
+        {onboardingViewIsVisible ? (
+          <OnBoardingStepsContainer
+            onEndSteps={() => setOnboardingViewIsVisible(false)}
+          />
+        ) : (
+          <Inner>
+            <WelcomeSection>
+              <p className="type-title3">Hi User,</p>
+              <p className="type-body2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                ut malesuada massa. Sed sodales arcu in eleifend aliquam. Nam id
+                ex viverra, mattis turpis sed, ullamcorper metus. Integer
+                fermentum, sapien sed fringilla condimentum, diam dui ultricies
+                risus.
+              </p>
+            </WelcomeSection>
+            <MenuCardRow>
+              <MenuCard
+                link="#"
+                icon={<ProfileHomeIcon fill="#858585" />}
+                title="My Profile"
+              />
+              <MenuCard
+                link="/ess/my-pay"
+                icon={<MyPayIcon fill="#858585" />}
+                title="My Pay"
+              />
+              <MenuCard
+                link="#"
+                icon={<ClockIcon fill="#858585" />}
+                title="My Time Off"
+              />
+              <MenuCard
+                link="#"
+                icon={<CalendarIcon fill="#858585" />}
+                title="Timesheet"
+              />
+              <MenuCard
+                link="#"
+                icon={<ChartIcon fill="#858585" />}
+                title="Org Chart"
+              />
+            </MenuCardRow>
+            <EmployeeSummaryRow>
+              <div className="employee-wrapper">
+                <Button
+                  bg="var(--lilac-400)"
+                  textcolor="var(--grey-25)"
+                  className="clockin-btn"
+                  leftIcon={<WatchIcon />}
+                  iconcolor="var(--grey-25)"
+                >
+                  Clock in
+                </Button>
+                <EmployeeInfo>
+                  {userAvatarUrl ? (
+                    <img src={userAvatarUrl} alt="" />
+                  ) : (
+                    <ProfileImg />
+                  )}
+                  <EmployeeDetails>
+                    <div className="row">
+                      <p className="type-title3">Name</p>
+                      <p className="type-body2">{personalInfo?.lastname} {personalInfo?.firstname}</p>
                     </div>
-                  </div>
-                  <div className="priority">
-                    <Tag bordercolor="var(--red)">Priority</Tag>
-                    <p className="type-subtitle1">2 days</p>
-                  </div>
-                </PendingTask>
-                <PendingTask>
-                  <div className="icon-task">
-                    <RoundIconBg
-                      bg="#FFFAEA"
-                      icon={<ClockIcon fill="var(--yellow)" />}
-                    />
-                    <div className="task">
-                      <h4 className="type-title4">Time off requested</h4>
-                      <p className="type-body3">Employee </p>
+                    <div className="row">
+                      <p className="type-title3">Job</p>
+                      <p className="type-body2">{orgData?.job}</p>
                     </div>
-                  </div>
-                  <div className="priority">
-                    <Tag bordercolor="#F4BE50">Pending</Tag>
-                    <p className="type-subtitle1">2 days</p>
-                  </div>
-                </PendingTask>
-              </PendingTasks>
-            </div>
-            <div className="onleave-wrapper">
-              <h3 className="type-title3">Employee On Leave</h3>
-              <OnLeave>
-                {employeeOnLeave && employeeOnLeave?.map((item, index) => {
-                  return (
-                    <OnLeaveEmployee key={index}>
+                    <div className="row">
+                      <p className="type-title3">Department</p>
+                      <p className="type-body2">{orgData?.department}</p>
+                    </div>
+                    <div className="row">
+                      <p className="type-title3">Hire Date</p>
+                      <p className="type-body2">{orgData?.hire_date && formatDate(orgData.hire_date)}</p>
+                    </div>
+                  </EmployeeDetails>
+                </EmployeeInfo>
+              </div>
+              <div className="pending-task-wrapper">
+                <h3 className="type-title3">Pending Tasks</h3>
+                <PendingTasks>
+                  <PendingTask>
+                    <div className="icon-task">
                       <RoundIconBg
-                        bg="var(--grey-100)"
-                        type="text"
-                        icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
+                        bg="#FFEAEA"
+                        icon={<StarIcon fill="var(--red)" />}
                       />
-                      <div className="employee-details">
-                        <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
-                        <p className="type-body3">{item?.jobTitle}</p>
+                      <div className="task">
+                        <h4 className="type-title4">Email Verification</h4>
+                        <p className="type-body3">Verify Email </p>
                       </div>
-                    </OnLeaveEmployee>
-                  )
-                })}
-              </OnLeave>
-            </div>
-          </EmployeeSummaryRow>
-          <NewsRow>
-            <div className="news-titles">
-              <h3 className="type-title3">Announcements</h3>
-              <h3 className="type-title3">Events</h3>
-            </div>
-            <div className="wrapper">
-              <Announcements>
-                <div className="title">
-                  <h3 className="type-title3">Announcements</h3>
-                </div>
-                <div className="item">
-                  <div className="icon-group">
-                    <RoundIconBg
-                      bg="#FFEAEA"
-                      icon={<BookIcon fill="var(--red)" />}
-                    />
-                    <div className="announcement">
-                      <h4 className="type-title4">Earning Statement </h4>
-                      <p className="type-body3">
-                        Your February earning statement is ready!
-                      </p>
                     </div>
-                  </div>
-                  <Button
-                    bg="var(--white)"
-                    border="var(--lilac-400)"
-                    textcolor="var(--lilac-400)"
-                    className="news-btn"
-                  >
-                    View
-                  </Button>
-                </div>
-                <div className="item">
-                  <div className="icon-group">
-                    <RoundIconBg
-                      bg="#FFEAEA"
-                      icon={<BookIcon fill="var(--red)" />}
-                    />
-                    <div className="announcement">
-                      <h4 className="type-title4">Earning Statement </h4>
-                      <p className="type-body3">
-                        Your February earning statement is ready!
-                      </p>
+                    <div className="priority">
+                      <Tag bordercolor="var(--red)">Priority</Tag>
+                      <p className="type-subtitle1">2 days</p>
                     </div>
-                  </div>
-                  <Button
-                    bg="var(--white)"
-                    border="var(--lilac-400)"
-                    textcolor="var(--lilac-400)"
-                    className="news-btn"
-                  >
-                    View
-                  </Button>
-                </div>
-              </Announcements>
-              <Events>
-                <div className="title">
-                  <h3 className="type-title3">Events</h3>
-                </div>
-                {events && Object.keys(events)?.map((key) => (
-                  <React.Fragment key={key}>
-                    {events[key].map((item, index) => (
-                      <PendingTask key={index}>
-                        <div className="icon-task">
-                          {key === "birthdays" ? (
-                            <RoundIconBg
-                              bg="var(--grey-100)"
-                              icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
-                            />
-                          ) : (
-                            <RoundIconBg
-                              bg="#FFEAEA"
-                              icon={<SunIcon fill="var(--red)" />}
-                            />
-                          )}
-                          <div className="task">
-                            {key === "birthdays" ? (
-                              <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
-                            ) : (
-                              <h4 className="type-title4">{item?.name}</h4>
-                            )}
-                            <p className="type-body3">{capitalize(key)}</p>
-                          </div>
-                          <div className="priority">
-                            {key === "birthdays" && (
-                              <Tag bordercolor="var(--red)">Send wishes</Tag>
-                            )}
-                            <p className="type-subtitle1">{item?.start_date && formatDate(item.start_date)}</p>
-                          </div>
+                  </PendingTask>
+                  <PendingTask>
+                    <div className="icon-task">
+                      <RoundIconBg
+                        bg="#FFFAEA"
+                        icon={<ClockIcon fill="var(--yellow)" />}
+                      />
+                      <div className="task">
+                        <h4 className="type-title4">Time off requested</h4>
+                        <p className="type-body3">Employee </p>
+                      </div>
+                    </div>
+                    <div className="priority">
+                      <Tag bordercolor="#F4BE50">Pending</Tag>
+                      <p className="type-subtitle1">2 days</p>
+                    </div>
+                  </PendingTask>
+                </PendingTasks>
+              </div>
+              <div className="onleave-wrapper">
+                <h3 className="type-title3">Employee On Leave</h3>
+                <OnLeave>
+                  {employeeOnLeave && employeeOnLeave?.map((item, index) => {
+                    return (
+                      <OnLeaveEmployee key={index}>
+                        <RoundIconBg
+                          bg="var(--grey-100)"
+                          type="text"
+                          icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
+                        />
+                        <div className="employee-details">
+                          <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
+                          <p className="type-body3">{item?.jobTitle}</p>
                         </div>
-                      </PendingTask>
-                    ))}
-                  </React.Fragment>
-                ))}
-              </Events>
-            </div>
-          </NewsRow>
-        </Inner>
-      )}
-      <AuthWelcomeModal
-        isVisible={welcomeModalIsVisible}
-        clickAction={() => {
-          setWelcomeModalIsVisible(false);
-          setOnboardingViewIsVisible(true);
-        }}
-      />
-      {/* {onboardingViewIsVisible && <OnBoardingStepsContainer />} */}
-    </EssLayout>
+                      </OnLeaveEmployee>
+                    )
+                  })}
+                </OnLeave>
+              </div>
+            </EmployeeSummaryRow>
+            <NewsRow>
+              <div className="news-titles">
+                <h3 className="type-title3">Announcements</h3>
+                <h3 className="type-title3">Events</h3>
+              </div>
+              <div className="wrapper">
+                <Announcements>
+                  <div className="title">
+                    <h3 className="type-title3">Announcements</h3>
+                  </div>
+                  <div className="item">
+                    <div className="icon-group">
+                      <RoundIconBg
+                        bg="#FFEAEA"
+                        icon={<BookIcon fill="var(--red)" />}
+                      />
+                      <div className="announcement">
+                        <h4 className="type-title4">Earning Statement </h4>
+                        <p className="type-body3">
+                          Your February earning statement is ready!
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      bg="var(--white)"
+                      border="var(--lilac-400)"
+                      textcolor="var(--lilac-400)"
+                      className="news-btn"
+                    >
+                      View
+                    </Button>
+                  </div>
+                  <div className="item">
+                    <div className="icon-group">
+                      <RoundIconBg
+                        bg="#FFEAEA"
+                        icon={<BookIcon fill="var(--red)" />}
+                      />
+                      <div className="announcement">
+                        <h4 className="type-title4">Earning Statement </h4>
+                        <p className="type-body3">
+                          Your February earning statement is ready!
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      bg="var(--white)"
+                      border="var(--lilac-400)"
+                      textcolor="var(--lilac-400)"
+                      className="news-btn"
+                    >
+                      View
+                    </Button>
+                  </div>
+                </Announcements>
+                <Events>
+                  <div className="title">
+                    <h3 className="type-title3">Events</h3>
+                  </div>
+                  {events && Object.keys(events)?.map((key) => (
+                    <React.Fragment key={key}>
+                      {events[key].map((item, index) => (
+                        <PendingTask key={index}>
+                          <div className="icon-task">
+                            {key === "birthdays" ? (
+                              <RoundIconBg
+                                bg="var(--grey-100)"
+                                icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
+                              />
+                            ) : (
+                              <RoundIconBg
+                                bg="#FFEAEA"
+                                icon={<SunIcon fill="var(--red)" />}
+                              />
+                            )}
+                            <div className="task">
+                              {key === "birthdays" ? (
+                                <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
+                              ) : (
+                                <h4 className="type-title4">{item?.name}</h4>
+                              )}
+                              <p className="type-body3">{capitalize(key)}</p>
+                            </div>
+                            <div className="priority">
+                              {key === "birthdays" && (
+                                <Tag bordercolor="var(--red)">Send wishes</Tag>
+                              )}
+                              <p className="type-subtitle1">{item?.start_date && formatDate(item.start_date)}</p>
+                            </div>
+                          </div>
+                        </PendingTask>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </Events>
+              </div>
+            </NewsRow>
+          </Inner>
+        )}
+        <AuthWelcomeModal
+          isVisible={welcomeModalIsVisible}
+          clickAction={() => {
+            setWelcomeModalIsVisible(false);
+            // setOnboardingViewIsVisible(true);
+          }}
+        />
+        {/* {onboardingViewIsVisible && <OnBoardingStepsContainer />} */}
+      </EssLayout>
+    )
   );
 };
 
