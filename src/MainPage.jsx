@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import EssMyProfilePage from "./pages/EssMyProfilePage";
 import EssHome from "@/pages/EssHomepage";
-import ProfileSetup from "@/pages/ProfileSetup";
+import MyPay from "@/pages/MyPay";
 window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {
@@ -17,6 +17,7 @@ function Main() {
         <Route path="/ess" element={<EssHome />} />
         <Route path="ess/profile" element={<ProfileSetup />} />
         <Route path="ess/my-profile" element={<EssMyProfilePage />} />
+        <Route path="/ess/my-pay" element={<MyPay />} />
         <Route path="*" element={<Navigate to="/ess" replace />} />
       </Routes>
     </Router>

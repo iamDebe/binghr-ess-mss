@@ -5,7 +5,8 @@ export const desktop = `@media screen and (max-width: 1440px)`;
 export const desktopMidi = `@media screen and (max-width: 1280px)`;
 export const tablet = `@media screen and (max-width: 1023px)`;
 export const mobile = `@media screen and (max-width: 767px)`;
-export const mobileMedium = `@media screen and (max-width: 480px)`;
+export const mobileMedium = `@media screen and (max-width: 520px)`;
+export const mobileSmall = `@media screen and (max-width: 480px)`;
 
 export const GlobalStyles = createGlobalStyles`
   @font-face {
@@ -18,6 +19,8 @@ export const GlobalStyles = createGlobalStyles`
   :root {
     /* colors */
     --white: #ffffff;
+    --black: #000000;
+    --grey-4: #BDBDBD;
     --grey-5: #E0E0E0;
     --grey-25: #fcfcfd;
     --grey-50: #f9fafb;
@@ -56,6 +59,7 @@ export const GlobalStyles = createGlobalStyles`
     --minttulip: #c8ead3;
     --red: #EB5757;
     --yellow: #F2C94C;
+    --green-2: #27AE60;
   
     /* fonts */
     font-family: "Circular Std", sans-serif;
@@ -68,7 +72,10 @@ export const GlobalStyles = createGlobalStyles`
     --lato-font: 'Lato', sans-serif;
     
     /* border radius */
+    --br-sm: 0.5px; 
     --br: 4px; 
+    --br-lg: 6px; 
+    --br-xl: 8px; 
   }
   
   * {
@@ -109,12 +116,8 @@ export const GlobalStyles = createGlobalStyles`
 
     --nav-width-collapsed: 7.375rem;
     --nav-width-expanded: 18.3125rem;
-
-    --left-nav-padding: var(--sp-3);
-    --nav-logo-height: var(--sp-14);
-    --nav-item-height: var(--sp-11);
-
-    --content-window-width: calc(100vw - var(--left-nav-width-expanded));
+    --content-window-width-expanded: calc(100vw - var(--nav-width-expanded));
+    --content-window-width-collapsed: calc(100vw - var(--nav-width-collapsed));
   
     /* font types */
     .type-title1 {

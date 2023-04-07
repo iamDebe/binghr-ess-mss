@@ -3,12 +3,12 @@ import React, {useEffect} from "react";
 import { styled } from "goober";
 
 export const Wrapper = styled("div")`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 1.75rem;
-  position: relative;
-  width: 100%;
+  margin-bottom: var(--textfield-margin-bottom, 1.75rem);
+  width: var(--textfield-width, 100%);
   label {
     font-size: 12px;
     line-height: 15px;
@@ -31,7 +31,9 @@ export const Wrapper = styled("div")`
       background: var(--grey-100);
       border: 1px solid var(--grey-200);
     }
-    &[type="date"]::-webkit-calendar-picker-indicator {
+    &[type="date"]::-webkit-calendar-picker-indicator,
+    &[type="date"]::-moz-calendar-picker-indicator,
+    &[type="date"]::-ms-calendar-picker-indicator {
       opacity: 0;
       cursor: pointer;
       transform: translateX(23px);
@@ -53,7 +55,7 @@ export const Wrapper = styled("div")`
   .error {
     background-color: var(--red-200);
   }
-  .optional {
+  .label {
     display: flex;
     align-items: center;
     & span {
@@ -64,18 +66,17 @@ export const Wrapper = styled("div")`
 `;
 
 
-const TextField = React.forwardRef(({ label, icon, optional, disabled, ...props }, ref) => {
+const TextField = React.forwardRef(({ label, icon, optional, disabled, className, ...props }, ref) => {
   useEffect(()=>{
-
   }, [disabled]);
   return (
-    <Wrapper>
-      <div className="optional">
+    <Wrapper className={className}>
+      <div className="label">
         <label htmlFor={props.id || props.name}>{label}</label>
         {optional && <span>&nbsp;(Optional)</span>}
       </div>
-      <input className="text-input" {...props} ref={ref} disabled={disabled}/>
-      {icon && <img src={icon} className="input-icon icon" />}
+      <input className="text-input" {...props} ref={ref} disabled={disabled} />
+      {icon && icon }
     </Wrapper>
   );
 })

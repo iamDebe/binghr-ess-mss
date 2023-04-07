@@ -53,3 +53,57 @@ export const decryptToken = async () => {
 
   return null;
 }
+
+export const validateForm = (formData, validationRules) => {
+  const errors = {};
+  for (const field in validationRules) {
+    const rules = validationRules[field];
+    const value = formData.get(field);
+
+    // Check if the field is required
+    if (rules.required && !value) {
+      errors[field] = `${field} is required`;
+    }
+
+    // Check if the field matches a regex pattern
+    if (rules.pattern && value && !rules.pattern.test(value)) {
+      errors[field] = `${field} is invalid`;
+    }
+  }
+  return errors;
+};
+
+export const getFirstLetter = (text) => {
+  return text ? text.charAt(0).toUpperCase() : '';
+}
+
+export const capitalize = (text) => {
+  return text.replace(/_/g, ' ').replace(/^\w|\s\w/g, c => c.toUpperCase())
+}
+
+export const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split(/[-/]/);
+  const date = new Date(year, month - 1, day);
+  const dayNumber = date.getDate();
+  const monthName = date.toLocaleString('default', { month: 'short' });
+  const suffix = getDaySuffix(dayNumber);
+  const formattedDate = `${monthName} ${dayNumber}${suffix}, ${date.getFullYear()}`;
+  return formattedDate;
+}
+
+const getDaySuffix = (day) => {
+  if (day >= 11 && day <= 13) {
+    return 'th';
+  } else {
+    const lastDigit = day % 10;
+    if (lastDigit === 1) {
+      return 'st';
+    } else if (lastDigit === 2) {
+      return 'nd';
+    } else if (lastDigit === 3) {
+      return 'rd';
+    } else {
+      return 'th';
+    }
+  }
+}
