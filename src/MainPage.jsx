@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import EssHome from "@/pages/EssHomepage";
-import ProfileSetup from "@/pages/ProfileSetup";
 import MyPay from "@/pages/MyPay";
 import MyTimeOff from "@/pages/MyTimeoff";
 import TimeSheet from "@/pages/TimeSheet"; 
