@@ -15,6 +15,7 @@ const initialState = {
   countries: null,
   states: {},
   orgData: null,
+  onboardingStatus: null,
 };
 
 const store = proxy({
@@ -64,6 +65,16 @@ const store = proxy({
       try {
         const response = await methods.get("/onboarding/employment-data");
         this.orgData = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  async getOnboardingStatus() {
+    if (!store.onboardingStatus) {
+      try {
+        const response = await methods.get("/onboarding/status");
+        this.onboardingStatus = response.data;
       } catch (error) {
         console.error(error);
       }

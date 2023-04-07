@@ -10,7 +10,7 @@ const profileSteps = {
   step3: false,
 };
 
-  const ProfileSetup = () => {
+  const ProfileSetup = (props) => {
   const [step, setStep] = useState(profileSteps);
   return (
     <OnboardingLayout>
@@ -21,7 +21,7 @@ const profileSteps = {
         <ProfileSetUpStep2 setStep={setStep} />
       )}
       {step.step3 && (
-        <ProfileSetUpStep3 setStep={setStep} />
+        <ProfileSetUpStep3 setStep={setStep} {...props} />
       )}
     </OnboardingLayout>
   );
