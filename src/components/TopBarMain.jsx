@@ -116,6 +116,7 @@ const DropdownWrapper = styled("div")`
   top: 60px;
   left: 35px;
   width: 100%;
+  z-index: 1;
   ul {
     background-color: white;
     border: 1px solid var(--grey-100);
@@ -129,15 +130,13 @@ const DropdownWrapper = styled("div")`
     width: 100%
   }
   .logout{
-    color: #EB5757;
+    color: var(--red);
   }
 `;
 const DropdownItemsWrapper = styled("div")`
   display: flex;
+  align-items: center;
   justify-content: start;
-  & .dropdown-icon{
-      margin-top: .3rem;
-  }
 `;
 const ProfileSettingsWrapper = styled("div")`
   position: relative;
@@ -199,15 +198,15 @@ const TopBar = () => {
             {showProfileSettings && 
               <ul className="dropdown-menu">
                 <DropdownItemsWrapper>
-                  <UserIcon  className="dropdown-icon" />
+                  <UserIcon className="dropdown-icon" />
                   <li><a className="dropdown-item" href="/ess/profile"> My Profile</a></li>
                 </DropdownItemsWrapper>
                 <DropdownItemsWrapper>
-                  <ProgrammingIcon  className="dropdown-icon" />
+                  <ProgrammingIcon className="dropdown-icon" />
                   <li><a className="dropdown-item" href="#"> Proxy</a></li>
                 </DropdownItemsWrapper>
                 <DropdownItemsWrapper>
-                  <LogoutIcon  className="dropdown-icon" />
+                  <LogoutIcon className="dropdown-icon" stroke="var(--red)" />
                   <li><a className="dropdown-item logout" href="#"> Logout</a></li>
                 </DropdownItemsWrapper>
               </ul>

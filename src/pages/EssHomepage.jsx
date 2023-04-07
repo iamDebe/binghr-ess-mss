@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styled } from "goober";
 import EssLayout from "@/components/EssLayout";
 import MenuCard from "@/components/MenuCardBox";
-import { mobile, mobileSmall, tablet, desktopMidi } from "@/globalStyle";
+import { mobile, mobileSmall, mobileMedium, tablet, desktopMidi } from "@/globalStyle";
 import { ReactComponent as ProfileHomeIcon } from "@/assets/images/profile-remove.svg";
 import { ReactComponent as MyPayIcon } from "@/assets/images/note2.svg";
 import { ReactComponent as ClockIcon } from "@/assets/images/clock.svg";
@@ -13,6 +13,7 @@ import { ReactComponent as BookIcon } from "@/assets/images/book.svg";
 import { ReactComponent as SunIcon } from "@/assets/images/sun.svg";
 import { ReactComponent as WatchIcon } from "@/assets/images/watch.svg";
 import { ReactComponent as ProfileImg } from "@/assets/images/profile-img.svg";
+import { ReactComponent as Profile2User } from "@/assets/images/profile-2user.svg";
 import AuthWelcomeModal from "@/components/AuthWelcomeModal";
 import store from "@/services/store";
 import OnBoardingStepsContainer from "@/components/onboarding/OnBoardingStepsContainer";
@@ -53,7 +54,7 @@ const EssHome = () => {
       ) : (
         <Inner>
           <WelcomeSection>
-            <p className="type-title3">Hi User,</p>
+            <p className="type-title3">Hi {personalInfo?.lastname},</p>
             <p className="type-body2">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
               ut malesuada massa. Sed sodales arcu in eleifend aliquam. Nam id
@@ -163,28 +164,32 @@ const EssHome = () => {
                 </PendingTask>
               </PendingTasks>
             </div>
-            {employeeOnLeave && 
               <div className="onleave-wrapper">
                 <h3 className="type-title3">Employee On Leave</h3>
                 <OnLeave>
-                  {employeeOnLeave && employeeOnLeave?.map((item, index) => {
-                    return (
-                      <OnLeaveEmployee key={index}>
-                        <RoundIconBg
-                          bg="var(--grey-100)"
-                          type="text"
-                          icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
-                        />
-                        <div className="employee-details">
-                          <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
-                          <p className="type-body3">{item?.jobTitle}</p>
-                        </div>
-                      </OnLeaveEmployee>
-                    )
-                  })}
+                  {employeeOnLeave ? 
+                    employeeOnLeave?.map((item, index) => {
+                      return (
+                        <OnLeaveEmployee key={index}>
+                          <RoundIconBg
+                            bg="var(--grey-100)"
+                            type="text"
+                            icon={<span className="type-title3">{getFirstLetter(item?.lastname)}{getFirstLetter(item?.firstname)}</span>}
+                          />
+                          <div className="employee-details">
+                            <h4 className="type-title4">{item?.lastname} {item?.firstname}</h4>
+                            <p className="type-body3">{item?.jobTitle}</p>
+                          </div>
+                        </OnLeaveEmployee>
+                      )
+                    }) :
+                      <div className="no-employee-wrapper">
+                        <Profile2User fill="var(--grey-200)" stroke="var(--grey-200)" />
+                        <p className="type-body3">No Employee on Leave</p>
+                      </div>
+                   }
                 </OnLeave>
               </div>
-            }
           </EmployeeSummaryRow>
           <NewsRow>
             <div className="news-titles">
@@ -269,12 +274,12 @@ const EssHome = () => {
                             )}
                             <p className="type-body3">{capitalize(key)}</p>
                           </div>
-                          <div className="priority">
-                            {key === "birthdays" && (
-                              <Tag bordercolor="var(--red)">Send wishes</Tag>
-                            )}
-                            <p className="type-subtitle1">{item?.start_date && formatDate(item.start_date)}</p>
-                          </div>
+                        </div>
+                        <div className="priority">
+                          {key === "birthdays" && (
+                            <Tag bordercolor="var(--red)">Send wishes</Tag>
+                          )}
+                          <p className="type-subtitle1">{item?.start_date && formatDate(item.start_date)}</p>
                         </div>
                       </PendingTask>
                     ))}
@@ -325,15 +330,20 @@ const Inner = styled("div")`
       flex-basis: 100%;
     }
     .pending-task-wrapper {
-      flex-basis: calc(50% - 11px);
+      flex-basis: calc(55% - 11px);
     }
     .onleave-wrapper {
-      flex-basis: calc(50% - 11px);
+      flex-basis: calc(45% - 11px);
     }
   }
   ${mobile} {
     .onleave-wrapper {
       display: none;
+    }
+  }
+  ${mobileMedium} {
+    .pending-task-wrapper {
+      flex-basis: 100%;
     }
   }
 `;
@@ -382,6 +392,10 @@ const EmployeeInfo = styled("div")`
   ${desktopMidi} {
     gap: 1rem;
   }
+  ${mobileSmall} {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 const EmployeeDetails = styled("div")`
   display: flex;
@@ -415,6 +429,9 @@ const EmployeeDetails = styled("div")`
       color: var(--grey-400);
     }
   }
+  ${mobileSmall} {
+    padding: 1rem;
+  }
 `;
 const PendingTasks = styled("div")`
   display: flex;
@@ -426,6 +443,10 @@ const PendingTasks = styled("div")`
   height: 9.375rem;
   overflow-y: auto;
   overflow-x: hidden;
+  ${mobileMedium} {
+    height: auto;
+    overflow: auto;
+  }
 `;
 const PendingTask = styled("div")`
   display: flex;
@@ -434,7 +455,10 @@ const PendingTask = styled("div")`
   .icon-task {
     display: flex;
     align-items: center;
-    gap: 1.875rem;
+    gap: 1.5rem;
+    ${mobile} {
+      gap: 0.75rem;
+    }
   }
   .task {
     display: flex;
@@ -464,11 +488,22 @@ const OnLeave = styled("div")`
   height: 9.375rem;
   overflow-y: auto;
   overflow-x: hidden;
+  .no-employee-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+    p {
+      color: var(--grey-300);
+    }
+  }
 `;
 const OnLeaveEmployee = styled("div")`
   display: flex;
-  justify-content: space-between;
-  gap: 1.25rem;
+  align-items: center;
+  gap: 1rem;
   .employee-details {
     display: flex;
     flex-direction: column;
@@ -509,6 +544,8 @@ const Announcements = styled("div")`
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
+  max-height: 170px;
+  overflow-y: auto;
   .title {
     display: none;
     ${tablet} {
@@ -525,7 +562,10 @@ const Announcements = styled("div")`
   .icon-group {
     display: flex;
     align-items: center;
-    gap: 1.875rem;
+    gap: 1.5rem;
+    ${mobile} {
+      gap: 0.75rem;
+    }
   }
   .announcement {
     display: flex;
@@ -539,6 +579,8 @@ const Announcements = styled("div")`
     padding: 0 0 1.25rem 0;
     border-right: none;
     border-bottom: 1px solid var(--grey-200);
+    max-height: 100%;
+    overflow: auto;
   }
 `;
 const Events = styled("div")`
@@ -547,11 +589,15 @@ const Events = styled("div")`
   gap: 1.375rem;
   padding: 1.125rem 0 1.125rem 1.25rem;
   flex: 1 0 48%;
+  max-height: 170px;
+  overflow-y: auto;
   .title {
     display: none;
   }
   ${tablet} {
     padding: 1.25rem 0 0;
+    max-height: 100%;
+    overflow: auto;
     .title {
       display: block;
     }
