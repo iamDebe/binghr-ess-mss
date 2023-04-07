@@ -21,6 +21,7 @@ function EmergencyContact({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Next of Kin First Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="firstname"
@@ -28,6 +29,7 @@ function EmergencyContact({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Next of Kin Last Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="phoneNumber"
@@ -35,6 +37,7 @@ function EmergencyContact({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Telephone Number"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="homeAddress"
@@ -42,6 +45,7 @@ function EmergencyContact({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Home Address"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="office"
@@ -49,6 +53,7 @@ function EmergencyContact({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Office Address"
             className="field-flex-basis"
+            marginbottom="0"
           />
         </div>
       </div>
