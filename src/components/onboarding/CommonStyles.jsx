@@ -47,7 +47,6 @@ export const Inner = styled("div")`
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      width: 100%;
     }
     ${mobile} {
       gap: 2.5rem;
@@ -80,8 +79,6 @@ export const Inner = styled("div")`
       flex-basis: 100%;
     }
   }
-  --textfield-margin-bottom: 0;
-  --textfield-width: auto;
 
   .form-div {
     padding: 10px;

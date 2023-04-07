@@ -22,6 +22,7 @@ function AddressTwo({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Street Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="apartment"
@@ -29,6 +30,7 @@ function AddressTwo({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Apartment Number"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="city"
@@ -36,6 +38,7 @@ function AddressTwo({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter City Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="state"
@@ -43,6 +46,7 @@ function AddressTwo({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter State Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="country"
@@ -50,6 +54,7 @@ function AddressTwo({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Country Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="postalCode"
@@ -57,6 +62,7 @@ function AddressTwo({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Postal Code"
             className="field-flex-basis"
+            marginbottom="0"
           />
         </div>
       </div>

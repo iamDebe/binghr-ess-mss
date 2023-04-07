@@ -27,7 +27,7 @@ import ProfileSetup from "@/pages/ProfileSetup";
 const EssHome = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [welcomeModalIsVisible, setWelcomeModalIsVisible] = useState(false);
-  const [onboardingViewIsVisible, setOnboardingViewIsVisible] = useState(false);
+  const [onboardingViewIsVisible, setOnboardingViewIsVisible] = useState(true);
   const [userAvatarUrl, setUserAvatarUrl] = useState("");
   const snapshot = useSnapshot(store);
   const personalInfo = snapshot?.personalInformation;

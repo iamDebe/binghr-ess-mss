@@ -21,6 +21,7 @@ function BankInformation({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Bank Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="accountname"
@@ -28,6 +29,7 @@ function BankInformation({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Account Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="accountnumber"
@@ -35,6 +37,7 @@ function BankInformation({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Account Number"
             className="field-flex-basis"
+            marginbottom="0"
           />
         </div>
       </div>

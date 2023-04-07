@@ -76,6 +76,8 @@ const PayrollTable = () => {
                     type="email"
                     placeholder="Enter Email"
                     icon={<EmailIcon  className="input-icon icon"/>}
+                    width="90%"
+                    marginbottom="1.25rem"
                 />
                 <Button
                     bg="var(--lilac-400)"
@@ -161,8 +163,6 @@ const Container = styled("div")`
 const EmailWrapper = styled("div")`
     width: 100%;
     margin-top: 2rem;
-    --textfield-width: 90%;
-    --textfield-margin-bottom: 1.25rem;
 `;
 const AccountStatementSingle = styled("div")`
     width: 100%;
