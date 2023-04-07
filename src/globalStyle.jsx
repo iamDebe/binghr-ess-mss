@@ -7,6 +7,7 @@ export const tablet = `@media screen and (max-width: 1023px)`;
 export const mobile = `@media screen and (max-width: 767px)`;
 export const mobileMedium = `@media screen and (max-width: 520px)`;
 export const mobileSmall = `@media screen and (max-width: 480px)`;
+export const mobileExtraSmall = `@media screen and (max-width: 340px)`;
 
 export const GlobalStyles = createGlobalStyles`
   @font-face {

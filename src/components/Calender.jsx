@@ -7,6 +7,7 @@ import CalculateModal from '@/components/CalculateModal';
 import ClockinOverlay from '@/components/ClockinOverlay';
 import { mobile } from '@/globalStyle';
 import { AnimatePresence, motion } from 'framer-motion';
+import { mobileExtraSmall, mobileSmall } from '../globalStyle';
 
 const Calender = () => {
     
@@ -171,10 +172,10 @@ const Calender = () => {
                                     { (day.clocked === true && day.showModal === true) ? 
                                         <motion.div
                                             key="box"
-                                            initial={{y: "0%", x: "100%", opacity: 0}}
+                                            initial={{y: "0%", x: "300%", opacity: 0}}
                                             animate={{y:-75, x:0, opacity: 1, scale: 1}}
-                                            exit={{y: "0%", x: "100%", opacity: 0}}
-                                            transition={{duration: 0.2, ease: "easeInOut"}}
+                                            exit={{y: "0%", x: "300%", opacity: 0}}
+                                            transition={{duration: 0.5, ease: "easeInOut"}}
                                         >
                                             <CalculateModal  hideCalculateModal={hideCalculateModal} weekIndex = {index} dayIndex={ii} clocked={day.clocked} show={day.showModal}  />
                                         </motion.div>
@@ -341,14 +342,22 @@ const CalenderMain = styled("div")`
                 width: 100%;
             }
             ${desktopMidi}{
-                width: 200%;
+                width: 150%;
             }
             ${tablet}{
-                width: 200%;
+                width: 150%;
             }
             ${mobile}{
                 width: 200%;
             }
+
+            ${mobileSmall}{
+                width: 300%;
+            }
+            ${mobileExtraSmall}{
+                width: 400%;
+            }
+          
            
         }
 `;

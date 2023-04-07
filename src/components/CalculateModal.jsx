@@ -27,6 +27,7 @@ const CalculateModal = ({hideCalculateModal, weekIndex, dayIndex, clocked, show}
                 textcolor="var(--grey-25)"
                 className="submit-button"
                 width="--button-width"
+                margin="2rem 0rem 0rem 0rem"
             >
                 Calculate
             </Button>
@@ -59,4 +60,6 @@ const CalculateWrapper = styled("div")`
     .date-wrapper{
         align-self:center;
     }
+
+   
 `;
