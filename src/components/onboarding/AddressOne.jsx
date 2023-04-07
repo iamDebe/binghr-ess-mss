@@ -21,6 +21,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Street Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="apartment"
@@ -28,6 +29,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Apartment Number"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="city"
@@ -35,6 +37,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter City Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="state"
@@ -42,6 +45,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter State Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="country"
@@ -49,6 +53,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Country Name"
             className="field-flex-basis"
+            marginbottom="0"
           />
           <TextField
             id="postalCode"
@@ -56,6 +61,7 @@ function AddressOne({ continueAction, goBack, saveData }) {
             type="text"
             placeholder="Enter Postal Code"
             className="field-flex-basis"
+            marginbottom="0"
           />
         </div>
       </div>

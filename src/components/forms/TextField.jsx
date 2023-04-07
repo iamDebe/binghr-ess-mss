@@ -2,13 +2,13 @@
 import React, {useEffect} from "react";
 import { styled } from "goober";
 
-export const Wrapper = styled("div")`
+export const textFieldStyles = `
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: var(--textfield-margin-bottom, 1.75rem);
-  width: var(--textfield-width, 100%);
+  margin-bottom: var(--textfield-margin-bottom);
+  width: var(--textfield-width);
   label {
     font-size: 12px;
     line-height: 15px;
@@ -31,9 +31,7 @@ export const Wrapper = styled("div")`
       background: var(--grey-100);
       border: 1px solid var(--grey-200);
     }
-    &[type="date"]::-webkit-calendar-picker-indicator,
-    &[type="date"]::-moz-calendar-picker-indicator,
-    &[type="date"]::-ms-calendar-picker-indicator {
+    &[type="date"]::-webkit-calendar-picker-indicator {
       opacity: 0;
       cursor: pointer;
       transform: translateX(23px);
@@ -65,10 +63,19 @@ export const Wrapper = styled("div")`
   }
 `;
 
-
-const TextField = React.forwardRef(({ label, icon, optional, disabled, className, ...props }, ref) => {
+const TextField = React.forwardRef(({ label, icon, optional, disabled, marginbottom, width, className="", ...props }, ref) => {
   useEffect(()=>{
   }, [disabled]);
+
+  const customStyles = `
+    --textfield-margin-bottom: ${marginbottom || "1.75rem"};
+    --textfield-width: ${width || "100%"};
+  `;
+  const Wrapper = styled("div")`
+    ${textFieldStyles}
+    ${customStyles}
+  `;
+
   return (
     <Wrapper className={className}>
       <div className="label">
@@ -79,7 +86,6 @@ const TextField = React.forwardRef(({ label, icon, optional, disabled, className
       {icon && icon }
     </Wrapper>
   );
-})
-
+});
 
 export default TextField;
