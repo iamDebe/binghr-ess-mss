@@ -43,10 +43,8 @@ const EssHome = () => {
     store.getOnboardingStatus();
   }, []);
   useEffect(() => {
-    if (personalInfo) {
-      if (!personalInfo.completed_profile_onboarding) {
-        setShowProfile(true);
-      }
+    if (personalInfo && !personalInfo.completed_profile_onboarding) {
+      setShowProfile(true);
     }
   }, [personalInfo?.completed_profile_onboarding]);
 
