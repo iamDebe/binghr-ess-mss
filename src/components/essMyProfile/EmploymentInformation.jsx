@@ -6,48 +6,7 @@ import { TextField } from "../forms";
 import { ReactComponent as PenIcon } from "@/assets/images/pen-icon.svg";
 import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
 import Button from "@/components/button";
-
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-`;
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  .title {
-    color: var(--grey-500);
-  }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-  .inner-container {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    border: 0.5px solid #e0e0e0;
-    border-radius: 4px;
-    .flexed-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .main-text-div {
-      display: flex;
-      max-width: 100%;
-      margin-top: 40px;
-      .text-div {
-        padding-right: 30px;
-        width: 230px;
-      }
-    }
-  }
-`;
+import { Container, Inner } from "./CommonStyles";
 
 const EmploymentInformation = ({ continueAction, goBack, saveData }) => {
   return (
@@ -70,58 +29,55 @@ const EmploymentInformation = ({ continueAction, goBack, saveData }) => {
               </Button>
             </div>
           </div>
-          <div className="main-text-div">
-            <div className="text-div">
-              <TextField
-                id="hiredate"
-                label="Hire Date"
-                type="date"
-                placeholder="Enter Hire Date"
-              />
-            </div>
-            <div className="text-div">
-              <TextField
+          <div className="form-wrapper">
+            <TextField
+              id="hiredate"
+              label="Hire Date"
+              type="date"
+              placeholder="Enter Hire Date"
+              className="field-flex-basis"
+              marginbottom="1.5rem"
+            />
+            <TextField
                 id="rehiredate"
                 label="Rehire Date"
                 type="date"
                 placeholder="Enter Rehire Date"
+                className="field-flex-basis"
+                marginbottom="1.5rem"
               />
-            </div>
-            <div className="text-div">
               <TextField
                 id="originalstartdate"
                 label="Original Start Date"
                 type="date"
-                placeholder="Enter Original Start Datee"
+                placeholder="Enter Original Start Date"
+                className="field-flex-basis"
+                marginbottom="1.5rem"
               />
-            </div>
-            <div className="text-div">
               <TextField
                 id="servicedate"
                 label="Service Date"
                 type="date"
                 placeholder="Enter Termination Date"
+                className="field-flex-basis"
+                marginbottom="1.5rem"
               />
-            </div>
-          </div>
-
-          <div className="main-text-div">
-            <div className="text-div">
               <TextField
                 id="terminationdate"
                 label="Termination Date"
                 type="date"
                 placeholder="Enter Termination Datee"
+                className="field-flex-basis"
+                marginbottom="1.5rem"
               />
-            </div>
-            <div className="text-div">
               <TextField
                 id="lengthofservice"
                 label="Length Of Service"
                 type="date"
                 placeholder="Enter Length Of Service"
+                className="field-flex-basis"
+                marginbottom="1.5rem"
               />
-            </div>
           </div>
           <div className="button-groups">
             <Button
