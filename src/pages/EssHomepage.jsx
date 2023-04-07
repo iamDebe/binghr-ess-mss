@@ -63,10 +63,6 @@ const EssHome = () => {
     }
   }, [onboardingStatus]);
 
-  // useEffect(() => {
-  //   setWelcomeModalIsVisible(!!state?.showModal);
-  // }, [state]);
-
   useEffect(() => {
     setUserAvatarUrl(personalInfo?.avatar);
   }, [personalInfo?.avatar]);
@@ -322,10 +318,8 @@ const EssHome = () => {
           isVisible={welcomeModalIsVisible}
           clickAction={() => {
             setWelcomeModalIsVisible(false);
-            // setOnboardingViewIsVisible(true);
           }}
         />
-        {/* {onboardingViewIsVisible && <OnBoardingStepsContainer />} */}
       </EssLayout>
     )
   );
