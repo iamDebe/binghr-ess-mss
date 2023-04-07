@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import EssLayout from "@/components/EssLayout";
 import EmployeeCard from '@/components/EmployeeCard';
-import { ReactComponent as ProfilePhoto } from "@/assets/images/profile-img.svg";
+import { ReactComponent as ProfilePhoto } from "@/assets/images/mojoface.svg";
 import { styled } from 'goober';
 import { mobileSmall } from '@/globalStyle';
 

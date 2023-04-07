@@ -16,7 +16,7 @@ const EmployeeCard = ({name, photo, title, department, handleJuniorStaffVisibili
         <div className='inne'>
             <h4 className='type-title2'>{name}</h4>
             <div className='inner'>
-                <div>{photo}</div>
+                <div className='photo'>{photo}</div>
                 <div className='portfolio'>
                     <p className='type-title3'>Job Title: <span className='light'>{title}</span></p>
                     <p className='type-title3'>Department: <span className='light'>{department}</span></p>
@@ -49,19 +49,18 @@ const Wrapper = styled("div")`
         text-align: left;
         color: var(--blue-400);
 
-        @media screen and (max-width: 375px){
-        }
+       
         
     }
 
     .inner{
         display: flex;
         justify-content: start;
+        align-items: center;
         gap: 1.5rem;
         margin-top: .5rem;
 
-        @media screen and (max-width: 375px){
-        }
+       
     }
 
     .portfolio{

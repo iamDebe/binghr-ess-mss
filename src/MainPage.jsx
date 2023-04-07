@@ -5,6 +5,7 @@ import MyPay from "@/pages/MyPay";
 import MyTimeOff from "@/pages/MyTimeoff";
 import TimeSheet from "@/pages/TimeSheet"; 
 import OrgChart from "@/pages/OrgChart";
+import ProfileSetup from "@/pages/ProfileSetup";
 window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {
