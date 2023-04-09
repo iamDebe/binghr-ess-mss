@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import {ReactComponent as NextIcon} from "@/assets/images/next.svg";
 import {ReactComponent as BackIcon} from "@/assets/images/back.svg";
 import { tablet, desktopMidi, desktop } from "@/globalStyle";
-import CalculateModal from '@/components/CalculateModal';
+import CalculateModalRight from '@/components/CalculateModalRight';
+import CalculateModalLeft from '@/components/CalculateModalLeft';
 import ClockinOverlay from '@/components/ClockinOverlay';
 import { mobile } from '@/globalStyle';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -84,8 +85,6 @@ const Calender = () => {
 
     }
 
-    // const mm = ""
-
     const clockIn =(outer, inner)=>{
        const newWeekData = [...weeks];
        if(newWeekData[outer][inner].clocked === false){
@@ -106,6 +105,7 @@ const Calender = () => {
     const showOverlay =(outer, inner)=>{
        const newWeekData = [...weeks];
        newWeekData[outer][inner].showOverlay = true;
+       console.log("overlay displayed");
        setWeeks(newWeekData);
     }
     const hideOverlay =(outer, inner)=>{
@@ -156,7 +156,8 @@ const Calender = () => {
                                 onClick={()=>{
                                     if(typeof(day) != "string"){
                                         clockIn(index, ii)
-                                    }
+                                    };
+                                   
                                 }}
                                 onMouseOver={()=>{
                                     if(typeof(day) != "string"){
@@ -170,15 +171,40 @@ const Calender = () => {
                                 } 
                                 <AnimatePresence>
                                     { (day.clocked === true && day.showModal === true) ? 
-                                        <motion.div
+                                    <>
+                                        {ii !== row.length - 1 ?
+                                             <motion.div
+                                             key="box"
+                                            
+                                         >
+                                             <CalculateModalRight  
+                                                 hideCalculateModal={hideCalculateModal} 
+                                                 weekIndex = {index} 
+                                                 dayIndex={ii} 
+                                                 clocked={day.clocked} 
+                                                 show={day.showModal}  
+                                             />
+                                         </motion.div>
+
+                                         :
+                                            <motion.div
                                             key="box"
-                                            initial={{y: "0%", x: "300%", opacity: 0}}
-                                            animate={{y:-75, x:0, opacity: 1, scale: 1}}
-                                            exit={{y: "0%", x: "300%", opacity: 0}}
-                                            transition={{duration: 0.5, ease: "easeInOut"}}
-                                        >
-                                            <CalculateModal  hideCalculateModal={hideCalculateModal} weekIndex = {index} dayIndex={ii} clocked={day.clocked} show={day.showModal}  />
-                                        </motion.div>
+                                           
+                                            >
+                                            
+                                                <CalculateModalLeft  
+                                                    hideCalculateModal={hideCalculateModal} 
+                                                    weekIndex = {index} 
+                                                    dayIndex={ii} 
+                                                    clocked={day.clocked} 
+                                                    show={day.showModal}  
+                                                />
+                                            </motion.div>
+                                         
+                                         }
+                                       
+                                       
+                                    </>
                                     : ''
                                     }
                                 </AnimatePresence>
@@ -211,19 +237,15 @@ const CalenderTitle = styled("div")`
     display: flex;
     justify-content: space-between;
     padding: .5rem 1.2rem;
-
     .date-year{
         color: var(--grey-500);
-
         @media screen and (max-width: 480px){
             font-size: .8rem;
         }
     }
-
     p{
         align-self: center;
     }
-
     .day-wrapper{
         background-color: var(--red-100);
         border-radius: 25px;
@@ -234,7 +256,6 @@ const CalenderTitle = styled("div")`
     }
     .swipe{
         cursor: pointer;
-
         @media screen and (max-width: 480px){
         }
     }
@@ -274,92 +295,128 @@ const CalenderMain = styled("div")`
         }
     }
         
-        li{
-            list-style: none;
-        }
-        .weekdays{
-            text-align: center;
-            margin: 1rem 0rem 0rem 0rem;
-            color: var(--grey-500);
-        }
-        .active {
-            background-color: var(--grey-100);
-        }
-        .overlay {
+    li{
+        list-style: none;
+    }
+    .weekdays{
+        text-align: center;
+        margin: 1rem 0rem 0rem 0rem;
+        color: var(--grey-500);
+    }
+    .active {
+        background-color: var(--grey-100);
+    }
+    .overlay {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        position: absolute;
+        top: -.4px;
+        background-color: var(--white);
+        justify-content: center;
+        gap: 10px;
+        margin: 0.5px;
+        height: 99%;
+        width: 99.5%;
+        .clockin-wrapper{
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            gap:.625rem;
             justify-content: space-around;
-            position: absolute;
-            top: -.4px;
-            background-color: var(--white);
-            justify-content: center;
-            gap: 10px;
-            margin: 0.5px;
-            height: 99%;
-            width: 99.5%;
-            .clockin-wrapper{
-                display: flex;
-                flex-wrap: wrap;
-                gap:.625rem;
-                justify-content: space-around;
-                ${desktopMidi}{
-                    gap: 0px;
-                }
-            }
-            .icon{
-                align-self: center;
-            }
-            .action{
-                display: flex;
-                align-items: center;
-                gap: .5rem;
-                font-size: .65rem;
-                color: var(--grey-400);
-                cursor: pointer;
-                .action-text {
-                    ${tablet}  {
-                        display: none;
-                    }
-                }
-            }
-            .time{
-                color: var(--grey-300);
-                cursor: pointer;
-            }
-        }
-        .calculate-modal{
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            top: -100px;
-            right: 0;
-            background-color: white;
-            padding: .4rem .5rem;
-            border: 1px solid var(--grey-200);
-            border-radius: var(--br);
-            ${desktop}{
-                width: 100%;
-            }
-            ${desktopMidi}{
-                width: 150%;
-            }
-            ${tablet}{
-                width: 150%;
-            }
-            ${mobile}{
-                width: 200%;
-            }
 
-            ${mobileSmall}{
-                width: 300%;
+            ${desktopMidi}{
+                gap: 0px;
             }
-            ${mobileExtraSmall}{
-                width: 400%;
-            }
-          
-           
         }
+        .icon{
+            align-self: center;
+        }
+        .action{
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .65rem;
+            color: var(--grey-400);
+            cursor: pointer;
+            .action-text {
+                ${tablet}  {
+                    display: none;
+                }
+            }
+        }
+        .time{
+            color: var(--grey-300);
+            cursor: pointer;
+        }
+    }
+    .calculate-modal-right{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        top: 0px;
+        left: 136px;
+        background-color: var(--white);
+        padding: .4rem;
+        border: 1px solid var(--grey-200);
+        border-radius: var(--br);
+        z-index: 100;
+        ${desktop}{
+            width: 100%;
+        }
+        ${desktopMidi}{
+            width: 150%;
+        }
+        ${tablet}{
+            width: 150%;
+        }
+        ${mobile}{
+            width: 200%;
+        }
+
+        ${mobileSmall}{
+            width: 300%;
+        }
+        ${mobileExtraSmall}{
+            width: 400%;
+        }
+        
+        
+    }
+    .calculate-modal-left{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        top: 0px;
+        right: 136px;
+        background-color: var(--white);
+        padding: .4rem;
+        border: 1px solid var(--grey-200);
+        border-radius: var(--br);
+        z-index: 100;
+        ${desktop}{
+            width: 100%;
+        }
+        ${desktopMidi}{
+            width: 150%;
+        }
+        ${tablet}{
+            width: 150%;
+        }
+        ${mobile}{
+            width: 200%;
+        }
+
+        ${mobileSmall}{
+            width: 300%;
+        }
+        ${mobileExtraSmall}{
+            width: 400%;
+        }
+        
+        
+    }
 `;
 
 

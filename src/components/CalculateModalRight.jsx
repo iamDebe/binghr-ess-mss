@@ -4,10 +4,10 @@ import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 import Button from "@/components/button";
 
 
-const CalculateModal = ({hideCalculateModal, weekIndex, dayIndex, clocked, show}) => {
+const CalculateModalRight = ({hideCalculateModal, weekIndex, dayIndex, clocked, show}) => {
    
   return (
-        <div className='calculate-modal'
+        <div className='calculate-modal-right'
            
         >
             <CalculateWrapper>
@@ -27,7 +27,7 @@ const CalculateModal = ({hideCalculateModal, weekIndex, dayIndex, clocked, show}
                 textcolor="var(--grey-25)"
                 className="submit-button"
                 width="--button-width"
-                margin="2rem 0rem 0rem 0rem"
+                margin="0rem 0rem 0rem 0rem"
             >
                 Calculate
             </Button>
@@ -35,13 +35,15 @@ const CalculateModal = ({hideCalculateModal, weekIndex, dayIndex, clocked, show}
   )
 }
 
-export default CalculateModal
+export default CalculateModalRight
+
 
 const CalculateWrapper = styled("div")`
     display: flex;
     justify-content: space-between;
     gap: .8rem;
     width: 100%;
+    z-index: 10000;
     .icon-wrapper{
         display: flex;
         height: 30px;
