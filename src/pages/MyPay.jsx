@@ -49,7 +49,9 @@ const MyPay = () => {
                                 label="Year / Month"
                                 type="date"
                                 placeholder="Select Month/Year"
+                                marginbottom="0"
                                 icon={<CalenderIcon className="input-icon icon" />}
+                                className="field-flex-basis"
                             />
                             <Button  
                                 type="button"
@@ -57,6 +59,7 @@ const MyPay = () => {
                                 bg="var(--white)"
                                 textcolor="var(--lilac-400)"
                                 border="var(--lilac-400)"
+                                className="btn-flex-basis"
                             >
                                 Enter
                             </Button>
