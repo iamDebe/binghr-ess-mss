@@ -248,23 +248,23 @@ const Calender = () => {
                                     { (day.clocked === true && day.showModal === true) ? 
                                     <>
                                         {ii !== row.length - 1 ?
-                                             <motion.div
+                                            <motion.div
                                                 initial={{y:-60, x:700, opacity:0}}
                                                 animate={{y:-75, x:0, opacity:1}}
                                                 exit={{ y:-60, x:700, opacity:0}}
                                                 transition={{duration:1}}
                                             
-                                         >
-                                            <div>
+                                            >
+                                          
 
-                                             <CalculateModalRight  
-                                                 hideCalculateModal={hideCalculateModal} 
-                                                 weekIndex = {index} 
-                                                 dayIndex={ii} 
-                                                 clocked={day.clocked} 
-                                                 show={day.showModal}  
-                                             />
-                                            </div>
+                                                <CalculateModalRight  
+                                                    hideCalculateModal={hideCalculateModal} 
+                                                    weekIndex = {index} 
+                                                    dayIndex={ii} 
+                                                    clocked={day.clocked} 
+                                                    show={day.showModal}  
+                                                />
+                                         
                                          </motion.div>
 
                                          :
@@ -439,17 +439,17 @@ const CalenderMain = styled("div")`
         }
     }
     .calculate-modal-right{
-        position: absolute;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        position: absolute;
         top: 0px;
         right: -136px;
         background-color: var(--white);
         padding: .4rem;
         border: 1px solid var(--grey-200);
         border-radius: var(--br);
-        z-index: 100000;
+        
         ${desktop}{
             width: 100%;
         }
