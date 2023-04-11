@@ -4,6 +4,7 @@ import EmployeeCard from '@/components/EmployeeCard';
 import { ReactComponent as ProfilePhoto } from "@/assets/images/mojoface.svg";
 import { styled } from 'goober';
 import { mobileSmall } from '@/globalStyle';
+import StaffProfileCard from '@/components/StaffProfileCard';
 
 const OrgChart = () => {
 
@@ -45,6 +46,7 @@ const OrgChart = () => {
                     department={"Product"}
                     handleJuniorStaffVisibility={handleJuniorStaffVisibility}
                 />
+                <StaffProfileCard />
             </ParentWrapper>
             {showJuniorStaff &&
                 <ChildrenWrapper>
@@ -83,6 +85,8 @@ const OrgChartWrapper = styled("div")`
 `;
 
 const ParentWrapper = styled("div")`
+    display: flex;
+    gap: 20px;
     align-self: center;
 `;
 
