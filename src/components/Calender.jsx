@@ -47,7 +47,7 @@ const Calender = () => {
             const numBlankDays = (firstDayOfWeek + 6) % 7;
         
             // Create an array of empty spaces for the blank days
-            const blankDays = new Array(numBlankDays).fill('  ');
+            const blankDays = new Array(numBlankDays).fill('');
 
             // Create an array of days for the current month
             const monthDays = [...Array(numDaysInMonth).keys()].map(dd => { return{
@@ -70,7 +70,7 @@ const Calender = () => {
                 if(eachWeek.length < 7){
                     const numberOfDaysLeft = (7 - eachWeek.length)
                     for (let i = 0; i < numberOfDaysLeft; i++) {
-                        eachWeek.push(" ")
+                        eachWeek.push("")
                     }
                 }
                 rows.push(eachWeek);
@@ -89,7 +89,7 @@ const Calender = () => {
        const newWeekData = [...weeks];
        if(newWeekData[outer][inner].clocked === false){
             newWeekData[outer][inner].clocked = true;
-            newWeekData[outer][inner].showModal = true;
+            // newWeekData[outer][inner].showModal = true;
         }else{
             newWeekData[outer][inner].clocked = false;
            
@@ -97,6 +97,31 @@ const Calender = () => {
        
        setWeeks(newWeekData);
     }
+
+    // const selectClockedRange = (outer, inner) => {
+    //     const newWeekData = [...weeks];
+    //     newWeekData[outer].forEach((day, dayIndex)=>{
+    //         if(day.clocked === true && dayIndex <= inner){
+    //             newWeekData[outer][dayIndex].selected 
+    //         }
+    //     })
+    // }
+
+    const showCalculateModal = (outer, inner) => {
+        const newWeekData = [...weeks];
+        newWeekData.forEach(week => {
+            week.forEach(day=>{
+                if(day !== ""){
+                    day.showModal=false
+                }
+                
+            })
+        });
+
+        newWeekData[outer][inner].showModal = true;
+        setWeeks(newWeekData);
+    }
+
     const hideCalculateModal =(outer, inner)=>{
        const newWeekData = [...weeks];
        newWeekData[outer][inner].showModal = false;
@@ -105,7 +130,6 @@ const Calender = () => {
     const showOverlay =(outer, inner)=>{
        const newWeekData = [...weeks];
        newWeekData[outer][inner].showOverlay = true;
-       console.log("overlay displayed");
        setWeeks(newWeekData);
     }
     const hideOverlay =(outer, inner)=>{
@@ -153,10 +177,24 @@ const Calender = () => {
                     <div className='days-wrapper ' key={index}>
                         {row.map((day, ii)=>(
                             <li key={ii} className='days type-body5' 
-                                onClick={()=>{
-                                    if(typeof(day) != "string"){
-                                        clockIn(index, ii)
-                                    };
+                                onClick={(event)=>{
+                                    switch (event.detail) {
+                                        case 1: {
+                                            if(typeof(day) != "string"){
+                                                clockIn(index, ii)
+                                            };
+                                          break;
+                                        }
+                                        case 2: {
+                                          showCalculateModal(index, ii)
+                                          break;
+                                        }
+                                        
+                                        default: {
+                                          break;
+                                        }
+                                      }
+                                    
                                    
                                 }}
                                 onMouseOver={()=>{
