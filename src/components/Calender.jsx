@@ -8,7 +8,7 @@ import CalculateModalLeft from '@/components/CalculateModalLeft';
 import ClockinOverlay from '@/components/ClockinOverlay';
 import { mobile } from '@/globalStyle';
 import { AnimatePresence, motion } from 'framer-motion';
-import { mobileExtraSmall, mobileSmall } from '../globalStyle';
+import { mobileExtraSmall, mobileSmall } from '@/globalStyle';
 
 const Calender = () => {
     
@@ -16,11 +16,19 @@ const Calender = () => {
     const [weeks, setWeeks] = useState([]);
     const [currentMonth, setCurrentMonth] = useState(0);
     const [thisMonth, setThisMonth] = useState("");
+
+    const [currentRange, setCurrentRange] = useState([])
     
     const generateCalender = ()=>{
         
         // Get the current date
         const currentDate = new Date();
+
+        let dayStart = currentDate.setUTCHours(0,0,0,0) / 1000;
+
+        let dayEnd = currentDate.setUTCHours(23,59,59) / 1000;
+
+        const unixDate = Math.floor(currentDate.getTime() / 1000)
         
         // Set the start date to 1 year ago from today
         const startDate = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
@@ -30,6 +38,7 @@ const Calender = () => {
         
         // Loop through each month between the start and end dates
         for (let month = startDate.getMonth()+currentMonth; month <= endDate.getMonth()+currentMonth; month++) {
+
            
             // Create a new date object for the current month
             const thisMonth = new Date(currentDate.getFullYear(), month, 1);
@@ -50,13 +59,20 @@ const Calender = () => {
             const blankDays = new Array(numBlankDays).fill('');
 
             // Create an array of days for the current month
-            const monthDays = [...Array(numDaysInMonth).keys()].map(dd => { return{
-                day:dd+1,
-                clocked:false,
-                showModal: false,
-                showOverlay: false,
-                clockedData:{}
-            }});
+            const monthDays = [...Array(numDaysInMonth).keys()].map(dd => { 
+                const dayObject = {
+                    day:dd+1,
+                    clocked:false,
+                    showModal: false,
+                    showOverlay: false,
+                    clockedData:{},
+                    dayStart: dayStart,
+                    dayEnd: dayEnd
+                }
+                dayStart = dayStart + 86400
+                dayEnd = dayEnd + 86400
+                return dayObject
+            });
 
             // Combine the arrays of blank days and month days
             const allDays = [...blankDays, ...monthDays];
@@ -80,6 +96,8 @@ const Calender = () => {
             
             return rows;
             }, []);
+
+            
         
         }
 
@@ -89,7 +107,6 @@ const Calender = () => {
        const newWeekData = [...weeks];
        if(newWeekData[outer][inner].clocked === false){
             newWeekData[outer][inner].clocked = true;
-            // newWeekData[outer][inner].showModal = true;
         }else{
             newWeekData[outer][inner].clocked = false;
            
@@ -97,16 +114,6 @@ const Calender = () => {
        
        setWeeks(newWeekData);
     }
-
-    // const selectClockedRange = (outer, inner) => {
-    //     const newWeekData = [...weeks];
-    //     newWeekData[outer].forEach((day, dayIndex)=>{
-    //         if(day.clocked === true && dayIndex <= inner){
-    //             newWeekData[outer][dayIndex].selected 
-    //         }
-    //     })
-    // }
-
     const showCalculateModal = (outer, inner) => {
         const newWeekData = [...weeks];
         newWeekData.forEach(week => {
@@ -140,12 +147,28 @@ const Calender = () => {
         }
     }
 
+    const startRange = (outer, inner)=>{
+        const startingPoint = weeks[outer][inner].dayStart
+        const newRange = []
+        newRange.push(startingPoint)
+        setCurrentRange(newRange)
+    }
+
+    const endRange = (outer, inner)=>{
+        const endingPoint = weeks[outer][inner].dayEnd
+        const newRange = [...currentRange]
+        newRange.push(endingPoint)
+        setCurrentRange(newRange)
+    }
+
+
+
     useEffect(()=>{
         generateCalender();
     },[currentMonth])
 
     useEffect(()=>{
-    },[weeks])
+    },[weeks, currentRange])
       
   return (
     <Container>
@@ -176,7 +199,7 @@ const Calender = () => {
                 return (
                     <div className='days-wrapper ' key={index}>
                         {row.map((day, ii)=>(
-                            <li key={ii} className='days type-body5' 
+                            <li key={ii} className= {(day.dayStart >= currentRange[0] && day.dayEnd <= currentRange[1]) ? "days type-body5 active": "days type-body5" } 
                                 onClick={(event)=>{
                                     switch (event.detail) {
                                         case 1: {
@@ -203,18 +226,37 @@ const Calender = () => {
                                     }
                                 }}
                                 onMouseOut={()=>{hideOverlay(index, ii)}}
+                                onMouseDown={()=>{
+                                    if(typeof(day) != "string"){
+                                        startRange(index, ii)
+                                    }else{
+                                        alert("cannot select empty cell ")
+                                    }
+                                }}
+                                onMouseUp={()=>{
+                                    if(typeof(day) != "string"){
+                                        endRange(index, ii)
+                                    }else{
+                                        alert("cannot select empty cell ")
+                                    }
+                                }}
                             >
                                 {day.day}  {day.showOverlay === true &&
                                         <ClockinOverlay  day={day} />
                                 } 
-                                <AnimatePresence>
+                                <AnimatePresence > 
                                     { (day.clocked === true && day.showModal === true) ? 
                                     <>
                                         {ii !== row.length - 1 ?
                                              <motion.div
-                                             key="box"
+                                                initial={{y:-60, x:700, opacity:0}}
+                                                animate={{y:-75, x:0, opacity:1}}
+                                                exit={{ y:-60, x:700, opacity:0}}
+                                                transition={{duration:1}}
                                             
                                          >
+                                            <div>
+
                                              <CalculateModalRight  
                                                  hideCalculateModal={hideCalculateModal} 
                                                  weekIndex = {index} 
@@ -222,11 +264,15 @@ const Calender = () => {
                                                  clocked={day.clocked} 
                                                  show={day.showModal}  
                                              />
+                                            </div>
                                          </motion.div>
 
                                          :
                                             <motion.div
-                                            key="box"
+                                                initial={{y:-60, x:700, opacity:0}}
+                                                animate={{y:-75, x:0, opacity:1}}
+                                                exit={{ y:-60, x:700, opacity:0}}
+                                                transition={{duration:1}}
                                            
                                             >
                                             
@@ -342,7 +388,12 @@ const CalenderMain = styled("div")`
         color: var(--grey-500);
     }
     .active {
+        position: absolute;
+        top: 0;
         background-color: var(--grey-100);
+        opacity: .8;
+        height: 100%;
+        width: 100%;
     }
     .overlay {
         display: flex;
@@ -393,12 +444,12 @@ const CalenderMain = styled("div")`
         flex-direction: column;
         gap: 1rem;
         top: 0px;
-        left: 136px;
+        right: -136px;
         background-color: var(--white);
         padding: .4rem;
         border: 1px solid var(--grey-200);
         border-radius: var(--br);
-        z-index: 100;
+        z-index: 100000;
         ${desktop}{
             width: 100%;
         }

@@ -35,68 +35,69 @@ const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
 
     }
   return (
-    <EssLayout >
-        <FlexColumnWrapper>
-            <Container>
-                <BtnWrapper>
-                   <Button
-                        bg={buttonParams[currentBtnStyling].bgColor}
-                        textcolor="var(--grey-25)"
-                        className="submit-button"
-                        width="8.75rem"
-                        iconcolor="var(--grey-25)"
-                        leftIcon={<WatchIcon />}
-                        onClick={handleBtnChange}
-                    >
-                       {buttonParams[currentBtnStyling].btnText}
-                    </Button>
-                    
+
+        <EssLayout >
+            <FlexColumnWrapper>
+                <Container>
+                    <BtnWrapper>
                     <Button
-                        bg="var(--white)"
-                        textcolor="var(--lilac-400)"
-                        className="submit-button"
-                        padding=".5rem 1.2rem"
-                        border="var(--lilac-400)"
-                        onClick={handleShowModal}
-                    >
-                        Recalculate
-                    </Button>
-                </ BtnWrapper>
-                <HourSelectWrapper>
-                    <WeekWrapper>
-                        <div className='wrapper'>
-                            <label className='type-title4' htmlFor="">Mon: <span className='type-body4'>0hrs</span></label>
-                        </div>
-                        <div className='wrapper'>
-                            <label className='type-title4' htmlFor="">Tue: <span className='type-body4'>0hrs</span></label>
-                        </div>
-                        <div className='wrapper'>
-                            <label className='type-title4' htmlFor="">Wed: <span className='type-body4'>0hrs</span></label>
-                        </div>
-                        <div className='wrapper'>
-                            <label className='type-title4' htmlFor="">Thu: <span className='type-body4'>0hrs</span></label>
-                        </div>
-                        <div className='wrapper'>
-                            <label className='type-title4' htmlFor="">Fri: <span className='type-body4'>0hrs</span></label>
-                        </div>
-                        <div className='wrapper'>
-                            <label className='type-title4' htmlFor="">Sat: <span className='type-body4'>0hrs</span></label>
-                        </div>
-                        <div className='wrapper'>
-                            <label className='type-title4' htmlFor="">Sun: <span  className='type-bod43'>0hrs</span></label>
-                        </div>
-                        <TotalWrapper>
-                            <div className='total-wrapper'>
-                                <label className='type-title4 total-label' htmlFor="">Total: <span  className='type-body4 total-span'>0hrs</span></label>
+                            bg={buttonParams[currentBtnStyling].bgColor}
+                            textcolor="var(--grey-25)"
+                            className="submit-button"
+                            width="8.75rem"
+                            iconcolor="var(--grey-25)"
+                            leftIcon={<WatchIcon />}
+                            onClick={handleBtnChange}
+                        >
+                        {buttonParams[currentBtnStyling].btnText}
+                        </Button>
+                        
+                        <Button
+                            bg="var(--white)"
+                            textcolor="var(--lilac-400)"
+                            className="submit-button"
+                            padding=".5rem 1.2rem"
+                            border="var(--lilac-400)"
+                            onClick={handleShowModal}
+                        >
+                            Recalculate
+                        </Button>
+                    </ BtnWrapper>
+                    <HourSelectWrapper>
+                        <WeekWrapper>
+                            <div className='wrapper'>
+                                <label className='type-title4' htmlFor="">Mon: <span className='type-body4'>0hrs</span></label>
                             </div>
-                        </TotalWrapper>
-                        </WeekWrapper>
-                    
-                </HourSelectWrapper>
-            </Container>  
-            <Calender setShowModal={setShowModal} showModal={showModal} handleShowModal={handleShowModal}/>  
-        </FlexColumnWrapper>
-    </EssLayout>
+                            <div className='wrapper'>
+                                <label className='type-title4' htmlFor="">Tue: <span className='type-body4'>0hrs</span></label>
+                            </div>
+                            <div className='wrapper'>
+                                <label className='type-title4' htmlFor="">Wed: <span className='type-body4'>0hrs</span></label>
+                            </div>
+                            <div className='wrapper'>
+                                <label className='type-title4' htmlFor="">Thu: <span className='type-body4'>0hrs</span></label>
+                            </div>
+                            <div className='wrapper'>
+                                <label className='type-title4' htmlFor="">Fri: <span className='type-body4'>0hrs</span></label>
+                            </div>
+                            <div className='wrapper'>
+                                <label className='type-title4' htmlFor="">Sat: <span className='type-body4'>0hrs</span></label>
+                            </div>
+                            <div className='wrapper'>
+                                <label className='type-title4' htmlFor="">Sun: <span  className='type-bod43'>0hrs</span></label>
+                            </div>
+                            <TotalWrapper>
+                                <div className='total-wrapper'>
+                                    <label className='type-title4 total-label' htmlFor="">Total: <span  className='type-body4 total-span'>0hrs</span></label>
+                                </div>
+                            </TotalWrapper>
+                            </WeekWrapper>
+                        
+                    </HourSelectWrapper>
+                </Container>  
+                <Calender setShowModal={setShowModal} showModal={showModal} handleShowModal={handleShowModal}/>  
+            </FlexColumnWrapper>
+        </EssLayout>
   )
 }
 

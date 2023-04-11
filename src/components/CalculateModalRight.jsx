@@ -4,34 +4,36 @@ import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 import Button from "@/components/button";
 
 
+
 const CalculateModalRight = ({hideCalculateModal, weekIndex, dayIndex, clocked, show}) => {
    
   return (
-        <div className='calculate-modal-right'
-           
-        >
-            <CalculateWrapper>
-                <div className='date-wrapper'>
-                    <div className='type-body3'>Wed, 1 Feb</div>
-                </div>
-                <div className="icon-wrapper" 
-                    >
-                    <RemoveIcon width={30} className="icon" onClick={()=>{
-                    hideCalculateModal(weekIndex, dayIndex)
-                    }}/>
-                </div>
-            </CalculateWrapper>
-            <Button 
-                type="button"
-                bg="var(--lilac-400)"
-                textcolor="var(--grey-25)"
-                className="submit-button"
-                width="--button-width"
-                margin="0rem 0rem 0rem 0rem"
+
+            <div className='calculate-modal-right'
+            
             >
-                Calculate
-            </Button>
-        </div>
+                <CalculateWrapper>
+                    <div className='date-wrapper'>
+                        <div className='type-body3'>Wed, 1 Feb</div>
+                    </div>
+                    <div className="icon-wrapper" 
+                        >
+                        <RemoveIcon width={30} className="icon" onClick={()=>{
+                        hideCalculateModal(weekIndex, dayIndex)
+                        }}/>
+                    </div>
+                </CalculateWrapper>
+                <Button 
+                    type="button"
+                    bg="var(--lilac-400)"
+                    textcolor="var(--grey-25)"
+                    className="submit-button"
+                    width="--button-width"
+                    margin="0rem 0rem 0rem 0rem"
+                >
+                    Calculate
+                </Button>
+            </div>
   )
 }
 

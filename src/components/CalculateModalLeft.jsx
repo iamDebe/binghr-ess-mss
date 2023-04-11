@@ -4,9 +4,12 @@ import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 import Button from "@/components/button";
 
 
+
 const CalculateModalLeft = ({hideCalculateModal, weekIndex, dayIndex, clocked, show}) => {
    
   return (
+
+        
         <div className='calculate-modal-left'
            
         >
@@ -32,6 +35,9 @@ const CalculateModalLeft = ({hideCalculateModal, weekIndex, dayIndex, clocked, s
                 Calculate
             </Button>
         </div>
+
+  
+
   )
 }
 
