@@ -11,11 +11,19 @@ const OrgChart = () => {
     const [showJuniorStaff, setShowJuniorStaff] = useState(false);
     const [showSeniorStaff, setSeniorShowStaff] = useState(false);
 
+    const [showProfileCard, setShowProfileCard] = useState(false);
+
+    const handleShowProfileCard = ()=>{
+        setShowProfileCard(!showProfileCard)
+    }
+
     const handleJuniorStaffVisibility = () => {
         setShowJuniorStaff(!showJuniorStaff)
+        setShowProfileCard(false)
     }
     const handleSeniorStaffVisibility = () => {
         setSeniorShowStaff(!showSeniorStaff)
+        setShowProfileCard(false)
     }
 
   return (
@@ -24,16 +32,22 @@ const OrgChart = () => {
             {showSeniorStaff &&
                 <ChildrenWrapper>
                     <EmployeeCard 
-                    name={"Akinkpelumi"}
-                    photo={<ProfilePhoto />}
-                    title={"UX Lead"}
-                    department={"Product"}
+                        name={"Akinkpelumi"}
+                        photo={<ProfilePhoto />}
+                        title={"UX Lead"}
+                        department={"Product"}
+                        isSuperiorAvailable={false}
+                        isSubordinateAvailable={true}
                         />
                     <EmployeeCard 
-                    name={"Akinkpelumi"}
-                    photo={<ProfilePhoto />}
-                    title={"UX Lead"}
-                    department={"Product"}
+                        name={"Akinkpelumi"}
+                        photo={<ProfilePhoto />}
+                        title={"UX Lead"}
+                        department={"Product"}
+                        isSuperiorAvailable={false}
+                        isSubordinateAvailable={true}
+
+
                     />
                 </ChildrenWrapper>
             }
@@ -41,14 +55,19 @@ const OrgChart = () => {
                 <div>
                     <EmployeeCard 
                         handleSeniorStaffVisibility={handleSeniorStaffVisibility}
+                        handleShowProfileCard={handleShowProfileCard}
                         name={"Mojo Face"}
                         photo={<ProfilePhoto />}
                         title={"UX Lead"}
                         department={"Product"}
                         handleJuniorStaffVisibility={handleJuniorStaffVisibility}
+                        isSuperiorAvailable={true}
+                        isSubordinateAvailable={true}
+
+
                     />
                 </div>
-                <StaffProfileCard />
+                {showProfileCard && <StaffProfileCard />}
             </ParentWrapper>
             {showJuniorStaff &&
                 <ChildrenWrapper>
@@ -57,12 +76,18 @@ const OrgChart = () => {
                     photo={<ProfilePhoto />}
                     title={"UX Lead"}
                     department={"Product"}
+                    isSubordinateAvailable={true}
+
+
                         />
                     <EmployeeCard 
                     name={"Golden Moses"}
                     photo={<ProfilePhoto />}
                     title={"UX Lead"}
                     department={"Product"}
+                    isSubordinateAvailable={true}
+
+
                     />
                 </ChildrenWrapper>
             }

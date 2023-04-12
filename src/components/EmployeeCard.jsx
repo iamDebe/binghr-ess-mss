@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'goober';
 import { ReactComponent as CollapseDown } from "@/assets/images/collapse-down.svg";
 import { ReactComponent as CollapseUp } from "@/assets/images/collapse-up.svg";
@@ -6,14 +6,23 @@ import { ReactComponent as CollapseUp } from "@/assets/images/collapse-up.svg";
 
 
 
-const EmployeeCard = ({name, photo, title, department, handleJuniorStaffVisibility, handleSeniorStaffVisibility}) => {
-   
-    
+const EmployeeCard = ({name, 
+    photo, 
+    title, 
+    department, 
+    handleJuniorStaffVisibility, 
+    handleSeniorStaffVisibility, 
+    handleShowProfileCard,
+    isSuperiorAvailable=false,
+    isSubordinateAvailable=true
+}) => {
+//    const [isSuperiorAvailable, setIsSuperiorAvailable] = useState(false);
+
 
   return (
     <Wrapper>
-        <div className='icon' >{<CollapseUp onClick={handleSeniorStaffVisibility} />}</div>
-        <div className='inne'>
+        <div className='icon' >{isSuperiorAvailable && <CollapseUp onClick={handleSeniorStaffVisibility} />}</div>
+        <div className='inne' onClick={handleShowProfileCard}>
             <h4 className='type-title2'>{name}</h4>
             <div className='inner'>
                 <div className='photo'>{photo}</div>
@@ -23,7 +32,7 @@ const EmployeeCard = ({name, photo, title, department, handleJuniorStaffVisibili
                 </div>
             </div>
         </div>
-        <div className='icon' >{<CollapseDown  onClick={handleJuniorStaffVisibility}/>}</div>
+        <div className='icon' >{isSubordinateAvailable && <CollapseDown  onClick={handleJuniorStaffVisibility}/>}</div>
     </Wrapper>
   )
 }
