@@ -38,14 +38,16 @@ const OrgChart = () => {
                 </ChildrenWrapper>
             }
             <ParentWrapper >
-                <EmployeeCard 
-                    handleSeniorStaffVisibility={handleSeniorStaffVisibility}
-                    name={"Mojo Face"}
-                    photo={<ProfilePhoto />}
-                    title={"UX Lead"}
-                    department={"Product"}
-                    handleJuniorStaffVisibility={handleJuniorStaffVisibility}
-                />
+                <div>
+                    <EmployeeCard 
+                        handleSeniorStaffVisibility={handleSeniorStaffVisibility}
+                        name={"Mojo Face"}
+                        photo={<ProfilePhoto />}
+                        title={"UX Lead"}
+                        department={"Product"}
+                        handleJuniorStaffVisibility={handleJuniorStaffVisibility}
+                    />
+                </div>
                 <StaffProfileCard />
             </ParentWrapper>
             {showJuniorStaff &&
@@ -88,6 +90,11 @@ const ParentWrapper = styled("div")`
     display: flex;
     gap: 20px;
     align-self: center;
+
+    .me{
+        align-self: start;
+        border:2px solid red;
+    }
 `;
 
 const ChildrenWrapper = styled("div")`
