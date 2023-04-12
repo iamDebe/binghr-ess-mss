@@ -161,9 +161,7 @@ const Calender = () => {
         const diff = newRange[1] - newRange[0];
         setCurrentRange(newRange);
         if(diff > 86400 ){
-            const newWeekData = [...weeks];
-            newWeekData[outer][inner].showModal = true;
-            setWeeks(newWeekData);
+            showCalculateModal(outer, inner)
         }
 
     }
@@ -254,7 +252,7 @@ const Calender = () => {
                                         <ClockinOverlay  day={day} />
                                 } 
                                 <AnimatePresence > 
-                                    { (day.clocked === true && day.showModal === true) ? 
+                                    { day.showModal === true ? 
                                     <div>
                                         {ii !== row.length - 1 ? 
                                             

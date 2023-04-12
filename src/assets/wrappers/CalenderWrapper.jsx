@@ -110,9 +110,10 @@ export const CalenderMain = styled("div")`
                 }
                 @media screen and (max-width: 420px){
                     top: -100px;
-                    left: 0%;
+                    left: -105%;
                     width: 310%;
                 }
+               
             }
             .calculate-modal-left{
                 position: absolute;
