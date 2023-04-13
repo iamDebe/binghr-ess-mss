@@ -1,7 +1,7 @@
 import { registerChart } from "@/utils/registerChart";
 import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
-import { calculateTotalDeductions } from "@/utils/helpers";
+import { calculateTotalDeductions, calculatPercentage } from "@/utils/helpers";
 
 registerChart();
 
@@ -10,8 +10,8 @@ const DoughnutChartDeduction = ({ payrolls }) => {
     datasets: [{
       data: [calculateTotalDeductions(payrolls), payrolls.total],
       backgroundColor: [
-        '#E0E0E0',
         '#C4C4C4',
+        '#E0E0E0',
       ],
       borderColor: [
       ],
@@ -40,7 +40,7 @@ const DoughnutChartDeduction = ({ payrolls }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       //To:DO: Calculate percentage
-      ctx.fillText('60%', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+      ctx.fillText(calculatPercentage(payrolls, calculateTotalDeductions(payrolls)), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
     }
   }
 

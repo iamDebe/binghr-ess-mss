@@ -18,7 +18,7 @@ const DoughnutChart = ({payrolls}) => {
       data: payrollData[1],
       backgroundColor: ['#0CA484','#DF8600','#EDB200','#D1D1D2',
       ],
-      borderColor: ['#0CA484','#DF8600','#EDB200','#EDB200'],
+      borderColor: ['#0CA484','#DF8600','#EDB200','#D1D1D2'],
       borderWidth: 0
     }]
   };

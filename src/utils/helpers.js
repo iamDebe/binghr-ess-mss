@@ -157,4 +157,13 @@ export const calculateTotalDeductions = (payrolls) => {
 
    return totalAmount;
  }
-}
+};
+
+export const calculatPercentage = (payrolls, value) => {
+  if (payrolls) {
+    const total = calculateNet(payrolls) + calculateTotalDeductions(payrolls) + payrolls.total + calculateTaxes(payrolls);
+    const percentage = (value / total) * 100;
+
+    return `${percentage.toFixed(2)}%`;
+  }
+};

@@ -1,7 +1,7 @@
 import { registerChart } from "@/utils/registerChart";
 import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
-import { calculateTaxes } from "@/utils/helpers";
+import { calculateTaxes, calculatPercentage } from "@/utils/helpers";
 
 registerChart();
 
@@ -10,8 +10,8 @@ const DoughnutChartTaxes = ({ payrolls }) => {
     datasets: [{
       data: [calculateTaxes(payrolls), payrolls.total],
       backgroundColor: [
-        '#E0E0E0',
         '#EDB200',
+        '#E0E0E0',
       ],
       borderColor: [
       ],
@@ -40,7 +40,7 @@ const DoughnutChartTaxes = ({ payrolls }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       //To:DO: Calculate percentage
-      ctx.fillText('60%', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+      ctx.fillText(calculatPercentage(payrolls, calculateTaxes(payrolls)), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
     }
   }
 
