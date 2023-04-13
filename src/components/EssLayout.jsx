@@ -45,6 +45,7 @@ const EssLayout = ({ children }) => {
     <Wrapper>
       <SideNavbar collapsed={collapsed} onToggleCollapse={handleCollapse} isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
       <MobileNav toggleSidebar={toggleSidebar} />
+     
       <Main className={collapsed ? "collapsed" : ""}>
         <TopBar />
         {children}

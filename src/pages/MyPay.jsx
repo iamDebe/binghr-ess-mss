@@ -1,5 +1,6 @@
 import React, {useState } from "react";
 import EssLayout from "@/components/EssLayout";
+import SearchField from "@/components/forms/SearchField";
 import Button from "@/components/button"
 import DoughnutChart from "@/components/chart/DoughnutChart";
 import TextField from "@/components/forms/TextField";
@@ -18,6 +19,7 @@ import { ButtonWrapper,
 import { styled } from "goober";
 
 const MyPay = () => {
+    const [showProfileSettings, setShowProfileSettings] = useState(false);
     const [showPayroll, setShowPayroll] = useState(false);
     const [showAccountStatement, setShowAccountStatement] = useState(false);
     const handleShowPayrollStatement = ()=>{
@@ -32,8 +34,7 @@ const MyPay = () => {
         <EssLayout>
             <FlexColumnWrapper>
                 <ButtonWrapper>
-                    <Button  
-                        type="button"
+                    <Button
                         onClick={handleShowPayrollStatement}
                         bg="var(--lilac-400)"
                         textcolor="var(--grey-25)"
@@ -84,9 +85,8 @@ const MyPay = () => {
                 </ChartAndPayrollWrapper>
             </FlexColumnWrapper>
         </EssLayout>
-    );
-       
-}
+    );    
+};
  
 export default MyPay;
 

@@ -134,17 +134,17 @@ const navItems = [
     title: "My Pay",
   },
   {
-    to: "/",
+    to: "/ess/my-timeoff",
     icon: <ClockIcon />,
     title: "My Time Off",
   },
   {
-    to: "/",
+    to: "/ess/timesheet",
     icon: <CalendarIcon />,
     title: "Timesheet",
   },
   {
-    to: "/",
+    to: "/ess/org-chart",
     icon: <ChartIcon />,
     title: "Org Chart",
   },

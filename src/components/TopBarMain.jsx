@@ -69,8 +69,12 @@ const IconsWrapper = styled("div")`
   gap: 10px;
   justify-content: space-between;
   @media screen and (max-width: 574px){
-    gap:10px;
+    gap:5px;
     margin-left: auto;
+  }    
+  @media screen and (max-width: 340px){
+    gap:5px;
+    margin-left: -2rem;
   }    
 `;
 const MyProfileWrapper = styled("div")`
