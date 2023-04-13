@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { styled } from 'goober';
 import { ReactComponent as CollapseDown } from "@/assets/images/collapse-down.svg";
 import { ReactComponent as CollapseUp } from "@/assets/images/collapse-up.svg";
+import TopVerticalLine from '@/components/OrgChartLines/TopVerticalLine';
+import BottomVerticalLine from '@/components/OrgChartLines/BottomVerticalLine';
 
 
 
 
-const EmployeeCard = ({
+const EmployeeCardChildrenLeft= ({
     name, 
     photo, 
     title, 
@@ -14,38 +16,34 @@ const EmployeeCard = ({
     handleJuniorStaffVisibility, 
     handleSeniorStaffVisibility, 
     handleShowProfileCard,
-    employee
+    isSuperiorAvailable=false,
+    isSubordinateAvailable=true
 }) => {
+//    const [isSuperiorAvailable, setIsSuperiorAvailable] = useState(false);
 
 
   return (
 
-    <>
-        
-        <Wrapper>
-            <div className='icon' >{employee.superior && <CollapseUp onClick={handleSeniorStaffVisibility} />}</div>
-            <div className='inne' onClick={handleShowProfileCard}>
-                <h4 className='type-title2'>{name}</h4>
-                <div className='inner'>
-                    <div className='photo'>{photo}</div>
-                    <div className='portfolio'>
-                        <p className='type-title3'>Job Title: <span className='light'>{title}</span></p>
-                        <p className='type-title3'>Department: <span className='light'>{department}</span></p>
-                    </div>
+   
+    <Wrapper>
+        <div className='icon' >{isSuperiorAvailable && <CollapseUp onClick={handleSeniorStaffVisibility} />}</div>
+        <div className='inne' onClick={handleShowProfileCard}>
+            <h4 className='type-title2'>{name}</h4>
+            <div className='inner'>
+                <div className='photo'>{photo}</div>
+                <div className='portfolio'>
+                    <p className='type-title3'>Job Title: <span className='light'>{title}</span></p>
+                    <p className='type-title3'>Department: <span className='light'>{department}</span></p>
                 </div>
             </div>
-            <div className='icon' >{employee?.subordinates?.length > 0 && <CollapseDown  onClick={handleJuniorStaffVisibility}/>}</div>
-        </Wrapper>
-       
-
-       
-
-       
-    </>
+        </div>
+        <div className='icon' >{isSubordinateAvailable && <CollapseDown  onClick={handleJuniorStaffVisibility}/>}</div>
+    </Wrapper>
+   
   )
 }
 
-export default EmployeeCard;
+export default EmployeeCardChildrenLeft;
 
 
 const Wrapper = styled("div")`
@@ -87,6 +85,8 @@ const Wrapper = styled("div")`
         }
     }
 `;
+
+
 
 
 

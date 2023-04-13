@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { styled } from 'goober';
 import { ReactComponent as CollapseDown } from "@/assets/images/collapse-down.svg";
 import { ReactComponent as CollapseUp } from "@/assets/images/collapse-up.svg";
+import TopVerticalLine from '@/components/OrgChartLines/TopVerticalLine';
+import BottomVerticalLine from '@/components/OrgChartLines/BottomVerticalLine';
 
 
 
 
-const EmployeeCard = ({
+const EmployeeCardChildrenRight = ({
     name, 
     photo, 
     title, 
@@ -14,16 +16,18 @@ const EmployeeCard = ({
     handleJuniorStaffVisibility, 
     handleSeniorStaffVisibility, 
     handleShowProfileCard,
-    employee
+    isSuperiorAvailable=false,
+    isSubordinateAvailable=false
 }) => {
+//    const [isSuperiorAvailable, setIsSuperiorAvailable] = useState(false);
 
 
   return (
 
-    <>
-        
+    
+   
         <Wrapper>
-            <div className='icon' >{employee.superior && <CollapseUp onClick={handleSeniorStaffVisibility} />}</div>
+            <div className='icon' >{isSuperiorAvailable && <CollapseUp onClick={handleSeniorStaffVisibility} />}</div>
             <div className='inne' onClick={handleShowProfileCard}>
                 <h4 className='type-title2'>{name}</h4>
                 <div className='inner'>
@@ -34,18 +38,13 @@ const EmployeeCard = ({
                     </div>
                 </div>
             </div>
-            <div className='icon' >{employee?.subordinates?.length > 0 && <CollapseDown  onClick={handleJuniorStaffVisibility}/>}</div>
+            <div className='icon' >{isSubordinateAvailable && <CollapseDown  onClick={handleJuniorStaffVisibility}/>}</div>
         </Wrapper>
-       
 
-       
-
-       
-    </>
   )
 }
 
-export default EmployeeCard;
+export default EmployeeCardChildrenRight;
 
 
 const Wrapper = styled("div")`
@@ -87,7 +86,6 @@ const Wrapper = styled("div")`
         }
     }
 `;
-
 
 
 

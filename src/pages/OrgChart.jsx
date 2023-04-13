@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import EssLayout from "@/components/EssLayout";
 import EmployeeCard from '@/components/EmployeeCard';
 import { ReactComponent as ProfilePhoto } from "@/assets/images/mojoface.svg";
 import { styled } from 'goober';
 import { mobileSmall } from '@/globalStyle';
 import StaffProfileCard from '@/components/StaffProfileCard';
+import EmployeeCardChildrenRight from '../components/EmployeeCardChildrenRight';
+import EmployeeCardChildrenLeft from '../components/EmployeeCardChildrenLeft';
+import TopVerticalLine from '../components/OrgChartLines/TopVerticalLine';
+import HorizontalLineRight from '../components/OrgChartLines/HorizontalLineRight';
+import HorizontalLineLeft from '../components/OrgChartLines/HorizontalLineLeft';
+import BottomVerticalLine from '../components/OrgChartLines/BottomVerticalLine';
 
 const OrgChart = () => {
 
@@ -26,21 +32,36 @@ const OrgChart = () => {
         setShowProfileCard(false)
     }
 
+    const user = {
+        superior:{
+
+        },
+        subordinates: [
+            {},
+            {},
+            {}
+        ]
+    }
+
+
   return (
     <EssLayout>
         <OrgChartWrapper>
             {showSeniorStaff &&
                 <ChildrenWrapper>
-                    <div className="flex">
+                    <div className="">
                         <div>
-                            <EmployeeCard 
+                           
+                            <EmployeeCardChildrenRight
                                 name={"Akinkpelumi"}
                                 photo={<ProfilePhoto />}
                                 title={"UX Lead"}
                                 department={"Product"}
-                                isSuperiorAvailable={false}
-                                isSubordinateAvailable={false}
+                                employee={user.superior}
+                                // handleShowProfileCard={handleShowProfileCard}
+
                             />
+
                         </div>
                         {showProfileCard && 
                             <StaffProfileCard 
@@ -55,8 +76,10 @@ const OrgChart = () => {
                 </ChildrenWrapper>
             }
             <ParentWrapper >
-               
+                
                     <div>
+                        {/* {showSeniorStaff && <TopVerticalLine />}
+                        {showJuniorStaff && <BottomVerticalLine />} */}
                         <EmployeeCard 
                             handleSeniorStaffVisibility={handleSeniorStaffVisibility}
                             handleShowProfileCard={handleShowProfileCard}
@@ -65,9 +88,9 @@ const OrgChart = () => {
                             title={"UX Lead"}
                             department={"Product"}
                             handleJuniorStaffVisibility={handleJuniorStaffVisibility}
-                            isSuperiorAvailable={true}
-                            isSubordinateAvailable={true}
+                            employee={user}
                         />
+
                     </div>
                     {showProfileCard && 
                         <StaffProfileCard 
@@ -82,54 +105,71 @@ const OrgChart = () => {
             </ParentWrapper>
             {showJuniorStaff &&
                 <ChildrenWrapper>
-                    <div className='flex'>
-                        <div>
-                            <EmployeeCard 
-                                name={"Golden Moses"}
-                                photo={<ProfilePhoto />}
-                                title={"UX Lead"}
-                                department={"Product"}
-                                isSubordinateAvailable={true}
-                                // handleShowProfileCard={handleShowProfileCard}
+                    {user.subordinates.map((sub, ii) => (
+                        <Fragment>
+                            {ii % 2 === 0 ?
+                                <div className='flex'>
+                                    <div>
+                                        {/* <TopVerticalLine /> */}
+                                        {/* <HorizontalLineLeft /> */}
+                                        <EmployeeCardChildrenLeft 
+                                            name={"Golden Moses"}
+                                            photo={<ProfilePhoto />}
+                                            title={"UX Lead"}
+                                            department={"Product"}
+                                            isSubordinateAvailable={false}
+                                            employee={user.subordinates[0]}
+                                            // handleShowProfileCard={handleShowProfileCard}
 
-                            />
-                        </div>
-                        {showProfileCard && 
-                            <StaffProfileCard 
-                                employeeId="UT/2016/0929"
-                                employeeFirstName="Golden"
-                                employeeLastName="Moses"
-                                employeeStatus="Active"
-                                email="mojoface@gmail.com"
-                            />
-                         } 
-                    </div>
+                                        />
+                                    </div>
+                                    {showProfileCard && 
+                                        <StaffProfileCard 
+                                            employeeId="UT/2016/0929"
+                                            employeeFirstName="Golden"
+                                            employeeLastName="Moses"
+                                            employeeStatus="Active"
+                                            email="mojoface@gmail.com"
+                                        />
+                                    } 
+                                </div>
+                                :
+                                
+                                <div className='flex'>
+
+                                    <div>
+                                        <TopVerticalLine />
+                                        {/* <HorizontalLineRight /> */}
+                                        <EmployeeCardChildrenRight
+                                            name={"Golden Moses"}
+                                            photo={<ProfilePhoto />}
+                                            title={"UX Lead"}
+                                            department={"Product"}
+                                            employee={user.subordinates[1]}
+
+                                            // handleShowProfileCard={handleShowProfileCard}
+
+                                        />
+                                    </div>
+                                    {showProfileCard && 
+                                        <StaffProfileCard 
+                                            employeeId="UT/2016/0929"
+                                            employeeFirstName="Golden"
+                                            employeeLastName="Moses"
+                                            employeeStatus="Active"
+                                            email="mojoface@gmail.com"
+                                        />
+                                    }
+                                </div>
+                            }
+                        </Fragment>
+                       
+                        ))}
+                    
                         
 
 
-                    <div className='flex'>
-
-                        <div>
-                            <EmployeeCard 
-                                name={"Golden Moses"}
-                                photo={<ProfilePhoto />}
-                                title={"UX Lead"}
-                                department={"Product"}
-                                isSubordinateAvailable={true}
-                                // handleShowProfileCard={handleShowProfileCard}
-
-                            />
-                        </div>
-                        {showProfileCard && 
-                            <StaffProfileCard 
-                                employeeId="UT/2016/0929"
-                                employeeFirstName="Golden"
-                                employeeLastName="Moses"
-                                employeeStatus="Active"
-                                email="mojoface@gmail.com"
-                            />
-                        }
-                    </div>
+                    
                 </ChildrenWrapper>
             }
         </OrgChartWrapper>
@@ -177,3 +217,4 @@ const ChildrenWrapper = styled("div")`
         flex-wrap: wrap;
     }
 `;
+
