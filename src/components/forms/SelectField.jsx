@@ -9,8 +9,6 @@ export const Wrapper = styled("div")`
   position: relative;
   width: 100%;
   label {
-    font-size: 12px;
-    line-height: 15px;
     color: var(--grey-400);
   }
   select {
@@ -48,8 +46,7 @@ export const Wrapper = styled("div")`
 const SelectField = ({ label, ...props }) => {
   return (
     <Wrapper>
-      <label htmlFor={props.id || props.name}>{label}</label>
-
+      <label className="type-body3" htmlFor={props.id || props.name}>{label}</label>
       <select className="text-input" {...props} />
     </Wrapper>
   );
