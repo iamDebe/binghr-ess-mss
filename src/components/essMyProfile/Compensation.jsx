@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { format } from "date-fns";
-import ReusableTable from "@/components/ReusableTable";
+import Table from "@/components/Table";
 import { Container } from "@/components/essMyProfile/CommonStyles";
 
 const data = [
@@ -73,7 +73,7 @@ const Compensation = () => {
 
   return (
     <Container>
-      <ReusableTable
+      <Table
         tableColumns={COMPENSATION_TABLE_COLUMNS}
         tableData={data}
         onClick={() => {}}

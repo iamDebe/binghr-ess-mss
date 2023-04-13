@@ -91,7 +91,7 @@ const PaginationContainer = styled("div")`
   }
 `;
 
-const ReusableTable = ({
+const Table = ({
   searchFieldPlaceholder = "",
   tableColumns,
   tableData,
@@ -212,4 +212,4 @@ const ReusableTable = ({
   );
 };
 
-export default ReusableTable;
+export default Table;
