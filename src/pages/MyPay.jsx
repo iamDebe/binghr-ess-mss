@@ -18,24 +18,64 @@ import { ButtonWrapper,
 import { styled } from "goober";
 import { useSnapshot } from "valtio";
 import store from "@/services/store";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyPay = () => {
   const snapshot = useSnapshot(store);
   const payrolls= snapshot.payrolls?.data;
-  const [showProfileSettings, setShowProfileSettings] = useState(false);
   const [showPayroll, setShowPayroll] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [showAccountStatement, setShowAccountStatement] = useState(false);
+  const [payrollLists, setpayrollLists] = useState(null);
 
   useEffect(() => {
     store.getMyPay();
   }, []);
 
-  const handleShowPayrollStatement = ()=>{
+  const handleShowPayrollStatement = () => {
     setShowPayroll(!showPayroll);
     setShowAccountStatement(false);
-  }
-  const handleShowAccountStatement = ()=>{
-    setShowAccountStatement(!showAccountStatement);
+  };
+
+  const handlePayrollLists = async () => {
+    if (!startDate) {
+        toast.error("Please pick a start date");
+        return;
+    }
+    if (!endDate) {
+        toast.error("Please pick a start date");
+        return;
+    }
+    const response = await store.getPayrollList(startDate, endDate);
+    if (response?.status === "success" && response.data.length) {
+      setpayrollLists(response.data);
+      setShowAccountStatement(false);
+    } else {
+      toast.error("No payroll found for the date range");
+    }
+  };
+
+  const handleDateChange = (event) => {
+    const { id, value } = event.target;
+    const dates = { startDate, endDate };
+    dates[id] = value;
+  
+    // Swap start and end dates if necessary
+    if (dates.startDate && dates.endDate && dates.startDate > dates.endDate) {
+      [dates.startDate, dates.endDate] = [dates.endDate, dates.startDate];
+    }
+  
+    // Update the state with the new dates
+    
+    setStartDate(dates.startDate);
+    setEndDate(dates.endDate);
+  };  
+
+  const handleAccoundStatement = (item) => {
+    console.log(item);
+    setShowAccountStatement(true);
   }
 
   return (
@@ -54,17 +94,30 @@ const MyPay = () => {
           {showPayroll &&
             <div className="payroll-search">
               <TextField 
-                id="selectMonth"
-                label="Year / Month"
+                id="startDate"
+                label="Start Date"
                 type="date"
-                placeholder="Select Month/Year"
+                value={startDate}
+                onChange={handleDateChange}
+                placeholder="Select start date"
+                marginbottom="0"
+                icon={<CalenderIcon className="input-icon icon" />}
+                className="field-flex-basis"
+              />
+              <TextField 
+                id="endDate"
+                label="End Date"
+                type="date"
+                value={endDate}
+                onChange={handleDateChange}
+                placeholder="Select end date"
                 marginbottom="0"
                 icon={<CalenderIcon className="input-icon icon" />}
                 className="field-flex-basis"
               />
               <Button  
                 type="button"
-                onClick={handleShowAccountStatement}
+                onClick={handlePayrollLists}
                 bg="var(--white)"
                 textcolor="var(--lilac-400)"
                 border="var(--lilac-400)"
@@ -91,13 +144,22 @@ const MyPay = () => {
               <p>No result</p>
             )}
           </ChartWrapper>
+          <PayrollList>
+            {payrollLists && payrollLists.map(item => 
+              <li onClick={() => handleAccoundStatement(item)} key={item.id}>
+                Payroll Id {item.id}
+              </li>
+            )}
             {showAccountStatement && 
-              <PayrollTableWrapper>
-                <PayrollTable />
-              </PayrollTableWrapper>
-            }
+            <PayrollTableWrapper>
+              <PayrollTable />
+            </PayrollTableWrapper>
+          }
+          </PayrollList>
+          
         </ChartAndPayrollWrapper>
       </FlexColumnWrapper>
+      <ToastContainer />
     </EssLayout>
   );    
 }
@@ -105,7 +167,17 @@ const MyPay = () => {
 export default MyPay;
 
 const FlexColumnWrapper = styled("div")`
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
 `;
+
+const PayrollList = styled('div')`
+  display: block;
+  li {
+    cursor: pointer;
+    color: var(--red-400);
+    margin-bottom: 10px;
+  }
+`
+

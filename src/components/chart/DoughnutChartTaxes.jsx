@@ -1,7 +1,8 @@
 import { registerChart } from "@/utils/registerChart";
-import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
 import { calculateTaxes, calculatPercentage } from "@/utils/helpers";
+import {Wrapper, Container} from "@/components/chart/DoughnutChartDeduction";
+
 
 registerChart();
 
@@ -45,7 +46,7 @@ const DoughnutChartTaxes = ({ payrolls }) => {
   }
 
   return ( 
-    <Container>
+    <Container style={{marginTop: '10px'}}>
       <Wrapper> 
         <Doughnut 
           data={data}
@@ -64,22 +65,3 @@ const DoughnutChartTaxes = ({ payrolls }) => {
 }
  
 export default DoughnutChartTaxes;
-
-const Wrapper = styled("div")`
-  width: 50%;
-  margin: 0 auto;
-`;
-const Container = styled("div")`
-  display: flex;
-  div{
-    align-self: center;
-    margin-left: .3rem;
-  }
-  small{
-    color: var(--grey-300);
-  }
-  label{
-    font-size: 14px;
-    color: var(--grey-400);
-  }
-`;

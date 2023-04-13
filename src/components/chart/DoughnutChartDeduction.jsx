@@ -45,7 +45,7 @@ const DoughnutChartDeduction = ({ payrolls }) => {
   }
 
   return ( 
-    <Container>
+    <Container style={{marginTop: '10px'}}>
       <Wrapper> 
         <Doughnut 
           data={data}
@@ -65,15 +65,14 @@ const DoughnutChartDeduction = ({ payrolls }) => {
  
 export default DoughnutChartDeduction;
 
-const Wrapper = styled("div")`
+export const Wrapper = styled("div")`
   width: 50%;
-  margin: 0 auto;
 `;
-const Container = styled("div")`
+export const Container = styled("div")`
   display: flex;
+  gap: 10px;
   div{
     align-self: center;
-    margin-left: .3rem;
   }
   small{
     color: var(--grey-300);

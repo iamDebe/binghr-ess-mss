@@ -164,6 +164,6 @@ export const calculatPercentage = (payrolls, value) => {
     const total = calculateNet(payrolls) + calculateTotalDeductions(payrolls) + payrolls.total + calculateTaxes(payrolls);
     const percentage = (value / total) * 100;
 
-    return `${percentage.toFixed(2)}%`;
+    return percentage > 10 ? `${percentage.toFixed(1)}%` : `${percentage.toFixed(2)}%`;
   }
 };

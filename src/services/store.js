@@ -119,6 +119,14 @@ const store = proxy({
       }
     }
   },
+  async getPayrollList(startDate, endDate) {
+    try {
+      const response = await methods.get(`payrolls?start_date=${startDate}&end_date=${endDate}`);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  },
   async postPersonalInfo(data) {
     try {
       const config = {
