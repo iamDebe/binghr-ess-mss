@@ -121,22 +121,22 @@ export const HeaderText = styled("div")`
 `;
 
 export const ButtonGroups = styled("div")`
-    width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.125rem;
+  flex-wrap: wrap;
+  .save-btn {
+    flex: 1;
+  }
+  .prev-cont-btn {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     gap: 1.125rem;
-    flex-wrap: wrap;
-    .save-btn {
-      flex: 1;
+    flex: 1;
+    justify-content: flex-end;
+    ${mobileSmall} {
+      justify-content: flex-start;
     }
-    .prev-cont-btn {
-      display: flex;
-      gap: 1.125rem;
-      flex: 1;
-      justify-content: flex-end;
-      ${mobileSmall} {
-        justify-content: flex-start;
-      }
-    }
+  }
 `;

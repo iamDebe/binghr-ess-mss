@@ -1,32 +1,155 @@
-import React from "react";
+import React, { useState } from "react";
+import { Container, TabFormsWrapper } from "@/components/essMyProfile/CommonStyles";
 import { styled } from "goober";
-
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-`;
+import HorizontalTab from "../HorizontalTab";
+import Button from "../button";
 
 const Inner = styled("div")`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1.625rem;
   gap: 2rem;
-  .type-title3 {
-    color: var(--grey-400);
-  }
-  .type-body2 {
-    color: var(--grey-300);
-  }
 `;
 
-const Forms = ({ continueAction, goBack, saveData }) => {
+const Forms = ({ }) => {
+  const [activeTabLabel, setActiveTabLabel] = useState("General");
+  const handleTabClick = (tabName) => {
+    setActiveTabLabel(tabName);
+  };
+
+  
   return (
     <Container>
       <Inner>
-        <p className="type-title3">Forms</p>
+        <HorizontalTab
+          tabs={[
+            { label: "General" },
+            { label: "HR Forms" },
+            { label: "Recruiting Forms" },
+            { label: "Payroll Forms" },
+          ]}
+          activeTabLabel={activeTabLabel}
+          handleTabClick={(label) => {
+            handleTabClick(label);
+          }}
+          miniBorderTab
+        />
+        {activeTabLabel === "General" && (
+          <TabFormsWrapper>
+            <p className="type-title3">General</p>
+            <div className="form-rows">
+              <div className="row">
+                <p className="type-body3">Direct Manager Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+              <div className="row">
+                <p className="type-body3">Compensation Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+            </div>
+          </TabFormsWrapper>
+        )}
+        {activeTabLabel === "HR Forms" && (
+          <TabFormsWrapper>
+            <p className="type-title3">HR Forms</p>
+            <div className="form-rows">
+              <div className="row">
+                <p className="type-body3">Direct Manager Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+              <div className="row">
+                <p className="type-body3">Compensation Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+            </div>
+          </TabFormsWrapper>
+        )}
+        {activeTabLabel === "Recruiting Forms" && (
+          <TabFormsWrapper>
+            <p className="type-title3">Recruiting Forms</p>
+            <div className="form-rows">
+              <div className="row">
+                <p className="type-body3">Direct Manager Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+              <div className="row">
+                <p className="type-body3">Compensation Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+            </div>
+          </TabFormsWrapper>
+        )}
+        {activeTabLabel === "Payroll Forms" && (
+          <TabFormsWrapper>
+            <p className="type-title3">Payroll Forms</p>
+            <div className="form-rows">
+              <div className="row">
+                <p className="type-body3">Direct Manager Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+              <div className="row">
+                <p className="type-body3">Compensation Change Form</p>
+                <Button
+                  bg="var(--grey-25)"
+                  border="var(--lilac-400)"
+                  textcolor="var(--lilac-400)"
+                  width="109px"
+                >
+                  View
+                </Button>
+              </div>
+            </div>
+          </TabFormsWrapper>
+        )}
       </Inner>
     </Container>
   );

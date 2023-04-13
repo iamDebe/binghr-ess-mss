@@ -10,8 +10,6 @@ export const textFieldStyles = `
   margin-bottom: var(--textfield-margin-bottom);
   width: var(--textfield-width);
   label {
-    font-size: 12px;
-    line-height: 15px;
     color: var(--grey-400);
   }
   input {
@@ -29,7 +27,6 @@ export const textFieldStyles = `
     }
     &:focus {
       background: var(--grey-100);
-      border: 1px solid var(--grey-200);
     }
     &[type="date"]::-webkit-calendar-picker-indicator {
       opacity: 0;
@@ -48,6 +45,10 @@ export const textFieldStyles = `
     &.icon {
       bottom: 0.5rem;
       right: 1rem;
+    }
+    &.left-icon {
+      bottom: 0.5rem;
+      left: 1rem;
     }
   }
   .error {
@@ -79,11 +80,11 @@ const TextField = React.forwardRef(({ label, icon, optional, disabled, marginbot
   return (
     <Wrapper className={className}>
       <div className="label">
-        <label htmlFor={props.id || props.name}>{label}</label>
+        <label className="type-body3" htmlFor={props.id || props.name}>{label}</label>
         {optional && <span>&nbsp;(Optional)</span>}
       </div>
       <input className="text-input" {...props} ref={ref} disabled={disabled} />
-      {icon && icon }
+      {icon && icon}
     </Wrapper>
   );
 });

@@ -1,36 +1,33 @@
 import { styled } from "goober";
-import { mobile, mobileMedium } from "../../globalStyle";
+import { mobile, mobileMedium } from "@/globalStyle";
 
 export const Container = styled("div")`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
-`;
-
-export const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
+  padding-top: 2.625rem;
+  gap: 1.875rem;
   .title {
     color: var(--grey-500);
-    margin-bottom: 2rem;
   }
   .type-body2 {
     color: var(--grey-300);
   }
   .inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 419px;
+    background: var(--white);
+    padding: 1.5rem 1.75rem 2rem 1.75rem;
+    border: 0.5px solid var(--grey-5);
+    border-radius: var(--br);
     width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    border: 0.5px solid #e0e0e0;
-    border-radius: 4px;
     .flexed-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 2.625rem;
     }
     .main-text-div {
       display: flex;
@@ -42,20 +39,39 @@ export const Inner = styled("div")`
       }
     }
   }
-  .form-wrapper {
+  .action-field {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1.75rem 1.25rem;
-    width: 100%;
-  }
-  .field-flex-basis {
-    flex-basis: calc(25% - 15px);
-    ${mobile} {
-      flex-basis: calc(50% - 10px);
+    gap: 1.25rem;
+    color: var(--success);
+    .action-icon {
+      background: #F7F7F7;
+      border-radius: var(--br);
+      height: 1.5rem;
+      width: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    ${mobileMedium} {
-      flex-basis: 100%;
+  }
+`;
+
+export const TabFormsWrapper = styled("div")`
+  border: 1px solid var(--grey-200);
+  padding: 1.25rem 1.375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.125rem;
+  color: var(--grey-500);
+  .form-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--grey-400);
     }
   }
 `;

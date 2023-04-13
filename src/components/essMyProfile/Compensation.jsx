@@ -1,32 +1,33 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { format } from "date-fns";
-import { styled } from "goober";
-import Spacer from "../Spacer";
 import ReusableTable from "../ReusableTable";
-import COMPENSATION_DATA from "../../mockData/COMPENDATION_DATA.json";
+import { Container } from "@/components/essMyProfile/CommonStyles";
 
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-`;
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  .type-title3 {
-    color: var(--grey-400);
+const data = [
+  {
+    "startdate": "12-03-2023",
+    "enddate": "12-03-2023",
+    "shedule": "Monthly",
+    "amount": "100,000",
+    "additionalpay": "100,000"
+  },
+  {
+    "enddate": "09-06-2022",
+    "startdate": "12-03-2023",
+    "shedule": "Bonus",
+    "amount": "700,000",
+    "additionalpay": "700,000"
+  },
+  {
+    "startdate": "12-03-2023",
+    "enddate": "12-03-2023",
+    "shedule": "Car Allowance-Monthly",
+    "amount": "100,000",
+    "additionalpay": "100,000"
   }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-`;
+];
 
-const Compensation = ({ continueAction, goBack, saveData }) => {
+const Compensation = () => {
   const COMPENSATION_TABLE_COLUMNS = useMemo(
     () => [
       {
@@ -43,10 +44,10 @@ const Compensation = ({ continueAction, goBack, saveData }) => {
       {
         Header: "Start Date",
         accessor: "startdate",
-        Cell: ({ cell: { value }, row }) => {
+        Cell: ({ cell: { value } }) => {
           return (
             <React.Fragment>
-              {value ? format(new Date(value), "dd/MM/yyyy") : "N/A"}
+              {value ? format(new Date(value), "dd-MM-yyyy") : "N/A"}
             </React.Fragment>
           );
         },
@@ -54,10 +55,10 @@ const Compensation = ({ continueAction, goBack, saveData }) => {
       {
         Header: "End Date",
         accessor: "enddate",
-        Cell: ({ cell: { value }, row }) => {
+        Cell: ({ cell: { value } }) => {
           return (
             <React.Fragment>
-              {value ? format(new Date(value), "dd/MM/yyyy") : "N/A"}
+              {value ? format(new Date(value), "dd-MM-yyyy") : "N/A"}
             </React.Fragment>
           );
         },
@@ -72,17 +73,13 @@ const Compensation = ({ continueAction, goBack, saveData }) => {
 
   return (
     <Container>
-      <Inner>
-        <p className="type-title3">Compensation</p>
-        <Spacer height={5} />
-        <ReusableTable
-          tableColumns={COMPENSATION_TABLE_COLUMNS}
-          tableData={COMPENSATION_DATA}
-          onClick={(data) => {}}
-          pageSizeCount={10}
-          searchFieldPlaceholder="Search"
-        />
-      </Inner>
+      <ReusableTable
+        tableColumns={COMPENSATION_TABLE_COLUMNS}
+        tableData={data}
+        onClick={() => {}}
+        pageSizeCount={10}
+        searchFieldPlaceholder="Search"
+      />
     </Container>
   );
 };

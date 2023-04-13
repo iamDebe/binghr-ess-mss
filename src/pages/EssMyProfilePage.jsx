@@ -1,36 +1,17 @@
 import React, { useState } from "react";
 import { styled } from "goober";
-import ListTabsWidget from "../components/ListTabWidget";
-import EssLayout from "../components/EssLayout";
-import PersonalInformation from "../components/essMyProfile/PersonalInformation";
-import EmploymentInformation from "../components/essMyProfile/EmploymentInformation";
-import Documents from "../components/essMyProfile/Documents";
-import Security from "../components/essMyProfile/Security";
-import Forms from "../components/essMyProfile/Forms";
-import JobInformation from "../components/essMyProfile/JobInformation";
-import Compensation from "../components/essMyProfile/Compensation";
-
-// MARGIN TOP IS TEMPORARY
+import HorizontalTab from "@/components/HorizontalTab";
+import EssLayout from "@/components/EssLayout";
+import PersonalInformation from "@/components/essMyProfile/PersonalInformation";
+import EmploymentInformation from "@/components/essMyProfile/EmploymentInformation";
+import Documents from "@/components/essMyProfile/Documents";
+import Security from "@/components/essMyProfile/Security";
+import Forms from "@/components/essMyProfile/Forms";
+import JobInformation from "@/components/essMyProfile/JobInformation";
+import Compensation from "@/components/essMyProfile/Compensation";
 
 const Container = styled("div")`
   width: 100%;
-  gap: 3rem;
-  position: relative;
-  .onboarding-div {
-    width: 70%;
-    display: flex;
-    align-items: center;
-    @media only screen and (min-width: 375px) and (max-width: 969px) {
-      width: 100%;
-      flex-wrap: wrap;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      div {
-        margin-top: 10px;
-        margin-bottom: 5px;
-      }
-    }
-  }
 `;
 
 const EssMyProfilePage = () => {
@@ -43,7 +24,7 @@ const EssMyProfilePage = () => {
   return (
     <EssLayout>
       <Container>
-        <ListTabsWidget
+        <HorizontalTab
           tabs={[
             { label: "Personal Information" },
             { label: "Employment Information" },
@@ -59,7 +40,7 @@ const EssMyProfilePage = () => {
           }}
         />
 
-        <div>
+        <>
           {activeTabLabel === "Personal Information" && <PersonalInformation />}
           {activeTabLabel === "Employment Information" && (
             <EmploymentInformation />
@@ -69,7 +50,7 @@ const EssMyProfilePage = () => {
           {activeTabLabel === "Forms" && <Forms />}
           {activeTabLabel === "Security" && <Security />}
           {activeTabLabel === "Documents" && <Documents />}
-        </div>
+        </>
       </Container>
     </EssLayout>
   );

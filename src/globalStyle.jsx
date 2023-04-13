@@ -60,6 +60,7 @@ export const GlobalStyles = createGlobalStyles`
     --red: #EB5757;
     --yellow: #F2C94C;
     --green-2: #27AE60;
+    --success: #219653;
   
     /* fonts */
     font-family: "Circular Std", sans-serif;
@@ -201,5 +202,25 @@ export const GlobalStyles = createGlobalStyles`
   .react-datepicker-popper { 
     z-index: 9999;
     background:red;
+  }
+
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.75rem 1.25rem;
+    width: 100%;
+  }
+  .field-flex-basis {
+    flex-basis: calc(25% - 15px);
+    ${mobile} {
+      flex-basis: calc(50% - 10px);
+    }
+    ${mobileMedium} {
+      flex-basis: 100%;
+    }
+    ${HD} {
+      flex-basis: calc(20% - 16px);
+    }
   }
 `;

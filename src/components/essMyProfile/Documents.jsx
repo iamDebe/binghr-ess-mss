@@ -1,33 +1,83 @@
-import React from "react";
-import { styled } from "goober";
+import React, { useMemo } from "react";
+import { format } from "date-fns";
+import ReusableTable from "../ReusableTable";
+import { Container } from "@/components/essMyProfile/CommonStyles";
+import { ReactComponent as DownloadFile } from "@/assets/images/download-file.svg";
 
-const Container = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-`;
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1.625rem;
-  gap: 2rem;
-  .type-title3 {
-    color: var(--grey-400);
+const data = [
+  {
+    "documentname": "Payroll Policy",
+    "signedoffdate": "12-03-2023",
+    "issignedoff": "Yes",
+    "action": "View",
+  },
+  {
+    "documentname": "Attendance Policy",
+    "signedoffdate": "12-03-2023",
+    "issignedoff": "No",
+    "action": "View",
+  },
+  {
+    "documentname": "Employee Report Policy",
+    "signedoffdate": "12-03-2023",
+    "issignedoff": "No",
+    "action": "View",
   }
-  .type-body2 {
-    color: var(--grey-300);
-  }
-`;
+];
 
-const Documents = ({ continueAction, goBack, saveData }) => {
+const Documents = () => {
+  const COMPENSATION_TABLE_COLUMNS = useMemo(
+    () => [
+      {
+        Header: "Document Name",
+        accessor: "documentname",
+      },
+      {
+        Header: "Is Signed off",
+        accessor: "issignedoff",
+      },
+      {
+        Header: "Signed off Date",
+        accessor: "signedoffdate",
+        Cell: ({ cell: { value }, row }) => {
+          return (
+            <React.Fragment>
+              {value ? format(new Date(value), "dd-MM-yyyy") : "N/A"}
+            </React.Fragment>
+          );
+        },
+      },
+      {
+        Header: "Action",
+        accessor: "action",
+        Cell: ({ value }) => (
+          <div className="action-field">
+            {value.startsWith("View") ? (
+              <>
+                View{" "}
+                <div className="action-icon">
+                  <DownloadFile stroke="var(--grey-400)" />
+                </div>
+              </>
+            ) : (
+              value
+            )}
+          </div>
+        ),
+      },
+    ],
+    []
+  );
+
   return (
     <Container>
-      <Inner>
-        <p className="type-title3">Documents</p>
-      </Inner>
+      <ReusableTable
+        tableColumns={COMPENSATION_TABLE_COLUMNS}
+        tableData={data}
+        onClick={(data) => {}}
+        pageSizeCount={10}
+        searchFieldPlaceholder="Search"
+      />
     </Container>
   );
 };

@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import EssMyProfilePage from "./pages/EssMyProfilePage";
+import EssMyProfilePage from "@/pages/EssMyProfilePage";
 import EssHome from "@/pages/EssHomepage";
 import MyPay from "@/pages/MyPay";
 window.base_url = import.meta.env.VITE_BASE_URL;
