@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { format } from "date-fns";
-import ReusableTable from "../ReusableTable";
+import ReusableTable from "@/components/ReusableTable";
 import { Container } from "@/components/essMyProfile/CommonStyles";
 import { ReactComponent as DownloadFile } from "@/assets/images/download-file.svg";
 

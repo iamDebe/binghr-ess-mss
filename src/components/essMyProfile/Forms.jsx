@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container, TabFormsWrapper } from "@/components/essMyProfile/CommonStyles";
 import { styled } from "goober";
-import HorizontalTab from "../HorizontalTab";
-import Button from "../button";
+import HorizontalTab from "@/components/HorizontalTab";
+import Button from "@/components/button";
 
 const Inner = styled("div")`
   width: 100%;

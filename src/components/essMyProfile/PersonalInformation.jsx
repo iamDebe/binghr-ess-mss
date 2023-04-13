@@ -1,31 +1,11 @@
 import React, { useState } from "react";
-import { styled } from "goober";
 import { TextField } from "@/components/forms";
 import { AccordionItem } from "@/assets/wrappers";
-import { Container } from "@/components/essMyProfile/CommonStyles";
+import { Container, Inner } from "@/components/essMyProfile/CommonStyles";
 import { ReactComponent as PenIcon } from "@/assets/images/pen-icon.svg";
 import { ReactComponent as CopySuccess } from "@/assets/images/copy-success.svg";
 import Button from "@/components/button";
 import { ButtonGroups } from "@/components/onboarding/CommonStyles";
-
-const Inner = styled("div")`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0 1.25rem;
-  gap: 1.25rem;
-  .type-body2 {
-    color: var(--grey-300);
-  }
-  .main-text-div {
-    display: flex;
-    max-width: 100%;
-  }
-  .text-div {
-    padding-right: 30px;
-    width: 230px;
-  }
-`;
 
 const PersonalInformation = ({ fieldsEdited }) => {
   const [personalInfo, showPersonalInfo] = useState(false);

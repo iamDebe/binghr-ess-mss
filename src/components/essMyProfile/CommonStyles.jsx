@@ -1,5 +1,4 @@
 import { styled } from "goober";
-import { mobile, mobileMedium } from "@/globalStyle";
 
 export const Container = styled("div")`
   width: 100%;
@@ -54,6 +53,14 @@ export const Container = styled("div")`
       justify-content: center;
     }
   }
+`;
+
+export const Inner = styled("div")`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.25rem;
+  gap: 1.25rem;
 `;
 
 export const TabFormsWrapper = styled("div")`
