@@ -3,7 +3,6 @@ import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
 
 registerChart();
-
 const employeeDataYear = [
   {
       id: 1,

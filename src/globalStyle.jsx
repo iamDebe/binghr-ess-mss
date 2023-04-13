@@ -7,6 +7,7 @@ export const tablet = `@media screen and (max-width: 1023px)`;
 export const mobile = `@media screen and (max-width: 767px)`;
 export const mobileMedium = `@media screen and (max-width: 520px)`;
 export const mobileSmall = `@media screen and (max-width: 480px)`;
+export const mobileExtraSmall = `@media screen and (max-width: 340px)`;
 
 export const GlobalStyles = createGlobalStyles`
   @font-face {
@@ -167,6 +168,22 @@ export const GlobalStyles = createGlobalStyles`
       font-weight: 450;
       font-size: 0.875rem;
       line-height: 155.5%;
+    }
+    .type-body5 {
+      font-size: 36px;
+      font-weight: lighter;
+      line-height: 51px;
+      letter-spacing: 0em;
+    }
+    .calendar-overlay-title {
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 163.2%;
+    }
+    .calendar-overlay-time {
+      font-size: 10px;
+      font-weight: 450;
+      line-height: 163.2%;
     }
   }
   a {
