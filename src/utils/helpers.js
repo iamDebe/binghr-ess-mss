@@ -107,3 +107,54 @@ const getDaySuffix = (day) => {
     }
   }
 }
+
+const getTotalTax = (payrolls) => {
+  if (payrolls) {
+    let totalAmount = 0;
+    payrolls?.breakdown.forEach(item => {
+      if (item.name === "Federal Tax" || item.name === "State Tax") {
+        totalAmount += parseFloat(item.amount);
+      }
+    });
+
+    return totalAmount;
+  }
+};
+
+export const calculateNet = (payrolls) => {
+  if (payrolls) {
+    return parseInt(payrolls?.total) - getTotalTax(payrolls);
+  }
+};
+
+export const calculateTaxes = (payrolls) => {
+  if (payrolls) {
+    return getTotalTax(payrolls);
+  }
+};
+
+export const calculateOtherDeduction = (payrolls) => {
+  if (payrolls) {
+    let totalAmount = 0;
+    payrolls?.breakdown.forEach(item => {
+      if (item.type === "deduction" && (item.name !== "Federal Tax" && item.name !== "State Tax")) {
+        totalAmount += parseFloat(item.amount);
+      }
+    });
+
+    return totalAmount;
+  }
+};
+
+export const calculateTotalDeductions = (payrolls) => {
+ if (payrolls) {
+   let totalAmount = 0;
+   payrolls?.breakdown.forEach(item => {
+     if (item.type === "deduction") {
+       totalAmount += parseFloat(item.amount);
+     }
+   });
+
+   return totalAmount;
+ }
+}

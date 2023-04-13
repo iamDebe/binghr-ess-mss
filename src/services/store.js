@@ -16,6 +16,7 @@ const initialState = {
   states: {},
   orgData: null,
   onboardingStatus: null,
+  payrolls: null,
 };
 
 const store = proxy({
@@ -106,6 +107,16 @@ const store = proxy({
       this.states[countryId] = response.data;
     } catch (error) {
       console.error(error);
+    }
+  },
+  async getMyPay() {
+    if (!store.payrolls) {
+      try {
+        const response = await methods.get(`/payrolls/1/11`);
+        this.payrolls = response.data;
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
   async postPersonalInfo(data) {
