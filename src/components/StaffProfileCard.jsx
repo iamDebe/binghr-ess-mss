@@ -4,17 +4,17 @@ import Button from "@/components/button"
 import { styled } from 'goober';
 
 
-const StaffProfileCard = () => {
+const StaffProfileCard = ({employeeId, employeeFirstName, employeeLastName, employeeStatus, email, ContactNumber}) => {
   return (
     <CardWrapper>
         <div className='card-img'><ProfilePhoto /></div>
         <div className='card-body'>
-            <div className='type-title3 card-text'><p className='card-title '>Employee ID:</p><p className='card-credentials type-title4'> UT/2016/0929</p></div>
-            <div className='type-title3 card-text'><p className='card-title '>Employee First Name:</p><p className='card-credentials type-title4'> Mojo</p></div>
-            <div className='type-title3 card-text'><p className='card-title '>Employee Last Name:</p><p className='card-credentials type-title4'> Face</p></div>
-            <div className='type-title3 card-text'><p className='card-title '>Employee Status:</p><p className='card-credentials type-title4'>Active</p></div>
-            <div className='type-title3 card-text'><p className='card-title '>Email:</p><p className='card-credentials type-title4'> mojoface@gmail.com</p></div>
-            <div className='type-title3 card-text'><p className='card-title '>Contact Number:</p><p className='card-credentials type-title4'> +234678898</p></div>
+            <div className='type-title3 card-text'><p className='card-title '>Employee ID:</p><p className='card-credentials type-title4'> {employeeId}</p></div>
+            <div className='type-title3 card-text'><p className='card-title '>Employee First Name:</p><p className='card-credentials type-title4'>{employeeFirstName}</p></div>
+            <div className='type-title3 card-text'><p className='card-title '>Employee Last Name:</p><p className='card-credentials type-title4'>{employeeLastName}</p></div>
+            <div className='type-title3 card-text'><p className='card-title '>Employee Status:</p><p className='card-credentials type-title4'>Active{employeeStatus}</p></div>
+            <div className='type-title3 card-text'><p className='card-title '>Email:</p><p className='card-credentials type-title4'> {email}</p></div>
+            <div className='type-title3 card-text'><p className='card-title '>Contact Number:</p><p className='card-credentials type-title4'> +234678898{ContactNumber}</p></div>
         </div>
         <Button 
           border="var(--highblue)"

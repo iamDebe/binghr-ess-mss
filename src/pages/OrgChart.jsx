@@ -31,64 +31,105 @@ const OrgChart = () => {
         <OrgChartWrapper>
             {showSeniorStaff &&
                 <ChildrenWrapper>
-                    <EmployeeCard 
-                        name={"Akinkpelumi"}
-                        photo={<ProfilePhoto />}
-                        title={"UX Lead"}
-                        department={"Product"}
-                        isSuperiorAvailable={false}
-                        isSubordinateAvailable={true}
-                        />
-                    <EmployeeCard 
-                        name={"Akinkpelumi"}
-                        photo={<ProfilePhoto />}
-                        title={"UX Lead"}
-                        department={"Product"}
-                        isSuperiorAvailable={false}
-                        isSubordinateAvailable={true}
-
-
-                    />
+                    <div className="flex">
+                        <div>
+                            <EmployeeCard 
+                                name={"Akinkpelumi"}
+                                photo={<ProfilePhoto />}
+                                title={"UX Lead"}
+                                department={"Product"}
+                                isSuperiorAvailable={false}
+                                isSubordinateAvailable={false}
+                            />
+                        </div>
+                        {showProfileCard && 
+                            <StaffProfileCard 
+                                employeeId="UT/2016/0929"
+                                employeeFirstName="Golden"
+                                employeeLastName="Moses"
+                                employeeStatus="Active"
+                                email="mojoface@gmail.com"
+                            />
+                        } 
+                    </div>
                 </ChildrenWrapper>
             }
             <ParentWrapper >
-                <div>
-                    <EmployeeCard 
-                        handleSeniorStaffVisibility={handleSeniorStaffVisibility}
-                        handleShowProfileCard={handleShowProfileCard}
-                        name={"Mojo Face"}
-                        photo={<ProfilePhoto />}
-                        title={"UX Lead"}
-                        department={"Product"}
-                        handleJuniorStaffVisibility={handleJuniorStaffVisibility}
-                        isSuperiorAvailable={true}
-                        isSubordinateAvailable={true}
-
-
-                    />
-                </div>
-                {showProfileCard && <StaffProfileCard />}
+               
+                    <div>
+                        <EmployeeCard 
+                            handleSeniorStaffVisibility={handleSeniorStaffVisibility}
+                            handleShowProfileCard={handleShowProfileCard}
+                            name={"Mojo Face"}
+                            photo={<ProfilePhoto />}
+                            title={"UX Lead"}
+                            department={"Product"}
+                            handleJuniorStaffVisibility={handleJuniorStaffVisibility}
+                            isSuperiorAvailable={true}
+                            isSubordinateAvailable={true}
+                        />
+                    </div>
+                    {showProfileCard && 
+                        <StaffProfileCard 
+                            employeeId="UT/2016/0929"
+                            employeeFirstName="Mojo"
+                            employeeLastName="Face"
+                            employeeStatus="Active"
+                            email="mojoface@gmail.com"
+                        />
+                    }
+                
             </ParentWrapper>
             {showJuniorStaff &&
                 <ChildrenWrapper>
-                    <EmployeeCard 
-                    name={"Golden Moses"}
-                    photo={<ProfilePhoto />}
-                    title={"UX Lead"}
-                    department={"Product"}
-                    isSubordinateAvailable={true}
+                    <div className='flex'>
+                        <div>
+                            <EmployeeCard 
+                                name={"Golden Moses"}
+                                photo={<ProfilePhoto />}
+                                title={"UX Lead"}
+                                department={"Product"}
+                                isSubordinateAvailable={true}
+                                // handleShowProfileCard={handleShowProfileCard}
+
+                            />
+                        </div>
+                        {showProfileCard && 
+                            <StaffProfileCard 
+                                employeeId="UT/2016/0929"
+                                employeeFirstName="Golden"
+                                employeeLastName="Moses"
+                                employeeStatus="Active"
+                                email="mojoface@gmail.com"
+                            />
+                         } 
+                    </div>
+                        
 
 
-                        />
-                    <EmployeeCard 
-                    name={"Golden Moses"}
-                    photo={<ProfilePhoto />}
-                    title={"UX Lead"}
-                    department={"Product"}
-                    isSubordinateAvailable={true}
+                    <div className='flex'>
 
+                        <div>
+                            <EmployeeCard 
+                                name={"Golden Moses"}
+                                photo={<ProfilePhoto />}
+                                title={"UX Lead"}
+                                department={"Product"}
+                                isSubordinateAvailable={true}
+                                // handleShowProfileCard={handleShowProfileCard}
 
-                    />
+                            />
+                        </div>
+                        {showProfileCard && 
+                            <StaffProfileCard 
+                                employeeId="UT/2016/0929"
+                                employeeFirstName="Golden"
+                                employeeLastName="Moses"
+                                employeeStatus="Active"
+                                email="mojoface@gmail.com"
+                            />
+                        }
+                    </div>
                 </ChildrenWrapper>
             }
         </OrgChartWrapper>
@@ -126,6 +167,11 @@ const ChildrenWrapper = styled("div")`
     display: flex;
     justify-content: center;
     gap: 5rem;
+
+        .flex{
+            display: flex;
+            gap: 20px;
+        }
     ${mobileSmall}{
         gap: 2rem;
         flex-wrap: wrap;
