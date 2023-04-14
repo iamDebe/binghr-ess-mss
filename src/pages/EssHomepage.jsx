@@ -35,6 +35,8 @@ const EssHome = () => {
   const events = snapshot?.events;
   const orgData = snapshot?.orgData;
   const onboardingStatus = snapshot?.onboardingStatus;
+  const activities = snapshot?.pendingTasks;
+  const announcements = snapshot?.announcements;
 
   useEffect(() => {
     store.getPersonalInformation();
@@ -42,6 +44,7 @@ const EssHome = () => {
     store.getEmployeeOnLeave();
     store.getOrgData();
     store.getOnboardingStatus();
+    store.getActivities();
   }, []);
   useEffect(() => {
     if (personalInfo && !personalInfo.completed_profile_onboarding) {
@@ -159,38 +162,24 @@ const EssHome = () => {
               <div className="pending-task-wrapper">
                 <h3 className="type-title3">Pending Tasks</h3>
                 <PendingTasks>
-                  <PendingTask>
-                    <div className="icon-task">
-                      <RoundIconBg
-                        bg="#FFEAEA"
-                        icon={<StarIcon fill="var(--red)" />}
-                      />
-                      <div className="task">
-                        <h4 className="type-title4">Email Verification</h4>
-                        <p className="type-body3">Verify Email </p>
+                  {activities && activities.map((item, index) => (
+                    <PendingTask key={index}>
+                       <div className="icon-task">
+                        <RoundIconBg
+                          bg="#FFFAEA"
+                          icon={<ClockIcon fill="var(--yellow)" />}
+                        />
+                        <div className="task">
+                          <h4 className="type-title4">{item.title}</h4>
+                          <p className="type-body3">{item.type}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="priority">
-                      <Tag bordercolor="var(--red)">Priority</Tag>
-                      <p className="type-subtitle1">2 days</p>
-                    </div>
-                  </PendingTask>
-                  <PendingTask>
-                    <div className="icon-task">
-                      <RoundIconBg
-                        bg="#FFFAEA"
-                        icon={<ClockIcon fill="var(--yellow)" />}
-                      />
-                      <div className="task">
-                        <h4 className="type-title4">Time off requested</h4>
-                        <p className="type-body3">Employee </p>
+                      <div className="priority">
+                        <Tag bordercolor="#F4BE50">{item.status}</Tag>
+                        <p className="type-subtitle1">{item?.date && formatDate(item.date)}</p>
                       </div>
-                    </div>
-                    <div className="priority">
-                      <Tag bordercolor="#F4BE50">Pending</Tag>
-                      <p className="type-subtitle1">2 days</p>
-                    </div>
-                  </PendingTask>
+                    </PendingTask>
+                  ))}
                 </PendingTasks>
               </div>
               <div className="onleave-wrapper">
@@ -228,50 +217,35 @@ const EssHome = () => {
                   <div className="title">
                     <h3 className="type-title3">Announcements</h3>
                   </div>
-                  <div className="item">
-                    <div className="icon-group">
-                      <RoundIconBg
-                        bg="#FFEAEA"
-                        icon={<BookIcon fill="var(--red)" />}
-                      />
-                      <div className="announcement">
-                        <h4 className="type-title4">Earning Statement </h4>
-                        <p className="type-body3">
-                          Your February earning statement is ready!
-                        </p>
+                  {announcements && announcements.map(item => (
+                    <div className="item" key={item.id}>
+                      <div className="icon-group">
+                        <RoundIconBg
+                          bg="#FFEAEA"
+                          icon={<BookIcon fill="var(--red)" />}
+                        />
+                        <div className="announcement">
+                          <h4 className="type-title4">Earning Statement </h4>
+                          <p className="type-body3">
+                            {JSON.parse(item.data).message}
+                          </p>
+                        </div>
                       </div>
+                      <Button
+                        bg="var(--white)"
+                        border="var(--lilac-400)"
+                        textcolor="var(--lilac-400)"
+                        className="news-btn"
+                      >
+                        View
+                      </Button>
                     </div>
-                    <Button
-                      bg="var(--white)"
-                      border="var(--lilac-400)"
-                      textcolor="var(--lilac-400)"
-                      className="news-btn"
-                    >
-                      View
-                    </Button>
-                  </div>
-                  <div className="item">
-                    <div className="icon-group">
-                      <RoundIconBg
-                        bg="#FFEAEA"
-                        icon={<BookIcon fill="var(--red)" />}
-                      />
-                      <div className="announcement">
-                        <h4 className="type-title4">Earning Statement </h4>
-                        <p className="type-body3">
-                          Your February earning statement is ready!
-                        </p>
-                      </div>
+                  ))}
+                  {!announcements && (
+                    <div className="no-announcement-wrapper">
+                      <p className="type-body3">No announcement</p>
                     </div>
-                    <Button
-                      bg="var(--white)"
-                      border="var(--lilac-400)"
-                      textcolor="var(--lilac-400)"
-                      className="news-btn"
-                    >
-                      View
-                    </Button>
-                  </div>
+                  )}
                 </Announcements>
                 <Events>
                   <div className="title">
@@ -572,6 +546,9 @@ const Announcements = styled("div")`
   gap: 1.75rem;
   max-height: 170px;
   overflow-y: auto;
+  .no-announcement-wrapper {
+    text-align: center;
+  }
   .title {
     display: none;
     ${tablet} {
