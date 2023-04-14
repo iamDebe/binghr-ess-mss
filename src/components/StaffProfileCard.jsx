@@ -40,6 +40,7 @@ const CardWrapper = styled("div")`
     gap: 1.5rem;
     padding: 1rem;
     border-radius: .5rem;
+    width: 100%;
 
     .card-img{
       display:flex;
@@ -64,6 +65,8 @@ const CardWrapper = styled("div")`
     }
     .card-text{
       display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
     }
 
     .btn{

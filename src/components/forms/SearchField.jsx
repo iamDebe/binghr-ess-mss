@@ -65,7 +65,6 @@ input {
 const SearchField = ({ icon, optional, label, disabled, ref, ...props }) => {
  
   return (
-    <>
     <Wrapper>
       <div className="optional">
         <label htmlFor={props.id || props.name}>{label}</label>
@@ -74,9 +73,6 @@ const SearchField = ({ icon, optional, label, disabled, ref, ...props }) => {
       <input className="text-input" {...props} ref={ref} disabled={disabled} />
       {icon && icon }
     </Wrapper>
-     
-    
-    </>
   );
 }
 

@@ -14,7 +14,7 @@ const Hrl = styled("div")`
 
     &::before{
         content: "";
-        width: 100%;
+        width: 110%;
         height: 2px;
         background: var(--grey-200);
         right: 0%;
