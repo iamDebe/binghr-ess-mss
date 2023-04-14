@@ -22,6 +22,7 @@ export const Container = styled("div")`
     border: 0.5px solid var(--grey-5);
     border-radius: var(--br);
     width: 100%;
+    gap: 2.625rem;
     .flexed-header {
       display: flex;
       align-items: center;

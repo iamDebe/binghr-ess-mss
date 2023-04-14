@@ -17,7 +17,7 @@ export const textFieldStyles = `
     color: var(--grey-400);
     font-family: inherit;
     font-size: 12px;
-    padding: 0.5rem 2.4rem 0.5rem 1rem;
+    padding: var(--textfield-padding);
     border: 0.5px solid var(--grey-200);
     border-radius: 2px;
     outline: none;
@@ -64,13 +64,14 @@ export const textFieldStyles = `
   }
 `;
 
-const TextField = React.forwardRef(({ label, icon, optional, disabled, marginbottom, width, className="", ...props }, ref) => {
+const TextField = React.forwardRef(({ label, icon, optional, disabled, marginbottom, width, padding, className="", ...props }, ref) => {
   useEffect(()=>{
   }, [disabled]);
 
   const customStyles = `
     --textfield-margin-bottom: ${marginbottom || "1.75rem"};
     --textfield-width: ${width || "100%"};
+    --textfield-padding: ${padding || "0.5rem 2.4rem 0.5rem 1rem"};
   `;
   const Wrapper = styled("div")`
     ${textFieldStyles}
@@ -79,10 +80,12 @@ const TextField = React.forwardRef(({ label, icon, optional, disabled, marginbot
 
   return (
     <Wrapper className={className}>
-      <div className="label">
-        <label className="type-body3" htmlFor={props.id || props.name}>{label}</label>
-        {optional && <span>&nbsp;(Optional)</span>}
-      </div>
+      {label &&
+        <div className="label">
+          <label className="type-body3" htmlFor={props.id || props.name}>{label}</label>
+          {optional && <span>&nbsp;(Optional)</span>}
+        </div>
+      }
       <input className="text-input" {...props} ref={ref} disabled={disabled} />
       {icon && icon}
     </Wrapper>

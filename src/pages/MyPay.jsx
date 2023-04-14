@@ -1,6 +1,5 @@
 import React, {useEffect, useState } from "react";
 import EssLayout from "@/components/EssLayout";
-import SearchField from "@/components/forms/SearchField";
 import Button from "@/components/button"
 import DoughnutChart from "@/components/chart/DoughnutChart";
 import TextField from "@/components/forms/TextField";
