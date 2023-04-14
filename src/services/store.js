@@ -16,6 +16,8 @@ const initialState = {
   states: {},
   orgData: null,
   onboardingStatus: null,
+  pendingTasks: null,
+  announcements: null,
 };
 
 const store = proxy({
@@ -106,6 +108,26 @@ const store = proxy({
       this.states[countryId] = response.data;
     } catch (error) {
       console.error(error);
+    }
+  },
+  async getActivities() {
+    if (!store.pendingTasks) {
+      try {
+        const response = await methods.get("/home-info/activities");
+        this.pendingTasks = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  async getAnnouncement() {
+    if (!store.announcements) {
+      try {
+        const response = await methods.get("/home-info/announcements");
+        this.announcements = response.data;
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
   async postPersonalInfo(data) {
