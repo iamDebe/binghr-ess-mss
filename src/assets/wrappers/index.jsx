@@ -3,6 +3,7 @@ import { InputsWrapper } from "@/assets/wrappers/InputsWrapper";
 import { OnboardingWrapper } from "@/assets/wrappers/OnboardingWrapper";
 import { UploadImageWrapper } from "@/assets/wrappers/UploadImageWrapper";
 import { FormLogoWrapper } from "@/assets/wrappers/FormLogoWrapper";
+import { AccordionItem } from "@/assets/wrappers/AccordionItemWrapper";
 
 export {
   FormWrapper,
@@ -10,4 +11,5 @@ export {
   OnboardingWrapper,
   UploadImageWrapper,
   FormLogoWrapper,
+  AccordionItem,
 };

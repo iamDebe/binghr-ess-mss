@@ -1,4 +1,4 @@
-import { createGlobalStyles } from 'goober/global';
+import { createGlobalStyles } from "goober/global";
 
 export const HD = `@media screen and (min-width: 1800px)`;
 export const desktop = `@media screen and (max-width: 1440px)`;
@@ -7,6 +7,7 @@ export const tablet = `@media screen and (max-width: 1023px)`;
 export const mobile = `@media screen and (max-width: 767px)`;
 export const mobileMedium = `@media screen and (max-width: 520px)`;
 export const mobileSmall = `@media screen and (max-width: 480px)`;
+export const mobileExtraSmall = `@media screen and (max-width: 340px)`;
 
 export const GlobalStyles = createGlobalStyles`
   @font-face {
@@ -60,6 +61,7 @@ export const GlobalStyles = createGlobalStyles`
     --red: #EB5757;
     --yellow: #F2C94C;
     --green-2: #27AE60;
+    --success: #219653;
   
     /* fonts */
     font-family: "Circular Std", sans-serif;
@@ -168,9 +170,74 @@ export const GlobalStyles = createGlobalStyles`
       font-size: 0.875rem;
       line-height: 155.5%;
     }
+    .type-body5 {
+      font-size: 36px;
+      font-weight: lighter;
+      line-height: 51px;
+      letter-spacing: 0em;
+    }
+    .calendar-overlay-title {
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 163.2%;
+    }
+    .calendar-overlay-time {
+      font-size: 10px;
+      font-weight: 450;
+      line-height: 163.2%;
+    }
   }
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  .react-datepicker__input-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .date-picker {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px; 
+    color: #103C1B; 
+    border: none;
+    padding: 8px 10px;
+  }
+  .date-picker:focus{
+   background: white;
+   border: #ddd;
+  }
+  
+  .react-datepicker {
+    box-sizing: border-box;
+    min-height: 284px !important;
+    max-height: 284px !important;
+  }
+  
+  .react-datepicker-popper { 
+    z-index: 9999;
+    background:red;
+  }
+
+  .form-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.75rem 1.25rem;
+    width: 100%;
+  }
+  .field-flex-basis {
+    flex-basis: calc(25% - 15px);
+    ${mobile} {
+      flex-basis: calc(50% - 10px);
+    }
+    ${mobileMedium} {
+      flex-basis: 100%;
+    }
+    ${HD} {
+      flex-basis: calc(20% - 16px);
+    }
   }
 `;

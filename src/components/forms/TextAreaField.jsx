@@ -1,18 +1,18 @@
-
-import React, {useEffect} from "react";
+import React from 'react'
 import { styled } from "goober";
 
-export const textFieldStyles = `
-  position: relative;
+export const Wrapper = styled("div")`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: var(--textfield-margin-bottom);
-  width: var(--textfield-width);
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
   label {
+    font-size: 12px;
     color: var(--grey-400);
   }
-  input {
+  textarea {
     background: var(--grey-50);
     color: var(--grey-400);
     font-family: inherit;
@@ -21,12 +21,15 @@ export const textFieldStyles = `
     border: 0.5px solid var(--grey-200);
     border-radius: 2px;
     outline: none;
+    width: 100%;
+    resize:vertical;
     &::placeholder {
       font-family: inherit;
       color: var(--grey-300);
     }
     &:focus {
       background: var(--grey-100);
+      border: 1px solid var(--grey-200);
     }
     &[type="date"]::-webkit-calendar-picker-indicator {
       opacity: 0;
@@ -46,15 +49,11 @@ export const textFieldStyles = `
       bottom: 0.5rem;
       right: 1rem;
     }
-    &.left-icon {
-      bottom: 0.5rem;
-      left: 1rem;
-    }
   }
   .error {
     background-color: var(--red-200);
   }
-  .label {
+  .optional {
     display: flex;
     align-items: center;
     & span {
@@ -64,29 +63,23 @@ export const textFieldStyles = `
   }
 `;
 
-const TextField = React.forwardRef(({ label, icon, optional, disabled, marginbottom, width, className="", ...props }, ref) => {
-  useEffect(()=>{
-  }, [disabled]);
 
-  const customStyles = `
-    --textfield-margin-bottom: ${marginbottom || "1.75rem"};
-    --textfield-width: ${width || "100%"};
-  `;
-  const Wrapper = styled("div")`
-    ${textFieldStyles}
-    ${customStyles}
-  `;
+const TextAreaField = ({ label, icon, optional, disabled, rows, cols, placeholder, ...props }) => {
 
   return (
-    <Wrapper className={className}>
-      <div className="label">
-        <label className="type-body3" htmlFor={props.id || props.name}>{label}</label>
-        {optional && <span>&nbsp;(Optional)</span>}
-      </div>
-      <input className="text-input" {...props} ref={ref} disabled={disabled} />
-      {icon && icon}
+    <Wrapper>
+         <div className="optional">
+          <label htmlFor={props.id || props.name}>{label}</label>
+          {optional && <span>&nbsp;(Optional)</span>}
+        </div>
+        <textarea className="text-input" {...props} rows={rows} cols={cols} placeholder={placeholder} disabled={disabled} />
+        {icon && icon }
     </Wrapper>
-  );
-});
+  )
 
-export default TextField;
+ 
+  
+}
+
+export default TextAreaField;
+
