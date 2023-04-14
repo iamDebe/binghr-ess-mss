@@ -39,6 +39,7 @@ const OrgChart = () => {
         subordinates: [
             {},
             {},
+            {},
             {}
         ]
     }
@@ -78,8 +79,8 @@ const OrgChart = () => {
             <ParentWrapper >
                 
                     <div>
-                        {/* {showSeniorStaff && <TopVerticalLine />}
-                        {showJuniorStaff && <BottomVerticalLine />} */}
+                        {showSeniorStaff && <TopVerticalLine />}
+                        {showJuniorStaff && (<BottomVerticalLine />)}
                         <EmployeeCard 
                             handleSeniorStaffVisibility={handleSeniorStaffVisibility}
                             handleShowProfileCard={handleShowProfileCard}
@@ -105,13 +106,13 @@ const OrgChart = () => {
             </ParentWrapper>
             {showJuniorStaff &&
                 <ChildrenWrapper>
-                    {user.subordinates.map((sub, ii) => (
+                    {/* {user.subordinates.map((sub, ii) => ( */}
                         <Fragment>
-                            {ii % 2 === 0 ?
+                            {/* {ii % 2 === 0 ? */}
                                 <div className='flex'>
                                     <div>
-                                        {/* <TopVerticalLine /> */}
-                                        {/* <HorizontalLineLeft /> */}
+                                        <TopVerticalLine />
+                                        <HorizontalLineLeft />
                                         <EmployeeCardChildrenLeft 
                                             name={"Golden Moses"}
                                             photo={<ProfilePhoto />}
@@ -139,7 +140,7 @@ const OrgChart = () => {
 
                                     <div>
                                         <TopVerticalLine />
-                                        {/* <HorizontalLineRight /> */}
+                                        <HorizontalLineRight />
                                         <EmployeeCardChildrenRight
                                             name={"Golden Moses"}
                                             photo={<ProfilePhoto />}
@@ -161,10 +162,10 @@ const OrgChart = () => {
                                         />
                                     }
                                 </div>
-                            }
+                             {/* } */}
                         </Fragment>
                        
-                        ))}
+                        {/* ))} */}
                     
                         
 
@@ -204,10 +205,7 @@ const ParentWrapper = styled("div")`
 `;
 
 const ChildrenWrapper = styled("div")`
-    display: flex;
-    justify-content: center;
-    gap: 5rem;
-
+        display: flex;
         .flex{
             display: flex;
             gap: 20px;
