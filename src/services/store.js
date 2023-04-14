@@ -16,6 +16,7 @@ const initialState = {
   states: {},
   orgData: null,
   onboardingStatus: null,
+  payrolls: null,
   pendingTasks: null,
   announcements: null,
 };
@@ -106,6 +107,24 @@ const store = proxy({
     try {
       const response = await methods.get(`/states/${countryId}`);
       this.states[countryId] = response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async getMyPay() {
+    if (!store.payrolls) {
+      try {
+        const response = await methods.get(`/payrolls/1/11`);
+        this.payrolls = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  async getPayrollList(startDate, endDate) {
+    try {
+      const response = await methods.get(`payrolls?start_date=${startDate}&end_date=${endDate}`);
+      return response;
     } catch (error) {
       console.error(error);
     }

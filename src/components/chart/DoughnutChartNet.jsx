@@ -1,17 +1,16 @@
 import { registerChart } from "@/utils/registerChart";
 import { Doughnut } from "react-chartjs-2";
-import { calculateTaxes, calculatPercentage } from "@/utils/helpers";
+import { calculateNet, calculatPercentage } from "@/utils/helpers";
 import {Wrapper, Container} from "@/components/chart/DoughnutChartDeduction";
-
 
 registerChart();
 
-const DoughnutChartTaxes = ({ payrolls }) => {
+const DoughnutChartNet = ({ payrolls }) => {
   const data = {
     datasets: [{
-      data: [calculateTaxes(payrolls), payrolls.total],
+      data: [calculateNet(payrolls), payrolls.total],
       backgroundColor: [
-        '#EDB200',
+        '#DF8600',
         '#E0E0E0',
       ],
       borderColor: [
@@ -41,7 +40,7 @@ const DoughnutChartTaxes = ({ payrolls }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       //To:DO: Calculate percentage
-      ctx.fillText(calculatPercentage(payrolls, calculateTaxes(payrolls)), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+      ctx.fillText(calculatPercentage(payrolls, calculateNet(payrolls)), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
     }
   }
 
@@ -56,12 +55,12 @@ const DoughnutChartTaxes = ({ payrolls }) => {
         />
       </Wrapper>
         <div>
-        <label className="type-body3">Taxes</label><br />
+        <label className="type-body3">Net</label><br />
         {/* To:Do: please update the currency from employmentProperties */}
-        <small className="type-subtitle1">{calculateTaxes(payrolls).toLocaleString()}</small>
+        <small className="type-subtitle1">{calculateNet(payrolls)?.toLocaleString()}</small>
       </div>
     </Container>
   );
 }
  
-export default DoughnutChartTaxes;
+export default DoughnutChartNet;
