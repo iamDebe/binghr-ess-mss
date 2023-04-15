@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'goober';
 import {ReactComponent as RemoveIcon} from "@/assets/images/remove.svg";
 import Button from "@/components/button";
+import { motion } from 'framer-motion';
 
 
 
@@ -9,7 +10,13 @@ const CalculateModalLeft = ({hideCalculateModal, weekIndex, dayIndex, clocked, s
    
   return (
 
-        
+    <motion.div
+        initial={{y:-60, x:700, opacity:0}}
+        animate={{y:-75, x:0, opacity:1}}
+        exit={{ y:-60, x:700, opacity:0}}
+        transition={{duration:1}}
+
+    >
         <div className='calculate-modal-left'
            
         >
@@ -37,7 +44,7 @@ const CalculateModalLeft = ({hideCalculateModal, weekIndex, dayIndex, clocked, s
         </div>
 
   
-
+    </motion.div>
   )
 }
 

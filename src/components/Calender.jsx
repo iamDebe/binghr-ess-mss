@@ -1,14 +1,13 @@
-import { styled } from 'goober';
+
 import React, { useEffect, useState } from 'react';
 import {ReactComponent as NextIcon} from "@/assets/images/next.svg";
 import {ReactComponent as BackIcon} from "@/assets/images/back.svg";
-import { tablet, desktopMidi, desktop } from "@/globalStyle";
 import CalculateModalRight from '@/components/CalculateModalRight';
 import CalculateModalLeft from '@/components/CalculateModalLeft';
 import ClockinOverlay from '@/components/ClockinOverlay';
-import { mobile } from '@/globalStyle';
-import { AnimatePresence, motion } from 'framer-motion';
-import { mobileExtraSmall, mobileSmall } from '@/globalStyle';
+import { CalenderMain, Container, CalenderTitle, CalenderControlsWrapper } from '@/assets/wrappers/CalenderWrapper';
+import { AnimatePresence } from 'framer-motion';
+
 
 const Calender = () => {
     
@@ -24,11 +23,11 @@ const Calender = () => {
         // Get the current date
         const currentDate = new Date();
 
-        let dayStart = currentDate.setUTCHours(0,0,0,0) / 1000;
+        // let dayStart = currentDate.setUTCHours(0,0,0,0) / 1000;
 
-        let dayEnd = currentDate.setUTCHours(23,59,59) / 1000;
+        // let dayEnd = currentDate.setUTCHours(23,59,59) / 1000;
 
-        const unixDate = Math.floor(currentDate.getTime() / 1000)
+        // const unixDate = Math.floor(currentDate.getTime() / 1000)
         
         // Set the start date to 1 year ago from today
         const startDate = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
@@ -42,6 +41,10 @@ const Calender = () => {
            
             // Create a new date object for the current month
             const thisMonth = new Date(currentDate.getFullYear(), month, 1);
+            let startOfFirstDayOfTheMonthUnix = (Math.floor(thisMonth.setUTCHours(0,0,0,0) ) / 1000) + 86400
+            let endOfFirstDayOfTheMonthUnix = (Math.floor(thisMonth.setUTCHours(23,59,59) ) / 1000) + 86400
+           
+          
         
             // Get the number of days in the current month
             const numDaysInMonth = new Date(thisMonth.getFullYear(), thisMonth.getMonth() + 1, 0).getDate();
@@ -66,11 +69,11 @@ const Calender = () => {
                     showModal: false,
                     showOverlay: false,
                     clockedData:{},
-                    dayStart: dayStart,
-                    dayEnd: dayEnd
+                    dayStart: startOfFirstDayOfTheMonthUnix,
+                    dayEnd: endOfFirstDayOfTheMonthUnix
                 }
-                dayStart = dayStart + 86400
-                dayEnd = dayEnd + 86400
+                startOfFirstDayOfTheMonthUnix = startOfFirstDayOfTheMonthUnix + 86400
+                endOfFirstDayOfTheMonthUnix = endOfFirstDayOfTheMonthUnix + 86400
                 return dayObject
             });
 
@@ -158,7 +161,13 @@ const Calender = () => {
         const endingPoint = weeks[outer][inner].dayEnd
         const newRange = [...currentRange]
         newRange.push(endingPoint)
-        setCurrentRange(newRange)
+        const diff = newRange[1] - newRange[0];
+       
+        setCurrentRange(newRange);
+        if(diff > 86400 ){
+            showCalculateModal(outer, inner)
+        }
+
     }
 
 
@@ -168,7 +177,7 @@ const Calender = () => {
     },[currentMonth])
 
     useEffect(()=>{
-    },[weeks, currentRange])
+    },[weeks])
       
   return (
     <Container>
@@ -199,7 +208,12 @@ const Calender = () => {
                 return (
                     <div className='days-wrapper ' key={index}>
                         {row.map((day, ii)=>(
-                            <li key={ii} className= {(day.dayStart >= currentRange[0] && day.dayEnd <= currentRange[1]) ? "days type-body5 active": "days type-body5" } 
+                            <li key={ii} 
+                                className = {
+                                    (day.dayStart >= currentRange[0] && day.dayEnd <= currentRange[1]) ? 
+                                    "days type-body5 active": 
+                                    "days type-body5" 
+                                } 
                                 onClick={(event)=>{
                                     switch (event.detail) {
                                         case 1: {
@@ -217,7 +231,6 @@ const Calender = () => {
                                           break;
                                         }
                                       }
-                                    
                                    
                                 }}
                                 onMouseOver={()=>{
@@ -236,6 +249,7 @@ const Calender = () => {
                                 onMouseUp={()=>{
                                     if(typeof(day) != "string"){
                                         endRange(index, ii)
+                                        
                                     }else{
                                         alert("cannot select empty cell ")
                                     }
@@ -245,18 +259,10 @@ const Calender = () => {
                                         <ClockinOverlay  day={day} />
                                 } 
                                 <AnimatePresence > 
-                                    { (day.clocked === true && day.showModal === true) ? 
-                                    <>
-                                        {ii !== row.length - 1 ?
-                                            <motion.div
-                                                initial={{y:-60, x:700, opacity:0}}
-                                                animate={{y:-75, x:0, opacity:1}}
-                                                exit={{ y:-60, x:700, opacity:0}}
-                                                transition={{duration:1}}
+                                    { (day.showModal === true) ? 
+                                    <div>
+                                        {ii !== row.length - 1 ? 
                                             
-                                            >
-                                          
-
                                                 <CalculateModalRight  
                                                     hideCalculateModal={hideCalculateModal} 
                                                     weekIndex = {index} 
@@ -265,33 +271,34 @@ const Calender = () => {
                                                     show={day.showModal}  
                                                 />
                                          
-                                         </motion.div>
-
-                                         :
-                                            <motion.div
-                                                initial={{y:-60, x:700, opacity:0}}
-                                                animate={{y:-75, x:0, opacity:1}}
-                                                exit={{ y:-60, x:700, opacity:0}}
-                                                transition={{duration:1}}
                                            
-                                            >
-                                            
+
+                                         : 
+                                           
+                                          
                                                 <CalculateModalLeft  
                                                     hideCalculateModal={hideCalculateModal} 
                                                     weekIndex = {index} 
                                                     dayIndex={ii} 
                                                     clocked={day.clocked} 
                                                     show={day.showModal}  
-                                                />
-                                            </motion.div>
+                                                />  
+                                          
                                          
-                                         }
-                                       
-                                       
-                                    </>
-                                    : ''
+                                         } 
+                                    </div>
+
+                                     : 
+                                     
+                                     ''
                                     }
                                 </AnimatePresence>
+                            
+                                  
+                         
+
+                                
+                              
                             </li>
                         ))}
                     </div >
@@ -304,209 +311,6 @@ const Calender = () => {
 
 export default Calender;
 
-const Container = styled("div")`
-    border: 1px solid var(--red-300);
-    border-radius: var(--br);
-
-    .line{
-        display: flex;
-        height: 2px;
-        width: 96%;
-        margin: .2rem auto;
-        background-color: var(--red-200);
-    }
-`;
-
-const CalenderTitle = styled("div")`
-    display: flex;
-    justify-content: space-between;
-    padding: .5rem 1.2rem;
-    .date-year{
-        color: var(--grey-500);
-        @media screen and (max-width: 480px){
-            font-size: .8rem;
-        }
-    }
-    p{
-        align-self: center;
-    }
-    .day-wrapper{
-        background-color: var(--red-100);
-        border-radius: 25px;
-        padding: .5rem .8rem;
-        margin: 0rem .5rem;
-        color: var(--red-300);
-        cursor: pointer;
-    }
-    .swipe{
-        cursor: pointer;
-        @media screen and (max-width: 480px){
-        }
-    }
-`;
-const CalenderControlsWrapper = styled("div")`
-    display: flex;
-    align-self: center;
-    div{
-        align-self: center;
-    }
-`;
-const CalenderMain = styled("div")`
-    .weekday-wrapper{
-        display:flex;
-        justify-content: space-around;
-        border-bottom: 1px solid var(--red-400);
-        padding: 0rem 0rem 1rem 0rem;
-        width: 100%;
-    }
-    .days-wrapper{
-        display:flex;
-        justify-content: space-evenly;
-        width: 100%;
-        .days {
-            position: relative;
-            border-bottom: 1px solid var(--grey-200);
-            border-right: 1px solid var(--grey-200);
-            text-align: center;
-            color: var(--grey-200);
-            cursor: pointer;
-            width: 100%;
-            padding: 1.5rem 0rem;
-            font-size: 1.5rem;
-            &:nth-of-type(7n + 7) {
-                border-right: 0;
-            }
-        }
-    }
-        
-    li{
-        list-style: none;
-    }
-    .weekdays{
-        text-align: center;
-        margin: 1rem 0rem 0rem 0rem;
-        color: var(--grey-500);
-    }
-    .active {
-        position: absolute;
-        top: 0;
-        background-color: var(--grey-100);
-        opacity: .8;
-        height: 100%;
-        width: 100%;
-    }
-    .overlay {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        position: absolute;
-        top: -.4px;
-        background-color: var(--white);
-        justify-content: center;
-        gap: 10px;
-        margin: 0.5px;
-        height: 99%;
-        width: 99.5%;
-        .clockin-wrapper{
-            display: flex;
-            flex-wrap: wrap;
-            gap:.625rem;
-            justify-content: space-around;
-
-            ${desktopMidi}{
-                gap: 0px;
-            }
-        }
-        .icon{
-            align-self: center;
-        }
-        .action{
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            font-size: .65rem;
-            color: var(--grey-400);
-            cursor: pointer;
-            .action-text {
-                ${tablet}  {
-                    display: none;
-                }
-            }
-        }
-        .time{
-            color: var(--grey-300);
-            cursor: pointer;
-        }
-    }
-    .calculate-modal-right{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        position: absolute;
-        top: 0px;
-        right: -136px;
-        background-color: var(--white);
-        padding: .4rem;
-        border: 1px solid var(--grey-200);
-        border-radius: var(--br);
-        
-        ${desktop}{
-            width: 100%;
-        }
-        ${desktopMidi}{
-            width: 150%;
-        }
-        ${tablet}{
-            width: 150%;
-        }
-        ${mobile}{
-            width: 200%;
-        }
-
-        ${mobileSmall}{
-            width: 300%;
-        }
-        ${mobileExtraSmall}{
-            width: 400%;
-        }
-        
-        
-    }
-    .calculate-modal-left{
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        top: 0px;
-        right: 136px;
-        background-color: var(--white);
-        padding: .4rem;
-        border: 1px solid var(--grey-200);
-        border-radius: var(--br);
-        z-index: 100;
-        ${desktop}{
-            width: 100%;
-        }
-        ${desktopMidi}{
-            width: 150%;
-        }
-        ${tablet}{
-            width: 150%;
-        }
-        ${mobile}{
-            width: 200%;
-        }
-
-        ${mobileSmall}{
-            width: 300%;
-        }
-        ${mobileExtraSmall}{
-            width: 400%;
-        }
-        
-        
-    }
-`;
 
 
 
