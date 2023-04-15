@@ -39,7 +39,6 @@ export const PayrollTableWrapper = styled("div")`
   padding: .3rem;
   border: 1px solid var(--grey-200);
   border-radius: .5rem;
-  width: 55%;
 
   ${desktopMidi} {
     flex-wrap: nowrap;
