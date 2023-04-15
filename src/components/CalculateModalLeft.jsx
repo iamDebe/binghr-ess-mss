@@ -42,6 +42,8 @@ const CalculateModalLeft = ({hideCalculateModal, weekIndex, dayIndex, clocked, s
                 Calculate
             </Button>
         </div>
+
+  
     </motion.div>
   )
 }

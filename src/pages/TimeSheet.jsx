@@ -8,6 +8,12 @@ import { desktopMidi } from '@/globalStyle';
 
 const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
 
+    const [currentBtnStyling, seturrentBtnStyling] = useState(0);
+
+    const [weeks, setWeeks] = useState([]);
+
+    const [currentRange, setCurrentRange] = useState([]);
+
     const buttonParams = [ 
            { bgColor: "var(--lilac-400)",
              btnText: "Clock In" 
@@ -23,7 +29,6 @@ const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
             }
           
     ]
-    const [currentBtnStyling, seturrentBtnStyling] = useState(0)
 
     const handleBtnChange = ()=>{
             if(currentBtnStyling === (buttonParams.length - 1) ){
@@ -34,6 +39,103 @@ const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
             }
 
     }
+    
+
+    const clickHandler = (day, index, ii)=>{
+        if(typeof(day) != "string"){
+           return clockIn(index, ii);
+        };
+    }
+
+    const mouseUpHandler = (day, index, ii)=>{
+        if(typeof(day) != "string"){
+            endRange(index, ii)
+        }else{
+            alert("cannot select empty cell ")
+        }
+        return;
+    }
+
+    const mouseDownHandler = (day, index, ii)=>{
+        if(typeof(day) != "string"){
+            startRange(index, ii);
+        }else{
+            alert("cannot select empty cell ")
+        }
+        return;
+    }
+
+    const mouseOverHandler = (day, index, ii)=>{
+        if(typeof(day) != "string"){
+            showOverlay(index, ii)
+        }
+    }
+
+    const hideCalculateModal =(outer, inner)=>{
+        const newWeekData = [...weeks];
+        newWeekData[outer][inner].showModal = false;
+        setWeeks(newWeekData);
+    }
+
+    const clockIn =(outer, inner)=>{
+        const newWeekData = [...weeks];
+        if(newWeekData[outer][inner].clocked === false){
+             newWeekData[outer][inner].clocked = true;
+         }else{
+             newWeekData[outer][inner].clocked = false;
+            
+         }
+        
+        setWeeks(newWeekData);
+     }
+
+    const showCalculateModal = (outer, inner) => {
+        const newWeekData = [...weeks];
+        newWeekData.forEach(week => {
+            week.forEach(day=>{
+                if(day !== ""){
+                    day.showModal=false
+                }
+                
+            })
+        });
+
+        newWeekData[outer][inner].showModal = true;
+        setWeeks(newWeekData);
+    }
+
+    const showOverlay =(outer, inner)=>{
+        const newWeekData = [...weeks];
+        newWeekData[outer][inner].showOverlay = true;
+        setWeeks(newWeekData);
+    }
+
+    const hideOverlay =(outer, inner)=>{
+        const newWeekData = [...weeks];
+        if(newWeekData[outer][inner].clocked === false){
+            newWeekData[outer][inner].showOverlay = false;
+            setWeeks(newWeekData);
+         }
+     }
+
+    const startRange = (outer, inner)=>{
+        const startingPoint = weeks[outer][inner].dayStart
+        const newRange = []
+        newRange.push(startingPoint)
+        setCurrentRange(newRange)
+    }
+
+    const endRange = (outer, inner)=>{
+        const endingPoint = weeks[outer][inner].dayEnd
+        const newRange = [...currentRange]
+        newRange.push(endingPoint)
+        const diff = newRange[1] - newRange[0];
+        setCurrentRange(newRange);
+        if(diff > 86400 ){
+            showCalculateModal(outer, inner)
+        }
+    }
+    
   return (
 
         <EssLayout >
@@ -91,11 +193,26 @@ const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
                                     <label className='type-title4 total-label' htmlFor="">Total: <span  className='type-body4 total-span'>0hrs</span></label>
                                 </div>
                             </TotalWrapper>
-                            </WeekWrapper>
+                        </WeekWrapper>
                         
-                    </HourSelectWrapper>
+                      </HourSelectWrapper>
                 </Container>  
-                <Calender setShowModal={setShowModal} showModal={showModal} handleShowModal={handleShowModal}/>  
+                <Calender 
+                    setShowModal={setShowModal} 
+                    showModal={showModal} 
+                    handleShowModal={handleShowModal} 
+                    clickHandler={clickHandler} 
+                    doubleClickHandler={showCalculateModal} 
+                    mouseUpHandler={mouseUpHandler} 
+                    mouseDownHandler={mouseDownHandler} 
+                    weeks={weeks} 
+                    setWeeks={setWeeks} 
+                    currentRange={currentRange} 
+                    hideCalculateModal={hideCalculateModal}
+                    mouseOverHandler={mouseOverHandler}
+                    showOverlay={showOverlay}
+                    mouseOutHandler={hideOverlay} 
+                />  
             </FlexColumnWrapper>
         </EssLayout>
   )
