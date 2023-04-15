@@ -138,6 +138,7 @@ const Table = ({
               name=""
               icon={<SearchIcon stroke="#E3E3E3" className="input-icon left-icon" />}
               marginbottom="0"
+              padding="0.5rem 1rem 0.5rem 2.4rem"
             />
           </div>
         ) : title ? (

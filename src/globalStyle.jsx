@@ -4,6 +4,7 @@ export const HD = `@media screen and (min-width: 1800px)`;
 export const desktop = `@media screen and (max-width: 1440px)`;
 export const desktopMidi = `@media screen and (max-width: 1280px)`;
 export const tablet = `@media screen and (max-width: 1023px)`;
+export const tabletSmall = `@media screen and (max-width: 991px)`;
 export const mobile = `@media screen and (max-width: 767px)`;
 export const mobileMedium = `@media screen and (max-width: 520px)`;
 export const mobileSmall = `@media screen and (max-width: 480px)`;
