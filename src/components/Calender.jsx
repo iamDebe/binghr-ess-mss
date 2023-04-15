@@ -5,12 +5,7 @@ import {ReactComponent as BackIcon} from "@/assets/images/back.svg";
 import CalculateModalRight from '@/components/CalculateModalRight';
 import CalculateModalLeft from '@/components/CalculateModalLeft';
 import ClockinOverlay from '@/components/ClockinOverlay';
-import { 
-    CalenderMain, 
-    Container, 
-    CalenderTitle, 
-    CalenderControlsWrapper 
-} from '@/assets/wrappers/CalenderWrapper';
+import { CalenderMain, Container, CalenderTitle, CalenderControlsWrapper } from '@/assets/wrappers/CalenderWrapper';
 import { AnimatePresence } from 'framer-motion';
 import { generateCalender } from '../utils/calendar';
 
@@ -106,26 +101,30 @@ import { generateCalender } from '../utils/calendar';
                                         <ClockinOverlay  day={day} />
                                 } 
                                 <AnimatePresence > 
-                                    { day.showModal === true ? 
+                                    { (day.showModal === true) ? 
                                     <div>
                                         {ii !== row.length - 1 ? 
                                             
-                                            <CalculateModalRight  
-                                                hideCalculateModal={hideCalculateModal} 
-                                                weekIndex = {index} 
-                                                dayIndex={ii} 
-                                                clocked={day.clocked} 
-                                                show={day.showModal}  
-                                            />
+                                                <CalculateModalRight  
+                                                    hideCalculateModal={hideCalculateModal} 
+                                                    weekIndex = {index} 
+                                                    dayIndex={ii} 
+                                                    clocked={day.clocked} 
+                                                    show={day.showModal}  
+                                                />
+                                         
+                                           
 
                                          : 
-                                            <CalculateModalLeft  
-                                                hideCalculateModal={hideCalculateModal} 
-                                                weekIndex = {index} 
-                                                dayIndex={ii} 
-                                                clocked={day.clocked} 
-                                                show={day.showModal}  
-                                            />  
+                                           
+                                          
+                                                <CalculateModalLeft  
+                                                    hideCalculateModal={hideCalculateModal} 
+                                                    weekIndex = {index} 
+                                                    dayIndex={ii} 
+                                                    clocked={day.clocked} 
+                                                    show={day.showModal}  
+                                                />  
                                           
                                          
                                          } 
@@ -136,6 +135,11 @@ import { generateCalender } from '../utils/calendar';
                                      ''
                                     }
                                 </AnimatePresence>
+                            
+                                  
+                         
+
+                                
                               
                             </li>
                         ))}

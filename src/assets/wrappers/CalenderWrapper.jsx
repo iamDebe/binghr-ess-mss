@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "goober";
-import { tablet, desktopMidi } from "@/globalStyle";
+import { AnimatePresence, motion } from 'framer-motion';
+import { tablet, desktopMidi, desktop } from "@/globalStyle";
 
 
 const CalenderWrapper = () => {
@@ -23,6 +24,7 @@ export const Container = styled("div")`
         background-color: var(--red-200);
     }
 `;
+
 export const CalenderTitle = styled("div")`
     display: flex;
     justify-content: space-between;
