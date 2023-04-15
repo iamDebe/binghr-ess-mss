@@ -43,7 +43,7 @@ const TimeSheet = ({setShowModal, showModal, handleShowModal}) => {
                     <Button
                             bg={buttonParams[currentBtnStyling].bgColor}
                             textcolor="var(--grey-25)"
-                            className="submit-button"
+                            className="clockin-btn"
                             width="8.75rem"
                             iconcolor="var(--grey-25)"
                             leftIcon={<WatchIcon />}

@@ -16,7 +16,6 @@ export default CalenderWrapper;
 export const Container = styled("div")`
     border: 1px solid var(--red-300);
     border-radius: var(--br);
-
     .line{
         display: flex;
         height: 2px;
@@ -92,26 +91,59 @@ export const CalenderMain = styled("div")`
                 gap: 1rem;
                 position: absolute;
                 top: 0px;
-                left: 136px;
+                left: 101%;
                 background-color: var(--white);
                 padding: .4rem;
                 border: 1px solid var(--grey-200);
                 border-radius: var(--br);
                 width: 100%;
-            }
 
+                @media screen and (max-width: 1160px){
+                    top: -100px;
+                    left: 0%;
+                    width: 150%;
+
+                }
+                @media screen and (max-width: 930px){
+                    top: -100px;
+                    left: 0%;
+                    width: 200%;
+
+                }
+                @media screen and (max-width: 420px){
+                    top: -100px;
+                    left: -105%;
+                    width: 310%;
+                }
+               
+            }
             .calculate-modal-left{
                 position: absolute;
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
                 top: 0px;
-                right: 136px;
+                right: 100%;
                 background-color: var(--white);
                 padding: .4rem;
                 border: 1px solid var(--grey-200);
                 border-radius: var(--br);
                 width: 100%;
+                @media screen and (max-width: 1160px){
+                    top: 0px;
+                    right: 100%;
+                    width: 150%;
+                }
+                @media screen and (max-width: 930px){
+                    top: 0px;
+                    right: 100%;
+                    width: 200%;
+                }
+                @media screen and (max-width: 420px){
+                    top: 0px;
+                    right: 100%;
+                    width: 310%;
+                }
               
             }
         }
@@ -150,7 +182,10 @@ export const CalenderMain = styled("div")`
             flex-wrap: wrap;
             gap:.625rem;
             justify-content: space-around;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 263db7746ffc273aea35547efc35a614103b0162
             ${desktopMidi}{
                 gap: 0px;
             }

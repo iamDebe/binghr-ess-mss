@@ -1,17 +1,16 @@
 import { registerChart } from "@/utils/registerChart";
+import { styled } from "goober";
 import { Doughnut } from "react-chartjs-2";
-import { calculateTaxes, calculatPercentage } from "@/utils/helpers";
-import {Wrapper, Container} from "@/components/chart/DoughnutChartDeduction";
-
+import { calculateTotalDeductions, calculatPercentage } from "@/utils/helpers";
 
 registerChart();
 
-const DoughnutChartTaxes = ({ payrolls }) => {
+const DoughnutChartDeduction = ({ payrolls }) => {
   const data = {
     datasets: [{
-      data: [calculateTaxes(payrolls), payrolls.total],
+      data: [calculateTotalDeductions(payrolls), payrolls.total],
       backgroundColor: [
-        '#EDB200',
+        '#C4C4C4',
         '#E0E0E0',
       ],
       borderColor: [
@@ -32,7 +31,7 @@ const DoughnutChartTaxes = ({ payrolls }) => {
   };
   const textCenter = {
     id: 'textCenter',
-    beforeDatasetsDraw(chart, args, pluginOptions){
+    beforeDatasetsDraw(chart, args, pluginOptions) {
       const {ctx, data} = chart;
 
       ctx.save();
@@ -41,7 +40,7 @@ const DoughnutChartTaxes = ({ payrolls }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       //To:DO: Calculate percentage
-      ctx.fillText(calculatPercentage(payrolls, calculateTaxes(payrolls)), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+      ctx.fillText(calculatPercentage(payrolls, calculateTotalDeductions(payrolls)), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
     }
   }
 
@@ -56,12 +55,30 @@ const DoughnutChartTaxes = ({ payrolls }) => {
         />
       </Wrapper>
         <div>
-        <label className="type-body3">Taxes</label><br />
+        <label className="type-body3">Deductions</label><br />
         {/* To:Do: please update the currency from employmentProperties */}
-        <small className="type-subtitle1">{calculateTaxes(payrolls).toLocaleString()}</small>
+        <small className="type-subtitle1">{calculateTotalDeductions(payrolls).toLocaleString()}</small>
       </div>
     </Container>
   );
 }
  
-export default DoughnutChartTaxes;
+export default DoughnutChartDeduction;
+
+export const Wrapper = styled("div")`
+  width: 50%;
+`;
+export const Container = styled("div")`
+  display: flex;
+  gap: 10px;
+  div{
+    align-self: center;
+  }
+  small{
+    color: var(--grey-300);
+  }
+  label{
+    font-size: 14px;
+    color: var(--grey-400);
+  }
+`;

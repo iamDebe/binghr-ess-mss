@@ -169,9 +169,6 @@ const Calender = () => {
         }
 
     }
-
-
-
     useEffect(()=>{
         generateCalender();
     },[currentMonth])

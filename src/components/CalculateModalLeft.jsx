@@ -48,7 +48,7 @@ const CalculateModalLeft = ({hideCalculateModal, weekIndex, dayIndex, clocked, s
   )
 }
 
-export default CalculateModalLeft
+export default CalculateModalLeft;
 
 
 const CalculateWrapper = styled("div")`
