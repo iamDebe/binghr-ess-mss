@@ -182,10 +182,6 @@ export const CalenderMain = styled("div")`
             flex-wrap: wrap;
             gap:.625rem;
             justify-content: space-around;
-<<<<<<< HEAD
-
-=======
->>>>>>> 263db7746ffc273aea35547efc35a614103b0162
             ${desktopMidi}{
                 gap: 0px;
             }
