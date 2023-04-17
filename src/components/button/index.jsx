@@ -17,14 +17,19 @@ const buttonStyles = `
   border-radius: var(--br);
   text-align: center;
   outline: none;
-  font-family: inherit;
+  font-family: 'Circular Std',sans-serif;
   cursor: pointer;
+  white-space: nowrap;
   svg {
     fill: var(--button-svg-color);
   }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 `;
 
-const Button = ({ leftIcon, rightIcon, iconcolor, textcolor, bg, border, margin, padding, width, children, className="", onClick, type="button"}) => {
+const Button = ({ leftIcon, rightIcon, iconcolor, textcolor, bg, border, margin, padding, width, children, className="", onClick, type="button", disabled }) => {
   const customStyles = `
     --button-padding: ${padding || "0.625rem"};
     --button-margin: ${margin || "0"};
@@ -40,7 +45,7 @@ const Button = ({ leftIcon, rightIcon, iconcolor, textcolor, bg, border, margin,
   `;
 
   return (
-    <StyledButton className={`type-title3 ${className}`} onClick={onClick} type={type}>
+    <StyledButton className={`type-title3 ${className}`} onClick={onClick} type={type} disabled={disabled}>
       {leftIcon && leftIcon}
       {children}
       {rightIcon && rightIcon}

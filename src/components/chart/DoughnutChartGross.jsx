@@ -1,17 +1,16 @@
 import { registerChart } from "@/utils/registerChart";
 import { Doughnut } from "react-chartjs-2";
-import { calculateTaxes, calculatPercentage } from "@/utils/helpers";
+import { calculateTotalDeductions, calculatPercentage } from "@/utils/helpers";
 import {Wrapper, Container} from "@/components/chart/DoughnutChartDeduction";
-
 
 registerChart();
 
-const DoughnutChartTaxes = ({ payrolls }) => {
+const DoughnutChartGross = ({ payrolls }) => {
   const data = {
     datasets: [{
-      data: [calculateTaxes(payrolls), payrolls.total],
+      data: [payrolls.total, calculateTotalDeductions(payrolls)],
       backgroundColor: [
-        '#EDB200',
+        '#0CA484',
         '#E0E0E0',
       ],
       borderColor: [
@@ -41,12 +40,12 @@ const DoughnutChartTaxes = ({ payrolls }) => {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       //To:DO: Calculate percentage
-      ctx.fillText(calculatPercentage(payrolls, calculateTaxes(payrolls)), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+      ctx.fillText(calculatPercentage(payrolls, payrolls.total), chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
     }
   }
 
   return ( 
-    <Container style={{marginTop: '10px'}}>
+    <Container>
       <Wrapper> 
         <Doughnut 
           data={data}
@@ -56,12 +55,12 @@ const DoughnutChartTaxes = ({ payrolls }) => {
         />
       </Wrapper>
         <div>
-        <label className="type-body3">Taxes</label><br />
+        <label className="type-body3">Gross</label><br />
         {/* To:Do: please update the currency from employmentProperties */}
-        <small className="type-subtitle1">{calculateTaxes(payrolls).toLocaleString()}</small>
+        <small className="type-subtitle1">{payrolls.total.toLocaleString()}</small>
       </div>
     </Container>
   );
 }
  
-export default DoughnutChartTaxes;
+export default DoughnutChartGross;

@@ -39,7 +39,6 @@ export const PayrollTableWrapper = styled("div")`
   padding: .3rem;
   border: 1px solid var(--grey-200);
   border-radius: .5rem;
-  width: 55%;
 
   ${desktopMidi} {
     flex-wrap: nowrap;
@@ -70,13 +69,23 @@ export const ButtonWrapper = styled("div")`
     align-items: flex-end;
     flex: 1;
     gap: 1.875rem;
-    --textfield-width: 30%;
-    --textfield-margin-bottom: 0;
-    ${mobile} {
-      --textfield-width: 50%;
+    .field-flex-basis {
+      flex-basis: calc(30% - 30px);
+      ${mobile} {
+        flex-basis: calc(50% - 10px);
+      }
+      ${mobileSmall} {
+        flex-basis: 80%;
+      }
+    }
+    .btn-flex-basis {
+      flex-basis: calc(25% - 15px);
+      width: 11.5rem;
+      ${mobileSmall} {
+        flex-basis: 20%;
+      }
     }
     ${mobileSmall} {
-      --textfield-width: 80%;
       gap: 0.75rem;
     }
   }

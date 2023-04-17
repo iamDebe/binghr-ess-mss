@@ -2,16 +2,14 @@
 import React, {useEffect} from "react";
 import { styled } from "goober";
 
-export const Wrapper = styled("div")`
+export const textFieldStyles = `
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: var(--textfield-margin-bottom, 1.75rem);
-  width: var(--textfield-width, 100%);
+  margin-bottom: var(--textfield-margin-bottom);
+  width: var(--textfield-width);
   label {
-    font-size: 12px;
-    line-height: 15px;
     color: var(--grey-400);
   }
   input {
@@ -19,7 +17,7 @@ export const Wrapper = styled("div")`
     color: var(--grey-400);
     font-family: inherit;
     font-size: 12px;
-    padding: 0.5rem 2.4rem 0.5rem 1rem;
+    padding: var(--textfield-padding);
     border: 0.5px solid var(--grey-200);
     border-radius: 2px;
     outline: none;
@@ -29,11 +27,8 @@ export const Wrapper = styled("div")`
     }
     &:focus {
       background: var(--grey-100);
-      border: 1px solid var(--grey-200);
     }
-    &[type="date"]::-webkit-calendar-picker-indicator,
-    &[type="date"]::-moz-calendar-picker-indicator,
-    &[type="date"]::-ms-calendar-picker-indicator {
+    &[type="date"]::-webkit-calendar-picker-indicator {
       opacity: 0;
       cursor: pointer;
       transform: translateX(23px);
@@ -51,6 +46,10 @@ export const Wrapper = styled("div")`
       bottom: 0.5rem;
       right: 1rem;
     }
+    &.left-icon {
+      bottom: 0.5rem;
+      left: 1rem;
+    }
   }
   .error {
     background-color: var(--red-200);
@@ -65,21 +64,32 @@ export const Wrapper = styled("div")`
   }
 `;
 
-
-const TextField = React.forwardRef(({ label, icon, optional, disabled, className, ...props }, ref) => {
+const TextField = React.forwardRef(({ label, icon, optional, disabled, marginbottom, width, padding, className="", ...props }, ref) => {
   useEffect(()=>{
   }, [disabled]);
+
+  const customStyles = `
+    --textfield-margin-bottom: ${marginbottom || "1.75rem"};
+    --textfield-width: ${width || "100%"};
+    --textfield-padding: ${padding || "0.5rem 2.4rem 0.5rem 1rem"};
+  `;
+  const Wrapper = styled("div")`
+    ${textFieldStyles}
+    ${customStyles}
+  `;
+
   return (
     <Wrapper className={className}>
-      <div className="label">
-        <label htmlFor={props.id || props.name}>{label}</label>
-        {optional && <span>&nbsp;(Optional)</span>}
-      </div>
+      {label &&
+        <div className="label">
+          <label className="type-body3" htmlFor={props.id || props.name}>{label}</label>
+          {optional && <span>&nbsp;(Optional)</span>}
+        </div>
+      }
       <input className="text-input" {...props} ref={ref} disabled={disabled} />
-      {icon && icon }
+      {icon && icon}
     </Wrapper>
   );
-})
-
+});
 
 export default TextField;

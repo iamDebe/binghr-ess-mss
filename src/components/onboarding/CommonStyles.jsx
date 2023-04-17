@@ -47,7 +47,6 @@ export const Inner = styled("div")`
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      width: 100%;
     }
     ${mobile} {
       gap: 2.5rem;
@@ -80,8 +79,6 @@ export const Inner = styled("div")`
       flex-basis: 100%;
     }
   }
-  --textfield-margin-bottom: 0;
-  --textfield-width: auto;
 
   .form-div {
     padding: 10px;
@@ -124,22 +121,22 @@ export const HeaderText = styled("div")`
 `;
 
 export const ButtonGroups = styled("div")`
-    width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.125rem;
+  flex-wrap: wrap;
+  .save-btn {
+    flex: 1;
+  }
+  .prev-cont-btn {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     gap: 1.125rem;
-    flex-wrap: wrap;
-    .save-btn {
-      flex: 1;
+    flex: 1;
+    justify-content: flex-end;
+    ${mobileSmall} {
+      justify-content: flex-start;
     }
-    .prev-cont-btn {
-      display: flex;
-      gap: 1.125rem;
-      flex: 1;
-      justify-content: flex-end;
-      ${mobileSmall} {
-        justify-content: flex-start;
-      }
-    }
+  }
 `;
