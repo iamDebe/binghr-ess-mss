@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import EssLayout from "@/components/EssLayout";
 import EmployeeCard from '@/components/EmployeeCard';
 import { ReactComponent as ProfilePhoto } from "@/assets/images/mojoface.svg";
@@ -7,11 +7,17 @@ import { mobileSmall } from '@/globalStyle';
 import TopVerticalLine from '@/components/OrgChartLines/TopVerticalLine';
 import BottomVerticalLine from '@/components/OrgChartLines/BottomVerticalLine';
 import HorizontalLineCenter from '@/components/OrgChartLines/HorizontalLineCenter';
+import TopVerticalLineOpen from '../components/OrgChartLines/TopVerticalLineOpen';
+import Flex from '../components/OrgChartLines/Flex';
+import {authUser} from '../utils/user';
 
 const OrgChart = () => {
   const [showJuniorStaff, setShowJuniorStaff] = useState(false);
   const [showSeniorStaff, setSeniorShowStaff] = useState(false);
   const [showProfileCard, setShowProfileCard] = useState(false);
+  const subordinateRef = useRef();
+  const subordinateCardRef = useRef();
+
 
   const handleShowProfileCard = ()=>{
     setShowProfileCard(!showProfileCard)
@@ -24,169 +30,60 @@ const OrgChart = () => {
     setSeniorShowStaff(!showSeniorStaff)
     setShowProfileCard(false)
   }
-    const [user, setUser] = useState({
-        showProfile: false,
-        superior:{
-        },
-        subordinates: [
-            {},
-            {},
-            {},
-            {}
-        ]
-    })
+    const [user, setUser] = useState(authUser);
 
-    const rightHandSubordinates = user.subordinates.filter((subordinate, index)=>{
-        return index % 2 !== 0
-    })
-    const lefttHandSubordinates = user.subordinates.filter((subordinate, index)=>{
-        return index % 2 === 0
-    })
+    const handleLine = ()=>{
+      const subordinateParentJSX = subordinateRef.current;
+      const subordinateParent = document.querySelector('#subordinates-parent');
+      console.log(subordinateParentJSX)
+      
+    }
 
-
+    
   return (
     <EssLayout>
-        <OrgChartWrapper>
-          {showSeniorStaff &&
-            <ChildrenWrapper>
-              <div>
-                <EmployeeCard
-                  name={"Akinkpelumi"}
-                  photo={<ProfilePhoto />}
-                  title={"UX Lead"}
-                  department={"Product"}
-                  employee={user.superior}
-                />
-              </div>
-            </ChildrenWrapper>
-          }
-          <ParentWrapper >
-            <div>
-              {/* {showSeniorStaff && <TopVerticalLine />} */}
-              {showJuniorStaff && (<BottomVerticalLine />)}
+          <ParentWrapper>
+            <div className='auth'>
+               {/* {!showProfileCard ? <TopVerticalLine /> : ""} */}
+               <TopVerticalLine /> 
+              {/* {!showJuniorStaff && (<BottomVerticalLine />)}  */}
+              <BottomVerticalLine />
               <EmployeeCard 
                   handleSeniorStaffVisibility={handleSeniorStaffVisibility}
                   handleShowProfileCard={handleShowProfileCard}
-                  name={"Mojo Face"}
                   photo={<ProfilePhoto />}
-                  title={"UX Lead"}
-                  department={"Product"}
                   handleJuniorStaffVisibility={handleJuniorStaffVisibility}
                   employee={user}
               />
             </div>
             
           </ParentWrapper>
-          {showJuniorStaff &&
-            <Flex>
-              <ChildrenWrapperLeft>
-                {lefttHandSubordinates.map(()=>(
-                  <div className='flex'>
-                    <div>
-                      <TopVerticalLine />
-                      <HorizontalLineCenter />
-                      <EmployeeCard 
-                          name={"Golden Moses"}
-                          photo={<ProfilePhoto />}
-                          title={"UX Lead"}
-                          department={"Product"}
-                          isSubordinateAvailable={false}
-                          employee={user.subordinates[0]}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </ChildrenWrapperLeft>
-              <ChildrenWrapperRight>
-                {rightHandSubordinates.map(()=>(
-                  <div className='flex'>
-                    <div>
-                      <TopVerticalLine />
-                      <HorizontalLineCenter />
-                      <EmployeeCard 
-                          name={"Golden Moses"}
-                          photo={<ProfilePhoto />}
-                          title={"UX Lead"}
-                          department={"Product"}
-                          isSubordinateAvailable={false}
-                          employee={user.subordinates[0]}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </ChildrenWrapperRight>
-            </Flex>
-          }
-        </OrgChartWrapper>
     </EssLayout>
   )
 }
 
 export default OrgChart;
 
-const OrgChartWrapper = styled("div")`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap: 5rem;
-    margin-top: 2rem;
-    padding: 1rem;
-    ${mobileSmall}{
-        gap: 2rem;
-    }
-`;
+
+
 
 const ParentWrapper = styled("div")`
-  display: flex;
-  gap: 20px;
-  align-self: center;
-  .me{
-    align-self: start;
-    border:2px solid red;
-  }
-`;
+display: flex;
+justify-content: center;
 
-const ChildrenWrapper = styled("div")`
+
+
+  
+.auth{
   display: flex;
-  gap: 10px;
-  .flex{
-    display: flex;
-    gap: 20px;
-  }
-${mobileSmall}{
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-`;
-const ChildrenWrapperLeft = styled("div")`
-  display: flex;
-  gap: 10px;
-  .flex{
-    display: flex;
-    gap: 20px;
-  }
-${mobileSmall}{
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-`;
-const ChildrenWrapperRight = styled("div")`
-  display: flex;
-  gap: 10px;
-  .flex{
-    display: flex;
-    gap: 20px;
-  }
-${mobileSmall}{
-  gap: 2rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 `;
 
-const Flex = styled("div")`
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-`;
+
+
+
+
+
 

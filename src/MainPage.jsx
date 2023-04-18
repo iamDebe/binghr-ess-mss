@@ -8,11 +8,8 @@ import {
 import EssMyProfilePage from "@/pages/EssMyProfilePage";
 import EssHome from "@/pages/EssHomepage";
 import MyPay from "@/pages/MyPay";
-<<<<<<< HEAD
 import OrgChart from "@/pages/OrgChart";
-=======
 import TimeSheet from "@/pages/TimeSheet";
->>>>>>> 8867b5df86c5c0846a5224550078c7929678b7bd
 window.base_url = import.meta.env.VITE_BASE_URL;
 
 function Main() {
