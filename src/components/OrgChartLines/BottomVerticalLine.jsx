@@ -18,7 +18,7 @@ const VrlBottom = styled("div")`
         width: 42px;
         height: 2px;
         background: var(--grey-200);
-        left: 40%;
+        left: -20px;
         top: 206px;
         position: absolute;
         transform: rotate(90deg);

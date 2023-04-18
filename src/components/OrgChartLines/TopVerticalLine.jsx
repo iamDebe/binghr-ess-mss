@@ -9,7 +9,6 @@ const TopVerticalLine = () => {
 
 export default TopVerticalLine;
 
-
 const VrlTop = styled("div")`
     position: relative;
 
@@ -19,7 +18,7 @@ const VrlTop = styled("div")`
         width: 40px;
         height: 2px;
         background: var(--grey-200);
-        left: 40%;
+        left: -20px;
         top: -20px;
         position: absolute;
         transform: rotate(90deg);

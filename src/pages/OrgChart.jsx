@@ -7,8 +7,6 @@ import { mobileSmall } from '@/globalStyle';
 import TopVerticalLine from '@/components/OrgChartLines/TopVerticalLine';
 import BottomVerticalLine from '@/components/OrgChartLines/BottomVerticalLine';
 import HorizontalLineCenter from '@/components/OrgChartLines/HorizontalLineCenter';
-import TopVerticalLineOpen from '../components/OrgChartLines/TopVerticalLineOpen';
-import Flex from '../components/OrgChartLines/Flex';
 import {authUser} from '../utils/user';
 
 const OrgChart = () => {
@@ -45,8 +43,8 @@ const OrgChart = () => {
           <ParentWrapper>
             <div className='auth'>
                {/* {!showProfileCard ? <TopVerticalLine /> : ""} */}
-               <TopVerticalLine /> 
               {/* {!showJuniorStaff && (<BottomVerticalLine />)}  */}
+              {/* <TopVerticalLine />  */}
               <BottomVerticalLine />
               <EmployeeCard 
                   handleSeniorStaffVisibility={handleSeniorStaffVisibility}
@@ -56,7 +54,6 @@ const OrgChart = () => {
                   employee={user}
               />
             </div>
-            
           </ParentWrapper>
     </EssLayout>
   )

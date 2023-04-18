@@ -11,16 +11,14 @@ export default HorizontalLineCenter;
 
 const Hrl = styled("div")`
     position: relative;
-
     &::before{
         content: "";
-        width: 110%;
+        width: 1000px;
         height: 2px;
-        background: var(--grey-200);
-        right: 0%;
-        top: -40px;
+        background-color: var(--grey-200);
+        right: -500px;
+        top: 40px;
         position: absolute;
-        margin: 0 auto;
     }
    
 `;

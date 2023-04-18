@@ -80,12 +80,13 @@ const handleShowProfile = () => {
       </ div>
 
       {employee?.subordinates?.length > 0 && showSubordinate === true &&
+      <>
+        <HorizontalLineCenter />
         <ChildrenWrapperLeft >
           {user.subordinates.map((subordinate, index)=>(
-            <div className='wo' key={index} >
+            <div key={index} >
               <div  className='wow'>
                 <TopVerticalLine />
-                <HorizontalLineCenter />
                 <EmployeeCard 
                     photo={photo}
                     employee={employee.subordinates[index]}
@@ -95,6 +96,7 @@ const handleShowProfile = () => {
             </div>
           ))}
         </ChildrenWrapperLeft>
+      </>
       }
     </>
     
@@ -148,9 +150,7 @@ const ChildrenWrapper = styled("div")`
   align-items: center;
   gap: 1rem;
   margin: 0rem 0rem 2rem 0rem;
-  border:2px solid blue;
 
- 
   
 ${mobileSmall}{
   gap: 2rem;
