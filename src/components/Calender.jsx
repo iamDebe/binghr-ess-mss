@@ -7,20 +7,20 @@ import CalculateModalLeft from '@/components/CalculateModalLeft';
 import ClockinOverlay from '@/components/ClockinOverlay';
 import { CalenderMain, Container, CalenderTitle, CalenderControlsWrapper } from '@/assets/wrappers/CalenderWrapper';
 import { AnimatePresence } from 'framer-motion';
-import { generateCalender } from '../utils/calendar';
+import { generateCalender } from '@/utils/calendar';
 
 
     const Calender = ({
-        clickHandler, 
-        doubleClickHandler, 
-        mouseUpHandler, 
-        mouseDownHandler, 
-        currentRange, 
-        weeks, 
-        setWeeks, 
-        hideCalculateModal,
-        mouseOverHandler,
-        mouseOutHandler
+      clickHandler, 
+      doubleClickHandler, 
+      mouseUpHandler, 
+      mouseDownHandler, 
+      currentRange, 
+      weeks, 
+      setWeeks, 
+      hideCalculateModal,
+      mouseOverHandler,
+      mouseOutHandler
     }) => {
     
     const [currentMonth, setCurrentMonth] = useState(0);

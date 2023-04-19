@@ -11,7 +11,6 @@ export default BottomVerticalLine;
 
 const VrlBottom = styled("div")`
     position: relative;
-
     &::after{
         content: "";
         display: block;
@@ -19,7 +18,7 @@ const VrlBottom = styled("div")`
         height: 2px;
         background: var(--grey-200);
         left: -20px;
-        top: 206px;
+        top: 20px;
         position: absolute;
         transform: rotate(90deg);
     }

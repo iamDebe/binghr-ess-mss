@@ -49,7 +49,24 @@ export const authUser = () => {
               name:"User1 sub 2",
               department: "Branding",
               showProfile: false,
-              subordinates:[],
+              subordinates:[
+                {
+                  job_title: "UX Lead",
+                  name:"sub 2 sub 1",
+                  department: "Branding",
+                  showProfile: false,
+                  subordinates:[],
+                  superior:null
+                },
+                {
+                  job_title: "UX Lead",
+                  name:"sub 2 sub 1",
+                  department: "Branding",
+                  showProfile: false,
+                  subordinates:[],
+                  superior:null
+                }
+              ],
               superior:null
             },
             {
